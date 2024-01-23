@@ -27,7 +27,7 @@ jobs:
          cache-dependency-path: Arsoude/package-lock.json
       - name: npm install, build, and test
         run: |
-         cd Asourde
+         cd Arsoude
          npm install
          npm run build --if-present
 
