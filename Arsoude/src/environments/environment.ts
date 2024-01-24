@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: "https://ArsoudeServ.azurewebsites.net/"
+    apiUrl: "https://Arsoude.net/#/"
 };

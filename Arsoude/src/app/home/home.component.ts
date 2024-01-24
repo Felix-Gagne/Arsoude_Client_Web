@@ -8,16 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-hello : string = "";
+hello : String = "pas de bonjour :C";
 
 
 
 constructor(private helloService : HelloworldService, private router: Router){}
 
 
-GetHello() : void {
+  async GetHello() : Promise<void> {
 
-
+  this.hello = await this.helloService.GetWord()
 
 
  }
