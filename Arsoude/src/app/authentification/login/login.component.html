@@ -9,7 +9,7 @@
         </div>
         <form [formGroup]="form" class="box_login_form">  
             <mat-form-field class="box_login_form_email">
-              <input class="box_login_form_email" matInput type="email" placeholder="Courriel" formControlName="email" [(ngModel)]="email">
+              <input  class="box_login_form_email_input" matInput type="email" placeholder="Courriel" formControlName="email" [(ngModel)]="email">
               <mat-error *ngIf="form.get('email')?.errors?.['email'] && !form.get('email')?.hasError('required')">
                 Entrer une adresse courriel valide
               </mat-error>
@@ -17,7 +17,7 @@
                 Votre courriel est <strong>requis</strong>
               </mat-error>
             </mat-form-field>
-      
+            <div class="space"></div>
             <mat-form-field style="width: 90%">
               <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Mot de passe" formControlName="password" [(ngModel)]="password">
               <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
@@ -29,7 +29,12 @@
               </mat-error>
             </mat-form-field>
       
-            <button class="box_login_button" >Se connecter</button>
+            <button class="box_login_button">Se connecter</button>
         </form>
+        <div class="space"></div>
+        <a class="box_login_forgot" href="">Mot de passe oublié</a>
+        <div class="space_bottom"></div>
+        <p class="login_box_compte">Pas de compte? <a class="box_login_signup" href="">Inscrivez-vous gratuitement</a></p>
+        <div class="space_bottom"></div>
     </div>
 </main>
