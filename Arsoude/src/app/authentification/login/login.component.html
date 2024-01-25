@@ -1,42 +1,15 @@
-<header class="header">
-    <div class="wrapper">
-        <a href="" class="header_brand"><img class="logo" src="assets/images/Logo.png" alt="Logo" /></a>
 
-        <nav class="header_nav">
 
-            <ul>
-                <li>
-                    <a href="">Explorer</a>
-                </li>
-                <li>
-                    <a href="">Communauté</a>
-                </li>
-                <li>
-                    <a href="">Créer</a>
-                </li>
-            </ul>
-        </nav>
-        <nav class="header_options">
-            <ul>
-                <li>
-                    <a href="">Aide</a>
-                </li>
-                <li>
-                    <a href="" class="button">Se connecter</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-<main>
+<main class="container">
     <img class="background_login" src="assets/images/Banff National Park 4K472814907.jpg" alt="Background image login page">
     <div class="box_login">
-        <img src="assets/images/LogoNoWords.png" alt="">
-        <h2>Connectez-vous</h2>
-        <form [formGroup]="form">
-            <mat-form-field style="width: 20%">
-              <input matInput type="email" placeholder="Courriel" formControlName="email" [(ngModel)]="email">
+        <div class="box_login_head">
+          <img class="box_login_logo" src="assets/images/LogoNoWords.png" alt="">
+          <h2>Connectez-vous</h2>
+        </div>
+        <form [formGroup]="form" class="box_login_form">  
+            <mat-form-field class="box_login_form_email">
+              <input class="box_login_form_email" matInput type="email" placeholder="Courriel" formControlName="email" [(ngModel)]="email">
               <mat-error *ngIf="form.get('email')?.errors?.['email'] && !form.get('email')?.hasError('required')">
                 Entrer une adresse courriel valide
               </mat-error>
@@ -45,18 +18,18 @@
               </mat-error>
             </mat-form-field>
       
-            <mat-form-field style="width: 20%">
+            <mat-form-field style="width: 90%">
               <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Mot de passe" formControlName="password" [(ngModel)]="password">
               <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
               <mat-error *ngIf="form.get('password')?.hasError('required')">
                 Votre mot de passe est <strong>requis</strong>
               </mat-error>
               <mat-error *ngIf="form.get('password')?.hasError('min')">
-                Votre mot deé passe est <strong>trop court</strong>
+                Votre mot de passe est <strong>trop court</strong>
               </mat-error>
             </mat-form-field>
       
-            <button style="width:20%; border-radius: 25px; background-color: #09635F; color: white; font-size: 20px; font-weight: medium ; padding-top: 15px; padding-bottom: 15px;">Se connecter</button>
-          </form>
+            <button class="box_login_button" >Se connecter</button>
+        </form>
     </div>
 </main>
