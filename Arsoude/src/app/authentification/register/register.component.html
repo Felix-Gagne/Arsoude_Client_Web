@@ -7,18 +7,18 @@
         </div>
         <form [formGroup]="form" class="box_login_form row"> 
             <mat-form-field  style="width: 100%">
-                <input class="box_login_form_name" matInput type="text" placeholder="Nom" formControlName="nom">
+                <input class="box_login_form_name" matInput type="text" placeholder="Nom" formControlName="nom" [(ngModel)]="lastName">
                 <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
               </mat-form-field>
 
               <mat-form-field style="width: 100%">
-                <input class="box_login_form_lastname" matInput type="text" placeholder="Prénom" formControlName="prenom">
+                <input class="box_login_form_lastname" matInput type="text" placeholder="Prénom" formControlName="prenom"[(ngModel)]="firstName">
                 <mat-error *ngIf="form.get('prenom')?.hasError('required')">Votre prénom est <strong>requis</strong></mat-error>
               </mat-form-field>
 
                  
               <mat-form-field style="width: 100%">
-                <input class="box_login_form_username" matInput type="text" placeholder="Nom d'utilisateur" formControlName="username">
+                <input class="box_login_form_username" matInput type="text" placeholder="Nom d'utilisateur" formControlName="username" [(ngModel)]="username">
                 <mat-error *ngIf="form.get('username')?.hasError('required')">Le nom d'utilisateur est <strong>requis</strong></mat-error>
               </mat-form-field>
               
@@ -34,7 +34,7 @@
      
             
             <mat-form-field style="width: 100%">
-                <input class="box_login_form_postalcode" matInput type="text" placeholder="Code postal" formControlName="codePostal">
+                <input class="box_login_form_postalcode" matInput type="text" placeholder="Code postal" formControlName="codePostal" [(ngModel)]="areaCode">
                 <mat-error *ngIf="form.get('codePostal')?.hasError('required')">Le code postal est <strong>requis</strong></mat-error>
                 <mat-error *ngIf="form.get('codePostal')?.hasError('invalidPostalCode')">Entrez un code postal <strong>valide</strong></mat-error>
               </mat-form-field>
@@ -51,13 +51,13 @@
             </mat-form-field>
             
               <mat-form-field style="width: 100%">
-                <input class="box_login_form_confirmPassword" matInput type="password" placeholder="Confirmer le mot de passe" formControlName="confirmPassword">
+                <input class="box_login_form_confirmPassword" matInput type="password" placeholder="Confirmer le mot de passe" formControlName="confirmPassword" [(ngModel)]="confirmPassword">
                 <mat-error *ngIf="form.hasError('passwordMismatch')">Les mots de passe ne correspondent pas</mat-error>
                 <mat-error *ngIf="form.get('confirmPassword')?.hasError('required')">La confirmation du mot de passe est <strong>requis</strong></mat-error>
                 
               </mat-form-field>
      
-            <button class="box_login_button" >Se connecter</button>
+            <button class="box_login_button" (click)="Register()">Se connecter</button>
         </form>
     </div>
 </main>

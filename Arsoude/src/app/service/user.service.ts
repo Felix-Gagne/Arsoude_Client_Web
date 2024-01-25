@@ -12,7 +12,7 @@ export class UserService {
 
   async register(service : RegisterDTO)
   {
-    let x = await lastValueFrom(this.http.post<RegisterDTO>("https://localhost:7127/api/User/Register", service));
+    let x = await lastValueFrom(this.http.post<RegisterDTO>("http://localhost:5050/api/User/Register", service));
     console.log(x);
   }
 }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, ValidatorFn, Validators } from '@angular/forms';
+import { RegisterDTO } from 'src/app/models/RegisterDTO';
+import { UserService } from 'src/app/service/user.service';
 
 interface RegisterData { 
   email?: string | null ; 
@@ -12,9 +14,15 @@ interface RegisterData {
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  constructor(private fb: FormBuilder){}
-  email : string | undefined; 
-  password : string | undefined ;
+  constructor(private fb: FormBuilder, public service : UserService){}
+
+  email : string = ""; 
+  password : string = "";
+  lastName : string = "";
+  firstName : string = "";
+  username : string = "";
+  areaCode : string = "";
+  confirmPassword : string = "";
 
   hidePassword = true;
 
@@ -44,6 +52,17 @@ export class RegisterComponent {
     });
   }
 
+
+  async Register(){
+    const user = new RegisterDTO(this.firstName, this.lastName, this.username, this.email, this.areaCode, this.password, this.confirmPassword);
+
+    try{
+      this.service.register(user);
+    }
+    catch(e){
+      console.log("Erreur : " + e);
+    }
+  }
 
 
 
