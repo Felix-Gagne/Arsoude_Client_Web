@@ -1,0 +1,35 @@
+
+
+<main class="container">
+    <img class="background_login" src="assets/images/Banff National Park 4K472814907.jpg" alt="Background image login page">
+    <div class="box_login">
+        <div class="box_login_head">
+          <img class="box_login_logo" src="assets/images/LogoNoWords.png" alt="">
+          <h2>Connectez-vous</h2>
+        </div>
+        <form [formGroup]="form" class="box_login_form">  
+            <mat-form-field class="box_login_form_email">
+              <input class="box_login_form_email" matInput type="email" placeholder="Courriel" formControlName="email" [(ngModel)]="email">
+              <mat-error *ngIf="form.get('email')?.errors?.['email'] && !form.get('email')?.hasError('required')">
+                Entrer une adresse courriel valide
+              </mat-error>
+              <mat-error *ngIf="form.get('email')?.hasError('required')">
+                Votre courriel est <strong>requis</strong>
+              </mat-error>
+            </mat-form-field>
+      
+            <mat-form-field style="width: 90%">
+              <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Mot de passe" formControlName="password" [(ngModel)]="password">
+              <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              <mat-error *ngIf="form.get('password')?.hasError('required')">
+                Votre mot de passe est <strong>requis</strong>
+              </mat-error>
+              <mat-error *ngIf="form.get('password')?.hasError('min')">
+                Votre mot de passe est <strong>trop court</strong>
+              </mat-error>
+            </mat-form-field>
+      
+            <button class="box_login_button" >Se connecter</button>
+        </form>
+    </div>
+</main>
