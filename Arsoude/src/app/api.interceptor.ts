@@ -13,7 +13,7 @@ export class ApiInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    request = request.clone({ withCredentials: true});
+    //request = request.clone({ withCredentials: true});
 
 
     return next.handle(request);

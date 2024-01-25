@@ -1,0 +1,63 @@
+<main class="container">
+    
+    <div class="box_login">
+        <div class="box_login_head">
+          <img class="box_login_logo" src="assets/images/LogoNoWords.png" alt="">
+          <h2>Inscrivez-vous</h2>
+        </div>
+        <form [formGroup]="form" class="box_login_form row"> 
+            <mat-form-field  style="width: 100%">
+                <input class="box_login_form_name" matInput type="text" placeholder="Nom" formControlName="nom" [(ngModel)]="lastName">
+                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
+              </mat-form-field>
+
+              <mat-form-field style="width: 100%">
+                <input class="box_login_form_lastname" matInput type="text" placeholder="Prénom" formControlName="prenom"[(ngModel)]="firstName">
+                <mat-error *ngIf="form.get('prenom')?.hasError('required')">Votre prénom est <strong>requis</strong></mat-error>
+              </mat-form-field>
+
+                 
+              <mat-form-field style="width: 100%">
+                <input class="box_login_form_username" matInput type="text" placeholder="Nom d'utilisateur" formControlName="username" [(ngModel)]="username">
+                <mat-error *ngIf="form.get('username')?.hasError('required')">Le nom d'utilisateur est <strong>requis</strong></mat-error>
+              </mat-form-field>
+              
+            <mat-form-field style="width: 100%; border-radius: 25px;">
+              <input class="box_login_form_email" matInput type="email" placeholder="Courriel" formControlName="email" [(ngModel)]="email">
+              <mat-error *ngIf="form.get('email')?.errors?.['email'] && !form.get('email')?.hasError('required')">
+                Entrer une adresse courriel valide
+              </mat-error>
+              <mat-error *ngIf="form.get('email')?.hasError('required')">
+                Votre courriel est <strong>requis</strong>
+              </mat-error>
+            </mat-form-field>
+     
+            
+            <mat-form-field style="width: 100%">
+                <input class="box_login_form_postalcode" matInput type="text" placeholder="Code postal" formControlName="codePostal" [(ngModel)]="areaCode">
+                <mat-error *ngIf="form.get('codePostal')?.hasError('required')">Le code postal est <strong>requis</strong></mat-error>
+                <mat-error *ngIf="form.get('codePostal')?.hasError('invalidPostalCode')">Entrez un code postal <strong>valide</strong></mat-error>
+              </mat-form-field>
+
+            <mat-form-field style="width: 100%">
+              <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Mot de passe" formControlName="password" [(ngModel)]="password">
+              <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              <mat-error *ngIf="form.get('password')?.hasError('required')">
+                Votre mot de passe est <strong>requis</strong>
+              </mat-error>
+              <mat-error *ngIf="form.get('password')?.hasError('min')">
+                Votre mot de passe est <strong>trop court</strong>
+              </mat-error>
+            </mat-form-field>
+            
+              <mat-form-field style="width: 100%">
+                <input class="box_login_form_confirmPassword" matInput type="password" placeholder="Confirmer le mot de passe" formControlName="confirmPassword" [(ngModel)]="confirmPassword">
+                <mat-error *ngIf="form.hasError('passwordMismatch')">Les mots de passe ne correspondent pas</mat-error>
+                <mat-error *ngIf="form.get('confirmPassword')?.hasError('required')">La confirmation du mot de passe est <strong>requis</strong></mat-error>
+                
+              </mat-form-field>
+     
+            <button class="box_login_button" (click)="Register()">Se connecter</button>
+        </form>
+    </div>
+</main>
