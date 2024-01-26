@@ -12,12 +12,13 @@ interface RegisterData {
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  EnInscription : boolean = true;
   constructor(private fb: FormBuilder){}
   email : string | undefined; 
   password : string | undefined ;
-
+  
   hidePassword = true;
-
+  
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['',[Validators.required, Validators.min(8)]], 
