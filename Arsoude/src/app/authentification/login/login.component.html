@@ -9,12 +9,9 @@
         </div>
         <form [formGroup]="form" class="box_login_form">  
             <mat-form-field class="box_login_form_email">
-              <input  class="box_login_form_email_input" matInput type="email" placeholder="Courriel" formControlName="email" [(ngModel)]="email">
-              <mat-error *ngIf="form.get('email')?.errors?.['email'] && !form.get('email')?.hasError('required')">
-                Entrer une adresse courriel valide
-              </mat-error>
-              <mat-error *ngIf="form.get('email')?.hasError('required')">
-                Votre courriel est <strong>requis</strong>
+              <input  class="box_login_form_email_input" matInput type="username" placeholder="Nom d'utilisateur" formControlName="username" [(ngModel)]="username">
+              <mat-error *ngIf="form.get('username')?.hasError('required')">
+                Votre nom d'utilisateur est <strong>requis</strong>
               </mat-error>
             </mat-form-field>
             <div class="space"></div>
@@ -29,12 +26,12 @@
               </mat-error>
             </mat-form-field>
       
-            <button class="box_login_button">Se connecter</button>
+            <button class="box_login_button" (click)="Login()">Se connecter</button>
         </form>
         <div class="space"></div>
         <a class="box_login_forgot" href="">Mot de passe oublié</a>
         <div class="space_bottom"></div>
-        <p class="login_box_compte">Pas de compte? <a class="box_login_signup" href="">Inscrivez-vous gratuitement</a></p>
+        <p class="login_box_compte">Pas de compte? <a class="box_login_signup" href="" routerLink="/register">Inscrivez-vous gratuitement</a></p>
         <div class="space_bottom"></div>
     </div>
 </main>

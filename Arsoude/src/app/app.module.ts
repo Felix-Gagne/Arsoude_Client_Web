@@ -11,13 +11,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './authentification/login/login.component';
 import { RegisterComponent } from './authentification/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InfoRegComponent } from './authentification/info-reg/info-reg.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    InfoRegComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { LoginDTO } from 'src/app/models/LoginDTO';
+import { UserService } from 'src/app/service/user.service';
 
 interface LoginData { 
   email?: string | null ; 
@@ -12,14 +14,14 @@ interface LoginData {
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private fb: FormBuilder){}
-  email : string | undefined; 
-  password : string | undefined ;
+  constructor(private fb: FormBuilder, public service : UserService){}
+  username : string = ""; 
+  password : string = "";
 
   hidePassword = true;
 
   form = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    username: ['', [Validators.required]],
     password: ['',[Validators.required, Validators.min(8)]],
   });
   // Le component contient une variable du même type que les champs du formulaire
@@ -29,6 +31,17 @@ export class LoginComponent {
     this.form.valueChanges.subscribe(() => {
       this.formData = this.form.value;
     });
+  }
+
+  async Login(){
+    const login = new LoginDTO(this.username, this.password);
+
+    try{
+      this.service.Login(login);
+    }
+    catch(e){
+      console.log("Erreur : " + e);
+    }
   }
 
 }
