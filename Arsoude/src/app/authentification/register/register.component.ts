@@ -25,7 +25,7 @@ export class RegisterComponent {
   confirmPassword : string = "";
 
   hidePassword = true;
-
+  
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['',[Validators.required, Validators.min(8)]], 

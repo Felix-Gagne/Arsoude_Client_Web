@@ -1,0 +1,48 @@
+<main class="container">
+    
+    <div class="box_login">
+        <div class="box_login_head">
+          <img class="box_login_logo" src="assets/images/LogoNoWords.png" alt="">
+          <h2>Aidez nous a mieux vous connaitre</h2>
+          
+        </div>
+        <form [formGroup]="form" class="box_login_form"  > 
+            <mat-form-field  style="width: 40% ; margin-right: 20%;">
+                <input  matInput type="text" placeholder="Numéro civique" formControlName="address">
+                <mat-error *ngIf="form.get('address')?.hasError('pattern')"> Veuillez entrer <strong>un numéro civique valide</strong></mat-error>
+              </mat-form-field>
+                
+              <mat-form-field style="width: 40%">
+                <input matInput type="text" placeholder="Rue" formControlName="street">
+                
+              </mat-form-field>
+
+              <mat-form-field style="width: 100%">
+                <mat-label>Province</mat-label>
+                <mat-select formControlName="province" placeholder="Sélectionner une province">
+                  <mat-option *ngFor="let province of provinces" [value]="province"  >{{ province }}</mat-option>
+                </mat-select>
+                
+              </mat-form-field>
+
+               
+            <mat-form-field style="width: 40%; margin-right: 20%;">
+                <input  matInput type="text" placeholder="Année de naissance" formControlName="yearbirth" >
+                <mat-error *ngIf="form.get('yearbirth')?.hasError('validYear') || form.get('yearbirth')?.hasError('pattern') ">Veuillez entrer une année valide</mat-error>
+              </mat-form-field>
+              
+            <mat-form-field style="width: 40%">
+              <input  matInput type="text" placeholder="Mois de naissance" formControlName="monthbirth" >
+              <mat-error *ngIf="form.get('monthbirth')?.hasError('validMonth') || form.get('monthbirth')?.hasError('pattern')">Veuillez entrer un mois valide</mat-error>
+              
+            </mat-form-field>
+       
+            
+           
+     
+            <button class="box_login_button" >Continuer</button>
+            
+        </form>
+      
+    </div>
+</main>
