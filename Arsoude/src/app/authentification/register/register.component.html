@@ -27,7 +27,8 @@
               </mat-form-field>
               
             <mat-form-field style="width: 100%; border-radius: 25px;">
-              <input class="box_login_form_email" matInput type="email" placeholder="Courriel" formControlName="email" [(ngModel)]="email">
+              <mat-label>Courriel</mat-label>
+              <input class="box_login_form_email" matInput type="email" placeholder="Exemple@email.com" formControlName="email" [(ngModel)]="email">
               <mat-error *ngIf="form.get('email')?.errors?.['email'] && !form.get('email')?.hasError('required')">
                 Entrer une adresse courriel valide
               </mat-error>
@@ -38,13 +39,15 @@
      
             
             <mat-form-field style="width: 100%">
-                <input class="box_login_form_postalcode" matInput type="text" placeholder="Code postal" formControlName="codePostal">
+              <mat-label>Code postal</mat-label>
+                <input class="box_login_form_postalcode" matInput type="text" formControlName="codePostal">
                 <mat-error *ngIf="form.get('codePostal')?.hasError('required')">Le code postal est <strong>requis</strong></mat-error>
                 <mat-error *ngIf="form.get('codePostal')?.hasError('invalidPostalCode')">Entrez un code postal <strong>valide</strong></mat-error>
               </mat-form-field>
 
             <mat-form-field style="width: 100%">
-              <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Mot de passe" formControlName="password" [(ngModel)]="password">
+              <mat-label>Mot de passe</mat-label>
+              <input matInput [type]="hidePassword ? 'password' : 'text'"  formControlName="password" [(ngModel)]="password">
               <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
               <mat-error *ngIf="form.get('password')?.hasError('required')">
                 Votre mot de passe est <strong>requis</strong>
@@ -55,7 +58,8 @@
             </mat-form-field>
             
               <mat-form-field style="width: 100%">
-                <input class="box_login_form_confirmPassword" matInput type="password" placeholder="Confirmer le mot de passe" formControlName="confirmPassword">
+                <mat-label>Confirmer le mot de passe</mat-label>
+                <input class="box_login_form_confirmPassword" matInput type="password"  formControlName="confirmPassword">
                 <mat-error *ngIf="form.hasError('passwordMismatch')">Les mots de passe ne correspondent pas</mat-error>
                 <mat-error *ngIf="form.get('confirmPassword')?.hasError('required')">La confirmation du mot de passe est <strong>requis</strong></mat-error>
                 

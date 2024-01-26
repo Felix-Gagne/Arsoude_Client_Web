@@ -58,23 +58,24 @@ export class InfoRegComponent {
   validMonthValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const monthValue = control.value;
-  
+      if(monthValue != ""){
       // Check if the month is a valid number between 1 and 12
       if (!/^\d+$/.test(monthValue) || +monthValue < 1 || +monthValue > 12) {
         return { validMonth: true };
       }
-  
+    }
       return null; 
     };
   }
   validYearValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const yearValue = control.value;
-  
+       if(yearValue != ""){
       // Check if the year is a valid number (you can customize this based on your requirements)
       if (!/^\d+$/.test(yearValue) || +yearValue < 1900 || +yearValue > new Date().getFullYear()) {
         return { validYear: true };
       }
+    }
   
       return null; 
     };

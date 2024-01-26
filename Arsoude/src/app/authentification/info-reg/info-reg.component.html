@@ -7,17 +7,19 @@
           
         </div>
         <form [formGroup]="form" class="box_login_form"  > 
-            <mat-form-field  style="width: 40% ; margin-right: 20%;">
-                <input  matInput type="text" placeholder="Numéro civique" formControlName="address">
+            <mat-form-field  style="width: 40% ; margin-right: 5%;">
+                <mat-label>Numéro civique</mat-label>
+                <input  matInput type="text"  formControlName="address">
                 <mat-error *ngIf="form.get('address')?.hasError('pattern')"> Veuillez entrer <strong>un numéro civique valide</strong></mat-error>
               </mat-form-field>
                 
               <mat-form-field style="width: 40%">
-                <input matInput type="text" placeholder="Rue" formControlName="street">
+                <mat-label>Rue</mat-label>
+                <input matInput type="text"  formControlName="street">
                 
               </mat-form-field>
 
-              <mat-form-field style="width: 100%">
+              <mat-form-field style="width: 85%">
                 <mat-label>Province</mat-label>
                 <mat-select formControlName="province" placeholder="Sélectionner une province">
                   <mat-option *ngFor="let province of provinces" [value]="province"  >{{ province }}</mat-option>
@@ -26,13 +28,15 @@
               </mat-form-field>
 
                
-            <mat-form-field style="width: 40%; margin-right: 20%;">
-                <input  matInput type="text" placeholder="Année de naissance" formControlName="yearbirth" >
+            <mat-form-field style="width: 40% ; margin-right: 5%;">
+              <mat-label>Année de naissance</mat-label>
+                <input  matInput type="text" placeholder="YYYY" formControlName="yearbirth" >
                 <mat-error *ngIf="form.get('yearbirth')?.hasError('validYear') || form.get('yearbirth')?.hasError('pattern') ">Veuillez entrer une année valide</mat-error>
               </mat-form-field>
               
             <mat-form-field style="width: 40%">
-              <input  matInput type="text" placeholder="Mois de naissance" formControlName="monthbirth" >
+              <mat-label>Mois de naissance</mat-label>
+              <input  matInput type="text" placeholder="MM" formControlName="monthbirth" >
               <mat-error *ngIf="form.get('monthbirth')?.hasError('validMonth') || form.get('monthbirth')?.hasError('pattern')">Veuillez entrer un mois valide</mat-error>
               
             </mat-form-field>
