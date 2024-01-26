@@ -9,13 +9,13 @@
         <form [formGroup]="form" class="box_login_form"  > 
             <mat-form-field  style="width: 40% ; margin-right: 5%;">
                 <mat-label>Numéro civique</mat-label>
-                <input  matInput type="text"  formControlName="address">
+                <input  matInput type="text"  formControlName="address" [(ngModel)]="houseNo">
                 <mat-error *ngIf="form.get('address')?.hasError('pattern')"> Veuillez entrer <strong>un numéro civique valide</strong></mat-error>
               </mat-form-field>
                 
               <mat-form-field style="width: 40%">
                 <mat-label>Rue</mat-label>
-                <input matInput type="text"  formControlName="street">
+                <input matInput type="text"  formControlName="street" [(ngModel)]="street">
                 
               </mat-form-field>
 
@@ -30,13 +30,13 @@
                
             <mat-form-field style="width: 40% ; margin-right: 5%;">
               <mat-label>Année de naissance</mat-label>
-                <input  matInput type="text" placeholder="YYYY" formControlName="yearbirth" >
+                <input  matInput type="text" placeholder="YYYY" formControlName="yearbirth" [(ngModel)]="yearOfBirth">
                 <mat-error *ngIf="form.get('yearbirth')?.hasError('validYear') || form.get('yearbirth')?.hasError('pattern') ">Veuillez entrer une année valide</mat-error>
               </mat-form-field>
               
             <mat-form-field style="width: 40%">
               <mat-label>Mois de naissance</mat-label>
-              <input  matInput type="text" placeholder="MM" formControlName="monthbirth" >
+              <input  matInput type="text" placeholder="MM" formControlName="monthbirth" [(ngModel)]="monthOfBirth">
               <mat-error *ngIf="form.get('monthbirth')?.hasError('validMonth') || form.get('monthbirth')?.hasError('pattern')">Veuillez entrer un mois valide</mat-error>
               
             </mat-form-field>

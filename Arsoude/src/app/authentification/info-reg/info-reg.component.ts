@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { InfoRegDTO } from 'src/app/models/InfoRegDTO';
 import { UserService } from 'src/app/service/user.service';
 
@@ -20,7 +21,7 @@ interface InfoData{
   styleUrls: ['./info-reg.component.css']
 })
 export class InfoRegComponent {
-  constructor(private fb: FormBuilder, public service : UserService){}
+  constructor(private fb: FormBuilder, public service : UserService, public router : ActivatedRoute){}
    
   provinces: string[] = [
     'Alberta',
@@ -39,11 +40,12 @@ export class InfoRegComponent {
   ];
 
   state : string = "";
-  city : string = "";
+  city : string = "Varennes";
   street : string = "";
   houseNo : number = 0;
   yearOfBirth : number = 0;
   monthOfBirth : number = 0;
+  username : string | undefined;
 
   hidePassword = true;
 
@@ -65,37 +67,39 @@ export class InfoRegComponent {
   }
 
   async AddAditionnalInfo(){
-    const info = new InfoRegDTO(this.houseNo, this.street, this.city, this.state, this.yearOfBirth, this.monthOfBirth);
+    this.username = this.router.snapshot.paramMap.get('username')?.toString();
 
-    try{
-      await this.service.AddAditionnalInfo(info);
-    }
-    catch(e){
-      console.log("Error : " + e);
+    if(this.username != undefined){
+      const info = new InfoRegDTO(this.username ,this.houseNo, this.street, this.city, this.state, this.yearOfBirth, this.monthOfBirth);
+      try{
+        await this.service.AddAditionnalInfo(info);
+      }
+      catch(e){
+        console.log("Error : " + e);
+      }
     }
   }
 
   validMonthValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const monthValue = control.value;
-      if(monthValue != ""){
+  
       // Check if the month is a valid number between 1 and 12
       if (!/^\d+$/.test(monthValue) || +monthValue < 1 || +monthValue > 12) {
         return { validMonth: true };
       }
-    }
+  
       return null; 
     };
   }
   validYearValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const yearValue = control.value;
-       if(yearValue != ""){
+  
       // Check if the year is a valid number (you can customize this based on your requirements)
       if (!/^\d+$/.test(yearValue) || +yearValue < 1900 || +yearValue > new Date().getFullYear()) {
         return { validYear: true };
       }
-    }
   
       return null; 
     };

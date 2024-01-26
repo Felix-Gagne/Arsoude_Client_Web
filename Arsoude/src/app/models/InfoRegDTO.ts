@@ -1,5 +1,6 @@
 export class InfoRegDTO{
     constructor(
+        public Username : string,
         public HouseNo? : number,
         public Street? : string,
         public City? : string,

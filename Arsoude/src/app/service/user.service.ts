@@ -40,6 +40,7 @@ export class UserService {
 
   async AddAditionnalInfo(dto : InfoRegDTO){
     try{
+      console.log(dto);
       let x = await lastValueFrom(this.http.put<any>("http://localhost:5050/api/User/AddAditionnalInfo", dto));
       console.log(x);
       this.router.navigate(['']);
