@@ -4,22 +4,27 @@ main{
     background-size:cover;
 
     h2{
-        font-size: 30px;
+        font-size: 50px;
         font-weight: bold;
         font-family: 'Plus Jakarta Sans';
-
     }
     
 
 }
+.box_login_logo{
 
+    width: 150px;
+    height: 100px;
+    align-self: center;
+
+ }
 .box_login_head{
-    display: block;
+    display: flex;
+    flex-direction: column;
     height: 10vh;
-    margin: 0 auto;
+    margin-bottom: 130px;
     text-align: center;
     padding-bottom: 7%;
-
 }
 
 .box_login {

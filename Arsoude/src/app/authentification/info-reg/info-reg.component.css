@@ -4,21 +4,31 @@ main{
     background-size:cover;
 
     h2{
-        font-size: 30px;
+        font-size: 50px;
         font-weight: bold;
         font-family: 'Plus Jakarta Sans';
+        margin: 0px;
 
     }
-    
+    .box_login_logo{
+
+       width: 150px;
+       height: 100px;
+       align-self: center;
+
+    }
 
 }
 
 .box_login_head{
-    display: block;
+    display: flex;
+    flex-direction: column;
     height: 10vh;
-    margin: 0 auto;
+    margin-bottom: 130px;
     text-align: center;
     padding-bottom: 7%;
+    
+
 
 }
 
@@ -27,7 +37,7 @@ main{
     border-radius: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     padding: 3%;
-    width: 40% ;
+    width: 35% ;
     
     
     margin-top: 3%;
@@ -87,7 +97,7 @@ input[type="text"]{
     font-family: 'Plus Jakarta Sans';
     font-size: 25px;
     font-weight: bold;
-    width:90%;
+    width:85%;
     border-radius: 35px;
     background-color: #09635F; 
     color: white; 
@@ -97,7 +107,7 @@ input[type="text"]{
 }
 
 .box_login_form_email{
-    width: 90%;
+    width: 80%;
 }
 
 .box_login_button:hover{
