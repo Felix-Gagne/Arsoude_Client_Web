@@ -9,20 +9,20 @@
         <form [formGroup]="form" class="box_login_form"  > 
             <mat-form-field  style="width: 100%">
               <mat-label>Nom</mat-label>
-                <input class="box_login_form_name" matInput type="text"  formControlName="nom">
+                <input class="box_login_form_name" matInput type="text"  formControlName="nom" [(ngModel)]="lastName">
                 <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
               </mat-form-field>
 
               <mat-form-field style="width: 100%">
                 <mat-label>Prénom</mat-label>
-                <input class="box_login_form_lastname" matInput type="text"  formControlName="prenom">
+                <input class="box_login_form_lastname" matInput type="text"  formControlName="prenom" [(ngModel)]="firstName">
                 <mat-error *ngIf="form.get('prenom')?.hasError('required')">Votre prénom est <strong>requis</strong></mat-error>
               </mat-form-field>
 
                  
               <mat-form-field style="width: 100%">
                 <mat-label>Nom d'utilisateur</mat-label>
-                <input class="box_login_form_username" matInput type="text"  formControlName="username">
+                <input class="box_login_form_username" matInput type="text"  formControlName="username" [(ngModel)]="username">
                 <mat-error *ngIf="form.get('username')?.hasError('required')">Le nom d'utilisateur est <strong>requis</strong></mat-error>
               </mat-form-field>
               
@@ -61,8 +61,8 @@
                 
               </mat-form-field>
      
-            <button class="box_login_button" >Continuer</button>
-            <p>Deja un Compte? <a href="">Connectez-vous</a></p>
+            <button class="box_login_button" (click)="Register()">Continuer</button>
+            <p>Deja un Compte? <a href="" routerLink="/login">Connectez-vous</a></p>
         </form>
       
     </div>

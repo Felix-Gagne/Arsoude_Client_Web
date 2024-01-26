@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { InfoRegDTO } from 'src/app/models/InfoRegDTO';
+import { UserService } from 'src/app/service/user.service';
 
 interface InfoData{
   address?: string | null ; 
@@ -18,7 +20,7 @@ interface InfoData{
   styleUrls: ['./info-reg.component.css']
 })
 export class InfoRegComponent {
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder, public service : UserService){}
    
   provinces: string[] = [
     'Alberta',
@@ -35,6 +37,13 @@ export class InfoRegComponent {
     'Nunavut',
     'Yukon',
   ];
+
+  state : string = "";
+  city : string = "";
+  street : string = "";
+  houseNo : number = 0;
+  yearOfBirth : number = 0;
+  monthOfBirth : number = 0;
 
   hidePassword = true;
 
@@ -53,6 +62,17 @@ export class InfoRegComponent {
     this.form.valueChanges.subscribe(() => {
       this.formData = this.form.value;
     });
+  }
+
+  async AddAditionnalInfo(){
+    const info = new InfoRegDTO(this.houseNo, this.street, this.city, this.state, this.yearOfBirth, this.monthOfBirth);
+
+    try{
+      await this.service.AddAditionnalInfo(info);
+    }
+    catch(e){
+      console.log("Error : " + e);
+    }
   }
 
   validMonthValidator(): ValidatorFn {
