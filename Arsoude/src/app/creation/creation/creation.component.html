@@ -2,10 +2,44 @@
 
 
 <main class="container">
-    <div style="background-color: black;">
-
-    </div>
     <div>
-
+        <div style="width: 90%;">
+            <h2>Créer votre propre randonnée en nous donnant quelque informations</h2>
+        </div>
+        <img class="trail_image" src="assets/images/Creation_Trail.png" alt="">
+    </div>
+    <div style="background-color: lightblue;">
+        <form [formGroup]="form" class="box_login_form">  
+            <div class="container_1">
+                <div style="background-color: red;">
+                    <h3>Nom de la randonnée</h3>
+                    <mat-form-field style="width: 85%;">
+                        <input matInput type="text" placeholder="" formControlName="text" [(ngModel)]="text">
+                        <mat-error *ngIf="form.get('email')?.hasError('required')">
+                        Votre courriel est <strong>requis</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div style="background-color: green;">
+                    <h3>Mode de déplacement</h3>
+                </div>
+            </div>
+            <div style="background-color: yellow;">
+                <h3>Où se situe votre randonnée</h3>
+                <mat-form-field style="width: 95.5%;">
+                    <input matInput type="text" placeholder="" formControlName="location" [(ngModel)]="location">
+                    <mat-error *ngIf="form.get('email')?.hasError('required')">
+                    Votre courriel est <strong>requis</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <h3>Description de votre randonnée</h3>
+                <textarea matInput name="desscription" cols="137" rows="15" placeholder="Maximum de 255 caractères" [(ngModel)]="description" required></textarea> 
+            </div>
+            <div>
+                <img src="assets/images/Placeholder_Photo.png" alt="">
+            </div>
+        </form>
     </div>
 </main>

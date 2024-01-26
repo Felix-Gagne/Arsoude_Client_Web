@@ -1,0 +1,39 @@
+.container{
+    
+    padding-left: 3%;
+    padding-top: 3%;
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    padding-bottom: 5%;
+}
+
+.trail_image{
+    padding-top: 10%;
+    width: 100%;
+}
+
+input[type="text"]{
+    font-size: 25px
+}
+
+h2{
+    padding-left: 5%;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 40px;
+    font-weight: medium;
+}
+
+h3{
+    font-family: 'Plus Jakarta Sans';
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.container_1{
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+}
+
+mat-form-field{
+    padding-left: 0;
+}
