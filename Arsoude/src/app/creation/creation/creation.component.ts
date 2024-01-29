@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faBicycle, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
 
 interface LoginData { 
   text?: string | null ; 
 }
-
 @Component({
   selector: 'app-creation',
   templateUrl: './creation.component.html',
@@ -17,6 +18,8 @@ export class CreationComponent {
   location: string | undefined; 
   hidePassword = true;
   description: string | undefined;
+  faBicycle = faBicycle;
+  faPersonWalking = faPersonWalking;
 
   form = this.fb.group({
     text: ['', [Validators.required, Validators.required]],

@@ -80,18 +80,25 @@ input[type="text"]{
     width:90%;
     border-radius: 35px;
     background-color: #09635F; 
-    color: white; 
-    font-weight: medium ;
+    color: white;
     padding-top: 3%; 
     padding-bottom: 3%;
+    border: none;
+    transition: 0.3s;
 }
 
 .box_login_form_email{
     width: 90%;
 }
 
+.box_login_form_email_input{
+    border-radius: 35px;
+}
+
 .box_login_button:hover{
     background-color: #0EA59E !important; 
+    cursor: pointer;
+    width: 87%;
 }
 
 .space{
