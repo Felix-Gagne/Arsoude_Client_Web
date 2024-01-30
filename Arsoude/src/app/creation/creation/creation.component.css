@@ -55,21 +55,92 @@
   }
   
    /*DESCRIPTION DE VOTRE RANDONNÉE*/
-  .container_4 {
+   .container_4 {
     grid-column-start: 1;
     grid-column-end: 6;
     grid-row-start: 3;
     grid-row-end: 5;
+    display: flex;
+    flex-direction: column;
   }
   
-  /*TÉLÉCHARGER VOTRE IMAGE*/
+  .container_4 mat-form-field {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .container_4 textarea {
+    height: 100%;
+    resize: none;
+  }
+  
+  
+  /*IMAGE*/
   .container_5 {
     grid-column-start: 1;
-    grid-column-end: 6;
+    grid-column-end: 2;
     grid-row-start: 5;
     grid-row-end: 6;
+    display: flex;
+  }
+
+  /*CHOISIR IMAGE*/
+  .container_6{
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 5;
+    grid-row-end: 6;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  /*BOUTON CONTINUER*/
+  .container_7{
+    grid-column-start: 5;
+    grid-column-end: end;
+    grid-row-start: 5;
+    grid-row-end: 6;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
   }
   
+.btn_choose_image{
+  background-color: white;
+  color: #09635F;
+  border-color: #09635F;
+  border-radius: 5px;
+  font-family: 'Plus Jakarta Sans';
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 17px;
+  transition: 0.3s;
+}
+
+.btn_choose_image:hover{
+  background-color: #09635F;
+  color: white;
+  cursor: pointer;
+}
+
+.btn_continuer{
+  background-color: #09635F;
+  color: white;
+  padding: 10% 24%;
+  border-radius: 35px;
+  white-space: nowrap;
+  font-family: 'Plus Jakarta Sans';
+  border: none;
+  font-size: 17px;
+  transition: 0.3s;
+}
+
+.btn_continuer:hover {
+  background-color: #0EA59E; 
+  cursor: pointer;
+}
+
   h3{
     font-size: 20px;
     font-weight: 500;
@@ -93,4 +164,17 @@
   
   fa-icon{
     font-size: 55px;
+  }
+
+  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+    border-color: #09635F; 
+  }  
+
+  .mat-radio-button.mat-accent .mat-radio-inner-circle{
+    color:#09635F;
+    background-color:#09635F ;
+  }
+  
+  .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+      background-color:#09635F
   }
