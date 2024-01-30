@@ -11,6 +11,8 @@ export class CreationPt2Component {
   longitudeA?: number;
   latitudeB?: number;
   longitudeB?: number;
+  markerA?: google.maps.LatLngLiteral;
+  markerB?: google.maps.LatLngLiteral;
   currentMode: 'PointA' | 'PointB' = 'PointA';
   center: google.maps.LatLngLiteral = { lat: 45.53784, lng: -73.49244 };
   zoom = 15;
@@ -39,13 +41,18 @@ export class CreationPt2Component {
       lat: event.latLng!.lat(),
       lng: event.latLng!.lng(),
     };
-  
+    
+    //1- CHECK SI LE MARQUEUR (A OU B) EST DEFINI
+    //2- SI OUI, METTRE A JOUR LA POSITION DU MARQUEUR
+    //3- SI NON, CRÉER UN NOUVEAU MARQUEUR DANS LA LISTE
     if (this.currentMode === 'PointA') {
       this.latitudeA = newMarker.lat;
       this.longitudeA = newMarker.lng;
+      this.markerA = newMarker;
     } else if (this.currentMode === 'PointB') {
       this.latitudeB = newMarker.lat;
       this.longitudeB = newMarker.lng;
+      this.markerB = newMarker;
     }
   
     const existingMarkerIndex = this.markerPositions.findIndex(
