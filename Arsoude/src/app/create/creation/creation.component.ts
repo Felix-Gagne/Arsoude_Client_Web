@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBicycle, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,7 +13,9 @@ interface LoginData {
   styleUrls: ['./creation.component.css']
 })
 export class CreationComponent {
-  constructor(private fb: FormBuilder){}
+
+  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute){}
+
   text : string | undefined; 
   password : string | undefined ;
   location: string | undefined; 
@@ -35,4 +38,7 @@ export class CreationComponent {
     });
   }
 
+  getComponentRoute() {
+    return this.activatedRoute.firstChild?.snapshot.routeConfig?.path;
+  }
 }

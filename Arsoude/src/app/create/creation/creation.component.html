@@ -5,7 +5,7 @@
         </div>
         <img class="trail_image" src="assets/images/Creation_Trail.png" alt="">
     </div>
-    <form [formGroup]="form" class="box_login_form">  
+    <form [formGroup]="form" class="box_login_form" [@routeAnimation]="getComponentRoute()">  
         <div class="container_right">
             <div class="container_1">
                 <h3>Nom de la randonnée</h3>
@@ -49,7 +49,7 @@
                 <button class="btn_choose_image">Choisir image</button>
             </div>
             <div class="container_7">
-                <button class="btn_continuer">Continuer</button>
+                <button class="btn_continuer" [routerLink]="['/creation-step2']">Continuer</button>
             </div>
         </div>
     </form>    

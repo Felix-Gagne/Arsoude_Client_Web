@@ -178,3 +178,35 @@
   .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
       background-color:#09635F
   }
+
+  /* Animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Animation pour chaque étape */
+.box_login_form.ng-trigger.ng-trigger-routeAnimation {
+  animation: slideIn 0.5s ease-out;
+}
+
+.box_login_form.ng-trigger.ng-trigger-routeAnimation-leave {
+  animation: slideOut 0.5s ease-out;
+}
+
+.box_login_form {
+  display: block;
+}
