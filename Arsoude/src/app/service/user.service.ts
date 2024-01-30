@@ -31,7 +31,7 @@ export class UserService {
       let x = await lastValueFrom(this.http.post<any>("http://localhost:5050/api/User/Login", dto));
       console.log(x.token);
       localStorage.setItem("Token", x.token);
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
     }
     catch(e){
       console.log("Erreur : " + e);

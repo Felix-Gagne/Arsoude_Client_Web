@@ -15,7 +15,7 @@ export class TrailService {
     try{
       let x = await lastValueFrom(this.http.post<any>("http://localhost:5050/api/Trail/CreateTrail", trail));
       console.log(x);
-
+      this.router.navigate(['/']);
     }
     catch(e){
       console.log("Erreur : " + e)

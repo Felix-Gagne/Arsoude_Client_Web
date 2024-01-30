@@ -13,7 +13,7 @@ import { RegisterComponent } from './authentification/register/register.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreationComponent } from './creation/creation/creation.component';
 import { InfoRegComponent } from './authentification/info-reg/info-reg.component';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { InfoRegComponent } from './authentification/info-reg/info-reg.component
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    CreationComponent
+    CreationComponent,
     InfoRegComponent
   ],
   imports: [
