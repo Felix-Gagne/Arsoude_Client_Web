@@ -1,23 +1,23 @@
 <div class="container">
     <div class="choiceContainer">
-        <h1>Choisir les points de départ et d'arrivé</h1>
-        <button class="btnPoint" (click)="switchMode('PointA')">Point A</button>
-        <button class="btnPoint" (click)="switchMode('PointB')">Point B</button>
+        <div class="titre">
+            <h1>Choisir les points de départ et d'arrivé</h1>
+        </div>
+        <div class="btnPoints">
+            <button class="btnPoint" (click)="switchMode('PointA')">Point A</button>
+            <button class="btnPoint" (click)="switchMode('PointB')">Point B</button>
+        </div>
     </div>
     <div class="map-container">
-        <div class="mapInfos">
-            <p>Latitude : {{ currentMode === 'PointA' ? latitudeA : latitudeB }}</p>
-            <p>Longitude : {{ currentMode === 'PointA' ? longitudeA : longitudeB }}</p>
-        </div>
         <div class="map-section">
-            <google-map #maplines
+            <google-map #maplines style="width: 155%;"
                 [center]="center"
                 [zoom]="zoom"
                 (mapClick)="getLatLngFromMap($event)">
+                <map-marker *ngFor="let marker of markerPositions" [position]="marker"></map-marker>
             </google-map>
         </div>
     </div>
-    
     <div class="btnContainer">
         <button class="btnRetour">Retour</button>
         <button class="btnConfirmer">Confirmer</button>

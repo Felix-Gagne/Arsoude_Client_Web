@@ -12,8 +12,8 @@ export class CreationPt2Component {
   latitudeB?: number;
   longitudeB?: number;
   currentMode: 'PointA' | 'PointB' = 'PointA';
-  center: google.maps.LatLngLiteral = { lat: 42, lng: -4 };
-  zoom = 5;
+  center: google.maps.LatLngLiteral = { lat: 45.53784, lng: -73.49244 };
+  zoom = 15;
 
   markerPositions: google.maps.LatLngLiteral[] = [
     {lat: 42, lng: -4},
@@ -35,15 +35,31 @@ export class CreationPt2Component {
   @ViewChild('maplines') maplines!: GoogleMap;
 
   getLatLngFromMap(event: google.maps.MapMouseEvent): void {
+    const newMarker: google.maps.LatLngLiteral = {
+      lat: event.latLng!.lat(),
+      lng: event.latLng!.lng(),
+    };
+  
     if (this.currentMode === 'PointA') {
-      this.latitudeA = event.latLng!.lat();
-      this.longitudeA = event.latLng!.lng();
-      console.log('Point A set');
+      this.latitudeA = newMarker.lat;
+      this.longitudeA = newMarker.lng;
     } else if (this.currentMode === 'PointB') {
-      this.latitudeB = event.latLng!.lat();
-      this.longitudeB = event.latLng!.lng();
-      console.log('Point B set');
+      this.latitudeB = newMarker.lat;
+      this.longitudeB = newMarker.lng;
     }
+  
+    const existingMarkerIndex = this.markerPositions.findIndex(
+      (marker) =>
+        marker.lat === newMarker.lat && marker.lng === newMarker.lng
+    );
+  
+    if (existingMarkerIndex !== -1) {
+      this.markerPositions[existingMarkerIndex] = newMarker;
+    } else {
+      this.markerPositions.push(newMarker);
+    }
+  
+    this.polylineOptions.path = this.markerPositions;
   }
 
   switchMode(mode: 'PointA' | 'PointB'): void {
