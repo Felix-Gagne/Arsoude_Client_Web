@@ -5,3 +5,8 @@
 <Button (click)="GetHello()"> Hello World !</Button>
 
 <p>{{hello}}</p>
+
+<h1>Storage</h1>
+        <label for="fileUpload">Choose a File</label>
+        <input id="fileUpload" type="file" #upload>
+        <button (click)="uploadFile(upload)">Upload</button>

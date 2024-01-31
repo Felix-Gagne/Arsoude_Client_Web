@@ -1,0 +1,217 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 6.5%;
+    margin-bottom: 6%;
+    font-family: 'Plus Jakarta Sans';
+  }
+  
+  .container_left {
+    display: flex;
+    flex-direction: column;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  
+  form {
+    grid-column-start: 3;
+    grid-column-end: 6;
+  }
+  
+  .container_right {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    margin-left: 10%;
+  }
+  
+  /*NOM DE LA RANDONNÉE*/
+  .container_1 {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+  
+  /*MODE DE DÉPLACEMENT*/
+  .container_2 {
+    grid-column-start: 4;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+  
+  /*OÙ SE SITUE VOTRE RANDONNÉE*/
+  .container_3 {
+    grid-column-start: 1;
+    grid-column-end: 6;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
+  
+   /*DESCRIPTION DE VOTRE RANDONNÉE*/
+   .container_4 {
+    grid-column-start: 1;
+    grid-column-end: 6;
+    grid-row-start: 3;
+    grid-row-end: 5;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container_4 mat-form-field {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .container_4 textarea {
+    height: 100%;
+    resize: none;
+  }
+  
+  
+  /*IMAGE*/
+  .container_5 {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 5;
+    grid-row-end: 6;
+    display: flex;
+  }
+
+  /*CHOISIR IMAGE*/
+  .container_6{
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 5;
+    grid-row-end: 6;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  /*BOUTON CONTINUER*/
+  .container_7{
+    grid-column-start: 5;
+    grid-column-end: end;
+    grid-row-start: 5;
+    grid-row-end: 6;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+  
+.btn_choose_image{
+  background-color: white;
+  color: #09635F;
+  border-color: #09635F;
+  border-radius: 5px;
+  font-family: 'Plus Jakarta Sans';
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 17px;
+  transition: 0.3s;
+}
+
+.btn_choose_image:hover{
+  background-color: #09635F;
+  color: white;
+  cursor: pointer;
+}
+
+.btn_continuer{
+  background-color: #09635F;
+  color: white;
+  padding: 10% 24%;
+  border-radius: 35px;
+  white-space: nowrap;
+  font-family: 'Plus Jakarta Sans';
+  border: none;
+  font-size: 17px;
+  transition: 0.3s;
+}
+
+.btn_continuer:hover {
+  background-color: #0EA59E; 
+  cursor: pointer;
+}
+
+  h3{
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Plus Jakarta Sans';
+  }
+
+  h2{
+    font-size: 35px;
+    font-family: 'Plus Jakarta Sans';
+    width: 100%;
+  }
+
+  .bold_span{
+    font-weight: 800;
+    font-style: italic;
+  }
+
+  .underline_span{
+    text-decoration: underline;
+  }
+  
+  fa-icon{
+    font-size: 55px;
+  }
+
+  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+    border-color: #09635F; 
+  }  
+
+  .mat-radio-button.mat-accent .mat-radio-inner-circle{
+    color:#09635F;
+    background-color:#09635F ;
+  }
+  
+  .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+      background-color:#09635F
+  }
+
+  input[type="text"]{
+    font-size: 25px;
+}
+
+
+  /* Animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Animation pour chaque étape */
+.box_login_form.ng-trigger.ng-trigger-routeAnimation {
+  animation: slideIn 0.5s ease-out;
+}
+
+.box_login_form.ng-trigger.ng-trigger-routeAnimation-leave {
+  animation: slideOut 0.5s ease-out;
+}
+
+.box_login_form {
+  display: block;
+}
