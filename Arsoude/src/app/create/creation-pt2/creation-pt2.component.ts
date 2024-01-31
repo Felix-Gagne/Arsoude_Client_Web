@@ -13,15 +13,14 @@ export class CreationPt2Component {
   longitudeB?: number;
   markerA?: google.maps.LatLngLiteral;
   markerB?: google.maps.LatLngLiteral;
-  currentMode: 'PointA' | 'PointB' = 'PointA';
+  currentMode: 'PointA' | 'PointB' | 'Disabled' = 'PointA';
   center: google.maps.LatLngLiteral = { lat: 45.53784, lng: -73.49244 };
   zoom = 15;
+  disableConfirmerButton = true;
+  titleChoice: 'Choisissez un point de départ' | 'Choisissez un point d\'arrivé' = 'Choisissez un point de départ';
 
-  markerPositions: google.maps.LatLngLiteral[] = [
-    {lat: 42, lng: -4},
-    {lat: 40, lng: -0},
-    {lat: 38, lng: -8},
-  ];
+
+  markerPositions: google.maps.LatLngLiteral[] = [ ];
 
   polylineOptions = {
     path: this.markerPositions,
@@ -42,10 +41,9 @@ export class CreationPt2Component {
       lng: event.latLng!.lng(),
     };
     
-    //1- CHECK SI LE MARQUEUR (A OU B) EST DEFINI
-    //2- SI OUI, METTRE A JOUR LA POSITION DU MARQUEUR
-    //3- SI NON, CRÉER UN NOUVEAU MARQUEUR DANS LA LISTE
-    if (this.currentMode === 'PointA') {
+    if(this.currentMode === 'Disabled') {
+      return;
+    } else if (this.currentMode === 'PointA') {
       this.latitudeA = newMarker.lat;
       this.longitudeA = newMarker.lng;
       this.markerA = newMarker;
@@ -69,9 +67,23 @@ export class CreationPt2Component {
     }
   
     this.polylineOptions.path = this.markerPositions;
+
+
+    console.log(this.markerPositions.length);
+    //Vérifie si l'utilisateur a bien placé les deux points
+    if (this.markerPositions.length === 2) {
+      this.disableConfirmerButton = false;
+      this.currentMode = 'Disabled';
+    } else {
+      this.disableConfirmerButton = true;
+    }
   }
 
-  switchMode(mode: 'PointA' | 'PointB'): void {
+  switchMode(mode: 'PointA' | 'PointB' | 'Disabled'): void {
     this.currentMode = mode;
+  }
+
+  switchTitle(mode: 'Choisissez un point de départ' | 'Choisissez un point d\'arrivé'): void {
+    this.titleChoice = mode;
   }
 }

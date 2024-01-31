@@ -65,6 +65,12 @@ h1{
     background-color: #0EA59E;
 }
 
+.btnPoint:disabled{
+    background-color: #B3B3B3;
+    color: white;
+    cursor: not-allowed;
+}
+
 .map-section{
     border-radius: 35px;
     height: 100%;
@@ -104,6 +110,12 @@ h1{
 .btnConfirmer:hover {
     background-color: #0EA59E; 
     cursor: pointer;
+}
+
+.btnConfirmer:disabled{
+    background-color: #B3B3B3;
+    color: white;
+    cursor: not-allowed;
 }
 
 .btnContainer{
