@@ -14,6 +14,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreationComponent } from './creation/creation/creation.component';
 import { InfoRegComponent } from './authentification/info-reg/info-reg.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getStorage, provideStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MaterialModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
+    provideFirebaseApp(() => initializeApp({"projectId":"arsoudeserv","appId":"1:35541229487:web:43209dd14e09782699d95a","storageBucket":"arsoudeserv.appspot.com","apiKey":"AIzaSyDYzVZvjfOaCuOYWRJIOdGTpp03J3AZQco","authDomain":"arsoudeserv.firebaseapp.com","messagingSenderId":"35541229487"})),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
+    
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true}],
   bootstrap: [AppComponent]
