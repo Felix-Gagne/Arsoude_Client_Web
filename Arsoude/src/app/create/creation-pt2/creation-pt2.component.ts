@@ -36,12 +36,6 @@ export class CreationPt2Component {
     console.log(this.trail);
   }
 
-  markerPositions: google.maps.LatLngLiteral[] = [
-    {lat: 42, lng: -4},
-    {lat: 40, lng: -0},
-    {lat: 38, lng: -8},
-  ];
-
   markerPositions: google.maps.LatLngLiteral[] = [ ];
 
   polylineOptions = {
