@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Storage ,getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBicycle, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
 import { Coordinates } from 'src/app/models/Coordinates';
 import { TrailDTO } from 'src/app/models/TrailDTO';
 import { TrailService } from 'src/app/service/trail.service';
+
 
 interface CreationData { 
   text?: string | null ; 
@@ -19,6 +21,7 @@ interface CreationData {
 export class CreationComponent {
   constructor(private fb: FormBuilder, public service : TrailService){}
   text : string | undefined; 
+  private readonly storage: Storage = inject(Storage);
   password : string | undefined ;
   location: string = ""; 
   hidePassword = true;
@@ -60,5 +63,20 @@ export class CreationComponent {
       console.log("Erreur : " + e);
     }
   }
+  async uploadFile(input: HTMLInputElement) {
+    if (!input.files) return
+  
+    const files: FileList = input.files;
+  
+    for (let i = 0; i < files.length; i++) {
+        const file = files.item(i);
+        if (file) {
+            const storageRef = ref(this.storage, file.name);
+            await uploadBytesResumable(storageRef, file);
+            let test = await getDownloadURL(storageRef);
+            this.imageURL = test;
+        }
+    }
 
+}
 }
