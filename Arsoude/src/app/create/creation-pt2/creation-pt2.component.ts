@@ -49,10 +49,12 @@ export class CreationPt2Component {
       this.latitudeA = newMarker.lat;
       this.longitudeA = newMarker.lng;
       this.markerA = newMarker;
+      console.log('marker A');
     } else if (this.currentMode === 'PointB') {
       this.latitudeB = newMarker.lat;
       this.longitudeB = newMarker.lng;
       this.markerB = newMarker;
+      console.log('marker B');
     }
   
     const existingMarkerIndex = this.markerPositions.findIndex(

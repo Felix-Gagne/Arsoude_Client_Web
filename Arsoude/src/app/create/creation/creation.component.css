@@ -179,6 +179,11 @@
       background-color:#09635F
   }
 
+  input[type="text"]{
+    font-size: 25px;
+}
+
+
   /* Animation */
 @keyframes slideIn {
   from {
