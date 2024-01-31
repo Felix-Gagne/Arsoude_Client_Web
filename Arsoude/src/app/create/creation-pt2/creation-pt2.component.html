@@ -4,29 +4,12 @@
             <h1>Choisir les points de départ et d'arrivé</h1>
         </div>
         <div class="btnPoints">
-            <button class="btnPoint" (click)="switchMode('PointA')">Point A</button>
-            <button class="btnPoint" (click)="switchMode('PointB')">Point B</button>
+            <button [disabled]="!disableConfirmerButton" class="btnPoint" (click)="switchMode('PointA')">Point A</button>
+            <button [disabled]="!disableConfirmerButton" class="btnPoint" (click)="switchMode('PointB')">Point B</button>
         </div>
     </div>
     <div class="coordinateContainer">
-        <div class="pointsContainer">
-            <h2>Point de départ</h2>
-            <div class="coordinate">
-                <h3>Latitude: {{latitudeA}}</h3>
-            </div>
-            <div class="coordinate">
-                <h3>Longitude: {{longitudeA}}</h3>
-            </div>
-        </div>
-        <div class="pointsContainer">
-            <h2>Point d'arrivé</h2>
-            <div class="coordinate">
-                <h3>Latitude: {{latitudeB}}</h3>
-            </div>
-            <div class="coordinate">
-                <h3>Longitude: {{longitudeB}}</h3>
-            </div>
-        </div>
+        <h2>{{titleChoice}}</h2>
     </div>
     <div class="map-container">
         <google-map #maplines [width]="'100%'" [height]="'100%'"
@@ -41,7 +24,7 @@
             <button class="btnRetour" [routerLink]="['creation']">Retour</button>
         </div>
         <div>
-            <button class="btnConfirmer" (click)="CreateTrail()">Confirmer</button>
+            <button type="button" [disabled]="disableConfirmerButton" class="btnConfirmer">Confirmer</button>
         </div>
     </div>
 </div>
