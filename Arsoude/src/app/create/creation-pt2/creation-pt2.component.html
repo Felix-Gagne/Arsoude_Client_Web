@@ -38,10 +38,10 @@
     </div>
     <div class="btnContainer">
         <div>
-            <button class="btnRetour">Retour</button>
+            <button class="btnRetour" [routerLink]="['creation']">Retour</button>
         </div>
         <div>
-            <button class="btnConfirmer">Confirmer</button>
+            <button class="btnConfirmer" (click)="CreateTrail()">Confirmer</button>
         </div>
     </div>
 </div>

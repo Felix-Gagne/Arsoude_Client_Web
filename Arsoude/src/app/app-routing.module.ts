@@ -6,14 +6,14 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './authentification/login/login.component';
 import { RegisterComponent } from './authentification/register/register.component';
 import { InfoRegComponent } from './authentification/info-reg/info-reg.component';
-import { CreationComponent } from './creation/creation/creation.component';
+import { CreationComponent } from './create/creation/creation.component';
 
 const routes : Routes = [
   {path: '', component : HomeComponent},
   {path:'login', component : LoginComponent},
   {path: 'register', component : RegisterComponent},
   {path:'infoReg/:username', component : InfoRegComponent},
-  {path: 'creation', component: CreationComponent}
+  {path: 'creation', component: CreationComponent},
   {path: 'creation-step2', component: CreationPt2Component}
 ];
 

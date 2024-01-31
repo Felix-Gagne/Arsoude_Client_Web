@@ -1,5 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { GoogleMap } from '@angular/google-maps';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Coordinates } from 'src/app/models/Coordinates';
+import { TrailDTO } from 'src/app/models/TrailDTO';
+import { TrailService } from 'src/app/service/trail.service';
 
 @Component({
   selector: 'app-creation-pt2',
@@ -7,6 +11,7 @@ import { GoogleMap } from '@angular/google-maps';
   styleUrls: ['./creation-pt2.component.css']
 })
 export class CreationPt2Component {
+
   latitudeA?: number;
   longitudeA?: number;
   latitudeB?: number;
@@ -16,6 +21,18 @@ export class CreationPt2Component {
   currentMode: 'PointA' | 'PointB' = 'PointA';
   center: google.maps.LatLngLiteral = { lat: 45.53784, lng: -73.49244 };
   zoom = 15;
+
+  trail : TrailDTO | undefined;
+
+  constructor(public router : Router, public service : TrailService){}
+
+  ngOnInit(): void{
+    let data = localStorage.getItem("createTrail");
+    if(data != null){
+      this.trail = JSON.parse(data);
+    }
+    console.log(this.trail);
+  }
 
   markerPositions: google.maps.LatLngLiteral[] = [
     {lat: 42, lng: -4},
@@ -73,5 +90,23 @@ export class CreationPt2Component {
 
   switchMode(mode: 'PointA' | 'PointB'): void {
     this.currentMode = mode;
+  }
+
+  async CreateTrail(){
+    const StartingPoint = new Coordinates(this.latitudeA, this.longitudeA);
+    const EndingPoint = new Coordinates(this.latitudeB, this.longitudeB);
+    this.trail!.StartingCoordinates = StartingPoint;
+    this.trail!.EndingCoordinates = EndingPoint;
+
+    try{
+      if(this.trail != undefined){
+        this.service.CreateTrail(this.trail);
+      }
+
+      this.router.navigate(['']);
+    }
+    catch(e){
+      console.log("Erreur : " + e);
+    }
   }
 }

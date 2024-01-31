@@ -8,7 +8,7 @@ export class TrailDTO{
         public Location : string,
         public TrailType : Type,
         public ImageUrl : string,
-        public StartingCoordinates : Coordinates,
-        public EndingCoordinates : Coordinates,
+        public StartingCoordinates? : Coordinates,
+        public EndingCoordinates? : Coordinates,
     ){}
 }
