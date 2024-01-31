@@ -42,15 +42,14 @@
                 </mat-form-field>
               </div>
             <div class="container_5">
-                <img [src]="imageURL" alt="">
+                <img [src]="imageUrl" alt="">
             </div>
             <div class="container_6">
                 <label for="fileUpload">Choose a File</label>
                 <input id="fileUpload" type="file" #upload>
-                <button (click)="uploadFile(upload)">Upload</button>
             </div>
             <div class="container_7">
-                <button class="btn_continuer" (click)="SendTrail()">Continuer</button>
+                <button class="btn_continuer" (click)="SendTrail(upload)">Continuer</button>
             </div>
         </div>
     </form>    

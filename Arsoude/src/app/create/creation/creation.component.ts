@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -28,6 +29,8 @@ export class CreationComponent {
   trailType : number = 0;
   imageUrl : string = "";
 
+  private readonly storage: Storage = inject(Storage);
+
   form = this.fb.group({
     text: ['', [Validators.required, Validators.required]],
     location: ['', [Validators.required, Validators.required]],
@@ -43,15 +46,36 @@ export class CreationComponent {
     });
   }
 
-  async SendTrail(){
-
+  async SendTrail(input: HTMLInputElement){
+   await  this.uploadFile(input);
+    if(this.imageUrl == ""){
     this.imageUrl = "https://www.velomag.com/wp-content/uploads/2021/03/guideachatgrave12021.jpg";
+    }
     const trail = new TrailDTO(this.text, this.description, this.location, this.trailType, this.imageUrl, undefined, undefined);
 
     localStorage.setItem("createTrail", JSON.stringify(trail));
 
+    
+
     this.router.navigate(['/creation-step2']);
 
+  }
+
+  async uploadFile(input: HTMLInputElement) {
+    if (!input.files) return
+  
+    const files: FileList = input.files;
+  
+    for (let i = 0; i < files.length; i++) {
+        const file = files.item(i);
+        if (file) {
+            const storageRef = ref(this.storage, file.name);
+            await uploadBytesResumable(storageRef, file);
+            let test = await getDownloadURL(storageRef);
+            this.imageUrl = test;
+            console.log(test);
+        }
+    }
   }
 
   getComponentRoute() {
