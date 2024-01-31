@@ -3,6 +3,7 @@ header{
     font-size: 17px;
     background-color: white;
     padding: 24px;
+    box-shadow: 0 2px 40px rgba(0, 0, 0, 0.1); /* Add shadow here */
 
     ul{
         list-style: none;
@@ -17,20 +18,36 @@ header{
     }
 
     a{
+        display: inline-block;
         text-decoration: none;
         font-size: 110%;
         margin-right: 0%;
         color: black;
         font-weight: 600;
+        position: relative;
     }
 
+    a:after {    
+        background: none repeat scroll 0 0 transparent;
+        bottom: -7px;
+        content: "";
+        display: block;
+        height: 3px;
+        left: 50%;
+        position: absolute;
+        background: #09635F;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+      }
+      a:hover:after { 
+        width: 100%; 
+        left: 0; 
+      }
         
     .wrapper{
         display: flex;
         align-items: center;    
     }
-
-
 
     .header_nav{
         margin-right: auto;
@@ -43,20 +60,30 @@ header{
             display: flex;
         }
 
+        li{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
         padding-right: 4%;
             
         .button{
             background-color: #09635F;
             color: white;
             padding: 10% 24%;
-            border-radius: 25px;
+            border-radius: 35px;
             white-space: nowrap;
+            font-family: 'Plus Jakarta Sans';
+            border: none;
+            font-size: 17px;
+            transition: 0.3s;
         }
 
         .button:hover {
             background-color: #0EA59E; 
+            cursor: pointer;
         }
-
     }
 
 }
