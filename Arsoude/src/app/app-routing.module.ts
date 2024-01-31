@@ -1,3 +1,4 @@
+import { CreationPt2Component } from './create/creation-pt2/creation-pt2.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -13,6 +14,7 @@ const routes : Routes = [
   {path: 'register', component : RegisterComponent},
   {path:'infoReg/:username', component : InfoRegComponent},
   {path: 'creation', component: CreationComponent}
+  {path: 'creation-step2', component: CreationPt2Component}
 ];
 
 @NgModule({

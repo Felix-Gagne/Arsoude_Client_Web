@@ -1,0 +1,132 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Plus Jakarta Sans';
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.titre{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.btnPoints{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.choiceContainer{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 2%;
+}
+
+h1{
+    font-family: 'Plus Jakarta Sans';
+    font-weight: 500;
+    font-size: 35px;
+    margin: 0;
+}
+
+.btnPoint{
+    background-color: #09635F;
+    color: white;
+    border-radius: 35px;
+    white-space: nowrap;
+    font-family: 'Plus Jakarta Sans';
+    border: none;
+    font-size: 17px;
+    transition: 0.3s;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    margin-left: 20%;
+}
+
+.choiceContainer{
+    margin-top: 4%;
+}
+
+.btnPoint:hover {
+    background-color: #0EA59E; 
+    cursor: pointer;
+}
+
+.btnPoint::selection{
+    background-color: #0EA59E;
+}
+
+.map-section{
+    border-radius: 35px;
+    height: 100%;
+    width: 100%;
+}
+
+.btnRetour{
+    background-color: white;
+    color: #09635F;
+    padding: 10px 24px;
+    border-radius: 35px;
+    font-family: 'Plus Jakarta Sans';
+    font-weight: 700;
+    font-size: 17px;
+    transition: 0.3s;
+    border-color: #09635F;
+}
+  
+.btnRetour:hover{
+    background-color: #09635F;
+    color: white;
+    cursor: pointer;
+}
+
+.btnConfirmer{
+    background-color: #09635F;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 35px;
+    white-space: nowrap;
+    font-family: 'Plus Jakarta Sans';
+    border: none;
+    font-size: 17px;
+    transition: 0.3s;
+}
+
+.btnConfirmer:hover {
+    background-color: #0EA59E; 
+    cursor: pointer;
+}
+
+.btnContainer{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.map-container{
+    width: 100%;
+    height: 600px;
+}
+
+.coordinateContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    width: 100%;
+    margin-top: 2%;
+}
+
+.pointsContainer{
+    margin-right: 10%;
+}

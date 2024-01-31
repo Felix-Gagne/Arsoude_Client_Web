@@ -14,6 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreationComponent } from './creation/creation/creation.component';
 import { InfoRegComponent } from './authentification/info-reg/info-reg.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CreationPt2Component } from './create/creation-pt2/creation-pt2.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     RegisterComponent,
     CreationComponent,
     InfoRegComponent
+    CreationPt2Component,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MaterialModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
+    GoogleMapsModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true}],
   bootstrap: [AppComponent]

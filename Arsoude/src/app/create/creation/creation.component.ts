@@ -1,45 +1,36 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBicycle, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
-import { Coordinates } from 'src/app/models/Coordinates';
-import { TrailDTO } from 'src/app/models/TrailDTO';
-import { TrailService } from 'src/app/service/trail.service';
 
-interface CreationData { 
+interface LoginData { 
   text?: string | null ; 
 }
-
 @Component({
   selector: 'app-creation',
   templateUrl: './creation.component.html',
   styleUrls: ['./creation.component.css']
 })
-
 export class CreationComponent {
-  constructor(private fb: FormBuilder, public service : TrailService){}
+
+  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute){}
+
   text : string | undefined; 
   password : string | undefined ;
-  location: string = ""; 
+  location: string | undefined; 
   hidePassword = true;
-  description: string = "";
+  description: string | undefined;
   faBicycle = faBicycle;
   faPersonWalking = faPersonWalking;
-  trailType : number = 0;
-
-  name : string = "";
-  imageURL : string = "";
 
   form = this.fb.group({
     text: ['', [Validators.required, Validators.required]],
     location: ['', [Validators.required, Validators.required]],
     description: ['', [Validators.required, Validators.required]],
-    trailType: ['', [Validators.required]]
   });
-
   // Le component contient une variable du même type que les champs du formulaire
-  formData?: CreationData;
-
+  formData?: LoginData;
   ngOnInit(): void {
     // À chaque fois que les valeurs changent, notre propriétés formData sera mise à jour
     this.form.valueChanges.subscribe(() => {
@@ -47,18 +38,7 @@ export class CreationComponent {
     });
   }
 
-  async CreateTrail(){
-    const StartingCoordinates = new Coordinates(45.536049, -73.495907);
-    const EndingCoordinates = new Coordinates(45.543456, -73.491591);
-    this.imageURL = "https://www.velomag.com/wp-content/uploads/2021/03/guideachatgravel2021.jpg";
-    const trail = new TrailDTO(this.name, this.description, this.location, this.trailType, this.imageURL, StartingCoordinates, EndingCoordinates)
-    
-    try{
-      this.service.CreateTrail(trail);
-    }
-    catch(e){
-      console.log("Erreur : " + e);
-    }
+  getComponentRoute() {
+    return this.activatedRoute.firstChild?.snapshot.routeConfig?.path;
   }
-
 }
