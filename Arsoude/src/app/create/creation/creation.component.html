@@ -42,11 +42,12 @@
                 </mat-form-field>
               </div>
             <div class="container_5">
-                <img src="assets/images/Placeholder_Photo.png" alt="">
+                <img [src]="imageURL" alt="">
             </div>
             <div class="container_6">
-                <h3>Télécharger votre image</h3>
-                <button class="btn_choose_image">Choisir image</button>
+                <label for="fileUpload">Choose a File</label>
+                <input id="fileUpload" type="file" #upload>
+                <button (click)="uploadFile(upload)">Upload</button>
             </div>
             <div class="container_7">
                 <button class="btn_continuer" (click)="SendTrail()">Continuer</button>
