@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="choiceContainer">
+        <div class="titre">
+            <h1>Choisir les points de départ et d'arrivé</h1>
+        </div>
+        <div class="btnPoints">
+            <button [disabled]="!disableConfirmerButton" class="btnPoint" (click)="switchMode('PointA')">Point A</button>
+            <button [disabled]="!disableConfirmerButton" class="btnPoint" (click)="switchMode('PointB')">Point B</button>
+        </div>
+    </div>
+    <div class="coordinateContainer">
+        <h2>{{titleChoice}}</h2>
+    </div>
+    <div class="map-container">
+        <google-map #maplines [width]="'100%'" [height]="'100%'"
+                [center]="center"
+                [zoom]="zoom"
+                (mapClick)="getLatLngFromMap($event)">
+                <map-marker *ngFor="let marker of markerPositions" [position]="marker"></map-marker>
+        </google-map>
+    </div>
+    <div class="btnContainer">
+        <div>
+            <button class="btnRetour" [routerLink]="['creation']">Retour</button>
+        </div>
+        <div>
+            <button type="button" [disabled]="disableConfirmerButton" class="btnConfirmer" (click)="CreateTrail()">Confirmer</button>
+        </div>
+    </div>
+</div>
+
