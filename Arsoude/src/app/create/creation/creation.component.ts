@@ -49,7 +49,7 @@ export class CreationComponent {
   async SendTrail(input: HTMLInputElement){
    await  this.uploadFile(input);
     if(this.imageUrl == ""){
-    this.imageUrl = "https://www.velomag.com/wp-content/uploads/2021/03/guideachatgrave12021.jpg";
+    this.imageUrl = "";
     }
     const trail = new TrailDTO(this.text, this.description, this.location, this.trailType, this.imageUrl, undefined, undefined);
 
