@@ -6,6 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBicycle, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
 import { Coordinates } from 'src/app/models/Coordinates';
 import { TrailDTO } from 'src/app/models/TrailDTO';
+import { Type } from 'src/app/models/enum/Type';
 
 interface LoginData { 
   text?: string | null ; 
@@ -26,7 +27,7 @@ export class CreationComponent {
   description: string = "";
   faBicycle = faBicycle;
   faPersonWalking = faPersonWalking;
-  trailType : number = 0;
+  trailType : Type = Type.Pied ;
   imageUrl : string = "";
 
   private readonly storage: Storage = inject(Storage);
@@ -43,14 +44,19 @@ export class CreationComponent {
     // À chaque fois que les valeurs changent, notre propriétés formData sera mise à jour
     this.form.valueChanges.subscribe(() => {
       this.formData = this.form.value;
+      console.log(this.trailType)
+      
     });
   }
 
   async SendTrail(input: HTMLInputElement){
    await  this.uploadFile(input);
     if(this.imageUrl == ""){
-    this.imageUrl = "";
+      this.imageUrl = "";
     }
+       
+    this.trailType = Type.Velo;
+    
     const trail = new TrailDTO(this.text, this.description, this.location, this.trailType, this.imageUrl, undefined, undefined);
 
     localStorage.setItem("createTrail", JSON.stringify(trail));

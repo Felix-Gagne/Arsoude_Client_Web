@@ -106,10 +106,11 @@ export class CreationPt2Component {
     this.trail!.EndingCoordinates = EndingPoint;
 
     try{
+      console.log(this.trail);
       if(this.trail != undefined){
         this.service.CreateTrail(this.trail);
       }
-
+      
       this.router.navigate(['']);
     }
     catch(e){

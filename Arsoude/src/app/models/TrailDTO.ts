@@ -6,9 +6,11 @@ export class TrailDTO{
         public Name : string,
         public Description : string,
         public Location : string,
-        public TrailType : Type,
+        public Type : Type,
         public ImageUrl : string,
         public StartingCoordinates? : Coordinates,
         public EndingCoordinates? : Coordinates,
     ){}
 }
+
+
