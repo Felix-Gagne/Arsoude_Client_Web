@@ -5,6 +5,7 @@ import { RegisterDTO } from '../models/RegisterDTO';
 import { LoginDTO } from '../models/LoginDTO';
 import { Router } from '@angular/router';
 import { InfoRegDTO } from '../models/InfoRegDTO';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,12 @@ import { InfoRegDTO } from '../models/InfoRegDTO';
 export class UserService {
 
   constructor(public http : HttpClient, public router : Router) { }
-
+  private baseUrl = environment.apiUrl + 'api/User'
   async register(dto : RegisterDTO)
   {
     try{
       console.log(dto);
-      let x = await lastValueFrom(this.http.post<RegisterDTO>("http://localhost:5050/api/User/Register", dto));
+      let x = await lastValueFrom(this.http.post<RegisterDTO>(this.baseUrl+"/Register", dto));
       console.log(x);
       this.router.navigate(['/infoReg', dto.Username]);
     }
@@ -28,7 +29,7 @@ export class UserService {
 
   async Login(dto : LoginDTO){
     try{
-      let x = await lastValueFrom(this.http.post<any>("http://localhost:5050/api/User/Login", dto));
+      let x = await lastValueFrom(this.http.post<any>(this.baseUrl+"/Login", dto));
       console.log(x.token);
       localStorage.setItem("Token", x.token);
       this.router.navigate(['/']);
@@ -41,7 +42,7 @@ export class UserService {
   async AddAditionnalInfo(dto : InfoRegDTO){
     try{
       console.log(dto);
-      let x = await lastValueFrom(this.http.put<any>("http://localhost:5050/api/User/AddAditionnalInfo", dto));
+      let x = await lastValueFrom(this.http.put<any>(this.baseUrl+"/AddAditionnalInfo", dto));
       console.log(x);
       this.router.navigate(['']);
     }
