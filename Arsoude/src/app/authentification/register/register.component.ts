@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { RegisterDTO } from 'src/app/models/RegisterDTO';
 import { UserService } from 'src/app/service/user.service';
 
@@ -28,7 +28,7 @@ export class RegisterComponent {
   
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['',[Validators.required, Validators.min(8)]], 
+    password: ['',[Validators.required, Validators.min(8),this.passwordValidator()]], 
     nom: ['', [Validators.required]],
     prenom: ['', [Validators.required]],
     username: ['', [Validators.required]],
@@ -78,6 +78,26 @@ export class RegisterComponent {
       return null;
     };
   }
+  passwordValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const value = control.value;
+
+      if (!/[a-z]/.test(value)) {
+        return { 'lowercaseMissing': true };
+      }
+
+      if (!/[A-Z]/.test(value)) {
+        return { 'uppercaseMissing': true };
+      }
+
+      if (!/\d/.test(value)) {
+        return { 'numberMissing': true };
+      }
+
+      return null;
+    };
+  }
+ 
   matchPasswordsValidator(passwordKey: string, confirmPasswordKey: string): ValidatorFn {
     return (group: AbstractControl): { [key: string]: any } | null => {
       const passwordControl = group.get(passwordKey);
