@@ -19,6 +19,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { CreationPt2Component } from './create/creation-pt2/creation-pt2.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
     CreationComponent,
     InfoRegComponent,
     CreationPt2Component,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

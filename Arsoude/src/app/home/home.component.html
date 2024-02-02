@@ -3,7 +3,7 @@
                 <video autoplay loop muted src="../../assets/videos/video_fond_principal.mp4"></video>
                 <div class="gradient-overlay"></div>
                 <h1>Trouvez votre prochaine <span>aventure</span></h1>
-                <input placeholder="Ville, parc ou itinéraire" type="text">
+                <input [(ngModel)]="searchInput" (keydown.enter)="onEnter()" placeholder="Ville, parc ou itinéraire" type="text">
         </div>
 </div>
 
