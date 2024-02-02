@@ -55,6 +55,15 @@
               <mat-error *ngIf="form.get('password')?.hasError('min')">
                 Votre mot de passe est <strong>trop court</strong>
               </mat-error>
+              <mat-error *ngIf="form.get('password')?.hasError('lowercaseMissing')">
+                Le mot de passe doit contenir au moins une lettre <strong>minuscule</strong>.
+              </mat-error>
+              <mat-error *ngIf="form.get('password')?.hasError('uppercaseMissing')">
+                Le mot de passe doit contenir au moins une lettre <strong>majuscule</strong>.
+              </mat-error>
+              <mat-error *ngIf="form.get('password')?.hasError('numberMissing')">
+                Le mot de passe doit contenir au moins un <strong>chiffre</strong>.
+              </mat-error>
             </mat-form-field>
             
               <mat-form-field style="width: 100%">
