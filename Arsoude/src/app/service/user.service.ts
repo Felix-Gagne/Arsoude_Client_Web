@@ -18,9 +18,11 @@ export class UserService {
   {
     try{
       console.log(dto);
-      let x = await lastValueFrom(this.http.post<RegisterDTO>(this.baseUrl+"/Register", dto));
+      let x = await lastValueFrom(this.http.post<any>(this.baseUrl+"/Register", dto));
       console.log(x);
+      localStorage.setItem("Token", x.token);
       this.router.navigate(['/infoReg', dto.Username]);
+
     }
     catch(e){
       console.log(e);

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { TrailDTO } from '../models/TrailDTO';
 import { environment } from 'src/environments/environment';
+import { FilterDTO } from '../models/FilterDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,25 @@ export class TrailService {
     catch(e){
       console.log(e);
     }
+  }
+
+  async searchTrails(filter : FilterDTO) : Promise<TrailDTO[]>{
+
+    try{
+
+     let x = await lastValueFrom(this.http.get<TrailDTO[]>(this.baseUrl + "SearchTrails"));
+     console.log(x)
+     return x;
+    }
+    catch(e){
+
+       
+      console.log(e);
+      throw e;
+
+    }
+
+
+
   }
 }
