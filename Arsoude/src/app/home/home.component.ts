@@ -51,7 +51,7 @@ constructor(private helloService : HelloworldService, private router: Router, pr
       this.router.navigate(['/search']);
     }
   }
-}
+
 async FilterTrail(){
 this.trails = await this.trailservice.searchTrails(this.filter);
 }
