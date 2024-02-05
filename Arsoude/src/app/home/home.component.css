@@ -54,6 +54,7 @@ h1{
     margin-right: 20%;
     padding: 1.5%;
     font-size: 20px;
+    transition: 0.3s;
 }
 
 span{

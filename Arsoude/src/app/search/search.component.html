@@ -1,1 +1,87 @@
-<p>search works!</p>
+<div class="container">
+    <div class="filterContainer">
+        <div class="filterContainerLeft">
+            <select name="type" id="type">
+                <option value="2">Sélectionner un type <fa-icon [icon]="faArrowDown"></fa-icon></option>
+                <option value="0">Pieds</option>
+                <option value="1">Vélo</option>
+            </select>
+            <input class="checkInput" type="checkbox" id="distance" name="distance" value="yes">
+            <label class="checkInputLabel" for="distance">Proche de chez moi</label><br>
+        </div>
+        <div class="filterContainerRight">
+            <input class="searchInput" [(ngModel)]="searchInput" (keydown.enter)="onEnter()" placeholder="Ville, parc ou itinéraire" type="text">
+        </div>
+    </div>
+    <div class="trailContainer">
+        <h1>Les randonnées incontournables</h1>
+        <div class="trailCardContainer">
+            <!-- <div class="trailCard" *ngFor="let trail of trails">
+                
+            </div> -->
+            <!-- <img [src]="trail.image" alt="trail image"> -->
+            <img src="../../assets/images/Banff National Park 4K472814907.jpg" alt="image_trail">
+            <div class="trailCardInfo">
+                <h2>Sentier du Marais Tremblay</h2>
+                <div class="trailCardInfoTop">
+                    <p>68 km</p>
+                    <p>-</p>
+                    <p>345 h</p>
+                </div>
+                <p class="textLocation">Montréal, Québec, Canada</p>
+                <p>J'aime le cul de vlad surtout quand il est en jogging</p>
+            </div>
+        </div>
+        <div class="trailCardContainer">
+            <!-- <div class="trailCard" *ngFor="let trail of trails">
+                
+            </div> -->
+            <!-- <img [src]="trail.image" alt="trail image"> -->
+            <img src="../../assets/images/Banff National Park 4K472814907.jpg" alt="image_trail">
+            <div class="trailCardInfo">
+                <h2>Sentier du Marais Tremblay</h2>
+                <div class="trailCardInfoTop">
+                    <p>68 km</p>
+                    <p>-</p>
+                    <p>345 h</p>
+                </div>
+                <p class="textLocation">Montréal, Québec, Canada</p>
+                <p>J'aime le cul de vlad surtout quand il est en jogging</p>
+            </div>
+        </div>
+        <div class="trailCardContainer">
+            <!-- <div class="trailCard" *ngFor="let trail of trails">
+                
+            </div> -->
+            <!-- <img [src]="trail.image" alt="trail image"> -->
+            <img src="../../assets/images/Banff National Park 4K472814907.jpg" alt="image_trail">
+            <div class="trailCardInfo">
+                <h2>Sentier du Marais Tremblay</h2>
+                <div class="trailCardInfoTop">
+                    <p>68 km</p>
+                    <p>-</p>
+                    <p>345 h</p>
+                </div>
+                <p class="textLocation">Montréal, Québec, Canada</p>
+                <p>J'aime le cul de vlad surtout quand il est en jogging</p>
+            </div>
+        </div>
+        <div class="trailCardContainer">
+            <!-- <div class="trailCard" *ngFor="let trail of trails">
+                
+            </div> -->
+            <!-- <img [src]="trail.image" alt="trail image"> -->
+            <img src="../../assets/images/Banff National Park 4K472814907.jpg" alt="image_trail">
+            <div class="trailCardInfo">
+                <h2>Sentier du Marais Tremblay</h2>
+                <div class="trailCardInfoTop">
+                    <p>68 km</p>
+                    <p>-</p>
+                    <p>345 h</p>
+                </div>
+                <p class="textLocation">Montréal, Québec, Canada</p>
+                <p>J'aime le cul de vlad surtout quand il est en jogging</p>
+            </div>
+        </div>
+    </div>
+</div>

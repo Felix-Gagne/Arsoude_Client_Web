@@ -47,16 +47,14 @@ constructor(private helloService : HelloworldService, private router: Router, pr
   }
 
   onEnter() : void {
-    if(this.searchInput.length > 0){
+    if(this.searchInput.trim() != ""){
       this.router.navigate(['/search']);
     }
   }
 
-async FilterTrail(){
-this.trails = await this.trailservice.searchTrails(this.filter);
-}
-
-
+  async FilterTrail(){
+    this.trails = await this.trailservice.searchTrails(this.filter);
+  }
 
 
 }
