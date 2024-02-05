@@ -2,6 +2,9 @@ import { Component, inject } from '@angular/core';
 import { HelloworldService } from '../service/helloworld.service';
 import { Router } from '@angular/router';
 import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
+import { FilterDTO } from '../models/FilterDTO';
+import { TrailService } from '../service/trail.service';
+import { TrailDTO } from '../models/TrailDTO';
 
 @Component({
   selector: 'app-home',
@@ -12,11 +15,13 @@ import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fir
 
 export class HomeComponent {
 hello : String = "pas de bonjour :C";
+filter : FilterDTO = new FilterDTO();
 private readonly storage: Storage = inject(Storage);
+trails : TrailDTO[] = []
 
 
 
-constructor(private helloService : HelloworldService, private router: Router){}
+constructor(private helloService : HelloworldService, private router: Router, private trailservice : TrailService){}
   
 
   async GetHello() : Promise<void> {
@@ -41,6 +46,11 @@ constructor(private helloService : HelloworldService, private router: Router){}
       }
   }
 }
+async FilterTrail(){
+this.trails = await this.trailservice.searchTrails(this.filter);
+}
+
+
 
 
 }

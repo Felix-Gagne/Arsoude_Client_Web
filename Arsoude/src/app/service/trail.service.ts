@@ -38,7 +38,7 @@ export class TrailService {
 
     try{
 
-     let x = await lastValueFrom(this.http.get<any>(this.baseUrl + "SearchTrails"));
+     let x = await lastValueFrom(this.http.get<TrailDTO[]>(this.baseUrl + "SearchTrails"));
      console.log(x)
      return x;
     }
