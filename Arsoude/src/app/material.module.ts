@@ -8,6 +8,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSliderModule} from '@angular/material/slider';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatOptionModule,
     MatSelectModule,
     MatRadioModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSliderModule
   ],
   exports: [
     MatFormFieldModule, 
@@ -30,7 +32,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatOptionModule,
     MatSelectModule,
     MatRadioModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSliderModule
   ],
 })
 export class MaterialModule { }
