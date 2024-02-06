@@ -105,6 +105,8 @@ export class CreationPt2Component {
     this.trail!.StartingCoordinates = StartingPoint;
     this.trail!.EndingCoordinates = EndingPoint;
 
+    console.log(this.trail);
+
     try{
       console.log(this.trail);
       if(this.trail != undefined){
