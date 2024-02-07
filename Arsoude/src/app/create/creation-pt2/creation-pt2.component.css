@@ -10,7 +10,7 @@
 
 .titre{
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     height: 100%;
@@ -19,7 +19,7 @@
 .btnPoints{
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .choiceContainer{
@@ -37,28 +37,42 @@ h1{
 }
 
 .btnPoint{
-    background-color: #09635F;
+    background-color: #3e77ce;
     color: white;
-    border-radius: 35px;
+    border-radius: 7px;
     white-space: nowrap;
     font-family: 'Plus Jakarta Sans';
     border: none;
     font-size: 17px;
     transition: 0.3s;
-    padding-left: 20%;
-    padding-right: 20%;
-    padding-top: 10%;
-    padding-bottom: 10%;
-    margin-left: 20%;
+    padding: 15px 20px 15px 20px;
+    margin-left: 10%;
+}
+
+.btnPointReset{
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border-radius: 35px;
+    font-family: 'Plus Jakarta Sans';
+    border: none;
+    font-size: 17px;
+    transition: 0.3s;
+    padding: 15px 20px 15px 20px;
+}
+
+.btnPointReset:hover{
+    background-color: #535353;
+    cursor: pointer;
+}
+
+.btnPointReset:disabled{
+    background-color: #B3B3B3;
+    color: white;
+    cursor: not-allowed;
 }
 
 .choiceContainer{
     margin-top: 4%;
-}
-
-.btnPoint:hover {
-    background-color: #0EA59E; 
-    cursor: pointer;
 }
 
 .btnPoint::selection{
@@ -134,7 +148,8 @@ h1{
 .coordinateContainer{
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     margin-top: 2%;
 }
