@@ -31,7 +31,7 @@
 
 h1{
     font-family: 'Plus Jakarta Sans';
-    font-weight: 500;
+    font-weight: 800;
     font-size: 35px;
     margin: 0;
 }
@@ -58,6 +58,7 @@ h1{
     font-size: 17px;
     transition: 0.3s;
     padding: 15px 20px 15px 20px;
+    margin: 20px;
 }
 
 .btnPointReset:hover{
@@ -152,6 +153,9 @@ h1{
     align-items: center;
     width: 100%;
     margin-top: 2%;
+    background-color: #09635F;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 .pointsContainer{

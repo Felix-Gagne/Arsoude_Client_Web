@@ -9,9 +9,9 @@
         </div>
     </div>
     <div class="coordinateContainer">
-        <h2>{{titleChoice}}</h2>
+        <h2 style="margin: 31px;color: white;font-weight: 500;">{{titleChoice}}</h2>
         <div>
-            <button type="button" [disabled]="disableConfirmerButton" class="btnPointReset" (click)="resetPoints()">Reinitialiser les points</button>
+            <button type="button" [hidden]="disableConfirmerButton" class="btnPointReset" (click)="resetPoints()">Reinitialiser les points</button>
         </div>
     </div>
     <div class="map-container">
