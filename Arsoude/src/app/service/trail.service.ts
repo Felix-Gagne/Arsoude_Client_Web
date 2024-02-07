@@ -34,23 +34,15 @@ export class TrailService {
     }
   }
 
-  async searchTrails(filter : FilterDTO) : Promise<TrailDTO[]>{
-
+  async searchTrails(filter : FilterDTO): Promise<TrailDTO[]>{
     try{
-
-     let x = await lastValueFrom(this.http.get<TrailDTO[]>(this.baseUrl + "SearchTrails"));
-     console.log(x)
-     return x;
+      let x = await lastValueFrom(this.http.post<any>(this.baseUrl + "GetFilteredTrails", filter));
+      console.log(x)
+      return x;
     }
     catch(e){
-
-       
       console.log(e);
       throw e;
-
     }
-
-
-
   }
 }

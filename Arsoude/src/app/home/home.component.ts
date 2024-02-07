@@ -21,7 +21,7 @@ searchInput: string = "";
 
 
 
-constructor(private helloService : HelloworldService, private router: Router, private trailservice : TrailService){}
+constructor(private helloService : HelloworldService, private router: Router, private trailservice : TrailService, private trailService : TrailService){}
   
 
   async GetHello() : Promise<void> {
@@ -47,7 +47,10 @@ constructor(private helloService : HelloworldService, private router: Router, pr
   }
 
   onEnter() : void {
+    const searchObject = new FilterDTO(this.searchInput);
+
     if(this.searchInput.trim() != ""){
+      localStorage.setItem("Search", JSON.stringify(searchObject));
       this.router.navigate(['/search']);
     }
   }

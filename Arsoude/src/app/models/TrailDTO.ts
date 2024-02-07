@@ -3,13 +3,13 @@ import { Type } from "./enum/Type";
 
 export class TrailDTO{
     constructor(
-        public Name : string,
-        public Description : string,
-        public Location : string,
-        public Type : Type,
-        public ImageUrl : string,
-        public StartingCoordinates? : Coordinates,
-        public EndingCoordinates? : Coordinates,
+        public name : string,
+        public description : string,
+        public location : string,
+        public type : Type,
+        public imageUrl : string,
+        public startingCoordinates? : Coordinates,
+        public endingCoordinates? : Coordinates,
     ){}
 }
 

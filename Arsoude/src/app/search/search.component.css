@@ -25,6 +25,21 @@ h1{
     border-radius: 20px;
 }
 
+.filterContainerRight{
+    display: flex;
+
+    button{
+        border-radius: 20px;
+        padding: 10px;
+        font-family: 'Plus Jakarta Sans';
+        background-color: #09635F;
+        color: white;
+        border: none;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+}
+
 .trailContainer{
     display: flex;
     flex-direction: column;
