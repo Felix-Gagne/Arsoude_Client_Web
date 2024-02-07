@@ -102,8 +102,10 @@ export class CreationPt2Component {
   async CreateTrail(){
     const StartingPoint = new Coordinates(this.latitudeA, this.longitudeA);
     const EndingPoint = new Coordinates(this.latitudeB, this.longitudeB);
-    this.trail!.StartingCoordinates = StartingPoint;
-    this.trail!.EndingCoordinates = EndingPoint;
+    this.trail!.startingCoordinates = StartingPoint;
+    this.trail!.endingCoordinates = EndingPoint;
+
+    console.log(this.trail);
 
     try{
       console.log(this.trail);

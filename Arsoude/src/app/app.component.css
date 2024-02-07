@@ -191,6 +191,7 @@ footer{
     background-color: #073937;
     height: 70%;
     color: white;
+    padding-bottom: 4%;
 
     .footer_texte{
         font-size: 25px;
