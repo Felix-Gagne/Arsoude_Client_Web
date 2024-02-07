@@ -33,7 +33,8 @@
                     <p>-</p>
                     <p>68 km</p>
                     <p>-</p>
-                    <p><fa-icon [icon]="faPersonWalking"></fa-icon></p>
+                    <p *ngIf="trail.type == 0"><fa-icon [icon]="faPersonWalking"></fa-icon></p>
+                    <p *ngIf="trail.type == 1"><fa-icon [icon]="faBicycle"></fa-icon></p>
                 </div>
                 <p class="textLocation">{{trail.location}}</p>
                 <p>{{trail.description}}</p>

@@ -37,7 +37,9 @@ export class SearchComponent {
       dto.type = this.type;
     }
 
-    dto.distance = this.radius;
+    if(this.radius >= 10){
+      dto.distance = this.radius;
+    }
 
     if(this.searchInput?.trim() != ""){
       dto.Keyword = this.searchInput;
