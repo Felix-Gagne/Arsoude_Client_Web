@@ -102,10 +102,10 @@ select {
 .searchInput{
     border: 1px solid #ccc;
     border-radius: 30px;
-    padding: 10px 70px 10px 10px;
+    padding: 10px 0px 10px 10px;
     font-size: 15px;
     transition: 0.3s;
-    width: max-content;
+    width: 270px;
 }
 
 select{
