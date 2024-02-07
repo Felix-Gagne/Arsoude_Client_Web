@@ -42,7 +42,17 @@ export class TrailService {
   }
 
   async searchTrails(filter : FilterDTO): Promise<TrailDTO[]>{
+    
+    await this.http.get(this.url).subscribe((res : any)=> {
+      this.coordinates.latitude = res.latitude
+      this.coordinates.longitude = res.longitude
+      console.log(this.coordinates)
+    });
+    filter.coordinates = this.coordinates;
+
     try{
+      console.log(filter);
+
       let x = await lastValueFrom(this.http.post<any>(this.baseUrl + "GetFilteredTrails", filter));
       console.log(x)
       return x;
@@ -52,16 +62,4 @@ export class TrailService {
       throw e;
     }
   }
-  
-  await  this.http.get(this.url).subscribe((res : any)=> {
-              this.coordinates.X = res.latitude
-              this.coordinates.Y = res.longitude
-                console.log(this.coordinates)
-
-      });
-      filter.coordinates = this.coordinates;
-     let x = await lastValueFrom(this.http.get<TrailDTO[]>(this.baseUrl + "SearchTrails"));
-     console.log(x)
-     return x;
-}
 }
