@@ -1,9 +1,9 @@
 <header class="header">
     <div class="wrapper">
         <a href="" class="header_brand"><img class="logo" src="assets/images/Logo_OG.png" alt="Logo" /></a>
-
+ 
         <nav class="header_nav">
-
+ 
             <ul>
                 <li>
                     <a class="linkNav" href="">Explorer</a>
@@ -12,7 +12,7 @@
                     <a class="linkNav" href="">Communauté</a>
                 </li>
                 <li>
-                    <a class="linkNav" href="#/creation">Créer</a>
+                    <a class="linkNav" href="#/creation" *ngIf="userService.isConnected">Créer</a>
                 </li>
             </ul>
         </nav>
@@ -34,7 +34,7 @@
                                     <h2>test</h2>
                                 </div>
                                 <hr>
-
+ 
                                 <a href="#" class="sub-menu-link">
                                     <i class="fa-solid fa-user"></i>
                                     <p>Edit Profile</p>
@@ -58,14 +58,14 @@
                             </div>
                         </div>
                     </nav>
-                    
+                   
                 </li>
             </ul>
         </nav>
     </div>
 </header>
 <router-outlet> </router-outlet>
-
+ 
 <footer class="footer">
     <div class="footer_container">
         <div class="footer_options">
@@ -107,7 +107,7 @@
         <p>Arsoude® est une marque déposées d’Arsoude, LLC aux États-Unis ainsi que dans d’autre juridictions.</p>
         <br>
         <p>Politique de confidentialité • Conditions générales • Politique en matière de cookies • Gérer les cookies</p>
-      
+     
     </div>
     <div class="footer_language">
         <div class="dropdown">
@@ -118,12 +118,3 @@
         </div>
     </div>
 </footer>
-
-<script>
-    let subMenu = document.getElementById("subMenu");
-
-    function toggleMenu(){
-        console.log("il rentre bien dedans");
-        subMenu.classList.toggle("open-menu");
-    }
-</script>

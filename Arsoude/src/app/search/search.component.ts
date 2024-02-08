@@ -3,6 +3,7 @@ import { TrailDTO } from '../models/TrailDTO';
 import { faPersonWalking, faBicycle, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { TrailService } from '../service/trail.service';
 import { FilterDTO } from '../models/FilterDTO';
+import { TrailType } from '../models/enum/Type';
 
 @Component({
   selector: 'app-search',
@@ -16,7 +17,7 @@ export class SearchComponent {
   faAngleDown = faAngleDown;
   faBicycle = faBicycle;
   faPersonWalking = faPersonWalking;
-  type : number = 2;
+  type : TrailType = TrailType.Undefined;
   radius : number = 0;
 
   constructor(private trailService : TrailService){}
@@ -33,8 +34,8 @@ export class SearchComponent {
   async Search(){
     let dto = new FilterDTO();
 
-    if(this.type != 2){
-      dto.type = this.type;
+    if(this.type != TrailType.Undefined){
+      dto.type = parseInt(this.type.toString());
     }
 
     if(this.radius >= 10){

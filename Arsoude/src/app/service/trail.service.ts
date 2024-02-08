@@ -41,7 +41,7 @@ export class TrailService {
     }
   }
 
-  async searchTrails(filter : FilterDTO): Promise<TrailDTO[]>{
+  async searchTrails(filter : FilterDTO){
     
     await this.http.get(this.url).subscribe((res : any)=> {
       this.coordinates.latitude = res.latitude
