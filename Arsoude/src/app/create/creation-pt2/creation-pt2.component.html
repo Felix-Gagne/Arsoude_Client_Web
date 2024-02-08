@@ -4,12 +4,15 @@
             <h1>Choisir les points de départ et d'arrivé</h1>
         </div>
         <div class="btnPoints">
-            <button [disabled]="!disableConfirmerButton" class="btnPoint" (click)="switchMode('PointA')">Point A</button>
-            <button [disabled]="!disableConfirmerButton" class="btnPoint" (click)="switchMode('PointB')">Point B</button>
+            <button [disabled]="disableBtnPointA" class="btnPoint">Point départ</button>
+            <button [disabled]="disableBtnPointB" class="btnPoint">Point arrivé</button>
         </div>
     </div>
     <div class="coordinateContainer">
-        <h2>{{titleChoice}}</h2>
+        <h2 style="margin: 31px;color: white;font-weight: 500;">{{titleChoice}}</h2>
+        <div>
+            <button type="button" [hidden]="disableConfirmerButton" class="btnPointReset" (click)="resetPoints()">Reinitialiser les points</button>
+        </div>
     </div>
     <div class="map-container">
         <google-map #maplines [width]="'100%'" [height]="'100%'"
