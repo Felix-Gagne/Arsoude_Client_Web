@@ -18,7 +18,8 @@
         <google-map #maplines [width]="'100%'" [height]="'100%'"
                 [center]="center"
                 [zoom]="zoom"
-                (mapClick)="getLatLngFromMap($event)">
+                (mapClick)="getLatLngFromMap($event)"
+                [mapTypeId]="mapTypeId">
                 <map-marker *ngFor="let marker of markerPositions" [position]="marker"></map-marker>
         </google-map>
     </div>
