@@ -1,4 +1,5 @@
-export enum Type{
+export enum TrailType{
     Pied,
-    Velo
+    Velo,
+    Undefined
 }

@@ -6,7 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBicycle, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
 import { Coordinates } from 'src/app/models/Coordinates';
 import { TrailDTO } from 'src/app/models/TrailDTO';
-import { Type } from 'src/app/models/enum/Type';
+import { TrailType } from 'src/app/models/enum/Type';
 
 interface LoginData { 
   text?: string | null ; 
@@ -27,7 +27,7 @@ export class CreationComponent {
   description: string = "";
   faBicycle = faBicycle;
   faPersonWalking = faPersonWalking;
-  trailType : Type = 0;
+  trailType : TrailType = 0;
   imageUrl : string = "";
 
   private readonly storage: Storage = inject(Storage);

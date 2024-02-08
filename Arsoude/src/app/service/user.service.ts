@@ -69,6 +69,7 @@ export class UserService {
 
   verifyConnectedUser(){
     if(localStorage.getItem("Token") != undefined && localStorage.getItem("Token") != null){
+      console.log(localStorage.getItem("Token"));
       this.isConnected = true;
     }
     if(localStorage.getItem('Username') != undefined && localStorage.getItem('Username') != null ){

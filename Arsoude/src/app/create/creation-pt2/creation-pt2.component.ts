@@ -22,6 +22,7 @@ export class CreationPt2Component {
   currentMode: 'PointA' | 'PointB' | 'Disabled' = 'PointA';
   center: google.maps.LatLngLiteral = { lat: 45.53784, lng: -73.49244 };
   zoom = 15;
+  mapTypeId = google.maps.MapTypeId.SATELLITE;
   disableConfirmerButton = true;
   titleChoice: 'Choisissez un point de départ' | 'Choisissez un point d\'arrivé' | 'Veuillez confirmer' = 'Choisissez un point de départ';
   disableBtnPointA = false;
