@@ -13,14 +13,19 @@ import { environment } from 'src/environments/environment';
 export class UserService {
 
   constructor(public http : HttpClient, public router : Router) { }
-  private baseUrl = environment.apiUrl + 'api/User'
+  private baseUrl = environment.apiUrl + 'api/User';
+  public isConnected : boolean = false;
+  public username ?: string ;
+
   async register(dto : RegisterDTO)
   {
     try{
       console.log(dto);
-      let x = await lastValueFrom(this.http.post<RegisterDTO>(this.baseUrl+"/Register", dto));
+      let x = await lastValueFrom(this.http.post<any>(this.baseUrl+"/Register", dto));
       console.log(x);
+      localStorage.setItem("Token", x.token);
       this.router.navigate(['/infoReg', dto.Username]);
+
     }
     catch(e){
       console.log(e);
@@ -32,6 +37,11 @@ export class UserService {
       let x = await lastValueFrom(this.http.post<any>(this.baseUrl+"/Login", dto));
       console.log(x.token);
       localStorage.setItem("Token", x.token);
+      localStorage.setItem("Username", dto.Username);
+      if(localStorage.getItem('Username') != undefined && localStorage.getItem('Username') != null ){
+        this.username = localStorage.getItem("Username")?.toString();
+      }
+      this.isConnected = true;
       this.router.navigate(['/']);
     }
     catch(e){
@@ -50,4 +60,20 @@ export class UserService {
       console.log("Error : " + e);
     }
   }
+
+  Logout(){
+    localStorage.removeItem('Token');
+    this.isConnected = false;
+    this.router.navigate(['/']);
+  }
+
+  verifyConnectedUser(){
+    if(localStorage.getItem("Token") != undefined && localStorage.getItem("Token") != null){
+      this.isConnected = true;
+    }
+    if(localStorage.getItem('Username') != undefined && localStorage.getItem('Username') != null ){
+      this.username = localStorage.getItem("Username")?.toString();
+    }
+  }
+
 }

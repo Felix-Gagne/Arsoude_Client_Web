@@ -27,7 +27,7 @@ export class CreationComponent {
   description: string = "";
   faBicycle = faBicycle;
   faPersonWalking = faPersonWalking;
-  trailType : Type = Type.Pied ;
+  trailType : Type = 0;
   imageUrl : string = "";
 
   private readonly storage: Storage = inject(Storage);

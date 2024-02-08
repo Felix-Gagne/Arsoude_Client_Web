@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { GoogleMap } from '@angular/google-maps';
 import { ActivatedRoute, Router } from '@angular/router';
+import { faL } from '@fortawesome/free-solid-svg-icons';
 import { Coordinates } from 'src/app/models/Coordinates';
 import { TrailDTO } from 'src/app/models/TrailDTO';
 import { TrailService } from 'src/app/service/trail.service';
@@ -22,7 +23,9 @@ export class CreationPt2Component {
   center: google.maps.LatLngLiteral = { lat: 45.53784, lng: -73.49244 };
   zoom = 15;
   disableConfirmerButton = true;
-  titleChoice: 'Choisissez un point de départ' | 'Choisissez un point d\'arrivé' = 'Choisissez un point de départ';
+  titleChoice: 'Choisissez un point de départ' | 'Choisissez un point d\'arrivé' | 'Veuillez confirmer' = 'Choisissez un point de départ';
+  disableBtnPointA = false;
+  disableBtnPointB = true;
 
   trail : TrailDTO | undefined;
 
@@ -64,11 +67,18 @@ export class CreationPt2Component {
       this.longitudeA = newMarker.lng;
       this.markerA = newMarker;
       console.log('marker A');
+      this.currentMode = 'PointB';
+      this.disableBtnPointA = true;
+      this.disableBtnPointB = false;
+      this.switchTitle('Choisissez un point d\'arrivé');
     } else if (this.currentMode === 'PointB') {
       this.latitudeB = newMarker.lat;
       this.longitudeB = newMarker.lng;
       this.markerB = newMarker;
       console.log('marker B');
+      this.disableBtnPointA = true;
+      this.disableBtnPointB = true;
+      this.switchTitle('Veuillez confirmer');
     }
   
     const existingMarkerIndex = this.markerPositions.findIndex(
@@ -102,8 +112,10 @@ export class CreationPt2Component {
   async CreateTrail(){
     const StartingPoint = new Coordinates(this.latitudeA, this.longitudeA);
     const EndingPoint = new Coordinates(this.latitudeB, this.longitudeB);
-    this.trail!.StartingCoordinates = StartingPoint;
-    this.trail!.EndingCoordinates = EndingPoint;
+    this.trail!.startingCoordinates = StartingPoint;
+    this.trail!.endingCoordinates = EndingPoint;
+
+    console.log(this.trail);
 
     try{
       console.log(this.trail);
@@ -118,7 +130,22 @@ export class CreationPt2Component {
     }
   }
 
-  switchTitle(mode: 'Choisissez un point de départ' | 'Choisissez un point d\'arrivé'): void {
+  switchTitle(mode: 'Choisissez un point de départ' | 'Choisissez un point d\'arrivé' | 'Veuillez confirmer'): void {
     this.titleChoice = mode;
+  }
+
+  resetPoints(){
+    this.markerPositions = [];
+    this.markerA = undefined;
+    this.markerB = undefined;
+    this.latitudeA = undefined;
+    this.longitudeA = undefined;
+    this.latitudeB = undefined;
+    this.longitudeB = undefined;
+    this.disableConfirmerButton = true;
+    this.currentMode = 'PointA';
+    this.disableBtnPointA = false;
+    this.disableBtnPointB = true;
+    this.switchTitle('Choisissez un point de départ');
   }
 }

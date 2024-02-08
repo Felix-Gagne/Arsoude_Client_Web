@@ -22,7 +22,43 @@
                     <a class="linkNav" href="">Aide</a>
                 </li>
                 <li>
-                    <button class="button" routerLink="/login">Se connecter</button>
+                    <button *ngIf="!userService.isConnected" class="button" routerLink="/login">Se connecter</button>
+                    <nav>
+                        <div class="box" *ngIf="userService.isConnected">
+                            <img src="assets\images\userPlaceHolder.png" alt="userPlaceHolder" (click)="toggleMenu()">
+                        </div>
+                        <div class="sub-menu-wrap" id="subMenu" >
+                            <div class="sub-menu">
+                                <div class="user-info">
+                                    <img src="assets\images\userPlaceHolder.png" alt="userImage">
+                                    <h2>test</h2>
+                                </div>
+                                <hr>
+
+                                <a href="#" class="sub-menu-link">
+                                    <i class="fa-solid fa-user"></i>
+                                    <p>Edit Profile</p>
+                                    <span>></span>
+                                </a>
+                                <a href="#" class="sub-menu-link">
+                                    <i class="fa-solid fa-gear"></i>
+                                    <p>Settings</p>
+                                    <span>></span>
+                                </a>
+                                <a href="#" class="sub-menu-link">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    <p>Help</p>
+                                    <span>></span>
+                                </a>
+                                <a href="#" class="sub-menu-link" (click)="logout()">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                    <p>Logout</p>
+                                    <span>></span>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                    
                 </li>
             </ul>
         </nav>
@@ -82,3 +118,12 @@
         </div>
     </div>
 </footer>
+
+<script>
+    let subMenu = document.getElementById("subMenu");
+
+    function toggleMenu(){
+        console.log("il rentre bien dedans");
+        subMenu.classList.toggle("open-menu");
+    }
+</script>

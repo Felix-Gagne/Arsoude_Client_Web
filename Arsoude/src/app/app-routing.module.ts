@@ -7,6 +7,7 @@ import { LoginComponent } from './authentification/login/login.component';
 import { RegisterComponent } from './authentification/register/register.component';
 import { InfoRegComponent } from './authentification/info-reg/info-reg.component';
 import { CreationComponent } from './create/creation/creation.component';
+import { SearchComponent } from './search/search.component';
 
 const routes : Routes = [
   {path: '', component : HomeComponent},
@@ -14,7 +15,8 @@ const routes : Routes = [
   {path: 'register', component : RegisterComponent},
   {path:'infoReg/:username', component : InfoRegComponent},
   {path: 'creation', component: CreationComponent},
-  {path: 'creation-step2', component: CreationPt2Component}
+  {path: 'creation-step2', component: CreationPt2Component},
+  {path: 'search', component: SearchComponent}
 ];
 
 @NgModule({
