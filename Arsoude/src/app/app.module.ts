@@ -20,6 +20,7 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { CreationPt2Component } from './create/creation-pt2/creation-pt2.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { SearchComponent } from './search/search.component';
+import { HelpPageComponent } from './help-page/help-page.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SearchComponent } from './search/search.component';
     InfoRegComponent,
     CreationPt2Component,
     SearchComponent,
+    HelpPageComponent,
   ],
   imports: [
     BrowserModule,

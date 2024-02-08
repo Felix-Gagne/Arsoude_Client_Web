@@ -1,0 +1,31 @@
+<div class="jeu">
+    <div class="small top">
+      <img id="col1row1" src="/assets/images/temp2.png" alt="Slot image">
+      <img id="col2row1" src="/assets/images/temp2.png" alt="Slot image">
+      <img id="col3row1" src="/assets/images/temp2.png" alt="Slot image">
+    </div>
+    <div class="medium top">
+      <img id="col1row2" src="/assets/images/temp2.png" alt="Slot image">
+      <img id="col2row2" src="/assets/images/temp2.png" alt="Slot image">
+      <img id="col3row2" src="/assets/images/temp2.png" alt="Slot image">
+    </div>
+    <div class="full">
+      <img id="col1row3" src="/assets/images/temp2.png" alt="Slot image">
+      <img id="col2row3" src="/assets/images/temp2.png" alt="Slot image">
+      <img id="col3row3" src="/assets/images/temp2.png" alt="Slot image">
+    </div>
+    <div class="medium bottom">
+      <img id="col1row4" src="/assets/images/temp2.png" alt="Slot image">
+      <img id="col2row4" src="/assets/images/temp2.png" alt="Slot image">
+      <img id="col3row4" src="/assets/images/temp2.png" alt="Slot image">
+    </div>
+    <div class="small bottom" style="padding-bottom:6px">
+      <img id="col1row5" src="/assets/images/temp2.png" alt="Slot image">
+      <img id="col2row5" src="/assets/images/temp2.png" alt="Slot image">
+      <img id="col3row5" src="/assets/images/temp2.png" alt="Slot image">
+    </div>
+  </div>
+  <div class="boutons">
+    <button *ngIf="!jeuActif" (click)="jouer()">Jouer</button>
+    <button *ngIf="jeuActif" (click)="stop()">Stop !</button>
+  </div>
