@@ -14,6 +14,7 @@ export class TrailService {
 
   constructor(public http : HttpClient, public router : Router) { }
   private baseUrl = environment.apiUrl + 'api/Trail/'
+  private formData: any;
 
 
   api_key = '82a714f1faf0468bbbb60aadf5bdec68';
@@ -61,5 +62,13 @@ export class TrailService {
       console.log(e);
       throw e;
     }
+  }
+
+  public setFormData(formData: any): void {
+    this.formData = formData;
+  }
+
+  public getFormData(): any {
+    return this.formData;  
   }
 }

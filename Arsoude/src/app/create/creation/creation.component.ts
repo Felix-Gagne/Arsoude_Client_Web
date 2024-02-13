@@ -7,6 +7,7 @@ import { faBicycle, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
 import { Coordinates } from 'src/app/models/Coordinates';
 import { TrailDTO } from 'src/app/models/TrailDTO';
 import { TrailType } from 'src/app/models/enum/Type';
+import { TrailService } from 'src/app/service/trail.service';
 
 interface LoginData { 
   text?: string | null ; 
@@ -18,7 +19,7 @@ interface LoginData {
 })
 export class CreationComponent {
 
-  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, public router : Router){}
+  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, public router : Router, public trailService: TrailService){}
 
   text : string = ""; 
   password : string | undefined ;
@@ -44,9 +45,21 @@ export class CreationComponent {
     // À chaque fois que les valeurs changent, notre propriétés formData sera mise à jour
     this.form.valueChanges.subscribe(() => {
       this.formData = this.form.value;
-      console.log(this.trailType)
-      
     });
+
+    this.form.patchValue(
+      this.trailService.getFormData()
+    )
+
+    console.log(this.formData)
+    if(this.formData != null){
+      this.text = this.formData.text!;
+      
+    }
+  }
+
+  public ngOnDestroy(): void {
+    this.trailService.setFormData(this.form.value);
   }
 
   async SendTrail(input: HTMLInputElement){
@@ -60,7 +73,7 @@ export class CreationComponent {
 
     localStorage.setItem("createTrail", JSON.stringify(trail));
 
-    
+    this.ngOnDestroy();
 
     this.router.navigate(['/creation-step2']);
 
@@ -78,7 +91,6 @@ export class CreationComponent {
             await uploadBytesResumable(storageRef, file);
             let test = await getDownloadURL(storageRef);
             this.imageUrl = test;
-            console.log(test);
         }
     }
   }

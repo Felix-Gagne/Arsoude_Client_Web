@@ -5,6 +5,7 @@ import { faL } from '@fortawesome/free-solid-svg-icons';
 import { Coordinates } from 'src/app/models/Coordinates';
 import { TrailDTO } from 'src/app/models/TrailDTO';
 import { TrailService } from 'src/app/service/trail.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-creation-pt2',
@@ -30,7 +31,7 @@ export class CreationPt2Component {
 
   trail : TrailDTO | undefined;
 
-  constructor(public router : Router, public service : TrailService){}
+  constructor(public router : Router, public service : TrailService, private location : Location){}
 
   ngOnInit(): void{
     let data = localStorage.getItem("createTrail");
@@ -60,7 +61,8 @@ export class CreationPt2Component {
       lat: event.latLng!.lat(),
       lng: event.latLng!.lng(),
     };
-    
+    //voir pour un switch case
+
     if(this.currentMode === 'Disabled') {
       return;
     } else if (this.currentMode === 'PointA') {
@@ -148,5 +150,9 @@ export class CreationPt2Component {
     this.disableBtnPointA = false;
     this.disableBtnPointB = true;
     this.switchTitle('Choisissez un point de départ');
+  }
+
+  retour(): void {
+    this.location.back();
   }
 }

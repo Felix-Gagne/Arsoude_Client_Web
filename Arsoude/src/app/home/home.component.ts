@@ -27,7 +27,6 @@ constructor(private helloService : HelloworldService, private router: Router, pr
   async GetHello() : Promise<void> {
   
   this.hello = await this.helloService.GetWord()
-  //let x = this.storage.getItem("téléchargement.png")
 
   }
   async uploadFile(input: HTMLInputElement) {
