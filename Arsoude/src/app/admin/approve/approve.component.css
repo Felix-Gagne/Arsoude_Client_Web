@@ -1,0 +1,140 @@
+h2, h1, h3, p{
+    font-family: 'Plus Jakarta Sans';
+}
+
+h1{
+    margin-top: 20px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.filterContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: rgb(205, 216, 212);
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.filterContainerRight{
+    display: flex;
+
+    button{
+        border-radius: 20px;
+        padding: 10px;
+        font-family: 'Plus Jakarta Sans';
+        background-color: #09635F;
+        color: white;
+        border: none;
+        margin-left: 2%;
+        margin-right: 2%;
+        transition: 0.1s;
+    }
+
+    button:hover{
+        cursor: pointer;
+        background-color: #0EA59E; 
+    }
+}
+
+.trailContainer{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 50px;
+    align-items: flex-start;
+}
+
+.trailCardInfo{
+    font-family: 'Plus Jakarta Sans';
+
+    h2{
+        margin: 0;
+    }
+}
+
+.trailCardContainer{
+    display: flex;
+    margin-bottom: 20px;
+    transition: 0.2s;
+    border-radius: 20px;
+    width: 100%;
+    padding: 20px;
+}
+
+.trailCardContainer:hover{
+    background-color: #dbdbdb;
+    cursor: pointer;
+}
+
+.trailCardContainer>img{
+    width: 400px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-right: 3%;
+    transition: 0.3s;
+}
+
+.trailCardInfoTop{
+    display: flex;
+
+    p{
+        margin: 0;
+        margin-right: 10px;
+    }
+}
+
+.textLocation{
+    text-decoration: underline;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+  }
+
+.filterContainerLeft{
+    width: 100%;
+    
+}
+
+.checkInput{
+    margin-right: 1%;
+}
+
+.checkInputLabel{
+    font-size: 15px;
+}
+
+.searchInput{
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    padding: 10px 0px 10px 10px;
+    font-size: 15px;
+    transition: 0.3s;
+    width: 270px;
+}
+
+select{
+    font-family: 'Plus Jakarta Sans';
+    padding: 10px;
+    background-color: #09635F;
+    border-width: 0;
+    border-radius: 20px;
+    margin-right: 2%;
+    color: white;
+}

@@ -15,6 +15,7 @@ export class UserService {
   constructor(public http : HttpClient, public router : Router) { }
   private baseUrl = environment.apiUrl + 'api/User';
   public isConnected : boolean = false;
+  public isAdmin : boolean = false;
   public username ?: string ;
 
   async register(dto : RegisterDTO)
@@ -38,6 +39,10 @@ export class UserService {
       console.log(x.token);
       localStorage.setItem("Token", x.token);
       localStorage.setItem("Username", dto.Username);
+      let roles = x.roles;
+        if(roles[0] == "Admin"){
+          this.isAdmin = true
+        }
       if(localStorage.getItem('Username') != undefined && localStorage.getItem('Username') != null ){
         this.username = localStorage.getItem("Username")?.toString();
       }
@@ -76,5 +81,7 @@ export class UserService {
       this.username = localStorage.getItem("Username")?.toString();
     }
   }
+
+  
 
 }
