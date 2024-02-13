@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from './service/user.service';
+import { TranslateService } from '@ngx-translate/core';
 import { faBicycle, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -11,14 +12,25 @@ export class AppComponent {
   title = 'Arsoude';
 
   subMenu: HTMLElement | null = null;
+  SelectedLanguage : string = "Français"
 
 
-  constructor(public userService : UserService) { }
+  constructor(public userService : UserService, private translate : TranslateService) { }
 
   ngOnInit(): void{
     this.userService.verifyConnectedUser();
     this.subMenu = document.getElementById("subMenu");
 
+  }
+
+  useLanguage(language: string){
+    this.translate.use(language);
+    if(language == "en"){
+      this.SelectedLanguage = "English"
+    }
+    else{
+      this.SelectedLanguage = "Français"
+    }
   }
 
   toggleMenu(): void {

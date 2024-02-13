@@ -3,14 +3,6 @@
                 <video onloadedmetadata="this.muted=true" autoplay loop muted src="../../assets/videos/video_fond_principal.mp4"></video>
                 <div class="gradient-overlay"></div>
                 <h1>Trouvez votre prochaine <span>aventure</span></h1>
-                <input [(ngModel)]="searchInput" (keydown.enter)="onEnter()" placeholder="Sentier, description, emplacement..." type="text">
+                <input [(ngModel)]="searchInput" (keydown.enter)="onEnter()" placeholder="{{'home.placeholder' | translate}}" type="text">
         </div>
 </div>
-
-
-<p>{{hello}}</p>
-
-<h1>Storage</h1>
-        <label for="fileUpload">Choose a File</label>
-        <input id="fileUpload" type="file" #upload>
-        <button (click)="uploadFile(upload)">Upload</button>

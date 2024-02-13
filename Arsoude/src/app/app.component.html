@@ -111,9 +111,10 @@
     </div>
     <div class="footer_language">
         <div class="dropdown">
-            <button class="button">Français <img src="assets/images/Footer_DownArrow.png" alt=""></button>
+            <button class="button">{{SelectedLanguage}}<img src="assets/images/Footer_DownArrow.png" alt=""></button>
             <div class="dropdown-content">
-                <a href="#">English</a>
+                <a href="#" (click)="useLanguage('en')">English</a>
+                <a href="#" (click)="useLanguage('fr')">Français</a>
             </div>
         </div>
     </div>
