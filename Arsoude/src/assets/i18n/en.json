@@ -1,6 +1,56 @@
 {
     "home":{
-        "title": "Find your next adventure",
+        "title": "Find your next ",
+        "aventure": "adventure",
         "placeholder": "Trail, Description, Location..."
+    },
+
+    "login":{
+        "title": "Login",
+        "usernamePlaceholder": "Username",
+        "passwordPlaceholder": "Password",
+        "loginButton": "Login",
+        "forgotPassword": "Forgot password",
+        "noAccount": "No account? ",
+        "register": "Sign up for free"
+    },
+
+    "register":{
+        "title":"Sign up",
+        "lastNamePlaceholder":"Last name",
+        "firstNamePlaceholder":"First name",
+        "usernamePlaceholder":"Username",
+        "emailPlaceholder":"Email",
+        "zipPlaceholder":"Zip code",
+        "passwordPlaceholder":"Password",
+        "confirmPasswordPlaceholder":"Confirm password",
+        "button":"Continue",
+        "alreadyHaveAccount":"Already have an account? ",
+        "login":"Log in"
+    },
+
+    "header":{
+        "explore": "Explore",
+        "community": "Community",
+        "create": "Create trail",
+        "help": "Help",
+        "loginButton": "Login"
+    },
+
+    "footer":{
+        "title": "The hiking app",
+        "explore": "Explore",
+        "community": "Community",
+        "create": "Create trail",
+        "help": "Help",
+        "trails": "Trails",
+        "reviews": "Review",
+        "recommended": "Recommended",
+        "comments": "Comments",
+        "about": "About",
+        "contact": "Contact us",
+        "llc": "2024 Arsoude, LLC All rights reserved",
+        "mark": "Arsoude® is a registered trademark of Arsoude, LLC in the United States and other jurisdictions.",
+        "policy": "Privacy policy • Terms and conditions • Cookie policy • Manage cookies"
     }
 }

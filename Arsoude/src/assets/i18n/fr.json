@@ -1,6 +1,56 @@
 {
     "home":{
-        "title": "Trouvez votre prochaine aventure",
+        "title": "Trouvez votre prochaine ",
+        "aventure": "aventure",
         "placeholder": "Sentier, description, emplacement..."
+    },
+
+    "login":{
+        "title": "Connectez-vous",
+        "usernamePlaceholder": "Nom d'utilisateur",
+        "passwordPlaceholder": "Mot de passe",
+        "loginButton": "Se connecter",
+        "forgotPassword": "Mot de passe oublié",
+        "noAccount": "Pas de compte? ",
+        "register": "Inscrivez-vous gratuitement"
+    },
+
+    "register":{
+        "title":"Inscrivez-vous",
+        "lastNamePlaceholder":"Nom",
+        "firstNamePlaceholder":"Prénom",
+        "usernamePlaceholder":"Nom d'utilisateur",
+        "emailPlaceholder":"Courriel",
+        "zipPlaceholder":"Code postal",
+        "passwordPlaceholder":"Mot de passe",
+        "confirmPasswordPlaceholder":"Confirmer le mot de passe",
+        "button":"Continuer",
+        "alreadyHaveAccount":"Déjà un compte? ",
+        "login":"Connectez-vous"
+    },
+
+    "header":{
+        "explore": "Explorer",
+        "community": "Communauté",
+        "create": "Créer une randonnée",
+        "help": "Aide",
+        "loginButton": "Se connecter"
+    },
+
+    "footer":{
+        "title": "L'application des randonnées",
+        "explore": "Explorer",
+        "community": "Communauté",
+        "create": "Créer une randonnée",
+        "help": "Aide",
+        "trails": "Randonnées",
+        "reviews": "Avis",
+        "recommended": "Recommendations",
+        "comments": "Commentaires",
+        "about": "À propos",
+        "contact": "Contactez-nous",
+        "llc": "2024 Arsoule, LLC Tous droits réservés",
+        "mark": "Arsoude® est une marque déposées d’Arsoude, LLC aux États-Unis ainsi que dans d’autre juridictions.",
+        "policy": "Politique de confidentialité • Conditions générales • Politique en matière de cookies • Gérer les cookies"
     }
 }
