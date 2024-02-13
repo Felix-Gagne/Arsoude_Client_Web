@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { lastValueFrom } from 'rxjs';
+import { last, lastValueFrom } from 'rxjs';
 import { TrailDTO } from '../models/TrailDTO';
 import { environment } from 'src/environments/environment';
 import { FilterDTO } from '../models/FilterDTO';
@@ -39,6 +39,24 @@ export class TrailService {
     catch(e){
       console.log(e);
     }
+  }
+
+  async AddFavorite(Id : number){
+     try{
+
+   let x = await lastValueFrom(this.http.post<any>(this.baseUrl+"ManageTrailFavorite/"+Id, null))
+   console.log(x);
+
+     }
+     catch(e){
+
+   console.log(e);
+
+
+     }
+
+
+
   }
 
   async searchTrails(filter : FilterDTO){
