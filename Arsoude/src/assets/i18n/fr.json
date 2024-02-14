@@ -79,5 +79,33 @@
         "llc": "2024 Arsoule, LLC Tous droits réservés",
         "mark": "Arsoude® est une marque déposées d’Arsoude, LLC aux États-Unis ainsi que dans d’autre juridictions.",
         "policy": "Politique de confidentialité • Conditions générales • Politique en matière de cookies • Gérer les cookies"
+    },
+
+    "creation":{
+        "titlePt1": "Créer",
+        "titlePt2": " votre propre ",
+        "titlePt3": "randonnée",
+        "titlePt4": " en nous donnant quelques informations",
+        "trailNameTitle": "Nom de la randonnée",
+        "trailNameErrorPt1": "Le nom de votre randonnée est ",
+        "trailNameErrorPt2": "requis",
+        "trailLocationErrorPt1": "L'emplacement de votre randonnée est ",
+        "trailLocationErrorPt2": "requis",
+        "trailTypeTitle": "Mode de déplacement",
+        "trailLocationTitle": "Où se situe votre randonnée?",
+        "chooseFile": "Choisir un fichier",
+        "continue": "Continuer",
+        "radioButtonLabel": "Choisir une option",
+        "trailDescriptionPlaceholder": "Description de votre randonnée"
+    },
+
+    "creationPt2":{
+        "title": "Choisir les points de départ et d'arrivé",
+        "startingPoint": "Point départ",
+        "endingPoint": "Point d'arrivé",
+        "backButton": "Retour",
+        "confirmButton": "Confirmer",
+        "resetPoints": "Réinitialiser les points",
+        "chooseStart":"Choisissez un point de départ"
     }
 }

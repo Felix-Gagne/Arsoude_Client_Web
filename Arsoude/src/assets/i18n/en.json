@@ -79,5 +79,35 @@
         "llc": "2024 Arsoude, LLC All rights reserved",
         "mark": "Arsoude® is a registered trademark of Arsoude, LLC in the United States and other jurisdictions.",
         "policy": "Privacy policy • Terms and conditions • Cookie policy • Manage cookies"
+    },
+
+    
+    "creation":{
+        "titlePt1": "Create",
+        "titlePt2": " your own ",
+        "titlePt3": "hike",
+        "titlePt4": " by providing us with some information",
+        "trailNameTitle": "Trail Name",
+        "trailNameErrorPt1": "Your trail name is ",
+        "trailNameErrorPt2": "required",
+        "trailLocationErrorPt1": "Your trail location is ",
+        "trailLocationErrorPt2": "required",
+        "trailTypeTitle": "Mode of Travel",
+        "trailLocationTitle": "Where is your hike located?",
+        "chooseFile": "Choose a file",
+        "continue": "Continue",
+        "radioButtonLabel": "Choose an option",
+        "trailDescriptionPlaceholder": "Description of your hike"
+    },
+
+    "creationPt2":{
+        "title": "Choose the starting and ending points",
+        "startingPoint": "Starting Point",
+        "endingPoint": "Ending Point",
+        "backButton": "Back",
+        "confirmButton": "Confirm",
+        "resetPoints": "Reset Points",
+        "chooseStart":"Choose a starting point"
     }
+    
 }
