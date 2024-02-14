@@ -185,6 +185,7 @@ select{
     font-size: 14px;
     font-weight: 500;
     height: 40px;
+    margin-right: 50px;
     line-height: 20px;
     list-style: none;
     outline: none;
