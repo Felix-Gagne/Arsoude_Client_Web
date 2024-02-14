@@ -27,6 +27,16 @@ export class ApproveComponent implements OnInit {
   }
  async Refresh() : Promise<void> {
  this.trails = await this.service.GetWork()
- }  
+ }
+ 
+ async approve(trail : TrailDTO){
+        await this.service.SetStatus(true, trail.id!)
+        this.Refresh()
+ }
+ async refuse(trail : TrailDTO){
+ await this.service.SetStatus(false, trail.id!)
+     this.Refresh()
+}
+
    
 }

@@ -10,6 +10,7 @@ export class TrailDTO{
         public imageUrl : string,
         public startingCoordinates? : Coordinates,
         public endingCoordinates? : Coordinates,
+        public id? : number
     ){}
 }
 
