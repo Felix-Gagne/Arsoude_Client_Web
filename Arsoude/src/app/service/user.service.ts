@@ -41,6 +41,7 @@ export class UserService {
       localStorage.setItem("Username", dto.Username);
       let roles = x.roles;
         if(roles[0] == "Admin"){
+          localStorage.setItem("admin", roles[0])
           this.isAdmin = true
         }
       if(localStorage.getItem('Username') != undefined && localStorage.getItem('Username') != null ){
@@ -79,6 +80,10 @@ export class UserService {
     }
     if(localStorage.getItem('Username') != undefined && localStorage.getItem('Username') != null ){
       this.username = localStorage.getItem("Username")?.toString();
+    }
+    if(localStorage.getItem('admin') != undefined && localStorage.getItem('admin') != null)
+    {
+      this.isAdmin = true;
     }
   }
 

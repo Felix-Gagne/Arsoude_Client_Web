@@ -29,7 +29,7 @@ return x;
 
 async SetStatus(isApproved : boolean, Trailid : number){
 try{
-let x = await lastValueFrom(this.http.put<any>(this.baseUrl+"EvaluateTrail/"+Trailid, isApproved))
+let x = await lastValueFrom(this.http.get<any>(this.baseUrl+"EvaluateTrail/"+Trailid+"/"+isApproved))
 console.log(x)
 this.router.navigate(["approve"]);
 }

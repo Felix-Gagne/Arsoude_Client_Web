@@ -142,7 +142,7 @@ select{
 
 
 .button-1 {
-  background-color: blue;
+  background-color: rgb(75, 150, 13);
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
@@ -171,8 +171,40 @@ select{
 
 .button-1:hover,
 .button-1:focus {
-  background-color: #31b2ee;
+  background-color: #1b4b0f;
 }
+.button-3 {
+    background-color: blue;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    list-style: none;
+    margin-right: 50px;
+   
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-3:hover,
+  .button-3:focus {
+    background-color: #31b2ee;
+  }
 .button-2 {
     background-color: red;
     border-radius: 8px;
