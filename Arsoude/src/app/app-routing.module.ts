@@ -9,6 +9,7 @@ import { InfoRegComponent } from './authentification/info-reg/info-reg.component
 import { CreationComponent } from './create/creation/creation.component';
 import { SearchComponent } from './search/search.component';
 import { HelpPageComponent } from './help-page/help-page.component';
+import { DetailsComponent } from './details/details/details.component';
 
 const routes : Routes = [
   {path: '', component : HomeComponent},
@@ -18,7 +19,8 @@ const routes : Routes = [
   {path: 'creation', component: CreationComponent},
   {path: 'creation-step2', component: CreationPt2Component},
   {path: 'search', component: SearchComponent},
-  {path: 'help', component: HelpPageComponent}
+  {path: 'help', component: HelpPageComponent},
+  {path: 'details/:name', component: DetailsComponent}
 ];
 
 @NgModule({

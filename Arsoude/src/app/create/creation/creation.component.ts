@@ -56,7 +56,7 @@ export class CreationComponent {
     }
        
 
-    const trail = new TrailDTO(this.text, this.description, this.location, this.trailType, this.imageUrl, undefined, undefined);
+    const trail = new TrailDTO(this.text, this.description, this.location, this.trailType, this.imageUrl, undefined, undefined, undefined);
 
     localStorage.setItem("createTrail", JSON.stringify(trail));
 

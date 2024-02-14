@@ -21,6 +21,7 @@ import { CreationPt2Component } from './create/creation-pt2/creation-pt2.compone
 import { GoogleMapsModule } from '@angular/google-maps';
 import { SearchComponent } from './search/search.component';
 import { HelpPageComponent } from './help-page/help-page.component';
+import { DetailsComponent } from './details/details/details.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { HelpPageComponent } from './help-page/help-page.component';
     CreationPt2Component,
     SearchComponent,
     HelpPageComponent,
+    DetailsComponent,
   ],
   imports: [
     BrowserModule,
