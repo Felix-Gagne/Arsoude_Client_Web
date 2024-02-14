@@ -29,12 +29,39 @@
         "login":"Connectez-vous"
     },
 
+    "infoReg":{
+        "title":"Aidez nous à mieux vous connaitre",
+        "numCivique":"Numéro civique",
+        "street":"Rue",
+        "prov":"Province",
+        "yearOfBirth":"Année de naissance",
+        "monthOfBirth":"Mois de naissance",
+        "button":"Continuer"
+    },
+
     "header":{
         "explore": "Explorer",
         "community": "Communauté",
         "create": "Créer une randonnée",
         "help": "Aide",
         "loginButton": "Se connecter"
+    },
+
+    "search":{
+        "filterPlaceholder":"Sélectionner un type",
+        "type1":"Pieds",
+        "type2":"Vélo",
+        "radius":"Rayon (Km)",
+        "keywordPlaceholder":"Sentier, description, emplacement...",
+        "button":"Rechercher",
+        "title":"Les randonnées incontournable"
+    },
+
+    "menu":{
+        "edit":"Modifier le profile",
+        "settings":"Paramètres",
+        "help":"Aide",
+        "logout":"Se déconnecter"
     },
 
     "footer":{

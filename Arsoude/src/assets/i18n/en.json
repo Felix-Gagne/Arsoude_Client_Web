@@ -29,12 +29,39 @@
         "login":"Log in"
     },
 
+    "infoReg":{
+        "title":"Help us know more about you",
+        "numCivique":"Civic number",
+        "street":"Street",
+        "prov":"State",
+        "yearOfBirth":"Year of birth",
+        "monthOfBirth":"Month of birth",
+        "button":"Continue"
+    },
+
     "header":{
         "explore": "Explore",
         "community": "Community",
         "create": "Create trail",
         "help": "Help",
         "loginButton": "Login"
+    },
+
+    "search":{
+        "filterPlaceholder":"Select a type ",
+        "type1":"Foot",
+        "type2":"Bike",
+        "radius":"Radius (Km)",
+        "keywordPlaceholder":"Trail, Description, Location...",
+        "button":"Search",
+        "title":"The essential hikes"
+    },
+
+    "menu":{
+        "edit":"Edit Profile",
+        "settings":"Settings",
+        "help":"Help",
+        "logout":"Logout"
     },
 
     "footer":{
