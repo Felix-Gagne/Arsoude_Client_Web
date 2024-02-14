@@ -109,3 +109,13 @@ fa-icon{
     color: #dbdbdb;
     cursor: pointer;
 }
+
+i{
+    font-size: 35px;
+}
+
+
+i:hover{
+    color: #dbdbdb;
+    cursor: pointer;
+}

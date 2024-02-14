@@ -6,18 +6,20 @@ import { LoginDTO } from '../models/LoginDTO';
 import { Router } from '@angular/router';
 import { InfoRegDTO } from '../models/InfoRegDTO';
 import { environment } from 'src/environments/environment';
+import { TrailDTO } from '../models/TrailDTO';
+import { TrailService } from './trail.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(public http : HttpClient, public router : Router) { }
+  constructor(public http : HttpClient, public router : Router, public trailService : TrailService) { }
   private baseUrl = environment.apiUrl + 'api/User';
   public isConnected : boolean = false;
   public isAdmin : boolean = false;
   public username ?: string ;
-
+  public favTrail : TrailDTO[] = [];
   async register(dto : RegisterDTO)
   {
     try{
@@ -47,6 +49,10 @@ export class UserService {
         this.username = localStorage.getItem("Username")?.toString();
       }
       this.isConnected = true;
+      
+      this.favTrail = await this.trailService.getFavTrails();
+      
+
       this.router.navigate(['/']);
     }
     catch(e){
