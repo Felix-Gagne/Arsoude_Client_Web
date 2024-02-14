@@ -20,6 +20,8 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { CreationPt2Component } from './create/creation-pt2/creation-pt2.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { SearchComponent } from './search/search.component';
+import { HelpPageComponent } from './help-page/help-page.component';
+import { DetailsComponent } from './details/details/details.component';
 import { ApproveComponent } from './admin/approve/approve.component';
 
 @NgModule({
@@ -33,6 +35,8 @@ import { ApproveComponent } from './admin/approve/approve.component';
     CreationPt2Component,
     SearchComponent,
     ApproveComponent
+    HelpPageComponent,
+    DetailsComponent,
   ],
   imports: [
     BrowserModule,

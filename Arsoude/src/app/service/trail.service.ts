@@ -15,7 +15,7 @@ export class TrailService {
   constructor(public http : HttpClient, public router : Router) { }
   private baseUrl = environment.apiUrl + 'api/Trail/'
 
-
+  trail : TrailDTO | undefined;
   api_key = '82a714f1faf0468bbbb60aadf5bdec68';
 
   url = 'https://ipgeolocation.abstractapi.com/v1/?api_key=' + this.api_key;
@@ -77,6 +77,28 @@ export class TrailService {
     }
     catch(e){
       console.log(e);
+      throw e;
+    }
+  }
+
+  async getTrailDetails(trailId : number){
+    try{
+      let x = await lastValueFrom(this.http.get<TrailDTO>(this.baseUrl+"get/"+ trailId))
+      console.log(x);
+      return x;
+    }
+    catch(e){
+      console.log("GetTrailDetails : " + e)
+      throw e;
+    }
+  }
+
+  async manageTrailFavorite(trailId : number, isFavorite : boolean){
+    try{
+      await lastValueFrom(this.http.post<TrailDTO>(this.baseUrl+"ManageTrailFavorite/"+ trailId, isFavorite))
+    }
+    catch(e){
+      console.log("ManageTrailFavorite : " + e)
       throw e;
     }
   }

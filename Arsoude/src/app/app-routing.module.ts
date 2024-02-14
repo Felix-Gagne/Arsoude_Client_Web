@@ -11,6 +11,8 @@ import { SearchComponent } from './search/search.component';
 import { ApproveComponent } from './admin/approve/approve.component';
 import { adminGuard } from './admin.guard';
 import { userGuard } from './user.guard';
+import { HelpPageComponent } from './help-page/help-page.component';
+import { DetailsComponent } from './details/details/details.component';
 
 const routes : Routes = [
   {path: '', component : HomeComponent},
@@ -21,6 +23,8 @@ const routes : Routes = [
   {path: 'creation-step2', component: CreationPt2Component, canActivate: [userGuard]},
   {path: 'search', component: SearchComponent},
   {path : 'approve', component : ApproveComponent, canActivate:[adminGuard] }
+  {path: 'details/:name', component: DetailsComponent}
+  {path: 'help', component: HelpPageComponent},
 ];
 
 @NgModule({
