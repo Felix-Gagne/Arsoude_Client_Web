@@ -75,7 +75,7 @@ nav>ul>li>a:hover:after {
 .header_options .button {
     background-color: #09635F;
     color: white;
-    padding: 10% 24%;
+    padding: 10px 24px;
     border-radius: 35px;
     white-space: nowrap;
     font-family: 'Plus Jakarta Sans';
@@ -251,7 +251,7 @@ footer {
         margin-left: 9.2%;
     }
 
-    .button {
+    select{
         background-color: #09635F;
         text-decoration: none;
         color: white;

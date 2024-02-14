@@ -1,23 +1,23 @@
 <div class="container">
     <div class="container_left">
         <div class="title_container">
-            <h2><span class="bold_span">Créer</span> votre propre <span class="underline_span">randonnée</span> en nous donnant quelque informations</h2>
+            <h2><span class="bold_span">{{'creation.titlePt1' | translate}}</span>{{'creation.titlePt2' | translate}}<span class="underline_span">{{'creation.titlePt3' | translate}}</span>{{'creation.titlePt4' | translate}}</h2>
         </div>
         <img class="trail_image" src="assets/images/Creation_Trail.png" alt="">
     </div>
     <form [formGroup]="form" class="box_login_form" [@routeAnimation]="getComponentRoute()">  
         <div class="container_right">
             <div class="container_1">
-                <h3>Nom de la randonnée</h3>
+                <h3>{{'creation.trailNameTitle' | translate}}</h3>
                     <mat-form-field style="width: 85%;">
                         <input matInput type="text" placeholder="" formControlName="text" [(ngModel)]="text">
                         <mat-error *ngIf="form.get('email')?.hasError('required')">
-                        Votre courriel est <strong>requis</strong>
+                            {{'creation.trailNameErrorPt1' | translate}} <strong>{{'creation.trailNameErrorPt2' | translate}}</strong>
                         </mat-error>
                     </mat-form-field>
             </div>
             <div class="container_2">
-                <h3>Mode de déplacement</h3>
+                <h3>{{'creation.trailTypeTitle' | translate}}</h3>
                 <mat-radio-group aria-label="Select an option" style="display: flex;justify-content: space-between;" formControlName="trailType" [(ngModel)]="trailType">
                     <mat-radio-button [value]="0"><fa-icon [icon]="faPersonWalking"></fa-icon></mat-radio-button>
                     <mat-radio-button [value]="1"><fa-icon [icon]="faBicycle"></fa-icon></mat-radio-button>
@@ -28,28 +28,28 @@
                 </mat-radio-group>
             </div>
             <div class="container_3">
-                <h3>Où se situe votre randonnée</h3>
+                <h3>{{'creation.trailLocationTitle' | translate}}</h3>
                 <mat-form-field style="width: 100%;">
                     <input matInput type="text" placeholder="" formControlName="location" [(ngModel)]="location">
                     <mat-error *ngIf="form.get('email')?.hasError('required')">
-                    Votre courriel est <strong>requis</strong>
+                        {{'creation.trailLocationErrorPt1' | translate}} <strong>{{'creation.trailLocationErrorPt2' | translate}}</strong>
                     </mat-error>
                 </mat-form-field>
             </div>
             <div class="container_4" style="display: flex;">
                 <mat-form-field style="width: 100%;">
-                  <textarea matInput name="Description" placeholder="Description de votre randonnée" formControlName="description" [(ngModel)]="description" required></textarea>
+                  <textarea matInput name="Description" placeholder="{{'creation.trailDescriptionPlaceholder' | translate}}" formControlName="description" [(ngModel)]="description" required></textarea>
                 </mat-form-field>
               </div>
             <div class="container_5">
                 <img [src]="imageUrl" alt="">
             </div>
             <div class="container_6">
-                <label for="fileUpload">Choose a File</label>
+                <label for="fileUpload">{{'creation.chooseFile' | translate}}</label>
                 <input id="fileUpload" type="file" #upload>
             </div>
             <div class="container_7">
-                <button class="btn_continuer" (click)="SendTrail(upload)">Continuer</button>
+                <button class="btn_continuer" (click)="SendTrail(upload)">{{'creation.continue' | translate}}</button>
             </div>
         </div>
     </form>    

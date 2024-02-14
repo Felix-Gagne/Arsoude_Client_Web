@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LoginDTO } from 'src/app/models/LoginDTO';
 import { UserService } from 'src/app/service/user.service';
+import { TranslateService } from '@ngx-translate/core';
 
 interface LoginData { 
   email?: string | null ; 
@@ -14,7 +15,7 @@ interface LoginData {
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private fb: FormBuilder, public service : UserService){}
+  constructor(private fb: FormBuilder, public service : UserService, private translate : TranslateService){}
   username : string = ""; 
   password : string = "";
 
