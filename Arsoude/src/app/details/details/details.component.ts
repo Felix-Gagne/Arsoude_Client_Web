@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TrailDTO } from 'src/app/models/TrailDTO';
 import { TrailService } from 'src/app/service/trail.service';
-import { faPersonWalking, faBicycle, faBookmark } from '@fortawesome/free-solid-svg-icons';
+import { faPersonWalking, faBicycle, faBookmark, } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-details',
@@ -19,6 +19,7 @@ export class DetailsComponent {
   zoom = 13;
   mapTypeId = google.maps.MapTypeId.SATELLITE;
   markerPositions: google.maps.LatLngLiteral[] = [];
+  isFavorite : boolean = false;
 
   constructor( private router: Router,private trailService : TrailService){}
 
@@ -40,6 +41,12 @@ export class DetailsComponent {
     
     this.markerPositions.push(startMarker, endMarker);
 
+  }
+
+  async addToFavorite(){
+    this.isFavorite = !this.isFavorite;
+    console.log(this.isFavorite)
+    await this.trailService.manageTrailFavorite(this.trail?.id!, this.isFavorite);
   }
 
 }

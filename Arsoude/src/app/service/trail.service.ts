@@ -92,4 +92,14 @@ export class TrailService {
       throw e;
     }
   }
+
+  async manageTrailFavorite(trailId : number, isFavorite : boolean){
+    try{
+      await lastValueFrom(this.http.post<TrailDTO>(this.baseUrl+"ManageTrailFavorite/"+ trailId, isFavorite))
+    }
+    catch(e){
+      console.log("ManageTrailFavorite : " + e)
+      throw e;
+    }
+  }
 }
