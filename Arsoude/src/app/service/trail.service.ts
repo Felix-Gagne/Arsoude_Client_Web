@@ -95,10 +95,22 @@ export class TrailService {
 
   async manageTrailFavorite(trailId : number, isFavorite : boolean){
     try{
-      await lastValueFrom(this.http.post<TrailDTO>(this.baseUrl+"ManageTrailFavorite/"+ trailId, isFavorite))
+      await lastValueFrom(this.http.get<TrailDTO>(this.baseUrl+"ManageTrailFavorite/"+trailId))
     }
     catch(e){
       console.log("ManageTrailFavorite : " + e)
+      throw e;
+    }
+  }
+
+  async getFavTrails(){
+    try{
+      let x = await lastValueFrom(this.http.get<TrailDTO[]>(this.baseUrl+"GetFavoriteTrails"))
+      console.log(x);
+      return x;
+    }
+    catch(e){
+      console.log("GetFavoriteTrails : " + e)
       throw e;
     }
   }

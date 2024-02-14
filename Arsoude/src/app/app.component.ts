@@ -3,6 +3,7 @@ import { UserService } from './service/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { faAngleDown, faBicycle, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import { TrailService } from './service/trail.service';
 
 @Component({
   selector: 'app-root',
@@ -19,9 +20,11 @@ export class AppComponent {
   public href: string = "";
 
 
-  constructor(public userService : UserService, private translate : TranslateService, public router: Router) { }
+  constructor(public userService : UserService, private translate : TranslateService, public router: Router, public trailService : TrailService) { }
 
   ngOnInit(): void{
+
+   
     this.userService.verifyConnectedUser();
     this.subMenu = document.getElementById("subMenu");
     this.href = this.router.url;

@@ -7,7 +7,7 @@
             </div>
             <div class="favorite">
                 <fa-icon *ngIf="this.isFavorite == false" (click)="addToFavorite()" class="bookMark" [icon]="faBookMark"></fa-icon>
-                <i *ngIf="this.isFavorite == true" class="fa-regular fa-bookmark"></i>
+                <i *ngIf="this.isFavorite == true" (click)="addToFavorite()" class="fa-regular fa-bookmark"></i>
             </div>
         </div>
     </div>
