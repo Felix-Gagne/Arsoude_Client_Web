@@ -22,8 +22,8 @@ const routes : Routes = [
   {path: 'creation', component: CreationComponent, canActivate: [userGuard]},
   {path: 'creation-step2', component: CreationPt2Component, canActivate: [userGuard]},
   {path: 'search', component: SearchComponent},
-  {path : 'approve', component : ApproveComponent, canActivate:[adminGuard] }
-  {path: 'details/:name', component: DetailsComponent}
+  {path : 'approve', component : ApproveComponent, canActivate:[adminGuard] },
+  {path: 'details/:name', component: DetailsComponent},
   {path: 'help', component: HelpPageComponent},
 ];
 

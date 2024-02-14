@@ -40,7 +40,7 @@ export function HttpLoaderFactory(http: HttpClient){
     InfoRegComponent,
     CreationPt2Component,
     SearchComponent,
-    ApproveComponent
+    ApproveComponent,
     HelpPageComponent,
     DetailsComponent,
   ],

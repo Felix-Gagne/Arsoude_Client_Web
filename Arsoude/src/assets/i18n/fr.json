@@ -106,6 +106,8 @@
         "backButton": "Retour",
         "confirmButton": "Confirmer",
         "resetPoints": "Réinitialiser les points",
-        "chooseStart":"Choisissez un point de départ"
+        "titleChoice1":"Choisissez un point de départ",
+        "titleChoice2":"Choisissez un point d'arrivé",
+        "titleChoice3":"Veuillez confirmer"
     }
 }

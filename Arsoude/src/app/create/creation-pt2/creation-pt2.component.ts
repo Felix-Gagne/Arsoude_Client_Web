@@ -24,7 +24,7 @@ export class CreationPt2Component {
   zoom = 15;
   mapTypeId = google.maps.MapTypeId.SATELLITE;
   disableConfirmerButton = true;
-  titleChoice: 'Choisissez un point de départ' | 'Choisissez un point d\'arrivé' | 'Veuillez confirmer' = 'Choisissez un point de départ';
+  titleChoice: "creationPt2.titleChoice1" | "creationPt2.titleChoice2" | "creationPt2.titleChoice3" = "creationPt2.titleChoice1";
   disableBtnPointA = false;
   disableBtnPointB = true;
 
@@ -71,7 +71,7 @@ export class CreationPt2Component {
       this.currentMode = 'PointB';
       this.disableBtnPointA = true;
       this.disableBtnPointB = false;
-      this.switchTitle('Choisissez un point d\'arrivé');
+      this.switchTitle("creationPt2.titleChoice2");
     } else if (this.currentMode === 'PointB') {
       this.latitudeB = newMarker.lat;
       this.longitudeB = newMarker.lng;
@@ -79,7 +79,7 @@ export class CreationPt2Component {
       console.log('marker B');
       this.disableBtnPointA = true;
       this.disableBtnPointB = true;
-      this.switchTitle('Veuillez confirmer');
+      this.switchTitle("creationPt2.titleChoice3");
     }
   
     const existingMarkerIndex = this.markerPositions.findIndex(
@@ -131,7 +131,7 @@ export class CreationPt2Component {
     }
   }
 
-  switchTitle(mode: 'Choisissez un point de départ' | 'Choisissez un point d\'arrivé' | 'Veuillez confirmer'): void {
+  switchTitle(mode: "creationPt2.titleChoice1" | "creationPt2.titleChoice2" | "creationPt2.titleChoice3"): void {
     this.titleChoice = mode;
   }
 
@@ -147,6 +147,6 @@ export class CreationPt2Component {
     this.currentMode = 'PointA';
     this.disableBtnPointA = false;
     this.disableBtnPointB = true;
-    this.switchTitle('Choisissez un point de départ');
+    this.switchTitle("creationPt2.titleChoice1");
   }
 }

@@ -107,7 +107,9 @@
         "backButton": "Back",
         "confirmButton": "Confirm",
         "resetPoints": "Reset Points",
-        "chooseStart":"Choose a starting point"
+        "titleChoice1":"Choose a starting point",
+        "titleChoice2":"Choose an ending point",
+        "titleChoice3":"Please confirm"
     }
     
 }
