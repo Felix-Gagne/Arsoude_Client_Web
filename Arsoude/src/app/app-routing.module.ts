@@ -9,6 +9,7 @@ import { InfoRegComponent } from './authentification/info-reg/info-reg.component
 import { CreationComponent } from './create/creation/creation.component';
 import { SearchComponent } from './search/search.component';
 import { ApproveComponent } from './admin/approve/approve.component';
+import { adminGuard } from './admin.guard';
 
 const routes : Routes = [
   {path: '', component : HomeComponent},
@@ -18,7 +19,7 @@ const routes : Routes = [
   {path: 'creation', component: CreationComponent},
   {path: 'creation-step2', component: CreationPt2Component},
   {path: 'search', component: SearchComponent},
-  {path : 'approve', component : ApproveComponent}
+  {path : 'approve', component : ApproveComponent, canActivate:[adminGuard] }
 ];
 
 @NgModule({
