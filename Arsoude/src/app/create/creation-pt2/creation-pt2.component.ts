@@ -55,6 +55,9 @@ export class CreationPt2Component {
   @ViewChild('googlemaps') map!: GoogleMap;
   @ViewChild('maplines') maplines!: GoogleMap;
 
+  //Méthode qui récupère les coordonnées de l'endroit où l'utilisateur a cliqué
+  //+
+  //Qui met à jour les titres et les boutons selon la situation
   getLatLngFromMap(event: google.maps.MapMouseEvent): void {
     const newMarker: google.maps.LatLngLiteral = {
       lat: event.latLng!.lat(),
@@ -106,6 +109,7 @@ export class CreationPt2Component {
     }
   }
 
+  //Permet de changer le mode disabled des boutons
   switchMode(mode: 'PointA' | 'PointB' | 'Disabled'): void {
     this.currentMode = mode;
   }
@@ -131,10 +135,12 @@ export class CreationPt2Component {
     }
   }
 
+  //Permet de changer le titre
   switchTitle(mode: "creationPt2.titleChoice1" | "creationPt2.titleChoice2" | "creationPt2.titleChoice3"): void {
     this.titleChoice = mode;
   }
 
+  //Permet de réinitialiser l'état des boutons, des titres et des markers
   resetPoints(){
     this.markerPositions = [];
     this.markerA = undefined;

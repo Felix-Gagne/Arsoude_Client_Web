@@ -83,6 +83,7 @@ export class CreationComponent {
     }
   }
 
+  //Sert à récupérer le nom de la route actuelle pour le changemenent de page
   getComponentRoute() {
     return this.activatedRoute.firstChild?.snapshot.routeConfig?.path;
   }
