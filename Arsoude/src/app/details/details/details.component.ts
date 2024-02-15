@@ -22,6 +22,7 @@ export class DetailsComponent {
   markerPositions: google.maps.LatLngLiteral[] = [];
   isFavorite : boolean = false;
   Favorites : TrailDTO[] = []
+  isOwner = false;
 
   constructor( private router: Router,private trailService : TrailService, public userService: UserService){}
 
@@ -31,7 +32,7 @@ export class DetailsComponent {
       this.trail = await this.trailService.getTrailDetails(parseInt(data));
     }
     console.log(this.trail)
-    
+    this.checkOwnerByTrailId()
     this.Favorites = await this.trailService.getFavTrails();
     console.log(this.Favorites.includes(this.trail!))
     for(let i =0; i < this.Favorites.length; i ++){
@@ -41,7 +42,7 @@ export class DetailsComponent {
     }
 
     }
-console.log(this.isFavorite);
+
     const startMarker: google.maps.LatLngLiteral = { 
       lat: this.trail?.startingCoordinates!.latitude!, 
       lng: this.trail?.startingCoordinates!.longitude! 
@@ -63,6 +64,25 @@ console.log(this.isFavorite);
   }
 
   async checkOwnerByTrailId(){
-    return await this.trailService.checkOwnerByTrailId(this.trail?.id!);
+    let x =await this.trailService.checkOwnerByTrailId(this.trail?.id!);
+    console.log(x);
+    this.isOwner = x;
   }
+
+  async makePublic(){
+
+   let x = await this.trailService.SetVisibility(this.trail!.id!, true)
+   console.log(x);
+this.trail!.isPublic = true
+   
+
+  }
+  async makePrivate(){
+
+    let x = await this.trailService.SetVisibility(this.trail!.id!, false)
+    console.log(x);
+ this.trail!.isPublic = false
+    
+ 
+   }
 }

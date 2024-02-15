@@ -11,6 +11,7 @@ export class TrailDTO{
         public startingCoordinates? : Coordinates,
         public endingCoordinates? : Coordinates,
         public id? : number,
+        public isPublic? : boolean,
     ){}
 }
 
