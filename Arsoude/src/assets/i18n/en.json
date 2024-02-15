@@ -110,6 +110,12 @@
         "titleChoice1":"Choose a starting point",
         "titleChoice2":"Choose an ending point",
         "titleChoice3":"Please confirm"
+    },
+    "details" : {
+       "public" : "Set public",
+       "private" : "Set private"
+
     }
+    
     
 }

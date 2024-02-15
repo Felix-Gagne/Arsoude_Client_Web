@@ -109,5 +109,10 @@
         "titleChoice1":"Choisissez un point de départ",
         "titleChoice2":"Choisissez un point d'arrivé",
         "titleChoice3":"Veuillez confirmer"
+    },
+    
+    "details" : {
+       "public" : "Rendre publique",
+       "private" : "Rendre privée"
     }
 }
