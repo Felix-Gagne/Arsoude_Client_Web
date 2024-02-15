@@ -22,10 +22,10 @@
         <div class="typeContainer">
        <div *ngIf="isOwner">
             <button *ngIf="this.trail!.isPublic"  type="button" class="button-2" (click)="makePrivate()" >
-                 {{'private' | translate}} 
+                 {{'details.private' | translate}} 
             </button>
             <button *ngIf="!this.trail!.isPublic"  type="button" class="button-3" (click)="makePublic()" >
-                {{'public' | translate}} 
+                {{'details.public' | translate}} 
            </button>
        
         </div>
