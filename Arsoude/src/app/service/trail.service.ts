@@ -43,20 +43,12 @@ export class TrailService {
 
   async AddFavorite(Id : number){
      try{
-
-   let x = await lastValueFrom(this.http.post<any>(this.baseUrl+"ManageTrailFavorite/"+Id, null))
-   console.log(x);
-
+      let x = await lastValueFrom(this.http.post<any>(this.baseUrl+"ManageTrailFavorite/"+Id, null))
+      console.log(x);
      }
      catch(e){
-
-   console.log(e);
-
-
+      console.log(e);
      }
-
-
-
   }
 
   async searchTrails(filter : FilterDTO){
@@ -111,6 +103,18 @@ export class TrailService {
     }
     catch(e){
       console.log("GetFavoriteTrails : " + e)
+      throw e;
+    }
+  }
+
+  async checkOwnerByTrailId(trailId: number){
+    try{
+      let x = await lastValueFrom(this.http.get<boolean>(this.baseUrl+"CheckOwnerByTrailId/" + trailId))
+      console.log(x);
+      return x;
+    }
+    catch(e){
+      console.log("CheckOwnerByTrailId : " + e)
       throw e;
     }
   }

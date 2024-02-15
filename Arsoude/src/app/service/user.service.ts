@@ -19,6 +19,7 @@ export class UserService {
   public isConnected : boolean = false;
   public isAdmin : boolean = false;
   public username ?: string ;
+  public connectedUserId?: number;
   public favTrail : TrailDTO[] = [];
   async register(dto : RegisterDTO)
   {
@@ -92,7 +93,4 @@ export class UserService {
       this.isAdmin = true;
     }
   }
-
-  
-
 }

@@ -62,4 +62,7 @@ console.log(this.isFavorite);
     await this.trailService.manageTrailFavorite(this.trail?.id!, this.isFavorite);
   }
 
+  async checkOwnerByTrailId(){
+    return await this.trailService.checkOwnerByTrailId(this.trail?.id!);
+  }
 }
