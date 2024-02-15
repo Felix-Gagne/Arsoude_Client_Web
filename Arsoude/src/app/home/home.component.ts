@@ -5,6 +5,7 @@ import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fir
 import { FilterDTO } from '../models/FilterDTO';
 import { TrailService } from '../service/trail.service';
 import { TrailDTO } from '../models/TrailDTO';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -19,9 +20,8 @@ private readonly storage: Storage = inject(Storage);
 trails : TrailDTO[] = []
 searchInput: string = "";
 
-
-
-constructor(private helloService : HelloworldService, private router: Router, private trailservice : TrailService, private trailService : TrailService){}
+constructor(private helloService : HelloworldService, private router: Router, 
+  private trailservice : TrailService, private trailService : TrailService, private translate: TranslateService){}
   
 
   async GetHello() : Promise<void> {

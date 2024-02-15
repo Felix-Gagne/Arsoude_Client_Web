@@ -6,17 +6,21 @@ import { LoginDTO } from '../models/LoginDTO';
 import { Router } from '@angular/router';
 import { InfoRegDTO } from '../models/InfoRegDTO';
 import { environment } from 'src/environments/environment';
+import { TrailDTO } from '../models/TrailDTO';
+import { TrailService } from './trail.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(public http : HttpClient, public router : Router) { }
+  constructor(public http : HttpClient, public router : Router, public trailService : TrailService) { }
   private baseUrl = environment.apiUrl + 'api/User';
   public isConnected : boolean = false;
+  public isAdmin : boolean = false;
   public username ?: string ;
-
+  public connectedUserId?: number;
+  public favTrail : TrailDTO[] = [];
   async register(dto : RegisterDTO)
   {
     try{
@@ -38,10 +42,19 @@ export class UserService {
       console.log(x.token);
       localStorage.setItem("Token", x.token);
       localStorage.setItem("Username", dto.Username);
+      let roles = x.roles;
+        if(roles[0] == "Admin"){
+          localStorage.setItem("admin", roles[0])
+          this.isAdmin = true
+        }
       if(localStorage.getItem('Username') != undefined && localStorage.getItem('Username') != null ){
         this.username = localStorage.getItem("Username")?.toString();
       }
       this.isConnected = true;
+      
+      this.favTrail = await this.trailService.getFavTrails();
+      
+
       this.router.navigate(['/']);
     }
     catch(e){
@@ -75,6 +88,9 @@ export class UserService {
     if(localStorage.getItem('Username') != undefined && localStorage.getItem('Username') != null ){
       this.username = localStorage.getItem("Username")?.toString();
     }
+    if(localStorage.getItem('admin') != undefined && localStorage.getItem('admin') != null)
+    {
+      this.isAdmin = true;
+    }
   }
-
 }

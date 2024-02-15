@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="detail_box_1" style="background-image: url({{this.trail!.imageUrl}});">
+        <div class="trail_title_container">
+            <div class="title">
+                <h2>{{this.trail!.name}}</h2>
+                <h3>{{this.trail!.location}}</h3>
+            </div>
+            <div class="favorite">
+                <fa-icon *ngIf="this.isFavorite == false" (click)="addToFavorite()" class="bookMark" [icon]="faBookMark"></fa-icon>
+                <i *ngIf="this.isFavorite == true" (click)="addToFavorite()" class="fa-regular fa-bookmark"></i>
+            </div>
+        </div>
+    </div>
+   
+    <div class="detail_box_2">
+        <div>
+            <p class="descriptionContainer">
+                {{this.trail!.description}}
+            </p>
+        </div>
+        
+        <div class="typeContainer">
+       <div *ngIf="isOwner">
+            <button *ngIf="this.trail!.isPublic"  type="button" class="button-2" (click)="makePrivate()" >
+                 {{'private' | translate}} 
+            </button>
+            <button *ngIf="!this.trail!.isPublic"  type="button" class="button-3" (click)="makePublic()" >
+                {{'public' | translate}} 
+           </button>
+       
+        </div>
+
+
+            <p *ngIf="this.trail!.type == 0"><fa-icon [icon]="faPersonWalking"></fa-icon></p>
+            <p *ngIf="this.trail!.type == 1"><fa-icon [icon]="faBicycle"></fa-icon></p>
+        </div>
+        <div class="map-container">
+            <google-map #maplines [width]="'100%'" [height]="400"
+                    [center]="center"
+                    [zoom]="zoom"
+                    [mapTypeId]="mapTypeId">
+                    <map-marker *ngFor="let marker of markerPositions" [position]="marker"></map-marker>
+            </google-map>
+        </div>
+    </div>
+    
+    
+</div>

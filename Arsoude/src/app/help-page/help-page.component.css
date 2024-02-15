@@ -1,0 +1,51 @@
+.small img{
+    height:25px;
+    width:75px;
+}
+
+.medium img{
+    height:50px;
+    width:75px;
+}
+
+.small{
+    height:25px;
+    background: linear-gradient(to top, rgb(238, 238, 238), rgb(194, 194, 194)); 
+}
+
+.medium{
+    height:50px;
+    background: linear-gradient(to top, white, rgb(238, 238, 238)); 
+}
+
+.medium.bottom{
+    background: linear-gradient(to bottom, white, rgb(238, 238, 238)); 
+}
+
+.full{
+    height:75px;
+}
+
+.jeu>div{
+    padding:2px 4px 2px 4px;
+}
+
+.small.bottom{
+    background: linear-gradient(to bottom, rgb(238, 238, 238), rgb(194, 194, 194)); 
+}
+
+.jeu{
+    border:solid black 3px;
+    display:inline-block;
+}
+
+.jeu img{
+    margin:2px;
+}
+
+.boutons{
+    margin-top:5px;
+    width:230px;
+    display:flex;
+    justify-content: center;
+}

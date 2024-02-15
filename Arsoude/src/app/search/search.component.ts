@@ -4,6 +4,7 @@ import { faPersonWalking, faBicycle, faAngleDown } from '@fortawesome/free-solid
 import { TrailService } from '../service/trail.service';
 import { FilterDTO } from '../models/FilterDTO';
 import { TrailType } from '../models/enum/Type';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -20,7 +21,7 @@ export class SearchComponent {
   type : TrailType = TrailType.Undefined;
   radius : number = 0;
 
-  constructor(private trailService : TrailService){}
+  constructor( private router: Router,private trailService : TrailService){}
 
   async ngOnInit(){
     let data = localStorage.getItem("Search");
@@ -59,4 +60,17 @@ export class SearchComponent {
   onEnter() {
 
   }
+
+  async getDetails(trailId:number){
+    try{
+      localStorage.setItem("trailid", trailId.toString());
+      var x = await this.trailService.getTrailDetails(trailId);
+      this.router.navigate(['/details', x.name]);
+
+    }
+    catch(e){
+      console.log("Erreur : " + e);
+    }
+  }
+
 }

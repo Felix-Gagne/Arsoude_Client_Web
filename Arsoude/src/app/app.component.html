@@ -6,23 +6,26 @@
  
             <ul>
                 <li>
-                    <a class="linkNav" href="">Explorer</a>
+                    <a class="linkNav" href="">{{'header.explore' | translate}}</a>
                 </li>
                 <li>
-                    <a class="linkNav" href="">Communauté</a>
+                    <a class="linkNav" href="">{{'header.community' | translate}}</a>
                 </li>
                 <li>
-                    <a class="linkNav" href="#/creation" *ngIf="userService.isConnected">Créer</a>
+                    <a class="linkNav" href="#/creation" *ngIf="userService.isConnected">{{'header.create' | translate}}</a>
+                </li>
+                <li>
+                    <a class="linkNav" href="#/approve" *ngIf="userService.isAdmin">Administration</a>
                 </li>
             </ul>
         </nav>
         <nav class="header_options">
             <ul>
                 <li>
-                    <a class="linkNav" href="">Aide</a>
+                    <a class="linkNav" href="#/help">{{'header.help' | translate}}</a>
                 </li>
                 <li>
-                    <button *ngIf="!userService.isConnected" class="button" routerLink="/login">Se connecter</button>
+                    <button *ngIf="!userService.isConnected" class="button" routerLink="/login">{{'header.loginButton' | translate}}</button>
                     <nav>
                         <div class="box" *ngIf="userService.isConnected">
                             <img src="assets\images\userPlaceHolder.png" alt="userPlaceHolder" (click)="toggleMenu()">
@@ -31,28 +34,28 @@
                             <div class="sub-menu">
                                 <div class="user-info">
                                     <img src="assets\images\userPlaceHolder.png" alt="userImage">
-                                    <h2>test</h2>
+                                    <h4>{{userService.username}}</h4>
                                 </div>
                                 <hr>
  
                                 <a href="#" class="sub-menu-link">
                                     <i class="fa-solid fa-user"></i>
-                                    <p>Edit Profile</p>
+                                    <p>{{'menu.edit' | translate}}</p>
                                     <span>></span>
                                 </a>
                                 <a href="#" class="sub-menu-link">
                                     <i class="fa-solid fa-gear"></i>
-                                    <p>Settings</p>
+                                    <p>{{'menu.settings' | translate}}</p>
                                     <span>></span>
                                 </a>
-                                <a href="#" class="sub-menu-link">
+                                <a href="#/help" class="sub-menu-link">
                                     <i class="fa-solid fa-circle-info"></i>
-                                    <p>Help</p>
+                                    <p>{{'menu.help' | translate}}</p>
                                     <span>></span>
                                 </a>
                                 <a href="#" class="sub-menu-link" (click)="logout()">
                                     <i class="fa-solid fa-right-from-bracket"></i>
-                                    <p>Logout</p>
+                                    <p>{{'menu.logout' | translate}}</p>
                                     <span>></span>
                                 </a>
                             </div>
@@ -75,46 +78,46 @@
         <div></div>
         <div></div>
         <div></div>
-        <div class="footer_texte">L'application des randonnées</div>
-        <div class="footer_texte">Explorer</div>
-        <div class="footer_texte">Communauté</div>
-        <div class="footer_texte">Créer</div>
-        <div class="footer_texte">Aide</div>
+        <div class="footer_texte">{{'footer.title' | translate}}</div>
+        <div class="footer_texte">{{'footer.explore' | translate}}</div>
+        <div class="footer_texte">{{'footer.community' | translate}}</div>
+        <div class="footer_texte">{{'footer.create' | translate}}</div>
+        <div class="footer_texte">{{'footer.help' | translate}}</div>
         <div class="footer_app_logos">
             <img class="logo_space" src="assets/images/Footer_AppleLogo.png" alt="">
             <img src="assets/images/Footer_GoogleLogo.png" alt="">
         </div>
-        <div class="footer_texte_small">Randonnées</div>
+        <div class="footer_texte_small">{{'footer.trails' | translate}}</div>
         <div class="footer_texte_small">
             <ul>
-                <li>Avis</li>
-                <li>Recommendations</li>
-                <li>Commentaires</li>
+                <li>{{'footer.reviews' | translate}}</li>
+                <li>{{'footer.recommended' | translate}}</li>
+                <li>{{'footer.comments' | translate}}</li>
             </ul>
         </div>
-        <div class="footer_texte_small">Randonnées</div>
+        <div class="footer_texte_small">{{'footer.trails' | translate}}</div>
         <div class="footer_texte_small">
             <ul>
-                <li>À propos</li>
-                <li>Contactez-nous</li>
+                <li>{{'footer.about' | translate}}</li>
+                <li>{{'footer.contact' | translate}}</li>
             </ul>
         </div>
         <div></div>
     </div>
     <div class="footer_sepator"></div>
     <div class="footer_rights">
-        <p>2024 Arsoule, LLC Tous droits réservés</p>
-        <p>Arsoude® est une marque déposées d’Arsoude, LLC aux États-Unis ainsi que dans d’autre juridictions.</p>
+        <p>{{'footer.llc' | translate}}</p>
+        <p>{{'footer.mark' | translate}}</p>
         <br>
-        <p>Politique de confidentialité • Conditions générales • Politique en matière de cookies • Gérer les cookies</p>
+        <p>{{'footer.policy' | translate}}</p>
      
     </div>
     <div class="footer_language">
         <div class="dropdown">
-            <button class="button">Français <img src="assets/images/Footer_DownArrow.png" alt=""></button>
-            <div class="dropdown-content">
-                <a href="#">English</a>
-            </div>
+            <select name="language" id="language" [(ngModel)]="SelectLanguage" (click)="useLanguage()">
+                <option value="en">English</option>
+                <option value="fr" selected>Français</option>
+            </select>
         </div>
     </div>
 </footer>

@@ -8,15 +8,23 @@ import { RegisterComponent } from './authentification/register/register.componen
 import { InfoRegComponent } from './authentification/info-reg/info-reg.component';
 import { CreationComponent } from './create/creation/creation.component';
 import { SearchComponent } from './search/search.component';
+import { ApproveComponent } from './admin/approve/approve.component';
+import { adminGuard } from './admin.guard';
+import { userGuard } from './user.guard';
+import { HelpPageComponent } from './help-page/help-page.component';
+import { DetailsComponent } from './details/details/details.component';
 
 const routes : Routes = [
   {path: '', component : HomeComponent},
   {path:'login', component : LoginComponent},
   {path: 'register', component : RegisterComponent},
   {path:'infoReg/:username', component : InfoRegComponent},
-  {path: 'creation', component: CreationComponent},
-  {path: 'creation-step2', component: CreationPt2Component},
-  {path: 'search', component: SearchComponent}
+  {path: 'creation', component: CreationComponent, canActivate: [userGuard]},
+  {path: 'creation-step2', component: CreationPt2Component, canActivate: [userGuard]},
+  {path: 'search', component: SearchComponent},
+  {path : 'approve', component : ApproveComponent, canActivate:[adminGuard] },
+  {path: 'details/:name', component: DetailsComponent},
+  {path: 'help', component: HelpPageComponent},
 ];
 
 @NgModule({

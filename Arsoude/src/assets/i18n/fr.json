@@ -1,0 +1,118 @@
+{
+    "home":{
+        "title": "Trouvez votre prochaine ",
+        "aventure": "aventure",
+        "placeholder": "Sentier, description, emplacement..."
+    },
+
+    "login":{
+        "title": "Connectez-vous",
+        "usernamePlaceholder": "Nom d'utilisateur",
+        "passwordPlaceholder": "Mot de passe",
+        "loginButton": "Se connecter",
+        "forgotPassword": "Mot de passe oublié",
+        "noAccount": "Pas de compte? ",
+        "register": "Inscrivez-vous gratuitement"
+    },
+
+    "register":{
+        "title":"Inscrivez-vous",
+        "lastNamePlaceholder":"Nom",
+        "firstNamePlaceholder":"Prénom",
+        "usernamePlaceholder":"Nom d'utilisateur",
+        "emailPlaceholder":"Courriel",
+        "zipPlaceholder":"Code postal",
+        "passwordPlaceholder":"Mot de passe",
+        "confirmPasswordPlaceholder":"Confirmer le mot de passe",
+        "button":"Continuer",
+        "alreadyHaveAccount":"Déjà un compte? ",
+        "login":"Connectez-vous"
+    },
+
+    "infoReg":{
+        "title":"Aidez nous à mieux vous connaitre",
+        "numCivique":"Numéro civique",
+        "street":"Rue",
+        "prov":"Province",
+        "yearOfBirth":"Année de naissance",
+        "monthOfBirth":"Mois de naissance",
+        "button":"Continuer"
+    },
+
+    "header":{
+        "explore": "Explorer",
+        "community": "Communauté",
+        "create": "Créer une randonnée",
+        "help": "Aide",
+        "loginButton": "Se connecter"
+    },
+
+    "search":{
+        "filterPlaceholder":"Sélectionner un type",
+        "type1":"Pieds",
+        "type2":"Vélo",
+        "radius":"Rayon (Km)",
+        "keywordPlaceholder":"Sentier, description, emplacement...",
+        "button":"Rechercher",
+        "title":"Les randonnées incontournable"
+    },
+
+    "menu":{
+        "edit":"Modifier le profile",
+        "settings":"Paramètres",
+        "help":"Aide",
+        "logout":"Se déconnecter"
+    },
+
+    "footer":{
+        "title": "L'application des randonnées",
+        "explore": "Explorer",
+        "community": "Communauté",
+        "create": "Créer une randonnée",
+        "help": "Aide",
+        "trails": "Randonnées",
+        "reviews": "Avis",
+        "recommended": "Recommendations",
+        "comments": "Commentaires",
+        "about": "À propos",
+        "contact": "Contactez-nous",
+        "llc": "2024 Arsoule, LLC Tous droits réservés",
+        "mark": "Arsoude® est une marque déposées d’Arsoude, LLC aux États-Unis ainsi que dans d’autre juridictions.",
+        "policy": "Politique de confidentialité • Conditions générales • Politique en matière de cookies • Gérer les cookies"
+    },
+
+    "creation":{
+        "titlePt1": "Créer",
+        "titlePt2": " votre propre ",
+        "titlePt3": "randonnée",
+        "titlePt4": " en nous donnant quelques informations",
+        "trailNameTitle": "Nom de la randonnée",
+        "trailNameErrorPt1": "Le nom de votre randonnée est ",
+        "trailNameErrorPt2": "requis",
+        "trailLocationErrorPt1": "L'emplacement de votre randonnée est ",
+        "trailLocationErrorPt2": "requis",
+        "trailTypeTitle": "Mode de déplacement",
+        "trailLocationTitle": "Où se situe votre randonnée?",
+        "chooseFile": "Choisir un fichier",
+        "continue": "Continuer",
+        "radioButtonLabel": "Choisir une option",
+        "trailDescriptionPlaceholder": "Description de votre randonnée"
+    },
+
+    "creationPt2":{
+        "title": "Choisir les points de départ et d'arrivé",
+        "startingPoint": "Point départ",
+        "endingPoint": "Point d'arrivé",
+        "backButton": "Retour",
+        "confirmButton": "Confirmer",
+        "resetPoints": "Réinitialiser les points",
+        "titleChoice1":"Choisissez un point de départ",
+        "titleChoice2":"Choisissez un point d'arrivé",
+        "titleChoice3":"Veuillez confirmer"
+    },
+    
+    "details" : {
+       "public" : "Rendre publique",
+       "private" : "Rendre privée"
+    }
+}

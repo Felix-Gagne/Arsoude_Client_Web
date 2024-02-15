@@ -56,7 +56,7 @@ export class CreationComponent {
     }
        
 
-    const trail = new TrailDTO(this.text, this.description, this.location, this.trailType, this.imageUrl, undefined, undefined);
+    const trail = new TrailDTO(this.text, this.description, this.location, this.trailType, this.imageUrl, undefined, undefined, undefined);
 
     localStorage.setItem("createTrail", JSON.stringify(trail));
 
@@ -83,6 +83,7 @@ export class CreationComponent {
     }
   }
 
+  //Sert à récupérer le nom de la route actuelle pour le changemenent de page
   getComponentRoute() {
     return this.activatedRoute.firstChild?.snapshot.routeConfig?.path;
   }
