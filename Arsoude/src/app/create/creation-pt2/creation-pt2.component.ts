@@ -1,3 +1,4 @@
+import { NotifierService } from './../../notifier.service';
 import { Component, ViewChild } from '@angular/core';
 import { GoogleMap } from '@angular/google-maps';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -30,7 +31,7 @@ export class CreationPt2Component {
 
   trail : TrailDTO | undefined;
 
-  constructor(public router : Router, public service : TrailService){}
+  constructor(public router : Router, public service : TrailService, private notifierService: NotifierService){}
 
   ngOnInit(): void{
     let data = localStorage.getItem("createTrail");
@@ -127,7 +128,7 @@ export class CreationPt2Component {
       if(this.trail != undefined){
         this.service.CreateTrail(this.trail);
       }
-      
+      this.notifierService.showNotification('La randonnée a été créé avec succès!');
       this.router.navigate(['']);
     }
     catch(e){

@@ -6,6 +6,7 @@ import { FilterDTO } from '../models/FilterDTO';
 import { TrailService } from '../service/trail.service';
 import { TrailDTO } from '../models/TrailDTO';
 import { TranslateService } from '@ngx-translate/core';
+import { NotifierService } from '../notifier.service';
 
 @Component({
   selector: 'app-home',
@@ -20,9 +21,16 @@ private readonly storage: Storage = inject(Storage);
 trails : TrailDTO[] = []
 searchInput: string = "";
 
-constructor(private helloService : HelloworldService, private router: Router, 
-  private trailservice : TrailService, private trailService : TrailService, private translate: TranslateService){}
+constructor(private helloService : HelloworldService, 
+  private router: Router, 
+  private trailservice : TrailService, 
+  private trailService : TrailService,
+  private translate: TranslateService,
+  private notifierService: NotifierService){}
   
+  ngOnInit(): void {
+    this.notifierService.showNotification('La mère à Vlad', 'success');
+  }
 
   async GetHello() : Promise<void> {
   
