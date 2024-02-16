@@ -76,6 +76,8 @@ export class UserService {
 
   Logout(){
     localStorage.removeItem('Token');
+    localStorage.removeItem('admin');
+    localStorage.removeItem('Username');
     this.isConnected = false;
     this.router.navigate(['/']);
   }
