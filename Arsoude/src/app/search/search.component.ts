@@ -20,6 +20,7 @@ export class SearchComponent {
   faPersonWalking = faPersonWalking;
   type : TrailType = TrailType.Undefined;
   radius : number = 0;
+  minRadius : number = 10;
 
   constructor( private router: Router,private trailService : TrailService){}
 
@@ -39,7 +40,7 @@ export class SearchComponent {
       dto.type = parseInt(this.type.toString());
     }
 
-    if(this.radius >= 10){
+    if(this.radius >= this.minRadius){
       dto.distance = this.radius;
     }
 
@@ -50,8 +51,8 @@ export class SearchComponent {
     try{
       this.trails = await this.trailService.searchTrails(dto);
     }
-    catch(e){
-      console.log("Erreur : " + e);
+    catch(error){
+      console.log("Erreur : " + error);
     }
 
     console.log(dto);
