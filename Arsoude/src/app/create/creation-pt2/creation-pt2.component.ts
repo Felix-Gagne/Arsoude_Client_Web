@@ -159,6 +159,20 @@ export class CreationPt2Component {
     this.switchTitle("creationPt2.titleChoice1");
   }
 
+  async checkConnection() {
+    if (!navigator.onLine) {
+      //SNACK BAR ICI POUR DIRE QUE L'UTILISATEUR N'EST PAS CONNECTÉ
+      console.log('Vous n\'êtes pas connecté à Internet');
+    } else {
+      console.log('Vous êtes connecté à Internet');
+    }
+  }
+
+  checkToken(): boolean {
+    const token = localStorage.getItem('token');
+    return !!token;
+  }
+
   retour(): void {
     this.location.back();
   }
