@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotifierComponent } from './notifier/notifier.component';
+import { icon } from '@fortawesome/fontawesome-svg-core';
 
 @Injectable({
   providedIn: 'root'

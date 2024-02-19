@@ -19,6 +19,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     height: 300px;
 }
 
+#boite{
+    background-color: white;
+}
+
+.error{
+    border-left:rgb(211, 43, 43) solid 5px;
+    background-color:rgb(255, 241, 241);
+}
+
+.success{
+    /* border-left:rgb(21, 167, 53) solid 5px; */
+    background-color:rgb(243, 255, 248);
+}
+
 .mat-mdc-snack-bar-container, .mdc-snackbar__label, .mat-mdc-snack-bar-container .mdc-snackbar__surface {
     padding: 0;
     margin: 0;

@@ -6,13 +6,14 @@ import { TrailDTO } from '../models/TrailDTO';
 import { environment } from 'src/environments/environment';
 import { FilterDTO } from '../models/FilterDTO';
 import { Coordinates } from '../models/Coordinates';
+import { NotifierService } from '../notifier.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrailService {
 
-  constructor(public http : HttpClient, public router : Router) { }
+  constructor(public http : HttpClient, public router : Router, public notifierService: NotifierService) { }
   private baseUrl = environment.apiUrl + 'api/Trail/'
   private formData: any;
 
@@ -21,15 +22,38 @@ export class TrailService {
 
   url = 'https://ipgeolocation.abstractapi.com/v1/?api_key=' + this.api_key;
   public coordinates :Coordinates = new Coordinates();
+  
+  async checkConnection(): Promise<boolean> {
+    if (!navigator.onLine) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  checkToken(): boolean {
+    const token = localStorage.getItem('Token');
+    console.log(token);
+    return !!token;
+  }
+
   async CreateTrail(trail : TrailDTO){
-    try{
-      let x = await lastValueFrom(this.http.post<any>(this.baseUrl+"CreateTrail", trail));
-      console.log(x);
-      this.router.navigate(['/']);
-    }
-    catch(e){
-      console.log("Erreur : " + e)
-    }
+    if(await this.checkConnection()){
+        if(this.checkToken()){
+          try{
+            let x = await lastValueFrom(this.http.post<any>(this.baseUrl+"CreateTrail", trail));
+            console.log(x);
+            this.router.navigate(['/']);
+          }
+          catch(e){
+            console.log("Erreur : " + e)
+          }
+        } else {
+          this.notifierService.showNotification('Vous devez être connecté pour créer une randonnée', 'error');
+        }
+      } else {
+        this.notifierService.showNotification('Erreur de connexion, veuillez réessayer', 'error');
+      }
   }
 
   async GetUserTrails(trail : TrailDTO){
@@ -130,16 +154,16 @@ export class TrailService {
 
 
   async SetVisibility(trailId : number, status : boolean){
-try{
+    try{
 
-let x = await lastValueFrom(this.http.get<any>(this.baseUrl+"SetTrailStatus/"+trailId+"/"+status))
-console.log(x)
+    let x = await lastValueFrom(this.http.get<any>(this.baseUrl+"SetTrailStatus/"+trailId+"/"+status))
+    console.log(x)
 
-}
-catch(e){
+    }
+    catch(e){
 
-console.log(e);
-throw e;
+    console.log(e);
+    throw e;
 
     }
 

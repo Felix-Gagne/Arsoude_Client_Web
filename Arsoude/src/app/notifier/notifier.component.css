@@ -2,9 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-left:rgb(21, 167, 53) solid 5px;
     border-radius:5px;
-    background-color:rgb(243, 255, 248);
     padding:5px 30px 5px 30px;
     margin: -18px;
     font-family: 'Plus Jakarta Sans';
@@ -22,6 +20,11 @@
 .error{
     border-left:rgb(211, 43, 43) solid 5px;
     background-color:rgb(255, 241, 241);
+}
+
+.success{
+    border-left:rgb(21, 167, 53) solid 5px;
+    background-color:rgb(243, 255, 248);
 }
 
 .error.mat-snack-bar-container {
