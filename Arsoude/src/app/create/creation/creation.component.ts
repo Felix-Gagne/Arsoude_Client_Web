@@ -2,15 +2,15 @@ import { Component, inject } from '@angular/core';
 import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBicycle, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
-import { Coordinates } from 'src/app/models/Coordinates';
 import { TrailDTO } from 'src/app/models/TrailDTO';
 import { TrailType } from 'src/app/models/enum/Type';
 import { TrailService } from 'src/app/service/trail.service';
 
 interface LoginData { 
   text?: string | null ; 
+  location?: string | null ; 
+  description?: string | null ; 
 }
 @Component({
   selector: 'app-creation',
@@ -30,6 +30,7 @@ export class CreationComponent {
   faPersonWalking = faPersonWalking;
   trailType : TrailType = 0;
   imageUrl : string = "";
+  disableContinuerBtn: boolean = true;
 
   private readonly storage: Storage = inject(Storage);
 
@@ -54,12 +55,39 @@ export class CreationComponent {
     console.log(this.formData)
     if(this.formData != null){
       this.text = this.formData.text!;
-      
+      this.location = this.formData.location!;
+      this.description = this.formData.description!;
     }
+
+    this.disableContinuerBtn = !this.allFieldsFilled();
+    console.log(this.disableContinuerBtn);
+
+    this.form.valueChanges.subscribe(() => {
+      this.formData = this.form.value;
+      this.disableContinuerBtn = !this.allFieldsFilled();
+    });
+
+    this.form.get('text')?.valueChanges.subscribe(() => {
+      this.allFieldsFilled();
+    });
+    this.form.get('location')?.valueChanges.subscribe(() => {
+      this.allFieldsFilled();
+    });
+    this.form.get('description')?.valueChanges.subscribe(() => {
+      this.allFieldsFilled();
+    });
   }
 
   public ngOnDestroy(): void {
     this.trailService.setFormData(this.form.value);
+  }
+
+  public allFieldsFilled(): boolean {
+    return (
+      this.form.get('text')?.value !== '' &&
+      this.form.get('location')?.value !== '' &&
+      this.form.get('description')?.value !== ''
+    );
   }
 
   async SendTrail(input: HTMLInputElement){
