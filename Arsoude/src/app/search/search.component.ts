@@ -40,7 +40,7 @@ export class SearchComponent {
       dto.type = parseInt(this.type.toString());
     }
 
-    if(this.radius >= this.minRadius){
+    if(this.radius != 0){
       dto.distance = this.radius;
     }
 

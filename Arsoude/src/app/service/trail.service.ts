@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { last, lastValueFrom } from 'rxjs';
@@ -20,6 +20,8 @@ export class TrailService {
 
   url = 'https://ipgeolocation.abstractapi.com/v1/?api_key=' + this.api_key;
   public coordinates :Coordinates = new Coordinates();
+
+
   async CreateTrail(trail : TrailDTO){
     try{
       let x = await lastValueFrom(this.http.post<any>(this.baseUrl+"CreateTrail", trail));
@@ -69,7 +71,6 @@ export class TrailService {
     }
     catch(error){
       console.log(error);
-      throw error;
     }
   }
 

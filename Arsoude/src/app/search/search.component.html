@@ -9,7 +9,7 @@
             <!-- <input class="checkInput" type="checkbox" id="distance" name="distance" value="yes">
             <label class="checkInputLabel" for="distance">Proche de chez moi</label><br> -->
             <p style="display: inline;margin-right: 1%;">{{'search.radius' | translate}}</p>
-            <mat-slider min="10" max="100" step="5" showTickMarks discrete>
+            <mat-slider min="0" max="300" step="10" showTickMarks discrete>
                 <input matSliderThumb [(ngModel)]="radius">
             </mat-slider>
         </div>
