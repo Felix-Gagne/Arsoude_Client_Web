@@ -1,25 +1,43 @@
 
 .userList{
     padding-top: 2%;
-    padding-left: 5%;
+    padding-left: 3%;
 }
 
 .presentation {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
 .presentation div {
+    margin-left: 65%;
     display: flex;
     align-items: center;
 }
 
-.presentation p {
-    margin-right: 10px;
+.order{
+    cursor: pointer;
 }
 
-.trailContainer{
+.fa-chevron-up{
+    transition: transform 0.3s ease;
+    transform: rotate(0deg);
+
+}
+
+.order p{
+    margin-right: 10px;
+    font-size: 18px;
+    transform: font-weight 1s;
+}
+
+.order:hover p{
+    font-weight: bold;
+}
+
+
+.iner{
+    width: 95%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -30,7 +48,7 @@
 
 .trailCardInfo{
     font-family: 'Plus Jakarta Sans';
-
+    width: 80%;
     h2{
         margin: 0;
     }
@@ -43,6 +61,18 @@
     width: 100%;
     padding: 20px;
 }
+
+.dateTitle {
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+.date{
+    margin-left: 65%;
+}
+
+
+
 
 .trailCardContainer:hover{
     box-shadow: 0px 0px 32px 14px rgba(0,0,0,0.1);

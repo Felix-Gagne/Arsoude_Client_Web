@@ -1,9 +1,9 @@
 <div class="userList">
     <div class="presentation">
         <h1>Votre liste de randonnées</h1>
-        <div>
+        <div class="order" (click)="changeDateOrder()">
             <p>Date</p>
-            <i class="fa-solid fa-chevron-up"></i>
+            <i class="fa-solid fa-chevron-up" id="chevron-icon"></i>
         </div>
     </div>
 
@@ -18,7 +18,10 @@
                 <img [src]="trail.imageUrl" alt="image_trail">
             </div>
             <div class="trailCardInfo">
-                <h2>{{trail.name}}</h2>
+                <div class="dateTitle">
+                    <h2 class="title">{{trail.name}}</h2>
+                    <h4 class="date">{{ trail.creationDate | date:'yyyy-MM-dd' }}</h4>
+                </div>
                 <div class="trailCardInfoTop">
                     <p>Facile</p>
                     <p>-</p>
