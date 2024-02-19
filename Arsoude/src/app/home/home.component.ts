@@ -58,6 +58,4 @@ constructor(private helloService : HelloworldService,
   async FilterTrail(){
     this.trails = await this.trailservice.searchTrails(this.filter);
   }
-
-
 }

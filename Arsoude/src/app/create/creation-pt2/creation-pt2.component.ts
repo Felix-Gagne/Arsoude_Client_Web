@@ -120,7 +120,9 @@ export class CreationPt2Component {
 
   async CreateTrail(){
     if(this.trail?.description != undefined && this.trail?.location != undefined && this.trail?.name != undefined){
-      const StartingPoint = new Coordinates(this.latitudeA, this.longitudeA);
+      if(await this.checkConnection()){
+        if(this.checkToken()){
+          const StartingPoint = new Coordinates(this.latitudeA, this.longitudeA);
           const EndingPoint = new Coordinates(this.latitudeB, this.longitudeB);
           this.trail!.startingCoordinates = StartingPoint;
           this.trail!.endingCoordinates = EndingPoint;
@@ -129,15 +131,19 @@ export class CreationPt2Component {
   
           try{
             console.log(this.trail);
-            if(this.trail != undefined){
-              this.service.CreateTrail(this.trail);
-            }
+            await this.service.CreateTrail(this.trail);
             this.notifierService.showNotification('La randonnée a été créé avec succès!', 'success');
             this.router.navigate(['']);
           }
           catch(e){
             console.log("Erreur : " + e);
           }
+        } else {
+          this.notifierService.showNotification('Vous devez être connecté pour créer une randonnée', 'error');
+        }
+      } else {
+        this.notifierService.showNotification('Erreur de connexion, veuillez réessayer', 'error');
+      }
     } else {
       this.notifierService.showNotification('Veuillez remplir tous les champs', 'error');
     }

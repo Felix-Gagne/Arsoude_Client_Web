@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { last, lastValueFrom } from 'rxjs';
@@ -37,23 +37,20 @@ export class TrailService {
     return !!token;
   }
 
-  async CreateTrail(trail : TrailDTO){
-    if(await this.checkConnection()){
-        if(this.checkToken()){
-          try{
-            let x = await lastValueFrom(this.http.post<any>(this.baseUrl+"CreateTrail", trail));
-            console.log(x);
-            this.router.navigate(['/']);
-          }
-          catch(e){
-            console.log("Erreur : " + e)
-          }
-        } else {
-          this.notifierService.showNotification('Vous devez être connecté pour créer une randonnée', 'error');
-        }
+  async CreateTrail(trail: TrailDTO) {
+    try {
+      let response = await lastValueFrom(this.http.post<any>(this.baseUrl + "CreateTrail", trail));
+      console.log(response);
+      this.router.navigate(['/']);
+    } catch (error) {
+      if (error instanceof HttpErrorResponse && error.error instanceof ErrorEvent) {
+        console.error('Une erreur s\'est produite:', error.error.message);
+        this.notifierService.showNotification('Erreur de connexion au serveur, veuillez réessayer', 'error');
       } else {
-        this.notifierService.showNotification('Erreur de connexion, veuillez réessayer', 'error');
+        console.error(`Erreur côté serveur : ${error}`);
+        this.notifierService.showNotification('Une erreur est survenue lors de la création de la randonnée', 'error');
       }
+    }
   }
 
   async GetUserTrails(trail : TrailDTO){
