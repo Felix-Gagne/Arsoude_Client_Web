@@ -51,7 +51,7 @@ constructor(private helloService : HelloworldService, private router: Router,
 
     if(this.searchInput.trim() != ""){
       localStorage.setItem("Search", JSON.stringify(searchObject));
-      this.router.navigate(['/search']);
+      this.router.navigate(['/search', this.searchInput]);
     }
   }
 

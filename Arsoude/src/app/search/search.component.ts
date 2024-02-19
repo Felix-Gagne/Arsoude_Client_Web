@@ -4,7 +4,7 @@ import { faPersonWalking, faBicycle, faAngleDown } from '@fortawesome/free-solid
 import { TrailService } from '../service/trail.service';
 import { FilterDTO } from '../models/FilterDTO';
 import { TrailType } from '../models/enum/Type';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -22,14 +22,20 @@ export class SearchComponent {
   radius : number = 0;
   minRadius : number = 10;
 
-  constructor( private router: Router,private trailService : TrailService){}
+  emptyList : boolean = false;
+
+  constructor( private router: Router,private trailService : TrailService, private activedRoute: ActivatedRoute){}
 
   async ngOnInit(){
-    let data = localStorage.getItem("Search");
+    let param = this.activedRoute.snapshot.paramMap.get("keyword")
 
-    if(data != null){
-      this.trails = await this.trailService.searchTrails(JSON.parse(data));
+    let dto = new FilterDTO(param?.toString());
+
+    if(param != null){
+      this.trails = await this.trailService.searchTrails(dto);
       console.log(this.trails);
+    } else {
+      this.trails = await this.trailService.allTrails();
     }
   }
 
@@ -48,14 +54,13 @@ export class SearchComponent {
       dto.Keyword = this.searchInput;
     }
 
-    try{
+    if(await this.trailService.searchTrails(dto) == "NoHikesFound"){
+      this.emptyList = true;
+    }
+    else{
       this.trails = await this.trailService.searchTrails(dto);
+      this.emptyList = false;
     }
-    catch(error){
-      console.log("Erreur : " + error);
-    }
-
-    console.log(dto);
   }
 
   onEnter() {

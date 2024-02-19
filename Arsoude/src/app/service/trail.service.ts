@@ -53,6 +53,19 @@ export class TrailService {
      }
   }
 
+  async allTrails(){
+    
+    try{
+      let x = await lastValueFrom(this.http.get<any>(this.baseUrl + "GetAllTrails"));
+      console.log(x);
+      return x;
+    }
+    catch(error){
+      console.log(error);
+    }
+    
+  }
+
   async searchTrails(filter : FilterDTO){
     
     await this.http.get(this.url).subscribe((res : any)=> {
@@ -69,8 +82,9 @@ export class TrailService {
       console.log(trails)
       return trails;
     }
-    catch(error){
-      console.log(error);
+    catch(error : any){
+      console.log(error.error);
+      return error.error;
     }
   }
 

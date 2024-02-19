@@ -55,6 +55,10 @@ export class AppComponent {
     }
   }
 
+  explore(): void{
+    this.router.navigate(['/search']);
+  }
+
   logout(): void{
     console.log("Sa se call")
     if(this.subMenu){
