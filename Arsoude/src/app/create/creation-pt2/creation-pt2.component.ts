@@ -44,7 +44,7 @@ export class CreationPt2Component {
   latitude: number = 0;
   longitude: number = 0;
 
-  constructor(public router : Router, public service : TrailService, private location : Location){}
+  constructor(public router : Router, public service : TrailService, private location : Location, public notifierService: NotifierService){}
 
   //Va chercher les données de la page précédente
   ngOnInit(): void{
@@ -119,23 +119,36 @@ export class CreationPt2Component {
   }
 
   async CreateTrail(){
-    const StartingPoint = new Coordinates(this.latitudeA, this.longitudeA);
-    const EndingPoint = new Coordinates(this.latitudeB, this.longitudeB);
-    this.trail!.startingCoordinates = StartingPoint;
-    this.trail!.endingCoordinates = EndingPoint;
-
-    console.log(this.trail);
-
-    try{
-      console.log(this.trail);
-      if(this.trail != undefined){
-        this.service.CreateTrail(this.trail);
+    if(this.trail?.description != undefined && this.trail?.location != undefined && this.trail?.name != undefined){
+      if(await this.checkConnection()){
+        if(this.checkToken()){
+          const StartingPoint = new Coordinates(this.latitudeA, this.longitudeA);
+          const EndingPoint = new Coordinates(this.latitudeB, this.longitudeB);
+          this.trail!.startingCoordinates = StartingPoint;
+          this.trail!.endingCoordinates = EndingPoint;
+  
+          console.log(this.trail);
+  
+          try{
+            console.log(this.trail);
+            if(this.trail != undefined){
+              this.service.CreateTrail(this.trail);
+            }
+            this.notifierService.showNotification('La randonnée a été créé avec succès!', 'success');
+            this.router.navigate(['']);
+          }
+          catch(e){
+            console.log("Erreur : " + e);
+          }
+        } else {
+          this.notifierService.showNotification('Vous devez être connecté pour créer une randonnée', 'error');
+        }
+      } else {
+        this.notifierService.showNotification('Erreur de connexion, veuillez réessayer', 'error');
       }
-      this.notifierService.showNotification('La randonnée a été créé avec succès!');
-      this.router.navigate(['']);
-    }
-    catch(e){
-      console.log("Erreur : " + e);
+    } else {
+      //message d'erreur pour dire que les champs ne sont pas remplis
+      this.notifierService.showNotification('Veuillez remplir tous les champs', 'error');
     }
   }
 
@@ -160,17 +173,17 @@ export class CreationPt2Component {
     this.switchTitle("creationPt2.titleChoice1");
   }
 
-  async checkConnection() {
+  async checkConnection(): Promise<boolean> {
     if (!navigator.onLine) {
-      //SNACK BAR ICI POUR DIRE QUE L'UTILISATEUR N'EST PAS CONNECTÉ
-      console.log('Vous n\'êtes pas connecté à Internet');
+      return false;
     } else {
-      console.log('Vous êtes connecté à Internet');
+      return true;
     }
   }
 
   checkToken(): boolean {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('Token');
+    console.log(token);
     return !!token;
   }
 

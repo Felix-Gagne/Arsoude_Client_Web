@@ -19,6 +19,11 @@
     margin-right: 15px;
 }
 
+.error{
+    border-left:rgb(211, 43, 43) solid 5px;
+    background-color:rgb(255, 241, 241);
+}
+
 .error.mat-snack-bar-container {
     background-color: #f44336;
     color: white;

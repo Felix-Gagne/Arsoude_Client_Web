@@ -27,10 +27,6 @@ constructor(private helloService : HelloworldService,
   private trailService : TrailService,
   private translate: TranslateService,
   private notifierService: NotifierService){}
-  
-  ngOnInit(): void {
-    this.notifierService.showNotification('La mère à Vlad', 'success');
-  }
 
   async GetHello() : Promise<void> {
   
