@@ -47,11 +47,8 @@ constructor(private helloService : HelloworldService, private router: Router,
 
   onEnter() : void {
     const searchObject = new FilterDTO(this.searchInput);
-
-    if(this.searchInput.trim() != ""){
-      localStorage.setItem("Search", JSON.stringify(searchObject));
-      this.router.navigate(['/search']);
-    }
+    localStorage.setItem("Search", JSON.stringify(searchObject));
+    this.router.navigate(['/search']);
   }
 
   async FilterTrail(){

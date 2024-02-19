@@ -31,16 +31,6 @@ export class CreationPt2Component {
 
   trail : TrailDTO | undefined;
 
-  constructor(public router : Router, public service : TrailService, private location : Location){}
-
-  ngOnInit(): void{
-    let data = localStorage.getItem("createTrail");
-    if(data != null){
-      this.trail = JSON.parse(data);
-    }
-    console.log(this.trail);
-  }
-
   markerPositions: google.maps.LatLngLiteral[] = [ ];
 
   polylineOptions = {
@@ -52,6 +42,17 @@ export class CreationPt2Component {
 
   latitude: number = 0;
   longitude: number = 0;
+
+  constructor(public router : Router, public service : TrailService, private location : Location){}
+
+  //Va chercher les données de la page précédente
+  ngOnInit(): void{
+    let data = localStorage.getItem("createTrail");
+    if(data != null){
+      this.trail = JSON.parse(data);
+    }
+    console.log(this.trail);
+  }
 
   @ViewChild('googlemaps') map!: GoogleMap;
   @ViewChild('maplines') maplines!: GoogleMap;

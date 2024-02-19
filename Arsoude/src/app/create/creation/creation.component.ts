@@ -82,6 +82,7 @@ export class CreationComponent {
     this.trailService.setFormData(this.form.value);
   }
 
+  //Check si tous les champs sont remplis
   public allFieldsFilled(): boolean {
     return (
       this.form.get('text')?.value !== '' &&
