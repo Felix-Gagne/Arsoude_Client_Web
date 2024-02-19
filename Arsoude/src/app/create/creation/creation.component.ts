@@ -2,14 +2,15 @@ import { Component, inject } from '@angular/core';
 import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBicycle, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
-import { Coordinates } from 'src/app/models/Coordinates';
 import { TrailDTO } from 'src/app/models/TrailDTO';
 import { TrailType } from 'src/app/models/enum/Type';
+import { TrailService } from 'src/app/service/trail.service';
 
 interface LoginData { 
   text?: string | null ; 
+  location?: string | null ; 
+  description?: string | null ; 
 }
 @Component({
   selector: 'app-creation',
@@ -18,7 +19,7 @@ interface LoginData {
 })
 export class CreationComponent {
 
-  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, public router : Router){}
+  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, public router : Router, public trailService: TrailService){}
 
   text : string = ""; 
   password : string | undefined ;
@@ -29,6 +30,7 @@ export class CreationComponent {
   faPersonWalking = faPersonWalking;
   trailType : TrailType = 0;
   imageUrl : string = "";
+  disableContinuerBtn: boolean = true;
 
   private readonly storage: Storage = inject(Storage);
 
@@ -44,9 +46,49 @@ export class CreationComponent {
     // À chaque fois que les valeurs changent, notre propriétés formData sera mise à jour
     this.form.valueChanges.subscribe(() => {
       this.formData = this.form.value;
-      console.log(this.trailType)
-      
     });
+
+    this.form.patchValue(
+      this.trailService.getFormData()
+    )
+
+    console.log(this.formData)
+    if(this.formData != null){
+      this.text = this.formData.text!;
+      this.location = this.formData.location!;
+      this.description = this.formData.description!;
+    }
+
+    this.disableContinuerBtn = !this.allFieldsFilled();
+    console.log(this.disableContinuerBtn);
+
+    this.form.valueChanges.subscribe(() => {
+      this.formData = this.form.value;
+      this.disableContinuerBtn = !this.allFieldsFilled();
+    });
+
+    this.form.get('text')?.valueChanges.subscribe(() => {
+      this.allFieldsFilled();
+    });
+    this.form.get('location')?.valueChanges.subscribe(() => {
+      this.allFieldsFilled();
+    });
+    this.form.get('description')?.valueChanges.subscribe(() => {
+      this.allFieldsFilled();
+    });
+  }
+
+  public ngOnDestroy(): void {
+    this.trailService.setFormData(this.form.value);
+  }
+
+  //Check si tous les champs sont remplis
+  public allFieldsFilled(): boolean {
+    return (
+      this.form.get('text')?.value !== '' &&
+      this.form.get('location')?.value !== '' &&
+      this.form.get('description')?.value !== ''
+    );
   }
 
   async SendTrail(input: HTMLInputElement){
@@ -60,7 +102,7 @@ export class CreationComponent {
 
     localStorage.setItem("createTrail", JSON.stringify(trail));
 
-    
+    this.ngOnDestroy();
 
     this.router.navigate(['/creation-step2']);
 
@@ -78,7 +120,6 @@ export class CreationComponent {
             await uploadBytesResumable(storageRef, file);
             let test = await getDownloadURL(storageRef);
             this.imageUrl = test;
-            console.log(test);
         }
     }
   }

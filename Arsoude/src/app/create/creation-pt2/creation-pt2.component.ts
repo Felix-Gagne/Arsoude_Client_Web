@@ -6,6 +6,7 @@ import { faL } from '@fortawesome/free-solid-svg-icons';
 import { Coordinates } from 'src/app/models/Coordinates';
 import { TrailDTO } from 'src/app/models/TrailDTO';
 import { TrailService } from 'src/app/service/trail.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-creation-pt2',
@@ -31,16 +32,6 @@ export class CreationPt2Component {
 
   trail : TrailDTO | undefined;
 
-  constructor(public router : Router, public service : TrailService, private notifierService: NotifierService){}
-
-  ngOnInit(): void{
-    let data = localStorage.getItem("createTrail");
-    if(data != null){
-      this.trail = JSON.parse(data);
-    }
-    console.log(this.trail);
-  }
-
   markerPositions: google.maps.LatLngLiteral[] = [ ];
 
   polylineOptions = {
@@ -53,6 +44,17 @@ export class CreationPt2Component {
   latitude: number = 0;
   longitude: number = 0;
 
+  constructor(public router : Router, public service : TrailService, private location : Location){}
+
+  //Va chercher les données de la page précédente
+  ngOnInit(): void{
+    let data = localStorage.getItem("createTrail");
+    if(data != null){
+      this.trail = JSON.parse(data);
+    }
+    console.log(this.trail);
+  }
+
   @ViewChild('googlemaps') map!: GoogleMap;
   @ViewChild('maplines') maplines!: GoogleMap;
 
@@ -64,7 +66,8 @@ export class CreationPt2Component {
       lat: event.latLng!.lat(),
       lng: event.latLng!.lng(),
     };
-    
+    //voir pour un switch case
+
     if(this.currentMode === 'Disabled') {
       return;
     } else if (this.currentMode === 'PointA') {
@@ -155,5 +158,23 @@ export class CreationPt2Component {
     this.disableBtnPointA = false;
     this.disableBtnPointB = true;
     this.switchTitle("creationPt2.titleChoice1");
+  }
+
+  async checkConnection() {
+    if (!navigator.onLine) {
+      //SNACK BAR ICI POUR DIRE QUE L'UTILISATEUR N'EST PAS CONNECTÉ
+      console.log('Vous n\'êtes pas connecté à Internet');
+    } else {
+      console.log('Vous êtes connecté à Internet');
+    }
+  }
+
+  checkToken(): boolean {
+    const token = localStorage.getItem('token');
+    return !!token;
+  }
+
+  retour(): void {
+    this.location.back();
   }
 }

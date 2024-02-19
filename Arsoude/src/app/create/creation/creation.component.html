@@ -49,7 +49,7 @@
                 <input id="fileUpload" type="file" #upload>
             </div>
             <div class="container_7">
-                <button class="btn_continuer" (click)="SendTrail(upload)">{{'creation.continue' | translate}}</button>
+                <button class="btn_continuer" [disabled]="!allFieldsFilled()" (click)="SendTrail(upload)">{{'creation.continue' | translate}}</button>
             </div>
         </div>
     </form>    

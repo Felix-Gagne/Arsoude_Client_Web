@@ -35,7 +35,6 @@ constructor(private helloService : HelloworldService,
   async GetHello() : Promise<void> {
   
   this.hello = await this.helloService.GetWord()
-  //let x = this.storage.getItem("téléchargement.png")
 
   }
   async uploadFile(input: HTMLInputElement) {
@@ -56,11 +55,8 @@ constructor(private helloService : HelloworldService,
 
   onEnter() : void {
     const searchObject = new FilterDTO(this.searchInput);
-
-    if(this.searchInput.trim() != ""){
-      localStorage.setItem("Search", JSON.stringify(searchObject));
-      this.router.navigate(['/search']);
-    }
+    localStorage.setItem("Search", JSON.stringify(searchObject));
+    this.router.navigate(['/search']);
   }
 
   async FilterTrail(){

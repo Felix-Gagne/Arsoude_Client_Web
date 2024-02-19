@@ -14,6 +14,7 @@ export class TrailService {
 
   constructor(public http : HttpClient, public router : Router) { }
   private baseUrl = environment.apiUrl + 'api/Trail/'
+  private formData: any;
 
   trail : TrailDTO | undefined;
   api_key = '82a714f1faf0468bbbb60aadf5bdec68';
@@ -63,13 +64,13 @@ export class TrailService {
     try{
       console.log(filter);
 
-      let x = await lastValueFrom(this.http.post<any>(this.baseUrl + "GetFilteredTrails", filter));
-      console.log(x)
-      return x;
+      let trails = await lastValueFrom(this.http.post<any>(this.baseUrl + "GetFilteredTrails", filter));
+      console.log(trails)
+      return trails;
     }
-    catch(e){
-      console.log(e);
-      throw e;
+    catch(error){
+      console.log(error);
+      throw error;
     }
   }
 
@@ -118,6 +119,14 @@ export class TrailService {
       throw e;
     }
   }
+  
+   public setFormData(formData: any): void {
+    this.formData = formData;
+  }
+
+  public getFormData(): any {
+    return this.formData;  
+  }
 
 
   async SetVisibility(trailId : number, status : boolean){
@@ -132,7 +141,7 @@ catch(e){
 console.log(e);
 throw e;
 
-}
+    }
 
 
   }
