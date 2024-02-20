@@ -41,7 +41,7 @@ export class TrailService {
     try {
       let response = await lastValueFrom(this.http.post<any>(this.baseUrl + "CreateTrail", trail));
       console.log(response);
-      this.router.navigate(['/']);
+      this.router.navigate(['/']);  
     } catch (error) {
       if (error instanceof HttpErrorResponse && error.error instanceof ErrorEvent) {
         console.error('Une erreur s\'est produite:', error.error.message);

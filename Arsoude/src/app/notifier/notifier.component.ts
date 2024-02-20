@@ -21,7 +21,7 @@ export class NotifierComponent {
         this.icon = 'fa-solid fa-circle-times';
         break;
       case 'warning':
-        this.icon = 'fa-solid fa-exclamation-triangle';
+        this.icon = 'fa-solid fa-triangle-exclamation';
         break;
       default:
         this.icon = 'fa-solid fa-circle-check';

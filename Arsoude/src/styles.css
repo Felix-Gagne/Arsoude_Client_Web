@@ -24,7 +24,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .error{
-    border-left:rgb(211, 43, 43) solid 5px;
+    /* border-left:rgb(211, 43, 43) solid 5px; */
     background-color:rgb(255, 241, 241);
 }
 

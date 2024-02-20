@@ -35,9 +35,9 @@ export class CreationComponent {
   private readonly storage: Storage = inject(Storage);
 
   form = this.fb.group({
-    text: ['', [Validators.required, Validators.required]],
-    location: ['', [Validators.required, Validators.required]],
-    description: ['', [Validators.required, Validators.required]],
+    text: ['', [Validators.required]],
+    location: ['', [Validators.required]],
+    description: ['', [Validators.required]],
     trailType: ['', [Validators.required]]
   });
   // Le component contient une variable du même type que les champs du formulaire

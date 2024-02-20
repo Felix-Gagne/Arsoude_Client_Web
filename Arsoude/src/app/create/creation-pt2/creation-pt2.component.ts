@@ -1,3 +1,4 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NotifierService } from './../../notifier.service';
 import { Component, ViewChild } from '@angular/core';
 import { GoogleMap } from '@angular/google-maps';
@@ -7,6 +8,7 @@ import { Coordinates } from 'src/app/models/Coordinates';
 import { TrailDTO } from 'src/app/models/TrailDTO';
 import { TrailService } from 'src/app/service/trail.service';
 import { Location } from '@angular/common'
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-creation-pt2',
@@ -120,7 +122,7 @@ export class CreationPt2Component {
 
   async CreateTrail(){
     if(this.trail?.description != undefined && this.trail?.location != undefined && this.trail?.name != undefined){
-      if(await this.checkConnection()){
+      if(await this.checkClientConnection()){
         if(this.checkToken()){
           const StartingPoint = new Coordinates(this.latitudeA, this.longitudeA);
           const EndingPoint = new Coordinates(this.latitudeB, this.longitudeB);
@@ -142,7 +144,7 @@ export class CreationPt2Component {
           this.notifierService.showNotification('Vous devez être connecté pour créer une randonnée', 'error');
         }
       } else {
-        this.notifierService.showNotification('Erreur de connexion, veuillez réessayer', 'error');
+        this.notifierService.showNotification('Erreur de connexion, vérifier votre connexion internet', 'error');
       }
     } else {
       this.notifierService.showNotification('Veuillez remplir tous les champs', 'error');
@@ -170,7 +172,7 @@ export class CreationPt2Component {
     this.switchTitle("creationPt2.titleChoice1");
   }
 
-  async checkConnection(): Promise<boolean> {
+  async checkClientConnection(): Promise<boolean> {
     if (!navigator.onLine) {
       return false;
     } else {

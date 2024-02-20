@@ -11,10 +11,21 @@
     height: 60px;
 }
 
-.fa-circle-check{
-    color: #15a735;
+.fa-solid{
     font-size: 30px;
     margin-right: 15px;
+}
+
+.fa-circle-check{
+    color: #15a735;
+}
+
+.fa-triangle-exclamation{
+    color: #ffc800;
+}
+
+.fa-circle-xmark{
+    color: #f40b0b;
 }
 
 .error{
