@@ -46,9 +46,11 @@ export class TrailService {
       if (error instanceof HttpErrorResponse && error.error instanceof ErrorEvent) {
         console.error('Une erreur s\'est produite:', error.error.message);
         this.notifierService.showNotification('Erreur de connexion au serveur, veuillez réessayer', 'error');
+        throw error;
       } else {
         console.error(`Erreur côté serveur : ${error}`);
         this.notifierService.showNotification('Une erreur est survenue lors de la création de la randonnée', 'error');
+        throw error;
       }
     }
   }
