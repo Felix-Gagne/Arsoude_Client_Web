@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/service/user.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NotifierService } from './../../notifier.service';
 import { Component, ViewChild } from '@angular/core';
@@ -46,7 +47,7 @@ export class CreationPt2Component {
   latitude: number = 0;
   longitude: number = 0;
 
-  constructor(public router : Router, public service : TrailService, private location : Location, public notifierService: NotifierService){}
+  constructor(public router : Router, public service : TrailService, private location : Location, public notifierService: NotifierService, public userService: UserService){}
 
   //Va chercher les données de la page précédente
   ngOnInit(): void{
@@ -142,6 +143,8 @@ export class CreationPt2Component {
           }
         } else {
           this.notifierService.showNotification('Vous devez être connecté pour créer une randonnée', 'error');
+          this.userService.Logout();
+          this.router.navigate(['/login']);
         }
       } else {
         this.notifierService.showNotification('Erreur de connexion, vérifier votre connexion internet', 'error');
