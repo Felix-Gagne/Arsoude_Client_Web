@@ -67,3 +67,60 @@ nav ul li:hover {
     border-radius: 5px; /* Optional: Add rounded corners */
     cursor: pointer; /* Change cursor on hover */
 }
+
+.userInfo{
+    margin-top: 100px;
+    padding-left: 400px;
+    padding-right: 400px;
+}
+
+.userInfoEdit{
+    margin-top: 100px;
+    padding-left: 400px;
+    padding-right: 400px;
+}
+
+.infoRow{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.infoRowEdit{
+    margin-top: 50px;
+}
+
+.edit{
+    background-color: green;
+    border-radius: 20px;
+    width: 100px;
+    height: 40px;
+    color: white;
+}
+
+.back{
+    background-color: red;
+    border-radius: 20px;
+    width: 100px;
+    height: 40px;
+    color: white;
+}
+
+.save{
+    background-color: green;
+    border-radius: 20px;
+    width: 100px;
+    height: 40px;
+    color: white;
+    margin-left: 15px;
+}
+
+.buttons{
+    margin-top: 30px;
+}
+
+.input{
+    width: 200px;
+    height: 30px;
+    border-width: 2px;
+}

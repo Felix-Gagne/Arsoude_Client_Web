@@ -7,6 +7,79 @@
     </div>
 </div>
 <h1 class="userPrincipalInfo">Test Name</h1>
+<!--LastName, FirstName, AreaCode, HouseNo, Street, City, State, YearOfBirth, MonthOfBirth, AvatarUrl-->
+<!--Profile mode-->
+<div class="userInfo" *ngIf="!isEditorMode">
+    <div class="infoRow">
+        <h2><u>First Name</u> : {{user.firstName}}</h2>
+        <h2><u>Last Name</u> : {{user.lastName}}</h2>
+    </div>
+    <div class="infoRow">
+        <h2><u>Code postale</u> : {{user.areaCode}}</h2>
+        <h2><u>Numéro civique</u> : {{user.houseNo}}</h2>
+        <h2><u>Rue</u> : {{user.street}}</h2>
+    </div>
+    <div class="infoRow">
+        <h2><u>Ville</u> : {{user.city}}</h2>
+        <h2><u>Province</u> : {{user.state}}</h2>
+    </div>
+    <div class="infoRow">
+        <h2><u>Année de naissance</u> : {{user.yearOfBirth}}</h2>
+        <h2><u>Mois de naissance</u> : {{user.monthOfBirth}}</h2>
+    </div>
+    <div class="infoRow">
+        <button class="edit" (click)="switchMode()">Modifer</button>
+    </div>
+</div>
+
+<!--Editor mode-->
+<div class="userInfoEdit" *ngIf="isEditorMode">
+    <div class="infoRow">
+        <div class="infoRowEdit">
+            <h2><u>Nom</u></h2>
+            <input type="text" placeholder="{{user.lastName}}" class="input" [(ngModel)]="lastName">
+        </div>
+        <div class="infoRowEdit">
+            <h2><u>Prénom</u></h2>
+            <input type="text" placeholder="{{user.firstName}}" class="input" [(ngModel)]="firstName">
+        </div>
+        <div class="infoRowEdit">
+            <h2><u>Année de naissance</u></h2>
+            <input type="text" placeholder="{{user.yearOfBirth}}" class="input" [(ngModel)]="yearOfBirth">
+        </div>
+        <div class="infoRowEdit">
+            <h2><u>Mois de naissance</u></h2>
+            <input type="text" placeholder="{{user.monthOfBirth}}" class="input" [(ngModel)]="monthOfBirth">
+        </div>
+    </div>
+    <div class="infoRow">
+        <div class="infoRowEdit">
+            <h2><u>Code postale</u></h2>
+            <input type="text" placeholder="{{user.areaCode}}" class="input" [(ngModel)]="areaCode">
+        </div>
+        <div class="infoRowEdit">
+            <h2><u>Numéro civique</u></h2>
+            <input type="text" placeholder="{{user.houseNo}}" class="input" [(ngModel)]="houseNo">
+        </div>
+        <div class="infoRowEdit">
+            <h2><u>Rue</u></h2>
+            <input type="text" placeholder="{{user.street}}" class="input" [(ngModel)]="street">
+        </div>
+            <div class="infoRowEdit">
+                <h2><u>Ville</u></h2>
+                <input type="text" placeholder="{{user.city}}" class="input" [(ngModel)]="city">
+            </div>
+        <div class="infoRowEdit">
+            <h2><u>Province</u></h2>
+            <input type="text" placeholder="{{user.state}}" class="input" [(ngModel)]="state"> 
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="back" (click)="switchMode()">Back</button>
+        <button class="save" (click)="edit()">Sauvegarder</button>
+    </div>
+</div>
+
 <div class="navBar">
     <nav>
         <ul>
