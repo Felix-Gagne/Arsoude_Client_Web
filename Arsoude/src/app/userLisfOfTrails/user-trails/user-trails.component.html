@@ -1,0 +1,38 @@
+<div class="userList">
+    <div class="presentation">
+        <h1>Votre liste de randonnées</h1>
+        <div class="order" (click)="changeDateOrder()">
+            <p>Date</p>
+            <i class="fa-solid fa-chevron-up" id="chevron-icon"></i>
+        </div>
+    </div>
+
+    <div class="trailContainer">
+        <div class="trailCardContainer" *ngFor="let trail of userTrails" (click)="getDetails(trail.id!)">
+            <!-- <div class="trailCard" *ngFor="let trail of trails">
+                
+
+            </div> -->
+            <!-- <img [src]="trail.image" alt="trail image"> -->
+            <div class="trailImageContainer">
+                <img [src]="trail.imageUrl" alt="image_trail">
+            </div>
+            <div class="trailCardInfo">
+                <div class="dateTitle">
+                    <h2 class="title">{{trail.name}}</h2>
+                    <h4 class="date">{{ trail.creationDate | date:'yyyy-MM-dd' }}</h4>
+                </div>
+                <div class="trailCardInfoTop">
+                    <p>Facile</p>
+                    <p>-</p>
+                    <p>68 km</p>
+                    <p>-</p>
+                    <p *ngIf="trail.type == 0"><i class="fa-solid fa-person-walking"></i></p>
+                    <p *ngIf="trail.type == 1"><i class="fa-solid fa-bicycle"></i></p>
+                </div>
+                <p class="textLocation">{{trail.location}}</p>
+                <p>{{trail.description}}</p>
+            </div>
+        </div>
+    </div>
+</div>

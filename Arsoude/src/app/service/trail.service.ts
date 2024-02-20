@@ -33,10 +33,11 @@ export class TrailService {
     }
   }
 
-  async GetUserTrails(trail : TrailDTO){
+  async GetUserTrails(){
     try{
       let x = await lastValueFrom(this.http.get<any>(this.baseUrl+"GetUserTrails"));
       console.log(x);
+      return x;
     }
     catch(e){
       console.log(e);

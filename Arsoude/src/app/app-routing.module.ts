@@ -13,6 +13,8 @@ import { adminGuard } from './admin.guard';
 import { userGuard } from './user.guard';
 import { HelpPageComponent } from './help-page/help-page.component';
 import { DetailsComponent } from './details/details/details.component';
+import { UserTrailsComponent } from './userLisfOfTrails/user-trails/user-trails.component';
+import { ProfileComponent } from './profile/profile/profile.component';
 
 const routes : Routes = [
   {path: '', component : HomeComponent},
@@ -25,7 +27,9 @@ const routes : Routes = [
   {path: 'search', component: SearchComponent},
   {path : 'approve', component : ApproveComponent, canActivate:[adminGuard] },
   {path: 'details/:name', component: DetailsComponent},
-  {path: 'help', component: HelpPageComponent},
+  {path: 'help', component: HelpPageComponent},  
+  {path: 'userTrails', component: UserTrailsComponent},
+  {path: 'profile', component: ProfileComponent},    
 ];
 
 @NgModule({

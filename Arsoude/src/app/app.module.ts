@@ -25,6 +25,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HelpPageComponent } from './help-page/help-page.component';
 import { DetailsComponent } from './details/details/details.component';
 import { ApproveComponent } from './admin/approve/approve.component';
+import { UserTrailsComponent } from './userLisfOfTrails/user-trails/user-trails.component';
+import { ProfileComponent } from './profile/profile/profile.component';
 
 export function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http);
@@ -43,6 +45,8 @@ export function HttpLoaderFactory(http: HttpClient){
     ApproveComponent,
     HelpPageComponent,
     DetailsComponent,
+    UserTrailsComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
