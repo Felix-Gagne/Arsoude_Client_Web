@@ -6,6 +6,7 @@ import { faPersonWalking, faBicycle, faBookmark, } from '@fortawesome/free-solid
 import { UserService } from 'src/app/service/user.service';
 import { CommentDTO } from 'src/app/models/CommentDTO';
 import { CommentsService } from 'src/app/service/comments.service';
+import { Comments } from 'src/app/models/Comments';
 
 @Component({
   selector: 'app-details',
@@ -25,7 +26,7 @@ export class DetailsComponent {
   isFavorite : boolean = false;
   Favorites : TrailDTO[] = []
   isOwner = false;
-
+  commentList : Comments[] = [];
   commentInput? : string;
 
   constructor( private router: Router,private trailService : TrailService, public userService: UserService, public commentService : CommentsService){}
@@ -35,16 +36,14 @@ export class DetailsComponent {
     if(data != null){
       this.trail = await this.trailService.getTrailDetails(parseInt(data));
     }
-    console.log(this.trail)
+
     this.checkOwnerByTrailId()
     this.Favorites = await this.trailService.getFavTrails();
-    console.log(this.Favorites.includes(this.trail!))
+
     for(let i =0; i < this.Favorites.length; i ++){
-    if(this.Favorites[i].id == this.trail?.id){
-
-      this.isFavorite= true;
-    }
-
+      if(this.Favorites[i].id == this.trail?.id){
+        this.isFavorite= true;
+      }
     }
 
     const startMarker: google.maps.LatLngLiteral = { 
@@ -60,9 +59,9 @@ export class DetailsComponent {
     this.markerPositions.push(startMarker, endMarker);
 
     if(this.trail?.id != undefined){
-      await this.commentService.getComments(this.trail?.id)
+      this.commentList = await this.commentService.getComments(this.trail?.id)
+      console.log(this.commentList)
     }
-
   }
 
   async addToFavorite(){
@@ -78,25 +77,22 @@ export class DetailsComponent {
   }
 
   async makePublic(){
-
-   let x = await this.trailService.SetVisibility(this.trail!.id!, true)
-   console.log(x);
-  this.trail!.isPublic = true
+    let x = await this.trailService.SetVisibility(this.trail!.id!, true)
+    console.log(x);
+    this.trail!.isPublic = true
   }
 
   async sendComments(){
     if(this.commentInput != null && this.trail?.id != undefined){
-      let dto = new CommentDTO(this.commentInput, this.trail?.id)
+      let dto = new CommentDTO(this.commentInput, this.trail?.id);
       await this.commentService.sendComment(dto);
     }
   }
 
   async makePrivate(){
-
     let x = await this.trailService.SetVisibility(this.trail!.id!, false)
     console.log(x);
- this.trail!.isPublic = false
-    
- 
-   }
+    this.trail!.isPublic = false
+  }
+
 }

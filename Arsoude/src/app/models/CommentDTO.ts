@@ -1,6 +1,6 @@
 export class CommentDTO{
     constructor(
-        public message : string,
+        public text : string,
         public trailId : number
     ){}
 }
