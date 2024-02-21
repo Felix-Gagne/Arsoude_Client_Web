@@ -16,7 +16,7 @@
     margin-right: 15px;
 }
 
-.fa-circle-check{
+.fa-circle-check, .fa-thumbs-up{
     color: #15a735;
 }
 
@@ -24,7 +24,7 @@
     color: #ffc800;
 }
 
-.fa-circle-xmark{
+.fa-circle-xmark, .fa-thumbs-down, .fa-trash{
     color: #f40b0b;
 }
 

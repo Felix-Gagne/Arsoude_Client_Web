@@ -24,6 +24,15 @@ export class NotifierComponent {
       case 'warning':
         this.icon = 'fa-solid fa-triangle-exclamation';
         break;
+      case 'approve':
+        this.icon = 'fa-solid fa-thumbs-up';
+        break;
+      case 'deny': 
+        this.icon = 'fa-solid fa-thumbs-down';
+        break;
+      case 'delete':
+        this.icon = 'fa-solid fa-trash';
+        break;
       default:
         this.icon = 'fa-solid fa-circle-check';
         break;

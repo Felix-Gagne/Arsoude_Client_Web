@@ -10,7 +10,7 @@ export class NotifierService {
 
   constructor(private snackBar: MatSnackBar) { }
 
-  showNotification(displayMessage: string, messageType: 'error' | 'success' | 'warning' = 'success') {
+  showNotification(displayMessage: string, messageType: 'error' | 'success' | 'warning' | 'approve' | 'deny' | 'delete' = 'success') {
     this.snackBar.openFromComponent(NotifierComponent, {
       data:{
         message: displayMessage,

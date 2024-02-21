@@ -142,7 +142,7 @@ export class CreationPt2Component {
             console.log("Erreur : " + e);
           }
         } else {
-          this.notifierService.showNotification('Vous devez être connecté pour créer une randonnée', 'error');
+          this.notifierService.showNotification('Vous devez être connecté pour créer une randonnée', 'warning');
           this.userService.Logout();
           this.router.navigate(['/login']);
         }
