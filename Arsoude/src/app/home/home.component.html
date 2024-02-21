@@ -6,8 +6,78 @@
                 <input [(ngModel)]="searchInput" (keydown.enter)="onEnter()" placeholder="{{'home.placeholder' | translate}}" type="text">
         </div>
 </div>
+<div class="container2">
+        <h2 style="margin-top: 80px;">Nos meilleurs randonnées</h2>
+        <div class="trailsContainer">
+                <!-- <p *ngIf="trail.type == 0"><fa-icon [icon]="faPersonWalking"></fa-icon></p>
+                <p *ngIf="trail.type == 1"><fa-icon [icon]="faBicycle"></fa-icon></p> -->
+                <div class="trailCard" data-tilt data-tilt-max="50" data-tilt-speed="400" data-tilt-perspective="500">
+                        <div class="trailCardImage">
+                                <img src="https://www.travelandleisure.com/thmb/9TgvQ-g-uFDD4IwbBzlZ8eeEZs8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/george-s-mickelson-trail-south-dakota_RAILTRAIL0123-f3e27d5d1e2f44efb8bf368185d74130.jpg" alt="Parc Mont-Tremblant">
+                        </div>
+                        <div class="trailInfo">
+                                <h3 style="margin: 0;">Parc Mont-Tremblant</h3>
+                                <p style="margin: 0;margin-top: 5px;">Montréal, Québec, Canada</p>
+                                <p style="margin: 0;margin-top: 5px;"><fa-icon class="fa-solid fa-bicycle"></fa-icon> - 68km - Facile</p>
+                        </div>
+                </div>
+                <div class="trailCard" data-tilt data-tilt-max="50" data-tilt-speed="400" data-tilt-perspective="500">
+                        <div class="trailCardImage">
+                                <img src="https://www.travelandleisure.com/thmb/9TgvQ-g-uFDD4IwbBzlZ8eeEZs8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/george-s-mickelson-trail-south-dakota_RAILTRAIL0123-f3e27d5d1e2f44efb8bf368185d74130.jpg" alt="Parc Mont-Tremblant">
+                        </div>
+                        <div class="trailInfo">
+                                <h3 style="margin: 0;">Parc Mont-Tremblant</h3>
+                                <p style="margin: 0;margin-top: 5px;">Montréal, Québec, Canada</p>
+                                <p style="margin: 0;margin-top: 5px;"><fa-icon class="fa-solid fa-bicycle"></fa-icon> - 68km - Facile</p>
+                        </div>
+                </div>
+                <div class="trailCard" data-tilt data-tilt-max="50" data-tilt-speed="400" data-tilt-perspective="500">
+                        <div class="trailCardImage">
+                                <img src="https://www.travelandleisure.com/thmb/9TgvQ-g-uFDD4IwbBzlZ8eeEZs8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/george-s-mickelson-trail-south-dakota_RAILTRAIL0123-f3e27d5d1e2f44efb8bf368185d74130.jpg" alt="Parc Mont-Tremblant">
+                        </div>
+                        <div class="trailInfo">
+                                <h3 style="margin: 0;">Parc Mont-Tremblant</h3>
+                                <p style="margin: 0;margin-top: 5px;">Montréal, Québec, Canada</p>
+                                <p style="margin: 0;margin-top: 5px;"><fa-icon class="fa-solid fa-bicycle"></fa-icon> - 68km - Facile</p>
+                        </div>
+                </div>
+        </div>
+</div>
+<div class="container3">
+        <div class="titleContainer2">
+                <h1>Créer votre propre <span>aventure</span></h1>
+                <h2 class="title2">Procurer vous notre application mobile <span>Arsoude</span> et commencer dès maintenant à créer vos sentiers pour les partager à la communauté</h2>
+        </div>
+</div>
+<div class="container4">
+        <div class="infoAppContainer">
+                <div class="infoApp">
+                        <h2>Créer vos itinéraires automatiquement</h2>
+                        <h3>Choissisez un point de départ et laisser le tracer de votre sentier se dessiner tout seul</h3>
+                </div>
+                <div class="infoApp">
+                        <h2>Accèdez à vos statistiques</h2>
+                        <h3>Accèder, comparer et partager vos statistiques de randonnées avec la communauté+
+
+                        </h3>
+                </div>
+                <div class="infoApp">
+                        <h2>Parcourerz les sentiers de la communauté</h2>
+                        <h3>Choissisez parmis 500+ sentiers partout au Québec</h3>
+                </div>
+        </div>
+        <div style="flex: 5;"></div>
+        <img src="../../assets/images/image_iphone.png" alt="image_application">
+</div>
 
 <!-- <div id="boite">
         <i class="fa-solid fa-circle-check"></i>
         <p>La randonnée a été créé avec succès!</p>
 </div> -->
+
+<script type="text/javascript">
+	VanillaTilt.init(document.querySelector("trailCard"), {
+		max: 25,
+		speed: 400
+	});
+</script>

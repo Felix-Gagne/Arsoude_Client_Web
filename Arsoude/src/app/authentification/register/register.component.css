@@ -7,6 +7,8 @@ main{
         font-size: 50px;
         font-weight: bold;
         font-family: 'Plus Jakarta Sans';
+        margin: 0;
+        margin-bottom: 30px;
     }
     
 

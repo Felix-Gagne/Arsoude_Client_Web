@@ -30,6 +30,22 @@ h1{
     font-family: 'Plus Jakarta Sans';
 }
 
+h2{
+    font-size: 40px;
+    font-weight: 600;
+    font-family: 'Plus Jakarta Sans';
+    margin-left: 18%;
+    margin-bottom: 0;
+}
+
+h3{
+    width: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Plus Jakarta Sans';
+    margin-top: 0;
+}
+
 .container>.hero>input{
     width: calc(100% - 60%);
     padding: 10px;
@@ -48,23 +64,116 @@ span{
     font-weight: 800;
 }
 
-#boite{
-    position:absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-left:rgb(21, 167, 53) solid 5px;
-    border-radius:5px;
-    background-color:rgb(243, 255, 248);
-    padding:5px 30px 5px 30px;
-    margin: 30px;
-    font-family: 'Plus Jakarta Sans';
-    width: 350px;
-    height: 60px;
-}
-
 .fa-circle-check{
     color: #15a735;
     font-size: 30px;
     margin-right: 15px;
+}
+
+.trailsContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.trailCard{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    padding: 20px;
+    background-size: cover;
+    margin: 20px;
+    border-radius: 20px;
+    width: 350px;
+    height: 450px;
+    transition: 0.3s;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+}
+
+.trailCard:hover{
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.trailCardImage{
+    width: 350px;
+    height: 350px;
+    border-radius: 20px;
+    object-fit: cover;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.trailCardImage>img{
+    width: 350px;
+    height: 350px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.titleContainer{
+    display: flex;
+}
+
+.container3{
+    width: 100%;
+    height: 500px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    background-image: url('../../assets/images/image_home_2.jpg');
+    background-size: cover;
+    background-position: center;
+    padding-top: 100px;
+}
+
+.container3>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.titleContainer2{
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+    flex-direction: column;
+}
+
+.title2{
+    color: white;
+    margin-left: 0;
+    margin-right: 10%;
+    margin-top: 0;
+    font-weight: 400;
+    width: 70%;
+}
+
+.container4{
+    height: 850px;
+    background-color: #09635F;
+    margin-right: 15%;
+    margin-left: 15%;
+    margin-top: 150px;
+    margin-bottom: 150px;
+    border-radius: 50px;
+
+    display: flex;
+    position: relative;
+}
+
+.infoAppContainer{
+    flex: 4;
+}
+
+.container4>img{
+    position: absolute;
+    bottom: 280px;
+    left: 750px;
+}
+
+.infoApp{
+    color: white;
 }

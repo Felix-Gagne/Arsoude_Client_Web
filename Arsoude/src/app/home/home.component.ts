@@ -7,6 +7,7 @@ import { TrailService } from '../service/trail.service';
 import { TrailDTO } from '../models/TrailDTO';
 import { TranslateService } from '@ngx-translate/core';
 import { NotifierService } from '../notifier.service';
+import VanillaTilt from 'vanilla-tilt';
 
 @Component({
   selector: 'app-home',
@@ -28,11 +29,21 @@ constructor(private helloService : HelloworldService,
   private translate: TranslateService,
   private notifierService: NotifierService){}
 
-  async GetHello() : Promise<void> {
-  
-  this.hello = await this.helloService.GetWord()
+  ngOnInit(): void {
+    const trailCard = document.querySelector<HTMLElement>("trailCard");
+    if (trailCard) {
+        VanillaTilt.init(trailCard, {
+            max: 25,
+            speed: 400
+        });
+    }
+}
 
+
+  async GetHello() : Promise<void> {
+    this.hello = await this.helloService.GetWord()
   }
+
   async uploadFile(input: HTMLInputElement) {
     if (!input.files) return
   

@@ -11,11 +11,9 @@ main{
 
     }
     .box_login_logo{
-
        width: 150px;
        height: 100px;
        align-self: center;
-
     }
 
 }
@@ -80,7 +78,6 @@ input[type="text"]{
     font-size: 20px
 }
 .box_login_button{
-    
     margin-top: 2%;
     font-family: 'Plus Jakarta Sans';
     font-size: 20px;
@@ -95,11 +92,13 @@ input[type="text"]{
 }
 
 .box_login_form_email{
-    width: 80%;
+    width: 90%;
 }
 
 .box_login_button:hover{
     background-color: #0EA59E !important; 
+    cursor: pointer;
+    width: 87%;
 }
 
 .space{
