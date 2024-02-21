@@ -21,6 +21,7 @@ const routes : Routes = [
   {path:'infoReg/:username', component : InfoRegComponent},
   {path: 'creation', component: CreationComponent, canActivate: [userGuard]},
   {path: 'creation-step2', component: CreationPt2Component, canActivate: [userGuard]},
+  {path: 'search/:keyword', component: SearchComponent},
   {path: 'search', component: SearchComponent},
   {path : 'approve', component : ApproveComponent, canActivate:[adminGuard] },
   {path: 'details/:name', component: DetailsComponent},
