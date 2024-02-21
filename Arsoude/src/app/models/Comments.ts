@@ -1,11 +1,8 @@
-import { TrailDTO } from "./TrailDTO";
-
 export class Comments{
     constructor(
-        public id: number,
-        public text: number,
-        public date: Date,
-        public userHasCompleted: boolean,
-        public trail: TrailDTO
+        public id : number,
+        public text : string,
+        public date : string,
+        public userHasCompleted : boolean
     ){}
 }
