@@ -13,7 +13,8 @@ export class NotifierService {
   showNotification(displayMessage: string, messageType: 'error' | 'success' | 'warning' = 'success') {
     this.snackBar.openFromComponent(NotifierComponent, {
       data:{
-        message: displayMessage
+        message: displayMessage,
+        messageType: messageType
       },
       duration: 4000,
       horizontalPosition: 'center',

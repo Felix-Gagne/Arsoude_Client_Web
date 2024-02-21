@@ -13,12 +13,13 @@ export class NotifierComponent {
   
   ngOnInit(): void {
     this.setIcon(this.data.messageType);
+    console.log(this.data.messageType);
   }
 
   setIcon(messageType: string) {
     switch (messageType) {
       case 'error':
-        this.icon = 'fa-solid fa-circle-times';
+        this.icon = 'fa-solid fa-circle-xmark';
         break;
       case 'warning':
         this.icon = 'fa-solid fa-triangle-exclamation';
