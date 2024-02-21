@@ -1,0 +1,50 @@
+#boite{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:5px;
+    padding:5px 30px 5px 30px;
+    margin: -18px;
+    font-family: 'Plus Jakarta Sans';
+    color: black;
+    width: 350px;
+    height: 60px;
+}
+
+.fa-solid{
+    font-size: 30px;
+    margin-right: 15px;
+}
+
+.fa-circle-check, .fa-thumbs-up{
+    color: #15a735;
+}
+
+.fa-triangle-exclamation{
+    color: #ffc800;
+}
+
+.fa-circle-xmark, .fa-thumbs-down, .fa-trash{
+    color: #f40b0b;
+}
+
+.error{
+    border-left:rgb(211, 43, 43) solid 5px;
+    background-color:rgb(255, 241, 241);
+}
+
+.success{
+    border-left:rgb(21, 167, 53) solid 5px;
+    background-color:rgb(243, 255, 248);
+}
+
+.error.mat-snack-bar-container {
+    background-color: #f44336;
+    color: white;
+}
+
+.sucess.mat-snack-bar-container {
+    background-color: #21d36b;
+    color: white;
+    height: 300px;
+}

@@ -92,6 +92,8 @@
         "trailNameErrorPt2": "required",
         "trailLocationErrorPt1": "Your trail location is ",
         "trailLocationErrorPt2": "required",
+        "trailDescriptionErrorPt1": "Your trail description is ",
+        "trailDescriptionErrorPt2": "required",
         "trailTypeTitle": "Mode of Travel",
         "trailLocationTitle": "Where is your hike located?",
         "chooseFile": "Choose a file",

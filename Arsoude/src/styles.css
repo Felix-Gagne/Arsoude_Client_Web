@@ -7,3 +7,40 @@ body { margin: 0; font-family: 'Plus Jakarta Sans' }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.error .mat-snack-bar-container {
+    background-color: #f44336;
+    color: white;
+}
+
+.sucess .mat-snack-bar-container {
+    background-color: #21d36b;
+    color: white;
+    height: 300px;
+}
+
+#boite{
+    background-color: white;
+}
+
+.error{
+    /* border-left:rgb(211, 43, 43) solid 5px; */
+    background-color:rgb(255, 241, 241);
+}
+
+.success{
+    /* border-left:rgb(21, 167, 53) solid 5px; */
+    background-color:rgb(243, 255, 248);
+}
+
+.mat-mdc-snack-bar-container, .mdc-snackbar__label, .mat-mdc-snack-bar-container .mdc-snackbar__surface {
+    padding: 0;
+    margin: 0;
+    background: none;
+    box-shadow: none;
+    margin-top: 20px;
+}
+
+.ng-tns-c3293340843-0 {
+    background: white;
+}

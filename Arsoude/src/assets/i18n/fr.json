@@ -91,6 +91,8 @@
         "trailNameErrorPt2": "requis",
         "trailLocationErrorPt1": "L'emplacement de votre randonnée est ",
         "trailLocationErrorPt2": "requis",
+        "trailDescriptionErrorPt1": "La description de votre randonnée est ",
+        "trailDescriptionErrorPt2": "requise",
         "trailTypeTitle": "Mode de déplacement",
         "trailLocationTitle": "Où se situe votre randonnée?",
         "chooseFile": "Choisir un fichier",
