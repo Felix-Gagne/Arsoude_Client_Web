@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, ValidatorFn, Validators } from '@angular/forms';
 
 interface RegisterData { 
-  email?: string | null ; 
   password?: string | null ; 
 }
 
@@ -15,18 +14,22 @@ export class ProfileComponent {
 
   constructor(private fb: FormBuilder) { }
 
-  email : string = ""; 
   password : string = "";
   lastName : string = "";
   firstName : string = "";
   username : string = "";
   areaCode : string = "";
+  HouseNo : number = 0;
+  Street : String = "";
+  City : String = "";
+  State : String = "";
+  YearOfBirth : String = "";
+  MonthOfBirth : String = "";
   confirmPassword : string = "";
 
   hidePassword = true;
   
   form = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
     password: ['',[Validators.required, Validators.min(8),this.passwordValidator()]], 
     nom: ['', [Validators.required]],
     prenom: ['', [Validators.required]],
@@ -36,6 +39,14 @@ export class ProfileComponent {
   },{ validator: this.matchPasswordsValidator('password', 'confirmPassword') });
 
 
+  additionalForm = this.fb.group({
+    houseNo: [''],
+    street: [''],
+    city: [''],
+    state: [''],
+    yearOfBirth: [''],
+    monthOfBirth: [''],
+  });
 
   // Le component contient une variable du même type que les champs du formulaire
   formData?: RegisterData;
@@ -49,6 +60,8 @@ export class ProfileComponent {
     this.form.valueChanges.subscribe(() => {
       this.formData = this.form.value;
     });
+    this.form.disable();
+    this.additionalForm.disable();
   }
 
   postalCodeValidator(): ValidatorFn {

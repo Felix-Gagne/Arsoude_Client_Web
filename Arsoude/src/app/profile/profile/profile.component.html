@@ -1,9 +1,12 @@
 <div class="profileHeader">
-    <img src="/assets/images/HeaderProfileHolder.jpg" alt="headerProfileImage">
+    <img src="/assets/images/mountainBackground2.jpg" alt="headerProfileImage" style="object-fit: cover;">
 </div>
 <div class="hole">
     <div class="imageProfilePlaceHolder">
         <img src="/assets/images/userPlaceHolder.png" alt="userImagePlaceHolder">
+        <div class="editPhoto">
+            <i class="fa-solid fa-pen"></i>
+        </div>
     </div>
 </div>
 <h1 class="userName">Test Name</h1>
@@ -16,8 +19,11 @@
         </ul>
     </nav>
 </div>
+
 <div class="userPrincipalInfo">
     <h2>My account</h2>
+    <i class="fa-solid fa-pen-to-square edit"></i>
+
     <div class="PrincipalInfo">
         <h4>User Information</h4>
         <form [formGroup]="form" class="box_login_form"> 
@@ -38,17 +44,6 @@
                 <mat-label>{{'register.usernamePlaceholder' | translate}}</mat-label>
                 <input class="box_login_form_username" matInput type="text"  formControlName="username" [(ngModel)]="username">
                 <mat-error *ngIf="form.get('username')?.hasError('required')">Le nom d'utilisateur est <strong>requis</strong></mat-error>
-            </mat-form-field>
-            
-            <mat-form-field style="width: 100%; border-radius: 25px;">
-            <mat-label>{{'register.emailPlaceholder' | translate}}</mat-label>
-            <input class="box_login_form_email" matInput type="email" placeholder="Exemple@email.com" formControlName="email" [(ngModel)]="email">
-            <mat-error *ngIf="form.get('email')?.errors?.['email'] && !form.get('email')?.hasError('required')">
-                Entrer une adresse courriel valide
-            </mat-error>
-            <mat-error *ngIf="form.get('email')?.hasError('required')">
-                Votre courriel est <strong>requis</strong>
-            </mat-error>
             </mat-form-field>
     
             
@@ -91,5 +86,55 @@
             
         </form>
     </div>
-    
+    <div class="secondaryInformation">
+        <h3>Secondary Information</h3>
+        <i class="fa-solid fa-pen-to-square edit2"></i>
+        <div class="achivementInfo">
+            <div>
+                <h4>20</h4>
+                <p>Completed trails</p>
+            </div>
+            <div>
+                <h4>36</h4>
+                <p>Trails created</p>
+            </div>
+            <div>
+                <h4>12</h4>
+                <p>Comments</p>
+            </div>
+        </div>
+        <div class="bar"></div>
+        <form [formGroup]="additionalForm" class="secondaryForm">
+            <mat-form-field style="width: 43%" class="addGap">
+                <mat-label>House number</mat-label>
+                <input class="box_login_form_name" matInput type="text"  formControlName="houseNo" [(ngModel)]="lastName">
+                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field  style="width: 43%">
+                <mat-label>Street</mat-label>
+                <input class="box_login_form_name" matInput type="text"  formControlName="street" [(ngModel)]="Street">
+                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field  style="width: 43%" class="addGap">
+                <mat-label>City</mat-label>
+                <input class="box_login_form_name" matInput type="text"  formControlName="city" [(ngModel)]="City">
+                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field  style="width: 43%">
+                <mat-label>State</mat-label>
+                <input class="box_login_form_name" matInput type="text"  formControlName="state" [(ngModel)]="State">
+                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field  style="width: 43%" class="addGap">
+                <mat-label>Year Of Birth</mat-label>
+                <input class="box_login_form_name" matInput type="text"  formControlName="yearOfBirth" [(ngModel)]="YearOfBirth">
+                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field  style="width: 43%">
+                <mat-label>Month of birth</mat-label>
+                <input class="box_login_form_name" matInput type="text"  formControlName="monthOfBirth" [(ngModel)]="MonthOfBirth">
+                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
+            </mat-form-field>
+        </form>
+    </div>
 </div>
