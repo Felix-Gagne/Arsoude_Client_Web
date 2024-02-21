@@ -37,7 +37,19 @@
                     [mapTypeId]="mapTypeId">
                     <map-marker *ngFor="let marker of markerPositions" [position]="marker"></map-marker>
             </google-map>
+
+            <h2>Commentaires</h2>
+
+            <div>
+                <input type="text" placeholder="ajouter un commentaire" class="commentInput" [(ngModel)]="commentInput">
+                <button class="commentSend" (click)="sendComments()">Send</button>
+            </div>
+
+            <!-- <div class="commentHeader">
+                <img src="assets\images\userPlaceHolder.png" alt="placeholder" class="commentImage">
+                <h4>Fil123</h4>
+            </div> -->
+
         </div>
-       
-    </div>     
+    </div>
 </div>

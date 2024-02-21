@@ -4,6 +4,8 @@ import { TrailDTO } from 'src/app/models/TrailDTO';
 import { TrailService } from 'src/app/service/trail.service';
 import { faPersonWalking, faBicycle, faBookmark, } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from 'src/app/service/user.service';
+import { CommentDTO } from 'src/app/models/CommentDTO';
+import { CommentsService } from 'src/app/service/comments.service';
 
 @Component({
   selector: 'app-details',
@@ -24,7 +26,9 @@ export class DetailsComponent {
   Favorites : TrailDTO[] = []
   isOwner = false;
 
-  constructor( private router: Router,private trailService : TrailService, public userService: UserService){}
+  commentInput? : string;
+
+  constructor( private router: Router,private trailService : TrailService, public userService: UserService, public commentService : CommentsService){}
 
   async ngOnInit(){
     var data = localStorage.getItem("trailid");
@@ -55,6 +59,10 @@ export class DetailsComponent {
     
     this.markerPositions.push(startMarker, endMarker);
 
+    if(this.trail?.id != undefined){
+      await this.commentService.getComments(this.trail?.id)
+    }
+
   }
 
   async addToFavorite(){
@@ -73,10 +81,16 @@ export class DetailsComponent {
 
    let x = await this.trailService.SetVisibility(this.trail!.id!, true)
    console.log(x);
-this.trail!.isPublic = true
-   
-
+  this.trail!.isPublic = true
   }
+
+  async sendComments(){
+    if(this.commentInput != null && this.trail?.id != undefined){
+      let dto = new CommentDTO(this.commentInput, this.trail?.id)
+      await this.commentService.sendComment(dto);
+    }
+  }
+
   async makePrivate(){
 
     let x = await this.trailService.SetVisibility(this.trail!.id!, false)

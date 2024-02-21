@@ -182,3 +182,35 @@ i:hover{
   .button-2:focus {
     background-color: #750303;
   }
+
+  .commentInput{
+    width: 100%;
+    height: 50px;
+    border-radius: 7px;
+    border-width: 3px;
+  }
+
+  .commentSend{
+    margin-top: 20px;
+    background-color: #31B1FF;
+    width:100px;
+    height: 30px;
+    border-radius: 5px;
+  }
+
+  /* .commentSend:hover{
+    margin-top: 20px;
+    background-color: #2697DC;
+    width:100px;
+    height: 30px;
+    border-radius: 5px;
+  } */
+
+  .commentImage{
+    width: 50px;
+    height: 50px;
+  }
+
+  .commentHeader{
+    display: inline-flex;
+  }
