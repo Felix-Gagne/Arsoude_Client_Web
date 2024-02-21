@@ -13,7 +13,6 @@ export class NotifierComponent {
   
   ngOnInit(): void {
     this.setIcon(this.data.messageType);
-    console.log(this.data.messageType);
   }
 
   setIcon(messageType: string) {
