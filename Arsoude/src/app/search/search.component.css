@@ -65,6 +65,7 @@ h1{
 
 .trailCardContainer{
     display: flex;
+    margin-bottom: 20px;
     transition: 0.2s;
     border-radius: 20px;
     width: 100%;

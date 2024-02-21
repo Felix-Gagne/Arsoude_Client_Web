@@ -1,23 +1,27 @@
-<div class="trailContainer">
-    <h1>Les randonnées à approuver</h1>
-    <div class="trailCardContainer" *ngFor="let trail of trails">
-      
-        <img *ngIf="trail.imageUrl != null" [src]="trail.imageUrl" alt="image_trail">
-        <img *ngIf="trail.imageUrl == null" src="https://firebasestorage.googleapis.com/v0/b/arsoudeserv.appspot.com/o/rando.jpg?alt=media&token=91d8ca4f-33f7-4484-aded-ac7685f87355" alt="image_trail">
-        <div class="trailCardInfo">
-            <h2>{{trail.name}}</h2>
-            <div class="trailCardInfoTop">
-                <p *ngIf="trail.type == 0"><fa-icon [icon]="faPersonWalking"></fa-icon></p>
-                <p *ngIf="trail.type == 1"><fa-icon [icon]="faBicycle"></fa-icon></p>
+<div class="container">
+    <div class="trailContainer">
+        <h1>Les randonnées à approuver</h1>
+        <div class="trailCardContainer" *ngFor="let trail of trails">
+          
+            <div class="trailImageContainer">
+                <img *ngIf="trail.imageUrl != null" [src]="trail.imageUrl" alt="image_trail">
+                <img *ngIf="trail.imageUrl == null" src="https://firebasestorage.googleapis.com/v0/b/arsoudeserv.appspot.com/o/rando.jpg?alt=media&token=91d8ca4f-33f7-4484-aded-ac7685f87355" alt="image_trail">
             </div>
-            <p class="textLocation">{{trail.location}}</p>
-           
-            <p>{{trail.description}}</p>
-            <button (click)="approve(trail)" class="button-1">Approve</button>
-            <button (click)="refuse(trail)" class="button-2">Refuse</button>
-            <button (click)="Delete(trail)" class="button-2"><fa-icon [icon]="faTrash"></fa-icon></button>
-            <button  (click)="getDetails(trail.id!)" class="button-3">Details</button>
+            <div class="trailCardInfo">
+                <h2>{{trail.name}}</h2>
+                <div class="trailCardInfoTop">
+                    <p *ngIf="trail.type == 0"><fa-icon [icon]="faPersonWalking"></fa-icon></p>
+                    <p *ngIf="trail.type == 1"><fa-icon [icon]="faBicycle"></fa-icon></p>
+                </div>
+                <p class="textLocation">{{trail.location}}</p>
+               
+                <p>{{trail.description}}</p>
+                <button (click)="approve(trail)" class="button-1">Approve</button>
+                <button (click)="refuse(trail)" class="button-2">Refuse</button>
+                <button (click)="Delete(trail)" class="button-2"><fa-icon [icon]="faTrash"></fa-icon></button>
+                <button  (click)="getDetails(trail.id!)" class="button-3">Details</button>
+            </div>
+            
         </div>
-        
     </div>
 </div>
