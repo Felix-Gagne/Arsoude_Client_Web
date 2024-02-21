@@ -209,6 +209,28 @@ nav ul li:hover {
     color: rgb(255, 255, 255);
   }
 
+  .modern-button {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .cancel-button {
+    background-color: #ff6347; /* Coral */
+    color: white;
+  }
+  
+  .update-button {
+    background-color: #4682b4; /* Steel Blue */
+    color: white;
+  }
+  
+  .modern-button:hover {
+    opacity: 0.8;
+  }
+
 
 
 

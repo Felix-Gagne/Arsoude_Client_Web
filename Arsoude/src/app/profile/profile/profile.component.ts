@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, ValidatorFn, Validators } from '@angular/forms';
+import { TrailDTO } from 'src/app/models/TrailDTO';
+import { UserService } from 'src/app/service/user.service';
 
 interface RegisterData { 
   password?: string | null ; 
@@ -12,7 +14,7 @@ interface RegisterData {
 })
 export class ProfileComponent {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, public userService : UserService) { }
 
   password : string = "";
   lastName : string = "";
@@ -26,16 +28,17 @@ export class ProfileComponent {
   YearOfBirth : String = "";
   MonthOfBirth : String = "";
   confirmPassword : string = "";
+  userInfo !: TrailDTO;
 
   hidePassword = true;
   
   form = this.fb.group({
-    password: ['',[Validators.required, Validators.min(8),this.passwordValidator()]], 
-    nom: ['', [Validators.required]],
-    prenom: ['', [Validators.required]],
-    username: ['', [Validators.required]],
-    codePostal: ['', [Validators.required, this.postalCodeValidator()]],
-    confirmPassword: ['', [Validators.required]],
+    password: [''], 
+    nom: [''],
+    prenom: [''],
+    username: [''],
+    codePostal: [''],
+    confirmPassword: [''],
   },{ validator: this.matchPasswordsValidator('password', 'confirmPassword') });
 
 
@@ -55,12 +58,14 @@ export class ProfileComponent {
 
 
 
-  ngOnInit(): void {
+  async ngOnInit(){
     // À chaque fois que les valeurs changent, notre propriétés formData sera mise à jour
     this.form.valueChanges.subscribe(() => {
       this.formData = this.form.value;
     });
-    this.form.disable();
+    this.userInfo = await this.userService.getUserInfo(); 
+    console.log(this.userInfo);
+    //this.form.disable();
     this.additionalForm.disable();
   }
 
@@ -79,6 +84,8 @@ export class ProfileComponent {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const value = control.value;
 
+      if(value)
+
       if (!/[a-z]/.test(value)) {
         return { 'lowercaseMissing': true };
       }
@@ -90,7 +97,6 @@ export class ProfileComponent {
       if (!/\d/.test(value)) {
         return { 'numberMissing': true };
       }
-
       return null;
     };
   }
@@ -100,14 +106,40 @@ export class ProfileComponent {
       const passwordControl = group.get(passwordKey);
       const confirmPasswordControl = group.get(confirmPasswordKey);
   
-      if(passwordControl != null && confirmPasswordControl != null){
-      if (passwordControl.value != confirmPasswordControl.value) {
-        return { 'passwordMismatch': true };
-      }
-    }
+      if (passwordControl && confirmPasswordControl) {
+        const password = passwordControl.value;
+        const confirmPassword = confirmPasswordControl.value;
+
+        if(password != null && password != ''){
+          passwordControl.setValidators([Validators.min(8), this.passwordValidator()]);
+        
+          if (confirmPassword.trim() === '') { // Check if confirmPassword is empty
+            group.get(confirmPasswordKey)?.setErrors({ 'required': true }); // Set it to required
+            return { 'required': true };
+          }
   
+          if (password !== confirmPassword) {
+              group.get(confirmPasswordKey)?.setErrors({ 'passwordMismatch': true });
+              return { 'passwordMismatch': true };
+          }
+        }       
+        
+      }      
+      
       return null;
     };
+  }
+
+  onButtonClick(): void {
+    // Clear and update validators when the button is clicked
+    const passwordControl = this.form.get('password');
+    const confirmPasswordControl = this.form.get('confirmPassword');
+    if (passwordControl && confirmPasswordControl) {
+      passwordControl.clearValidators();
+      confirmPasswordControl.clearValidators();
+      passwordControl.updateValueAndValidity();
+      confirmPasswordControl.updateValueAndValidity();
+    }
   }
 
 }

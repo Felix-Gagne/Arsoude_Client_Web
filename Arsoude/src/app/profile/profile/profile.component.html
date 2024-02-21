@@ -58,9 +58,6 @@
                     <mat-label>{{'register.passwordPlaceholder' | translate}}</mat-label>
                     <input matInput [type]="hidePassword ? 'password' : 'text'"  formControlName="password" [(ngModel)]="password">
                     <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-                    <mat-error *ngIf="form.get('password')?.hasError('required')">
-                        Votre mot de passe est <strong>requis</strong>
-                    </mat-error>
                     <mat-error *ngIf="form.get('password')?.hasError('min')">
                         Votre mot de passe est <strong>trop court</strong>
                     </mat-error>
@@ -79,11 +76,11 @@
                         <mat-label>{{'register.confirmPasswordPlaceholder' | translate}}</mat-label>
                         <input class="box_login_form_confirmPassword" matInput type="password"  formControlName="confirmPassword" [(ngModel)]="confirmPassword">
                         <mat-error *ngIf="form.hasError('passwordMismatch')">Les mots de passe ne correspondent pas</mat-error>
-                        <mat-error *ngIf="form.get('confirmPassword')?.hasError('required')">La confirmation du mot de passe est <strong>requis</strong></mat-error>
-                        
+                        <mat-error *ngIf="form.hasError('required')">La confirmation du mot de passe est <strong>requis</strong></mat-error>
                     </mat-form-field>
             </div>
-            
+            <button class="modern-button cancel-button">Cancel</button>
+            <button class="modern-button update-button">Update</button>
         </form>
     </div>
     <div class="secondaryInformation">

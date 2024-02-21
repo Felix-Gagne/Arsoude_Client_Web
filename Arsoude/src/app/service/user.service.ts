@@ -89,7 +89,7 @@ export class UserService {
   async editUser(dto : ModifUserDTO){
     try{
       let edit = await lastValueFrom(this.http.post<any>(this.baseUrl + "/ChangeUserInfo", dto))
-      console.group("Success");
+      console.log("Success");
       return edit;
     }
     catch(error : any){
