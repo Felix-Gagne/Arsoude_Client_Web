@@ -108,7 +108,7 @@ fa-icon{
     cursor: pointer;
 }
 
-i{
+.fa-bookmark{
     font-size: 35px;
 }
 
@@ -287,8 +287,11 @@ textarea::placeholder{
 
 .comment{
   display: flex;
+  width: 99%;
   margin-top: 25px;
   padding: 15px;
+  outline: 1px solid rgb(158, 157, 157);
+  border-radius: 15px;
 }
 
 .user{
@@ -304,6 +307,20 @@ textarea::placeholder{
   margin-left: 10px;
   font-size: 20px;
   margin-bottom: 10px;
+}
+
+.user_name{
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.date{
+  margin-top: 1px;
+}
+
+.fa-circle-check{
+  margin-left: 10px;
+  font-size: 20px;
 }
 
 

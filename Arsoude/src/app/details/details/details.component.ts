@@ -86,6 +86,8 @@ export class DetailsComponent {
     if(this.commentInput != null && this.trail?.id != undefined){
       let dto = new CommentDTO(this.commentInput, this.trail?.id);
       await this.commentService.sendComment(dto);
+
+      this.refreshPage();
     }
   }
 
@@ -93,6 +95,10 @@ export class DetailsComponent {
     let x = await this.trailService.SetVisibility(this.trail!.id!, false)
     console.log(x);
     this.trail!.isPublic = false
+  }
+
+  refreshPage() {
+    window.location.reload();
   }
 
 }
