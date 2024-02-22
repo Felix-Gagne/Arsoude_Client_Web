@@ -2,7 +2,22 @@
     "home":{
         "title": "Find your next ",
         "aventure": "adventure",
-        "placeholder": "Trail, Description, Location..."
+        "placeholder": "Trail, Description, Location...",
+        "bestTrailsTitle": "Our best trails",
+        "appTitlePt1": "Create your own",
+        "appTitlePt2": "adventure",
+        "appSubPt1": "Get our mobile app ",
+        "appSubPt2": "Arsoude",
+        "appSubPt3": " and start creating your trails to share with the community now",
+        "infoAppTitle1Pt1": "Create your routes ",
+        "infoAppTitle1Pt2": "automatically",
+        "infoAppSub1": "Choose a starting point and let the trail be drawn automatically",
+        "infoAppTitle2Pt1": "Access your ",
+        "infoAppTitle2Pt2": "statistics",
+        "infoAppSub2": "Access, compare, and share your hiking statistics with the community",
+        "infoAppTitle3Pt1": "Explore the trails of the ",
+        "infoAppTitle3Pt2": "community",
+        "infoAppSub3": "Choose from 500+ trails across Quebec"
     },
 
     "login":{
