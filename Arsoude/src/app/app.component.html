@@ -36,7 +36,7 @@
                                 </div>
                                 <hr>
  
-                                <a href="#" class="sub-menu-link">
+                                <a routerLink="/profile" class="sub-menu-link">
                                     <i class="fa-solid fa-user"></i>
                                     <p>{{'menu.edit' | translate}}</p>
                                     <span>></span>
@@ -44,6 +44,11 @@
                                 <a href="#" class="sub-menu-link">
                                     <i class="fa-solid fa-gear"></i>
                                     <p>{{'menu.settings' | translate}}</p>
+                                    <span>></span>
+                                </a>
+                                <a routerLink="/userTrails" class="sub-menu-link">
+                                    <i class="fa-solid fa-folder"></i>
+                                    <p>{{'menu.userTrails' | translate}}</p>
                                     <span>></span>
                                 </a>
                                 <a href="#/help" class="sub-menu-link">
@@ -66,7 +71,6 @@
     </div>
 </header>
 <router-outlet> </router-outlet>
- 
 <footer class="footer">
     <div class="footer_container">
         <div class="footer_options">

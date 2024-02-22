@@ -79,7 +79,8 @@
         "edit":"Modifier le profile",
         "settings":"Paramètres",
         "help":"Aide",
-        "logout":"Se déconnecter"
+        "logout":"Se déconnecter",        
+        "userTrails":"Vos randonnées"
     },
 
     "footer":{

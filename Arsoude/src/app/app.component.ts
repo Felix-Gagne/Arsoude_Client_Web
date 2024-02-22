@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { UserService } from './service/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { faAngleDown, faBicycle, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
@@ -20,7 +20,7 @@ export class AppComponent {
   public href: string = "";
 
 
-  constructor(public userService : UserService, private translate : TranslateService, public router: Router, public trailService : TrailService) { }
+  constructor(public userService : UserService, private translate : TranslateService, public router: Router, public trailService : TrailService, private elementRef: ElementRef) { }
 
   ngOnInit(): void{
 
@@ -54,6 +54,24 @@ export class AppComponent {
       this.subMenu.classList.toggle("open-menu");
     }
   }
+  
+  closeSubMenu(): void {
+    if (this.subMenu && this.subMenu.classList.contains("open-menu")) {
+      this.subMenu.classList.remove("open-menu");
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const isClickInsideSubMenu = target.closest('.sub-menu-wrap') !== null;
+    const isClickInsideUserBox = target.closest('.box') !== null; // Add this line to check if the click occurs within the user box
+    
+    if (!isClickInsideSubMenu && !isClickInsideUserBox) {
+      this.closeSubMenu();
+    }
+  }
+
 
   explore(): void{
     this.router.navigate(['/search']);

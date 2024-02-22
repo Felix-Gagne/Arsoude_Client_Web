@@ -1,5 +1,6 @@
 import { Coordinates } from "./Coordinates";
 import { TrailType } from "./enum/Type";
+import { Comments } from "./Comments";
 
 export class TrailDTO{
     constructor(
@@ -8,6 +9,7 @@ export class TrailDTO{
         public location : string,
         public type : TrailType,
         public imageUrl : string,
+        public creationDate? : Date,
         public startingCoordinates? : Coordinates,
         public endingCoordinates? : Coordinates,
         public id? : number,
