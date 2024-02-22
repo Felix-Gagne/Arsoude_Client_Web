@@ -69,7 +69,10 @@
         "radius":"Rayon (Km)",
         "keywordPlaceholder":"Sentier, description, emplacement...",
         "button":"Rechercher",
-        "title":"Les randonnées incontournable"
+        "title":"Les randonnées incontournable",
+        "pagination" : "Item par page",
+        "noHikeFound" : "Aucune randonnée n'a été trouver"
+
     },
 
     "menu":{
@@ -130,6 +133,11 @@
     
     "details" : {
        "public" : "Rendre publique",
-       "private" : "Rendre privée"
+       "private" : "Rendre privée",
+       "commentTitle" : "Commentaires",
+       "commentTextArea" : "Ajouter un commentaire",
+       "commentSend" : "Envoyer",
+       "commentNoffication" : "Commentaire publié"
+
     }
 }

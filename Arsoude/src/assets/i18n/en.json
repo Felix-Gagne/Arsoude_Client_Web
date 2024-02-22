@@ -69,7 +69,9 @@
         "radius":"Radius (Km)",
         "keywordPlaceholder":"Trail, Description, Location...",
         "button":"Search",
-        "title":"The essential hikes"
+        "title":"The essential hikes",
+        "pagination" : "Items per page",
+        "noHikeFound" : "No hikes found"
     },
 
     "menu":{
@@ -130,8 +132,11 @@
     },
     "details" : {
        "public" : "Set public",
-       "private" : "Set private"
-
+       "private" : "Set private",
+       "commentTitle" : "Comments",
+       "commentTextArea" : "Add a comment",
+       "commentSend" : "Send",
+       "commentNoffication" : "Comment sent"
     }
     
     

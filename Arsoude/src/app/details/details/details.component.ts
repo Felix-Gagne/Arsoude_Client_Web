@@ -7,6 +7,8 @@ import { UserService } from 'src/app/service/user.service';
 import { CommentDTO } from 'src/app/models/CommentDTO';
 import { CommentsService } from 'src/app/service/comments.service';
 import { Comments } from 'src/app/models/Comments';
+import { NotifierService } from 'src/app/notifier.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-details',
@@ -29,7 +31,8 @@ export class DetailsComponent {
   commentList : Comments[] = [];
   commentInput? : string;
 
-  constructor( private router: Router,private trailService : TrailService, public userService: UserService, public commentService : CommentsService){}
+  constructor( private router: Router,private trailService : TrailService, public userService: UserService, 
+    public commentService : CommentsService, public notifierService : NotifierService, public translate : TranslateService){}
 
   async ngOnInit(){
     var data = localStorage.getItem("trailid");
@@ -87,7 +90,9 @@ export class DetailsComponent {
       let dto = new CommentDTO(this.commentInput, this.trail?.id);
       await this.commentService.sendComment(dto);
 
-      this.refreshPage();
+      this.notifierService.showNotification( this.translate.instant('commentNotification'), "success")
+
+      this.refreshPage()
     }
   }
 

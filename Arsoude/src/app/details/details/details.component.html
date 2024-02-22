@@ -44,11 +44,11 @@
                 <img src="assets\images\userPlaceHolder.png" alt="placeholder" class="commentImage">
                 <h4>Fil123</h4>
             </div> -->
-            <h2>Commentaires</h2>
+            <h2> {{'details.commentTitle' | translate}} </h2>
 
             <div class="comments_text">
-                <textarea type="text" placeholder="Ajouter un commentaire" class="commentInput" [(ngModel)]="commentInput"></textarea>
-                <button class="commentSend" (click)="sendComments()">Send</button>
+                <textarea type="text" placeholder="{{'details.commentTextArea' | translate}}" class="commentInput" [(ngModel)]="commentInput"></textarea>
+                <button class="commentSend" (click)="sendComments()"> {{'details.commentSend' | translate}} </button>
             </div>
 
             <div class="comment" *ngFor="let comment of commentList">
