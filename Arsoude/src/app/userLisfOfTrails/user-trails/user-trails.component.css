@@ -1,0 +1,107 @@
+
+.userList{
+    padding-top: 2%;
+    padding-left: 3%;
+}
+
+.presentation {
+    display: flex;
+    align-items: center;
+}
+
+.presentation div {
+    margin-left: 65%;
+    display: flex;
+    align-items: center;
+}
+
+.order{
+    cursor: pointer;
+}
+
+.fa-chevron-up{
+    transition: transform 0.3s ease;
+    transform: rotate(0deg);
+
+}
+
+.order p{
+    margin-right: 10px;
+    font-size: 18px;
+    transform: font-weight 1s;
+}
+
+.order:hover p{
+    font-weight: bold;
+}
+
+
+.iner{
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 50px;
+    align-items: flex-start;
+}
+
+.trailCardInfo{
+    font-family: 'Plus Jakarta Sans';
+    width: 80%;
+    h2{
+        margin: 0;
+    }
+}
+
+.trailCardContainer{
+    display: flex;
+    transition: 0.2s;
+    border-radius: 20px;
+    width: 100%;
+    padding: 20px;
+}
+
+.dateTitle {
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+.date{
+    margin-left: 65%;
+}
+
+
+
+
+.trailCardContainer:hover{
+    box-shadow: 0px 0px 32px 14px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.trailImageContainer{
+    width: 400px;
+    height: 250px;
+    margin-right: 3%;
+}
+
+.trailCardContainer>.trailImageContainer>img{
+    width: 400px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.trailCardInfoTop{
+    display: flex;
+
+    p{
+        margin: 0;
+        margin-right: 10px;
+    }
+}
+
+.textLocation{
+    text-decoration: underline;
+}

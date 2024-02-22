@@ -8,6 +8,7 @@ import { InfoRegDTO } from '../models/InfoRegDTO';
 import { environment } from 'src/environments/environment';
 import { TrailDTO } from '../models/TrailDTO';
 import { TrailService } from './trail.service';
+import { ModifUserDTO } from '../models/ModifUserDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -71,6 +72,28 @@ export class UserService {
     }
     catch(e){
       console.log("Error : " + e);
+    }
+  }
+
+  async getUserInfo(){
+    try{
+      let info = await lastValueFrom(this.http.get<any>(this.baseUrl + "/GetUserInfo"));
+      console.log(info);
+      return info;
+    }
+    catch(error : any){
+      console.log(error);
+    }
+  }
+
+  async editUser(dto : ModifUserDTO){
+    try{
+      let edit = await lastValueFrom(this.http.post<any>(this.baseUrl + "/ChangeUserInfo", dto))
+      console.log("Success");
+      return edit;
+    }
+    catch(error : any){
+      console.log(error);
     }
   }
 

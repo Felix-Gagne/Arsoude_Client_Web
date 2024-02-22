@@ -1,0 +1,141 @@
+<div class="profileHeader">
+    <img src="/assets/images/mountainBackground2.jpg" alt="headerProfileImage" style="object-fit: cover;">
+</div>
+<div class="hole">
+    <div class="imageProfilePlaceHolder">
+        <img *ngIf="!Hasimage" src="/assets/images/userPlaceHolder.png" alt="userImagePlaceHolder">
+        <img *ngIf="Hasimage" [src]="imageUrl" alt="userImagePlaceHolder">
+        <div class="editPhoto">
+            <i class="fa-solid fa-pen" (click)="upload.click()"></i>
+            <input id="fileUpload" type="file" #upload style="display: none;">
+        </div>
+    </div>
+</div>
+<h1 class="userName">Test Name</h1>
+<div class="navBar">
+    <nav>
+        <ul>
+            <li>About</li>
+            <li>Posts</li>
+            <li>Comments</li>
+        </ul>
+    </nav>
+</div>
+
+<div class="userPrincipalInfo">
+    <h2>My account</h2>
+    <i class="fa-solid fa-pen-to-square edit" (click)="editPrincipal()"></i>
+
+    <div class="PrincipalInfo">
+        <h4>User Information</h4>
+        <form [formGroup]="form" class="box_login_form"> 
+            <mat-form-field  style="width: 100%">
+            <mat-label>{{'register.lastNamePlaceholder' | translate}}</mat-label>
+                <input class="box_login_form_name" matInput type="text"  formControlName="nom" [(ngModel)]="lastName">
+                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
+            </mat-form-field>
+
+            <mat-form-field style="width: 100%">
+                <mat-label>{{'register.firstNamePlaceholder' | translate}}</mat-label>
+                <input class="box_login_form_lastname" matInput type="text"  formControlName="prenom" [(ngModel)]="firstName">
+                <mat-error *ngIf="form.get('prenom')?.hasError('required')">Votre prénom est <strong>requis</strong></mat-error>
+            </mat-form-field>
+
+                
+            <mat-form-field style="width: 100%">
+                <mat-label>{{'register.usernamePlaceholder' | translate}}</mat-label>
+                <input class="box_login_form_username" matInput type="text"  formControlName="username" [(ngModel)]="username">
+                <mat-error *ngIf="form.get('username')?.hasError('required')">Le nom d'utilisateur est <strong>requis</strong></mat-error>
+            </mat-form-field>
+    
+            
+            <mat-form-field style="width: 100%">
+            <mat-label>{{'register.zipPlaceholder' | translate}}</mat-label>
+                <input class="box_login_form_postalcode" matInput type="text" formControlName="codePostal" [(ngModel)]="areaCode">
+                <mat-error *ngIf="form.get('codePostal')?.hasError('required')">Le code postal est <strong>requis</strong></mat-error>
+                <mat-error *ngIf="form.get('codePostal')?.hasError('invalidPostalCode')">Entrez un code postal <strong>valide</strong></mat-error>
+            </mat-form-field>
+            <!--<div class="passwordsAlign">
+                <mat-form-field class="password">
+                    <mat-label>{{'register.passwordPlaceholder' | translate}}</mat-label>
+                    <input matInput [type]="hidePassword ? 'password' : 'text'"  formControlName="password" [(ngModel)]="password">
+                    <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                    <mat-error *ngIf="form.get('password')?.hasError('min')">
+                        Votre mot de passe est <strong>trop court</strong>
+                    </mat-error>
+                    <mat-error *ngIf="form.get('password')?.hasError('lowercaseMissing')">
+                        Le mot de passe doit contenir au moins une lettre <strong>minuscule</strong>.
+                    </mat-error>
+                    <mat-error *ngIf="form.get('password')?.hasError('uppercaseMissing')">
+                        Le mot de passe doit contenir au moins une lettre <strong>majuscule</strong>.
+                    </mat-error>
+                    <mat-error *ngIf="form.get('password')?.hasError('numberMissing')">
+                        Le mot de passe doit contenir au moins un <strong>chiffre</strong>.
+                    </mat-error>
+                    </mat-form-field>
+                    
+                    <mat-form-field class="password">
+                        <mat-label>{{'register.confirmPasswordPlaceholder' | translate}}</mat-label>
+                        <input class="box_login_form_confirmPassword" matInput type="password"  formControlName="confirmPassword" [(ngModel)]="confirmPassword">
+                        <mat-error *ngIf="form.hasError('passwordMismatch')">Les mots de passe ne correspondent pas</mat-error>
+                        <mat-error *ngIf="form.hasError('required')">La confirmation du mot de passe est <strong>requis</strong></mat-error>
+                    </mat-form-field>
+            </div> -->
+            <div *ngIf="editProfilePrincipal || editProfileSecondary">
+                <button class="modern-button cancel-button" (click)="cancel()">Cancel</button>
+                <button class="modern-button update-button" (click)="update()">Update</button>
+            </div>
+        </form>
+    </div>
+    <div class="secondaryInformation">
+        <h3>Secondary Information</h3>
+        <!--<i class="fa-solid fa-pen-to-square edit2"></i>-->
+        <div class="achivementInfo">
+            <div>
+                <h4>20</h4>
+                <p>Completed trails</p>
+            </div>
+            <div>
+                <h4>36</h4>
+                <p>Trails created</p>
+            </div>
+            <div>
+                <h4>12</h4>
+                <p>Comments</p>
+            </div>
+        </div>
+        <div class="bar"></div>
+        <form [formGroup]="additionalForm" class="secondaryForm">
+            <mat-form-field style="width: 43%" class="addGap">
+                <mat-label>House number</mat-label>
+                <input class="box_login_form_name" matInput type="text"  formControlName="houseNo" [(ngModel)]="HouseNo">
+                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field  style="width: 43%">
+                <mat-label>Street</mat-label>
+                <input class="box_login_form_name" matInput type="text"  formControlName="street" [(ngModel)]="Street">
+                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field  style="width: 43%" class="addGap">
+                <mat-label>City</mat-label>
+                <input class="box_login_form_name" matInput type="text"  formControlName="city" [(ngModel)]="City">
+                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field  style="width: 43%">
+                <mat-label>State</mat-label>
+                <input class="box_login_form_name" matInput type="text"  formControlName="state" [(ngModel)]="State">
+                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field  style="width: 43%" class="addGap">
+                <mat-label>Year Of Birth</mat-label>
+                <input class="box_login_form_name" matInput type="text"  formControlName="yearOfBirth" [(ngModel)]="YearOfBirth">
+                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
+            </mat-form-field>
+            <mat-form-field  style="width: 43%">
+                <mat-label>Month of birth</mat-label>
+                <input class="box_login_form_name" matInput type="text"  formControlName="monthOfBirth" [(ngModel)]="MonthOfBirth">
+                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+</div>
