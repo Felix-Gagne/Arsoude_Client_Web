@@ -9,6 +9,7 @@ export class ModifUserDTO{
         public state? : string,
         public yearOfBirth? : number,
         public monthOfBirth? : number,
-        public avatarUrl? : string
+        public avatarUrl? : string,
+        public username? : string
     ){}
 }

@@ -3,9 +3,11 @@
 </div>
 <div class="hole">
     <div class="imageProfilePlaceHolder">
-        <img src="/assets/images/userPlaceHolder.png" alt="userImagePlaceHolder">
+        <img *ngIf="!Hasimage" src="/assets/images/userPlaceHolder.png" alt="userImagePlaceHolder">
+        <img *ngIf="Hasimage" [src]="imageUrl" alt="userImagePlaceHolder">
         <div class="editPhoto">
-            <i class="fa-solid fa-pen"></i>
+            <i class="fa-solid fa-pen" (click)="upload.click()"></i>
+            <input id="fileUpload" type="file" #upload style="display: none;">
         </div>
     </div>
 </div>
@@ -22,7 +24,7 @@
 
 <div class="userPrincipalInfo">
     <h2>My account</h2>
-    <i class="fa-solid fa-pen-to-square edit"></i>
+    <i class="fa-solid fa-pen-to-square edit" (click)="editPrincipal()"></i>
 
     <div class="PrincipalInfo">
         <h4>User Information</h4>
@@ -53,7 +55,7 @@
                 <mat-error *ngIf="form.get('codePostal')?.hasError('required')">Le code postal est <strong>requis</strong></mat-error>
                 <mat-error *ngIf="form.get('codePostal')?.hasError('invalidPostalCode')">Entrez un code postal <strong>valide</strong></mat-error>
             </mat-form-field>
-            <div class="passwordsAlign">
+            <!--<div class="passwordsAlign">
                 <mat-form-field class="password">
                     <mat-label>{{'register.passwordPlaceholder' | translate}}</mat-label>
                     <input matInput [type]="hidePassword ? 'password' : 'text'"  formControlName="password" [(ngModel)]="password">
@@ -78,14 +80,16 @@
                         <mat-error *ngIf="form.hasError('passwordMismatch')">Les mots de passe ne correspondent pas</mat-error>
                         <mat-error *ngIf="form.hasError('required')">La confirmation du mot de passe est <strong>requis</strong></mat-error>
                     </mat-form-field>
+            </div> -->
+            <div *ngIf="editProfilePrincipal || editProfileSecondary">
+                <button class="modern-button cancel-button" (click)="cancel()">Cancel</button>
+                <button class="modern-button update-button" (click)="update()">Update</button>
             </div>
-            <button class="modern-button cancel-button">Cancel</button>
-            <button class="modern-button update-button">Update</button>
         </form>
     </div>
     <div class="secondaryInformation">
         <h3>Secondary Information</h3>
-        <i class="fa-solid fa-pen-to-square edit2"></i>
+        <!--<i class="fa-solid fa-pen-to-square edit2"></i>-->
         <div class="achivementInfo">
             <div>
                 <h4>20</h4>
@@ -104,7 +108,7 @@
         <form [formGroup]="additionalForm" class="secondaryForm">
             <mat-form-field style="width: 43%" class="addGap">
                 <mat-label>House number</mat-label>
-                <input class="box_login_form_name" matInput type="text"  formControlName="houseNo" [(ngModel)]="lastName">
+                <input class="box_login_form_name" matInput type="text"  formControlName="houseNo" [(ngModel)]="HouseNo">
                 <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
             </mat-form-field>
             <mat-form-field  style="width: 43%">
