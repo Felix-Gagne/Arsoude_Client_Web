@@ -152,7 +152,8 @@ span{
 }
 
 .container4{
-    height: 850px;
+    height: 750px;
+    width: 1300px;
     background-color: #09635F;
     margin-right: 15%;
     margin-left: 15%;
@@ -170,10 +171,21 @@ span{
 
 .container4>img{
     position: absolute;
-    bottom: 280px;
+    bottom: 100px;
     left: 750px;
 }
 
 .infoApp{
     color: white;
+    margin-left: 100px;
+    margin-top: 50px;
+}
+
+.infoAppTitle, .infoAppText{
+    font-weight: 400;
+}
+
+.infoAppTitle{
+    margin-left: 0;
+    margin-bottom: 20px;
 }
