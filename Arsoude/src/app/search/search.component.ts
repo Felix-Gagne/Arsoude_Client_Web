@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { TrailDTO } from '../models/TrailDTO';
 import { faPersonWalking, faBicycle, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { TrailService } from '../service/trail.service';
 import { FilterDTO } from '../models/FilterDTO';
 import { TrailType } from '../models/enum/Type';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-search',
@@ -24,6 +26,12 @@ export class SearchComponent {
 
   emptyList : boolean = false;
 
+  //pagination
+  pagedTrails: TrailDTO[] = [];
+  currentPage: number = 1;
+  pageSize: number = 5;
+  trailsLength: number = 0;
+
   constructor( private router: Router,private trailService : TrailService, private activedRoute: ActivatedRoute){}
 
   async ngOnInit(){
@@ -34,10 +42,27 @@ export class SearchComponent {
     if(param != null){
       this.trails = await this.trailService.searchTrails(dto);
       console.log(this.trails);
+      this.trailsLength = this.trails.length;
+      this.updatePagedTrail();
     } else {
       this.trails = await this.trailService.allTrails();
+      this.trailsLength = this.trails.length;
+      this.updatePagedTrail();
     }
   }
+
+  updatePagedTrail(){
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.pagedTrails = this.trails.slice(startIndex, endIndex);
+  }
+
+  onPageChange(event: any){
+    this.currentPage = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
+    this.updatePagedTrail();
+  }
+
 
   async Search(){
     let dto = new FilterDTO();
