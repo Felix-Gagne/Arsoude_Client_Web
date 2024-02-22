@@ -2,7 +2,22 @@
     "home":{
         "title": "Trouvez votre prochaine ",
         "aventure": "aventure",
-        "placeholder": "Sentier, description, emplacement..."
+        "placeholder": "Sentier, description, emplacement...",
+        "bestTrailsTitle": "Nos meilleures randonnées",
+        "appTitlePt1": "Créer votre propre",
+        "appTitlePt2": "aventure",
+        "appSubPt1": "Procurer vous notre application mobile ",
+        "appSubPt2": "Arsoude",
+        "appSubPt3": " et commencer dès maintenant à créer vos sentiers pour les partager à la communauté",
+        "infoAppTitle1Pt1": "Créer vos itinéraires ",
+        "infoAppTitle1Pt2": "automatiquement",
+        "infoAppSub1": "Choisissez un point de départ et laisser le tracer de votre sentier se dessiner tout seul",
+        "infoAppTitle2Pt1": "Accédez à vos ",
+        "infoAppTitle2Pt2": "statistiques",
+        "infoAppSub2": "Accéder, comparer et partager vos statistiques de randonnées avec la communauté",
+        "infoAppTitle3Pt1": "Parcourez les sentiers de la ",
+        "infoAppTitle3Pt2": "communauté",
+        "infoAppSub3": "Choisissez parmi 500+ sentiers partout au Québec"
     },
 
     "login":{
@@ -54,7 +69,10 @@
         "radius":"Rayon (Km)",
         "keywordPlaceholder":"Sentier, description, emplacement...",
         "button":"Rechercher",
-        "title":"Les randonnées incontournable"
+        "title":"Les randonnées incontournable",
+        "pagination" : "Item par page",
+        "noHikeFound" : "Aucune randonnée n'a été trouver"
+
     },
 
     "menu":{
@@ -91,6 +109,8 @@
         "trailNameErrorPt2": "requis",
         "trailLocationErrorPt1": "L'emplacement de votre randonnée est ",
         "trailLocationErrorPt2": "requis",
+        "trailDescriptionErrorPt1": "La description de votre randonnée est ",
+        "trailDescriptionErrorPt2": "requise",
         "trailTypeTitle": "Mode de déplacement",
         "trailLocationTitle": "Où se situe votre randonnée?",
         "chooseFile": "Choisir un fichier",
@@ -113,6 +133,11 @@
     
     "details" : {
        "public" : "Rendre publique",
-       "private" : "Rendre privée"
+       "private" : "Rendre privée",
+       "commentTitle" : "Commentaires",
+       "commentTextArea" : "Ajouter un commentaire",
+       "commentSend" : "Envoyer",
+       "commentNoffication" : "Commentaire publié"
+
     }
 }

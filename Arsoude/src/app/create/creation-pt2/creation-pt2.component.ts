@@ -1,3 +1,6 @@
+import { UserService } from 'src/app/service/user.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NotifierService } from './../../notifier.service';
 import { Component, ViewChild } from '@angular/core';
 import { GoogleMap } from '@angular/google-maps';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -5,6 +8,8 @@ import { faL } from '@fortawesome/free-solid-svg-icons';
 import { Coordinates } from 'src/app/models/Coordinates';
 import { TrailDTO } from 'src/app/models/TrailDTO';
 import { TrailService } from 'src/app/service/trail.service';
+import { Location } from '@angular/common'
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-creation-pt2',
@@ -30,16 +35,6 @@ export class CreationPt2Component {
 
   trail : TrailDTO | undefined;
 
-  constructor(public router : Router, public service : TrailService){}
-
-  ngOnInit(): void{
-    let data = localStorage.getItem("createTrail");
-    if(data != null){
-      this.trail = JSON.parse(data);
-    }
-    console.log(this.trail);
-  }
-
   markerPositions: google.maps.LatLngLiteral[] = [ ];
 
   polylineOptions = {
@@ -52,6 +47,17 @@ export class CreationPt2Component {
   latitude: number = 0;
   longitude: number = 0;
 
+  constructor(public router : Router, public service : TrailService, private location : Location, public notifierService: NotifierService, public userService: UserService){}
+
+  //Va chercher les données de la page précédente
+  ngOnInit(): void{
+    let data = localStorage.getItem("createTrail");
+    if(data != null){
+      this.trail = JSON.parse(data);
+    }
+    console.log(this.trail);
+  }
+
   @ViewChild('googlemaps') map!: GoogleMap;
   @ViewChild('maplines') maplines!: GoogleMap;
 
@@ -63,7 +69,8 @@ export class CreationPt2Component {
       lat: event.latLng!.lat(),
       lng: event.latLng!.lng(),
     };
-    
+    //voir pour un switch case
+
     if(this.currentMode === 'Disabled') {
       return;
     } else if (this.currentMode === 'PointA') {
@@ -115,23 +122,35 @@ export class CreationPt2Component {
   }
 
   async CreateTrail(){
-    const StartingPoint = new Coordinates(this.latitudeA, this.longitudeA);
-    const EndingPoint = new Coordinates(this.latitudeB, this.longitudeB);
-    this.trail!.startingCoordinates = StartingPoint;
-    this.trail!.endingCoordinates = EndingPoint;
-
-    console.log(this.trail);
-
-    try{
-      console.log(this.trail);
-      if(this.trail != undefined){
-        this.service.CreateTrail(this.trail);
+    if(this.trail?.description != undefined && this.trail?.location != undefined && this.trail?.name != undefined){
+      if(await this.checkClientConnection()){
+        if(this.checkToken()){
+          const StartingPoint = new Coordinates(this.latitudeA, this.longitudeA);
+          const EndingPoint = new Coordinates(this.latitudeB, this.longitudeB);
+          this.trail!.startingCoordinates = StartingPoint;
+          this.trail!.endingCoordinates = EndingPoint;
+  
+          console.log(this.trail);
+  
+          try{
+            console.log(this.trail);
+            await this.service.CreateTrail(this.trail);
+            this.notifierService.showNotification('La randonnée a été créé avec succès!', 'success');
+            this.router.navigate(['']);
+          }
+          catch(e){
+            console.log("Erreur : " + e);
+          }
+        } else {
+          this.notifierService.showNotification('Vous devez être connecté pour créer une randonnée', 'warning');
+          this.userService.Logout();
+          this.router.navigate(['/login']);
+        }
+      } else {
+        this.notifierService.showNotification('Erreur de connexion, vérifier votre connexion internet', 'error');
       }
-      
-      this.router.navigate(['']);
-    }
-    catch(e){
-      console.log("Erreur : " + e);
+    } else {
+      this.notifierService.showNotification('Veuillez remplir tous les champs', 'error');
     }
   }
 
@@ -154,5 +173,23 @@ export class CreationPt2Component {
     this.disableBtnPointA = false;
     this.disableBtnPointB = true;
     this.switchTitle("creationPt2.titleChoice1");
+  }
+
+  async checkClientConnection(): Promise<boolean> {
+    if (!navigator.onLine) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  checkToken(): boolean {
+    const token = localStorage.getItem('Token');
+    console.log(token);
+    return !!token;
+  }
+
+  retour(): void {
+    this.location.back();
   }
 }

@@ -141,6 +141,12 @@
   cursor: pointer;
 }
 
+.btn_continuer:disabled{
+  background-color: #B3B3B3;
+  color: white;
+  cursor: not-allowed;
+}
+
   h3{
     font-size: 20px;
     font-weight: 500;

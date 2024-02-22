@@ -9,7 +9,7 @@
             <!-- <input class="checkInput" type="checkbox" id="distance" name="distance" value="yes">
             <label class="checkInputLabel" for="distance">Proche de chez moi</label><br> -->
             <p style="display: inline;margin-right: 1%;">{{'search.radius' | translate}}</p>
-            <mat-slider min="10" max="100" step="5" showTickMarks discrete>
+            <mat-slider min="0" max="300" step="10" showTickMarks discrete>
                 <input matSliderThumb [(ngModel)]="radius">
             </mat-slider>
         </div>
@@ -18,29 +18,38 @@
             <button (click)="Search()">{{'search.button' | translate}}</button>
         </div>
     </div>
-    <div class="trailContainer">
+    <div class="trailContainer" *ngIf="!emptyList">
         <h1>{{'search.title' | translate}}</h1>
-        <div class="trailCardContainer" *ngFor="let trail of trails" (click)="getDetails(trail.id!)">
-            <!-- <div class="trailCard" *ngFor="let trail of trails">
-                
-            </div> -->
-            <!-- <img [src]="trail.image" alt="trail image"> -->
-            <div class="trailImageContainer">
-                <img [src]="trail.imageUrl" alt="image_trail">
-            </div>
-            <div class="trailCardInfo">
-                <h2>{{trail.name}}</h2>
-                <div class="trailCardInfoTop">
-                    <p>Facile</p>
-                    <p>-</p>
-                    <p>68 km</p>
-                    <p>-</p>
-                    <p *ngIf="trail.type == 0"><fa-icon [icon]="faPersonWalking"></fa-icon></p>
-                    <p *ngIf="trail.type == 1"><fa-icon [icon]="faBicycle"></fa-icon></p>
+            <div class="trailCardContainer" *ngFor="let trail of pagedTrails" (click)="getDetails(trail.id!)">
+                <!-- <div class="trailCard" *ngFor="let trail of trails">
+                    
+                </div> -->
+                <!-- <img [src]="trail.image" alt="trail image"> -->
+                <div class="trailImageContainer">
+                    <img [src]="trail.imageUrl" alt="image_trail">
                 </div>
-                <p class="textLocation">{{trail.location}}</p>
-                <p>{{trail.description}}</p>
+                <div class="trailCardInfo">
+                    <h2>{{trail.name}}</h2>
+                    <div class="trailCardInfoTop">
+                        <p>Facile</p>
+                        <p>-</p>
+                        <p>68 km</p>
+                        <p>-</p>
+                        <p *ngIf="trail.type == 0"><fa-icon [icon]="faPersonWalking"></fa-icon></p>
+                        <p *ngIf="trail.type == 1"><fa-icon [icon]="faBicycle"></fa-icon></p>
+                    </div>
+                    <p class="textLocation">{{trail.location}}</p>
+                    <p>{{trail.description}}</p>
+                </div>
             </div>
-        </div>
+            <mat-paginator 
+            [length]="trailsLength"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="[5, 10, 15]" 
+            (page)="onPageChange($event)"
+            ></mat-paginator>
+    </div>
+    <div *ngIf="emptyList" style="align-self: center; margin-top: 150px; margin-bottom: 150px;">
+        <h1>Aucune randonnée n'a été trouver</h1>
     </div>
 </div>

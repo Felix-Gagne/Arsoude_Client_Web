@@ -4,6 +4,11 @@ import { TrailDTO } from 'src/app/models/TrailDTO';
 import { TrailService } from 'src/app/service/trail.service';
 import { faPersonWalking, faBicycle, faBookmark, } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from 'src/app/service/user.service';
+import { CommentDTO } from 'src/app/models/CommentDTO';
+import { CommentsService } from 'src/app/service/comments.service';
+import { Comments } from 'src/app/models/Comments';
+import { NotifierService } from 'src/app/notifier.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-details',
@@ -23,24 +28,25 @@ export class DetailsComponent {
   isFavorite : boolean = false;
   Favorites : TrailDTO[] = []
   isOwner = false;
+  commentList : Comments[] = [];
+  commentInput? : string;
 
-  constructor( private router: Router,private trailService : TrailService, public userService: UserService){}
+  constructor( private router: Router,private trailService : TrailService, public userService: UserService, 
+    public commentService : CommentsService, public notifierService : NotifierService, public translate : TranslateService){}
 
   async ngOnInit(){
     var data = localStorage.getItem("trailid");
     if(data != null){
       this.trail = await this.trailService.getTrailDetails(parseInt(data));
     }
-    console.log(this.trail)
+
     this.checkOwnerByTrailId()
     this.Favorites = await this.trailService.getFavTrails();
-    console.log(this.Favorites.includes(this.trail!))
+
     for(let i =0; i < this.Favorites.length; i ++){
-    if(this.Favorites[i].id == this.trail?.id){
-
-      this.isFavorite= true;
-    }
-
+      if(this.Favorites[i].id == this.trail?.id){
+        this.isFavorite= true;
+      }
     }
 
     const startMarker: google.maps.LatLngLiteral = { 
@@ -55,6 +61,10 @@ export class DetailsComponent {
     
     this.markerPositions.push(startMarker, endMarker);
 
+    if(this.trail?.id != undefined){
+      this.commentList = await this.commentService.getComments(this.trail?.id)
+      console.log(this.commentList)
+    }
   }
 
   async addToFavorite(){
@@ -70,19 +80,30 @@ export class DetailsComponent {
   }
 
   async makePublic(){
-
-   let x = await this.trailService.SetVisibility(this.trail!.id!, true)
-   console.log(x);
-this.trail!.isPublic = true
-   
-
+    let x = await this.trailService.SetVisibility(this.trail!.id!, true)
+    console.log(x);
+    this.trail!.isPublic = true
   }
-  async makePrivate(){
 
+  async sendComments(){
+    if(this.commentInput != null && this.trail?.id != undefined){
+      let dto = new CommentDTO(this.commentInput, this.trail?.id);
+      await this.commentService.sendComment(dto);
+
+      this.notifierService.showNotification( this.translate.instant('commentNotification'), "success")
+
+      this.refreshPage()
+    }
+  }
+
+  async makePrivate(){
     let x = await this.trailService.SetVisibility(this.trail!.id!, false)
     console.log(x);
- this.trail!.isPublic = false
-    
- 
-   }
+    this.trail!.isPublic = false
+  }
+
+  refreshPage() {
+    window.location.reload();
+  }
+
 }

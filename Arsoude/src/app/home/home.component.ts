@@ -6,6 +6,8 @@ import { FilterDTO } from '../models/FilterDTO';
 import { TrailService } from '../service/trail.service';
 import { TrailDTO } from '../models/TrailDTO';
 import { TranslateService } from '@ngx-translate/core';
+import { NotifierService } from '../notifier.service';
+import VanillaTilt from 'vanilla-tilt';
 
 @Component({
   selector: 'app-home',
@@ -20,16 +22,28 @@ private readonly storage: Storage = inject(Storage);
 trails : TrailDTO[] = []
 searchInput: string = "";
 
-constructor(private helloService : HelloworldService, private router: Router, 
-  private trailservice : TrailService, private trailService : TrailService, private translate: TranslateService){}
-  
+constructor(private helloService : HelloworldService, 
+  private router: Router, 
+  private trailservice : TrailService, 
+  private trailService : TrailService,
+  private translate: TranslateService,
+  private notifierService: NotifierService){}
+
+  ngOnInit(): void {
+    const trailCard = document.querySelector<HTMLElement>("trailCard");
+    if (trailCard) {
+        VanillaTilt.init(trailCard, {
+            max: 25,
+            speed: 400
+        });
+    }
+}
+
 
   async GetHello() : Promise<void> {
-  
-  this.hello = await this.helloService.GetWord()
-  //let x = this.storage.getItem("téléchargement.png")
-
+    this.hello = await this.helloService.GetWord()
   }
+
   async uploadFile(input: HTMLInputElement) {
     if (!input.files) return
   
@@ -48,16 +62,11 @@ constructor(private helloService : HelloworldService, private router: Router,
 
   onEnter() : void {
     const searchObject = new FilterDTO(this.searchInput);
-
-    if(this.searchInput.trim() != ""){
-      localStorage.setItem("Search", JSON.stringify(searchObject));
-      this.router.navigate(['/search']);
-    }
+    localStorage.setItem("Search", JSON.stringify(searchObject));
+    this.router.navigate(['/search']);
   }
 
   async FilterTrail(){
     this.trails = await this.trailservice.searchTrails(this.filter);
   }
-
-
 }

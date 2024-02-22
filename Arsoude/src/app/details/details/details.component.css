@@ -1,15 +1,13 @@
 .container{
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-family: 'Plus Jakarta Sans';
     margin-left: 20%;
     margin-right: 15%;
-    height: 1100px;
     width: 60%;
     margin-top: 20px;
-    
 }
 
 h2, h3{
@@ -110,7 +108,7 @@ fa-icon{
     cursor: pointer;
 }
 
-i{
+.fa-bookmark{
     font-size: 35px;
 }
 
@@ -182,3 +180,148 @@ i:hover{
   .button-2:focus {
     background-color: #750303;
   }
+
+  .commentInput{
+    width: 100%;
+    height: 50px;
+    border-radius: 7px;
+    border-width: 3px;
+  }
+
+  .commentSend{
+    margin-top: 20px;
+    background-color: #31B1FF;
+    width:100px;
+    height: 30px;
+    border-radius: 5px;
+  }
+
+  /* .commentSend:hover{
+    margin-top: 20px;
+    background-color: #2697DC;
+    width:100px;
+    height: 30px;
+    border-radius: 5px;
+  } */
+
+  .commentImage{
+    width: 50px;
+    height: 50px;
+  }
+
+  .commentHeader{
+    display: inline-flex;
+  }
+
+  form {
+    display:flex;
+    flex-direction:row;
+    padding:1px;
+  }
+  
+  input {
+    flex-grow:2;
+    border:none;
+    font-size: 20px;
+    height:200px;
+  }
+  
+
+  button {
+    border:1px solid blue;
+    background:blue;
+    color:white;
+    justify-content: center;
+  }
+
+  input::placeholder{
+    font-size: 20px;
+  }
+
+  
+.map-container {
+    margin-top: 20px;
+}
+
+.comments_text {
+    position:relative;
+    width: 100%;
+    height: 100px;
+    border: 1px solid #6e6b6b;
+    padding: 10px;
+}
+
+button {
+    position:absolute;
+    top: 60px;
+    right:3px;
+    width: 60px;
+    margin-right: 10px;
+    transition: 0.3s;
+}
+
+button:hover{
+    background-color: #9fb9e0; 
+    cursor: pointer;
+}
+
+
+textarea {
+    border:none;
+    width: 100px;
+    resize: none;
+    outline: none;
+    font-size: 18px;
+    font-family: 'Plus Jakarta Sans';
+}
+
+textarea::placeholder{
+    font-size: 18px;
+    font-family: 'Plus Jakarta Sans';
+}
+
+.profile_photo{
+  height: 50px;
+  width: 50px;
+}
+
+.comment{
+  display: flex;
+  width: 99%;
+  margin-top: 25px;
+  padding: 15px;
+  outline: 1px solid rgb(158, 157, 157);
+  border-radius: 15px;
+}
+
+.user{
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  
+}
+
+.username{
+  margin:0;
+  margin-left: 10px;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.user_name{
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.date{
+  margin-top: 1px;
+}
+
+.fa-circle-check{
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+
+  

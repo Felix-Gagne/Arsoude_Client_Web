@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { TrailDTO } from '../models/TrailDTO';
 import { faPersonWalking, faBicycle, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { TrailService } from '../service/trail.service';
 import { FilterDTO } from '../models/FilterDTO';
 import { TrailType } from '../models/enum/Type';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-search',
@@ -20,17 +22,47 @@ export class SearchComponent {
   faPersonWalking = faPersonWalking;
   type : TrailType = TrailType.Undefined;
   radius : number = 0;
+  minRadius : number = 10;
 
-  constructor( private router: Router,private trailService : TrailService){}
+  emptyList : boolean = false;
+
+  //pagination
+  pagedTrails: TrailDTO[] = [];
+  currentPage: number = 1;
+  pageSize: number = 5;
+  trailsLength: number = 0;
+
+  constructor( private router: Router,private trailService : TrailService, private activedRoute: ActivatedRoute){}
 
   async ngOnInit(){
-    let data = localStorage.getItem("Search");
+    let param = this.activedRoute.snapshot.paramMap.get("keyword")
 
-    if(data != null){
-      this.trails = await this.trailService.searchTrails(JSON.parse(data));
+    let dto = new FilterDTO(param?.toString());
+
+    if(param != null){
+      this.trails = await this.trailService.searchTrails(dto);
       console.log(this.trails);
+      this.trailsLength = this.trails.length;
+      this.updatePagedTrail();
+    } else {
+      this.trails = await this.trailService.allTrails();
+      this.trailsLength = this.trails.length;
+      this.updatePagedTrail();
     }
   }
+
+  updatePagedTrail(){
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.pagedTrails = this.trails.slice(startIndex, endIndex);
+  }
+
+  onPageChange(event: any){
+    this.currentPage = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
+    this.updatePagedTrail();
+  }
+
 
   async Search(){
     let dto = new FilterDTO();
@@ -39,7 +71,7 @@ export class SearchComponent {
       dto.type = parseInt(this.type.toString());
     }
 
-    if(this.radius >= 10){
+    if(this.radius != 0){
       dto.distance = this.radius;
     }
 
@@ -47,14 +79,13 @@ export class SearchComponent {
       dto.Keyword = this.searchInput;
     }
 
-    try{
+    if(await this.trailService.searchTrails(dto) == "NoHikesFound"){
+      this.emptyList = true;
+    }
+    else{
       this.trails = await this.trailService.searchTrails(dto);
+      this.emptyList = false;
     }
-    catch(e){
-      console.log("Erreur : " + e);
-    }
-
-    console.log(dto);
   }
 
   onEnter() {

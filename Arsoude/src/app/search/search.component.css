@@ -142,3 +142,7 @@ select{
     margin-right: 2%;
     color: white;
 }
+
+mat-paginator{
+    margin-top: 20px;
+}

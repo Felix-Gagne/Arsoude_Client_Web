@@ -55,7 +55,7 @@ export class UserService {
       this.favTrail = await this.trailService.getFavTrails();
       
 
-      this.router.navigate(['/']);
+      this.router.navigate(['']);
     }
     catch(e){
       console.log("Erreur : " + e);
@@ -78,8 +78,9 @@ export class UserService {
     localStorage.removeItem('Token');
     localStorage.removeItem('admin');
     localStorage.removeItem('Username');
+    this.isAdmin = false;
     this.isConnected = false;
-    this.router.navigate(['/']);
+    this.router.navigate(['']);
   }
 
   verifyConnectedUser(){
