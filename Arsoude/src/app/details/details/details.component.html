@@ -54,16 +54,18 @@
                 <button class="commentSend" (click)="sendComments()"> {{'details.commentSend' | translate}} </button>
             </div>
 
-            <div class="comment" *ngFor="let comment of commentList">
-                <div class="user">
-                    <img class="profile_photo" src="assets\images\userPlaceHolder.png" alt="userImage">
-                    <div class="username">
-                        <p class="user_name" >{{userService.username}}<i *ngIf="comment.userHasCompleted == true" class="fa-solid fa-circle-check"></i></p>
-                        <p class="date">{{comment.date}}</p>
+            <div class="comments_countainer">
+                <div class="comment" *ngFor="let comment of commentList">
+                    <div class="user">
+                        <img class="profile_photo" src="assets\images\userPlaceHolder.png" alt="userImage">
+                        <div class="username">
+                            <p class="user_name" >{{userService.username}}<i *ngIf="comment.userHasCompleted == true" class="fa-solid fa-circle-check"></i></p>
+                            <p class="date">{{comment.date}}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="comment_text">
-                    <p>{{comment.text}}</p>
+                    <div class="comment_text">
+                        <p>{{comment.text}}</p>
+                    </div>
                 </div>
             </div>
         </div>
