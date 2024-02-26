@@ -24,17 +24,18 @@ export class ProfileComponent {
   firstName : string = "";
   username : string = "";
   areaCode : string = "";
-  HouseNo : number = 0;
+  HouseNo : string = "";
   Street : string = "";
   City : string = "";
   State : string = "";
-  YearOfBirth : number = 0;
-  MonthOfBirth : number = 0;
+  YearOfBirth : string = "";
+  MonthOfBirth : string = "";
   confirmPassword : string = "";
   userInfo !: ModifUserDTO;
   imageUrl? : string = "";
   hidePassword = true;
   Hasimage : boolean = false;
+  uploadInProgress:boolean = false;
 
   editProfilePrincipal = false;
   editProfileSecondary = false;
@@ -68,6 +69,7 @@ export class ProfileComponent {
     // À chaque fois que les valeurs changent, notre propriétés formData sera mise à jour
     this.form.valueChanges.subscribe(() => {
       this.formData = this.form.value;
+      
     });
     this.userInfo = await this.userService.getUserInfo(); 
     console.log(this.userInfo);
@@ -82,6 +84,31 @@ export class ProfileComponent {
      {
         this.Hasimage = true;
      }
+
+     if(this.userInfo.houseNo != null){
+      this.HouseNo = this.userInfo.houseNo.toString()
+    }
+
+    if(this.userInfo.street != null){
+      this.Street = this.userInfo.street
+    }
+
+    if(this.userInfo.city != null){
+      this.City = this.userInfo.city
+    }
+
+    if(this.userInfo.state != null){
+      this.State = this.userInfo.state
+    }
+
+    if(this.userInfo.yearOfBirth != null){
+      this.YearOfBirth = this.userInfo.yearOfBirth.toString()
+    }
+
+    if(this.userInfo.monthOfBirth != null){
+      this.MonthOfBirth = this.userInfo.monthOfBirth.toString()
+    }
+     
   }
 
   postalCodeValidator(): ValidatorFn {
@@ -164,19 +191,21 @@ export class ProfileComponent {
   }
 
   async update(){
+
     var newDto = new ModifUserDTO(
       this.lastName,
       this.firstName,
       this.areaCode,
-      this.HouseNo,
+      parseInt(this.HouseNo),
       this.Street,
       this.City,
       this.State,
-      this.YearOfBirth,
-      this.MonthOfBirth,
+      parseInt(this.YearOfBirth),
+      parseInt(this.MonthOfBirth),
       this.imageUrl,
       this.username
      )
+     console.log(newDto)
      var response = await this.userService.editUser(newDto);
      this.editProfilePrincipal = false;
      this.form.disable();
@@ -186,12 +215,44 @@ export class ProfileComponent {
   cancel() : void{
     this.editProfilePrincipal = false;
     this.editProfileSecondary = false;
+    this.lastName = this.userInfo.lastName!;
+    this.firstName = this.userInfo.firstName!;
+    this.username = this.userInfo.username!;
+    this.areaCode = this.userInfo.areaCode!;
+    if(this.userInfo.houseNo != null){
+      this.HouseNo = this.userInfo.houseNo.toString()
+    }
+
+    if(this.userInfo.street != null){
+      this.Street = this.userInfo.street
+    }
+
+    if(this.userInfo.city != null){
+      this.City = this.userInfo.city
+    }
+
+    if(this.userInfo.state != null){
+      this.State = this.userInfo.state
+    }
+
+    if(this.userInfo.yearOfBirth != null){
+      this.YearOfBirth = this.userInfo.yearOfBirth.toString()
+    }
+
+    if(this.userInfo.monthOfBirth != null){
+      this.MonthOfBirth = this.userInfo.monthOfBirth.toString();
+    }
+    
     this.form.disable()
     this.additionalForm.disable()
   }
+
   async uploadFile(input: HTMLInputElement) {
+    console.log("T'es pd?")
     if (!input.files) return
-  
+    
+    this.uploadInProgress = true;
+
     const files: FileList = input.files;
   
     for (let i = 0; i < files.length; i++) {
@@ -200,10 +261,15 @@ export class ProfileComponent {
             const storageRef = ref(this.storage, file.name);
             await uploadBytesResumable(storageRef, file);
             let test = await getDownloadURL(storageRef);
+            this.Hasimage = true;
             this.imageUrl = test;
+            await this.update();
             console.log(test);
         }
     }
+
+    this.uploadInProgress = false;
+    input.value = '';
   }
 
 }
