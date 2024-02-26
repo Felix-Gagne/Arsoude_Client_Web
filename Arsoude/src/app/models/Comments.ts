@@ -4,6 +4,6 @@ export class Comments{
         public text : string,
         public date : string,
         public userHasCompleted : boolean,
-        public Username : string
+        public username : string
     ){}
 }
