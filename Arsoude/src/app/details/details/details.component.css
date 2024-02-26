@@ -101,6 +101,7 @@ h3{
   justify-content: center;
   align-items: center;
   padding: 30px;
+  flex-direction: column;
 }
 
 fa-icon{
@@ -137,31 +138,24 @@ i:hover{
   cursor: pointer;
 }
 .button-3 {
+  margin: 0;
+  position:static;
   background-color: blue;
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
   color: #FFFFFF;
   cursor: pointer;
-  display: inline-block;
   font-family: 'Plus Jakarta Sans';    
   font-size: 14px;
   font-weight: 500;
-  height: 40px;
+  
   line-height: 20px;
   list-style: none;
-  margin-right: 50px;
-   
   outline: none;
   padding: 10px 16px;
-  position: relative;
   text-align: center;
-  text-decoration: none;
   transition: color 100ms;
-  vertical-align: baseline;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
 }
   
   .button-3:hover,
@@ -169,30 +163,24 @@ i:hover{
     background-color: #31b2ee;
   }
 .button-2 {
-    background-color: red;
-    border-radius: 8px;
-    border-style: none;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    font-family: 'Plus Jakarta Sans';    
-    font-size: 14px;
-    font-weight: 500;
-    height: 40px;
-    margin-right: 50px;
-    line-height: 20px;
-    list-style: none;
-    outline: none;
-    padding: 10px 16px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    transition: color 100ms;
-    vertical-align: baseline;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
+  margin: 0;
+  position:static;
+  background-color: red;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans';    
+  font-size: 14px;
+  font-weight: 500;
+  
+  line-height: 20px;
+  list-style: none;
+  outline: none;
+  padding: 10px 16px;
+  text-align: center;
+  transition: color 100ms;
   }
   
   .button-2:hover,
