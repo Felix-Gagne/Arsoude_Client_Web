@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { faAngleDown, faBicycle, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { TrailService } from './service/trail.service';
+import { ModifUserDTO } from 'src/app/models/ModifUserDTO';
 
 @Component({
   selector: 'app-root',
@@ -18,12 +19,17 @@ export class AppComponent {
   SelectLanguage : string = "fr";
   SelectedLanguage : string = "Français";
   public href: string = "";
-
-
+  userInfo !: ModifUserDTO;
+  hasImage:boolean = false;
+  imageUrl : String = "";
   constructor(public userService : UserService, private translate : TranslateService, public router: Router, public trailService : TrailService, private elementRef: ElementRef) { }
 
-  ngOnInit(): void{
-
+  async ngOnInit(){
+    this.userInfo = await this.userService.getUserInfo(); 
+    if(this.userInfo.avatarUrl != null && this.userInfo.avatarUrl != ""){
+      this.hasImage = true;
+      this.imageUrl = this.userInfo.avatarUrl;
+    }
    
     this.userService.verifyConnectedUser();
     this.subMenu = document.getElementById("subMenu");
@@ -78,6 +84,7 @@ export class AppComponent {
     if(this.subMenu){
       this.subMenu.classList.remove("open-menu");
     }
+    this.imageUrl =  "";
     this.userService.Logout();
   }
 

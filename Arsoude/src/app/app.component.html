@@ -28,13 +28,14 @@
                     <button *ngIf="!userService.isConnected" class="button" routerLink="/login">{{'header.loginButton' | translate}}</button>
                     <nav>
                         <div class="box" *ngIf="userService.isConnected">
-                            <img src="assets\images\userPlaceHolder.png" alt="userPlaceHolder" (click)="toggleMenu()">
+                            <img *ngIf="!hasImage" src="assets\images\userPlaceHolder.png" alt="userPlaceHolder" (click)="toggleMenu()">
+                            <img *ngIf="hasImage" [src]="imageUrl" alt="userPlaceHolder" (click)="toggleMenu()">
                         </div>
                         <div class="sub-menu-wrap" id="subMenu" >
                             <div class="sub-menu">
                                 <div class="user-info">
-                                    <img src="assets\images\userPlaceHolder.png" alt="userImage">
-                                    <h4>{{userService.username}}</h4>
+                                    <img *ngIf="!hasImage" src="assets\images\userPlaceHolder.png" alt="userPlaceHolder" (click)="toggleMenu()">
+                                    <img *ngIf="hasImage" [src]="imageUrl" alt="userPlaceHolder" (click)="toggleMenu()">                                    <h4>{{userService.username}}</h4>
                                 </div>
                                 <hr>
  
