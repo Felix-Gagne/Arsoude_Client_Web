@@ -8,7 +8,7 @@
                     <h3 style="font-weight: 400;">{{this.trail!.location}}</h3>
                 </div>
             </div>
-            <div class="favorite">
+            <div *ngIf="userService.isConnected" class="favorite">
                 <fa-icon  *ngIf="this.isFavorite == true && userService.isConnected" (click)="addToFavorite()" class="bookMark" [icon]="faBookMark"></fa-icon>
                 <i *ngIf="this.isFavorite == false && userService.isConnected" (click)="addToFavorite()" class="fa-regular fa-bookmark"></i>
             </div>
@@ -24,7 +24,7 @@
                     <h3 style="font-weight: 400;">{{this.trail!.location}}</h3>
                 </div>
             </div>
-            <div class="favorite">
+            <div *ngIf="userService.isConnected" class="favorite">
                 <fa-icon  *ngIf="this.isFavorite == true && userService.isConnected" (click)="addToFavorite()" class="bookMark" [icon]="faBookMark"></fa-icon>
                 <i *ngIf="this.isFavorite == false && userService.isConnected" (click)="addToFavorite()" class="fa-regular fa-bookmark"></i>
             </div>
