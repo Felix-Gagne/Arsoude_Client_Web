@@ -32,23 +32,25 @@
     </div>
    
     <div class="detail_box_2">
-        <div>
-            <p class="descriptionContainer">
-                {{this.trail!.description}}
-            </p>
-        </div>     
-        <div class="typeContainer">
-            <div>
-                <p *ngIf="this.trail!.type == 0"><fa-icon [icon]="faPersonWalking"></fa-icon></p>
-                <p *ngIf="this.trail!.type == 1"><fa-icon [icon]="faBicycle"></fa-icon></p>
-            </div>
-            <div *ngIf="isOwner">
-                <button *ngIf="this.trail!.isPublic"  type="button" class="button-2" (click)="makePrivate()" >
-                    <i class="fa-solid fa-lock"></i>
-                </button>
-                <button *ngIf="!this.trail!.isPublic"  type="button" class="button-3" (click)="makePublic()" >
-                    <i class="fa-solid fa-globe"></i>
-               </button>
+        <div class="infoText">
+            <div class="descriptionDiv">
+                <p class="descriptionContainer">
+                    {{this.trail!.description}}
+                </p>
+            </div>     
+            <div class="typeContainer">
+                <div>
+                    <p class="iconMonsieur" *ngIf="this.trail!.type == 0"><fa-icon [icon]="faPersonWalking"></fa-icon></p>
+                    <p *ngIf="this.trail!.type == 1"><fa-icon [icon]="faBicycle"></fa-icon></p>
+                </div>
+                <div *ngIf="isOwner">
+                    <button *ngIf="this.trail!.isPublic"  type="button" class="button-2" (click)="makePrivate()" >
+                        <i class="fa-solid fa-lock"></i>
+                    </button>
+                    <button *ngIf="!this.trail!.isPublic"  type="button" class="button-3" (click)="makePublic()" >
+                        <i class="fa-solid fa-globe"></i>
+                   </button>
+                </div>
             </div>
         </div>
         
