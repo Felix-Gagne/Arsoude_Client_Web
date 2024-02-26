@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TrailDTO } from 'src/app/models/TrailDTO';
 import { TrailService } from 'src/app/service/trail.service';
@@ -9,6 +9,7 @@ import { CommentsService } from 'src/app/service/comments.service';
 import { Comments } from 'src/app/models/Comments';
 import { NotifierService } from 'src/app/notifier.service';
 import { TranslateService } from '@ngx-translate/core';
+import { GoogleMap } from '@angular/google-maps';
 
 @Component({
   selector: 'app-details',
@@ -30,11 +31,21 @@ export class DetailsComponent {
   isOwner = false;
   commentList : Comments[] = [];
   commentInput? : string;
+  isUndefined : boolean = false;
+
+  @ViewChild('googlemaps') map!: GoogleMap;
+
 
   constructor( private router: Router,private trailService : TrailService, public userService: UserService, 
     public commentService : CommentsService, public notifierService : NotifierService, public translate : TranslateService){}
 
   async ngOnInit(){
+
+    if(this.trail?.imageUrl == undefined)
+    {
+      this.isUndefined = true;
+    }
+
     var data = localStorage.getItem("trailid");
     if(data != null){
       this.trail = await this.trailService.getTrailDetails(parseInt(data));
@@ -43,7 +54,7 @@ export class DetailsComponent {
     this.checkOwnerByTrailId()
     this.Favorites = await this.trailService.getFavTrails();
 
-    for(let i =0; i < this.Favorites.length; i ++){
+    for(let i = 0; i < this.Favorites.length; i ++){
       if(this.Favorites[i].id == this.trail?.id){
         this.isFavorite= true;
       }
@@ -61,11 +72,23 @@ export class DetailsComponent {
     
     this.markerPositions.push(startMarker, endMarker);
 
+
     if(this.trail?.id != undefined){
       this.commentList = await this.commentService.getComments(this.trail?.id)
-      console.log(this.commentList)
     }
+
+    let bounds = new google.maps.LatLngBounds()
+    for (let marker of this.markerPositions) {
+      // On agrandi les limites avec nos coordonnées
+      bounds.extend(marker);
+    }
+    // On ajuste la carte aux limites
+    // Le center et le niveau de zoom sont assignés automatiquement
+    this.map!.fitBounds(bounds);
+
   }
+
+
 
   async addToFavorite(){
     this.isFavorite = !this.isFavorite;
@@ -75,13 +98,11 @@ export class DetailsComponent {
 
   async checkOwnerByTrailId(){
     let x =await this.trailService.checkOwnerByTrailId(this.trail?.id!);
-    console.log(x);
     this.isOwner = x;
   }
 
   async makePublic(){
     let x = await this.trailService.SetVisibility(this.trail!.id!, true)
-    console.log(x);
     this.trail!.isPublic = true
   }
 
@@ -92,13 +113,12 @@ export class DetailsComponent {
 
       this.notifierService.showNotification( this.translate.instant('commentNotification'), "success")
 
-      this.refreshPage()
+      this.refreshPage();
     }
   }
 
   async makePrivate(){
     let x = await this.trailService.SetVisibility(this.trail!.id!, false)
-    console.log(x);
     this.trail!.isPublic = false
   }
 
