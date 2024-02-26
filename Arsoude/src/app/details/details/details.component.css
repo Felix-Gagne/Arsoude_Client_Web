@@ -199,6 +199,7 @@ i:hover{
     margin-bottom: 40px;
     grid-column-start: 1;
     grid-column-end: end;
+    border-radius: 15px;
   }
 
 .comments_countainer{
