@@ -28,6 +28,8 @@ import { ApproveComponent } from './admin/approve/approve.component';
 import { UserTrailsComponent } from './userLisfOfTrails/user-trails/user-trails.component';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { MatInputModule } from '@angular/material/input';
+import { SlotMachineComponent } from './SlotMachine/slot-machine/slot-machine.component';
+import { SlotMachine2Component } from './slot2/slot-machine2/slot-machine2.component';
 
 export function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http);
@@ -48,6 +50,8 @@ export function HttpLoaderFactory(http: HttpClient){
     DetailsComponent,
     UserTrailsComponent,
     ProfileComponent,
+    SlotMachineComponent,
+    SlotMachine2Component,
   ],
   imports: [
     BrowserModule,

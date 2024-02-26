@@ -1,0 +1,10 @@
+<div class="slot-machine">
+    <div class="reel" *ngFor="let reel of reels; let i = index" [@cardSpinner]>
+      <div class="symbol" *ngFor="let symbol of reel; let j = index" (click)="info(i, j)">
+        {{ symbol }}
+      </div>
+    </div>
+</div>
+<button (click)="spin()">Spin</button>
+
+  

@@ -15,9 +15,11 @@ import { HelpPageComponent } from './help-page/help-page.component';
 import { DetailsComponent } from './details/details/details.component';
 import { UserTrailsComponent } from './userLisfOfTrails/user-trails/user-trails.component';
 import { ProfileComponent } from './profile/profile/profile.component';
+import { SlotMachineComponent } from './SlotMachine/slot-machine/slot-machine.component';
+import { SlotMachine2Component } from './slot2/slot-machine2/slot-machine2.component';
 
 const routes : Routes = [
-  {path: '', component : HomeComponent},
+  {path: '', component : SlotMachine2Component},
   {path:'login', component : LoginComponent},
   {path: 'register', component : RegisterComponent},
   {path:'infoReg/:username', component : InfoRegComponent},

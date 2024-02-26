@@ -1,0 +1,22 @@
+.slot-machine {
+    display: inline-block;
+    width: 500px; /* Adjust as needed */
+    height: 500px; /* Adjust as needed */
+    border: 1px solid black; /* Add border for the box */
+    overflow: hidden; /* Ensure the reels stay within the box */
+  }
+  
+  .reel {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 10%; /* Each reel occupies 10% of the height */
+  }
+  
+  .symbol {
+    width: 10%; /* Each symbol occupies 10% of the reel's width */
+    height: 100%; /* Each symbol occupies 100% of the reel's height */
+    font-size: 20px; /* Adjust as needed */
+    text-align: center;
+    box-sizing: border-box; /* Include border in width and height calculations */
+  }

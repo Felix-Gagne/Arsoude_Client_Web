@@ -1,0 +1,9 @@
+<div class="game-area">
+    <div class="card" *ngFor="let card of cards" [@cardSpinner]="card.state" [style.background]="card.color">
+        <p style="font-size: 24px; text-align: center;">{{card.value}}</p>
+    </div>
+</div>
+
+<button type="button" class="spin-btn green-btn" aria-label="Spin" (click)="animateSpin()">
+    <span>S P I N</span>
+</button>
