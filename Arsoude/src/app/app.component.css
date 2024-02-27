@@ -226,7 +226,7 @@ footer {
 
     .footer_logo {
         padding-bottom: 2%;
-        width: 15%;
+        width: 40%;
     }
 
 
@@ -234,9 +234,6 @@ footer {
         padding-right: 3%;
     }
 
-    .footer_options {
-        width: 300%;
-    }
 
     .footer_sepator {
         background-color: white;
@@ -266,8 +263,8 @@ footer {
     }
 
     .footer_language {
-        margin-left: 83.5%;
-        margin-top: -5%;
+        margin-left: 9.1%;
+        margin-top: 2%;
     }
 
     .dropdown {
@@ -321,7 +318,7 @@ footer {
 
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 972px) {
+@media only screen and (max-width: 972px) and (min-width: 94px) {
     .header{
         font-size: 17px;
     }
@@ -357,10 +354,23 @@ footer {
         justify-content: center;
         align-items: center;
     }
+
+    .footer_texte_small{
+        display: none;
+    }
+
+    .footer_texte{
+        display: none;
+    }
+
+    .footer_options{
+        display: flex;
+        width: auto;
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (max-width: 998px) {
+@media only screen and (max-width: 998px) and (min-width: 973px) {
     .header{
         font-size: 13px;
     }
@@ -369,6 +379,14 @@ footer {
         height: 50%;
         width: 50%;
         padding-left: 10%;
+    }
+
+    .footer_texte_small{
+        display: none;
+    }
+
+    .footer_texte{
+        display: none;
     }
 }
 
@@ -382,6 +400,14 @@ footer {
         height: 55%;
         width: 55%;
         padding-left: 10%;
+    }
+
+    .footer_texte_small{
+        display: none;
+    }
+
+    .footer_texte{
+        display: none;
     }
 }
 
@@ -398,7 +424,42 @@ footer {
         padding-left: 10%;
     }
 
+    .footer_texte_small{
+        display: none;
+    }
+
+    .footer_texte{
+        display: none;
+    }
    
+
+}
+
+@media only screen and (max-width: 1365px) and (min-width: 1088px){
+
+    .footer_texte_small{
+        display: none;
+    }
+
+    .footer_texte{
+        display: none;
+    }
+
+    
+
+}
+
+
+
+@media only screen and (max-width: 1608px){
+
+    .footer_texte_small{
+        display: none;
+    }
+
+    .footer_texte{
+        display: none;
+    }
 
 }
 

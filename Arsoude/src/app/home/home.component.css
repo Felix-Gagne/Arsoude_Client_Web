@@ -224,6 +224,10 @@ span{
     .divFlex{
         display: none;
     }
+
+    .container4>img{
+        display: none;
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -279,6 +283,10 @@ span{
 
     .container4{
         height: 650px;
+    }
+
+    .container4>img{
+        display: none;
     }
 }
 
@@ -336,6 +344,10 @@ span{
 
     .container4{
         height: 650px;
+    }
+
+    .container4>img{
+        display: none;
     }
 }
 
