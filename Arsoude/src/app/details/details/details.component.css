@@ -52,7 +52,8 @@ h3{
   justify-content: flex-end;
   color: white;    
   padding-top: 250px;
-  background-size:100%;
+  background-repeat: no-repeat;
+  background-size: cover;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.51); 
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.51);
 }
@@ -368,14 +369,15 @@ textarea::placeholder{
   .detail_box_1{
     display: flex;
     flex-direction: row;
+    width: 100%;
   }
 
   h2{
-    font-size: 18px;
+    font-size: 13px;
   }
 
   h3, .fa-location-dot, .fa-bookmark{
-    font-size: 18px;
+    font-size: 10px;
   }
 
   .descriptionContainer{
@@ -419,11 +421,11 @@ textarea::placeholder{
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 699px) and (min-width: 560px) {
   h2{
-    font-size: 20px;
+    font-size: 18px;
   }
 
   h3, .fa-location-dot, .fa-bookmark{
-    font-size: 15px;
+    font-size: 12px;
   }
 
   .descriptionContainer{
@@ -440,11 +442,51 @@ textarea::placeholder{
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 980px) and (min-width: 700px){
   h2{
+    font-size: 20px;
+  }
+
+  h3, .fa-location-dot, .fa-bookmark{
+    font-size: 16px;
+  }
+
+  .descriptionContainer{
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  .favorite{
+    margin-top: 60px;
+    height: 60px;
+  }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 1000px){
+  h2{
     font-size: 25px;
   }
 
   h3, .fa-location-dot, .fa-bookmark{
     font-size: 20px;
+  }
+
+  .descriptionContainer{
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  .favorite{
+    margin-top: 60px;
+    height: 60px;
+  }
+}
+
+@media only screen and (max-width: 1000px) and (min-width: 981px){
+  h2{
+    font-size: 22px;
+  }
+
+  h3, .fa-location-dot, .fa-bookmark{
+    font-size: 19px;
   }
 
   .descriptionContainer{
