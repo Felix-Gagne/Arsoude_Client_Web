@@ -19,7 +19,7 @@ import { SlotMachineComponent } from './SlotMachine/slot-machine/slot-machine.co
 import { SlotMachine2Component } from './slot2/slot-machine2/slot-machine2.component';
 
 const routes : Routes = [
-  {path: '', component : SlotMachine2Component},
+  {path: '', component : SlotMachineComponent},
   {path:'login', component : LoginComponent},
   {path: 'register', component : RegisterComponent},
   {path:'infoReg/:username', component : InfoRegComponent},

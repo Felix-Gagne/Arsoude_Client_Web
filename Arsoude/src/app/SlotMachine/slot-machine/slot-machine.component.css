@@ -1,22 +1,53 @@
 .slot-machine {
-    display: inline-block;
-    width: 500px; /* Adjust as needed */
-    height: 500px; /* Adjust as needed */
-    border: 1px solid black; /* Add border for the box */
-    overflow: hidden; /* Ensure the reels stay within the box */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 60%;
+  width: fit-content;
+  overflow: hidden;
+  margin: 10%;
+  background-color: aquamarine;
+}
+
+.reel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  padding: 10px;
+}
+
+.symbol {
+  font-size: 5em;
+  margin: 20px;
+}
+
+.reel-column {
+  margin: 0 20px; /* Adjust spacing between columns */
+  position: relative;
+}
+
+button {
+  font-size: 1em;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+/* Define animation styles */
+@keyframes spin {
+  0% {
+    transform: translateY(-100%);
   }
-  
-  .reel {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 10%; /* Each reel occupies 10% of the height */
+  100% {
+    transform: translateY(0%);
   }
-  
-  .symbol {
-    width: 10%; /* Each symbol occupies 10% of the reel's width */
-    height: 100%; /* Each symbol occupies 100% of the reel's height */
-    font-size: 20px; /* Adjust as needed */
-    text-align: center;
-    box-sizing: border-box; /* Include border in width and height calculations */
-  }
+}
+
+.spin-animation {
+  animation-name: spin;
+  animation-duration: 1s; /* Adjust duration as needed */
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}

@@ -1,10 +1,41 @@
 <div class="slot-machine">
-    <div class="reel" *ngFor="let reel of reels; let i = index" [@cardSpinner]>
-      <div class="symbol" *ngFor="let symbol of reel; let j = index" (click)="info(i, j)">
-        {{ symbol }}
+  <div class="reel reel-column" id="column" [@boxAnimation]>
+    <div *ngFor="let reel of reels; let i = index">
+      <div class="symbol" (click)="info(i, 0)">
+        {{ reels[i][0] }}
       </div>
     </div>
+  </div>
+  <!-- Repeat the above structure for other columns -->
+  <div class="reel reel-column" id="column2" [@boxAnimation]>
+    <div *ngFor="let reel of reels; let i = index">
+      <div class="symbol" (click)="info(i, 1)">
+        {{ reels[i][1] }}
+      </div>
+    </div>
+  </div>
+  <div class="reel reel-column" id="column3" [@boxAnimation]>
+    <div *ngFor="let reel of reels; let i = index">
+      <div class="symbol" (click)="info(i, 2)">
+        {{ reels[i][2] }}
+      </div>
+    </div>
+  </div>
+  <div class="reel reel-column" id="column4" [@boxAnimation]>
+    <div *ngFor="let reel of reels; let i = index">
+      <div class="symbol" (click)="info(i, 3)">
+        {{ reels[i][3] }}
+      </div>
+    </div>
+  </div>
+  <div class="reel reel-column" id="column5" [@boxAnimation]>
+    <div *ngFor="let reel of reels; let i = index">
+      <div class="symbol" (click)="info(i, 4)">
+        {{ reels[i][4] }}
+      </div>
+    </div>
+  </div>
+  <!-- Button for spinning -->
 </div>
 <button (click)="spin()">Spin</button>
-
-  
+<h1>{{compteur}}</h1>

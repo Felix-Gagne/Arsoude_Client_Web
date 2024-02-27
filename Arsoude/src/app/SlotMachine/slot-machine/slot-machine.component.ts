@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { trigger, transition, style, animate, state } from '@angular/animations';
+import { trigger, transition, style, animate, state, AnimationPlayer, AnimationBuilder } from '@angular/animations';
 
 @Component({
   selector: 'app-slot-machine',
@@ -20,41 +20,159 @@ import { trigger, transition, style, animate, state } from '@angular/animations'
 export class SlotMachineComponent implements OnInit {
   symbols: string[] = ['🍒', '🍊', '🍋', '🍇', '🍉', '🍓'];
   reels: string[][] = [];
+  compteur: number = 0;
+  animationPlayers: AnimationPlayer[] = [];
 
-  constructor() {}
+  constructor(private animationBuilder: AnimationBuilder) { }
 
   ngOnInit() {
     // Generate a 10x10 grid
-    this.reels = this.generateGrid(3, 5);
+    this.reels = this.generateGrid(50, 5);
   }
 
   async spin() {
-    var spinDuration = 1000; // Spin duration in milliseconds
+
+    var spinDuration = 500;
     const startTime = Date.now();
-  
+
     const spinPromises = [];
-  
-    // Start spinning all columns simultaneously
+
+
+
     for (let i = 0; i < this.reels[0].length; i++) {
-      spinDuration += 500;
-      spinPromises.push(this.spinColumn(i, startTime, spinDuration));
+      spinDuration += 1000;
+
+      const reelElement = document.querySelector(`.reel:nth-child(${i + 1})`);
+      if (reelElement) {
+        const animation = this.animationBuilder.build([
+          style({ transform: "translateY(-100%)", opacity: 0 }),
+          animate(`${spinDuration}ms ease-out`, style({ transform: "translateY(0%)", opacity: 1 }))
+        ]);
+        const player = animation.create(document.querySelector(`.reel:nth-child(${i + 1})`));
+        this.animationPlayers.push(player);
+        player.play();
+      }
+      spinPromises.push(this.spinColumn(i));
     }
-  
-    // Wait for all columns to finish spinning
+    console.log(this.reels);
     await Promise.all(spinPromises);
+     console.log(this.verifyConnections())
+
+
   }
-  
-  async spinColumn(columnIndex: number, startTime: number, spinDuration: number) {
-    const endTime = startTime + spinDuration;
-  
-    while (Date.now() < endTime) {
-      // Spin the symbols in the current column
-      for (let i = 0; i < this.reels.length; i++) {
-        await this.spinSymbol(columnIndex, i);
+
+  /*async verifyConnections(){
+    let score = 0;
+    var connexionWork = true;
+    var collumn = 1;
+    const reels = this.reels;
+
+    reels.forEach((rowArray, row) => {
+        if (row >= 23 && row <= 27) {
+            rowArray.forEach(async (symbol, column) => {
+                if (column < rowArray.length - 1) {
+                    while (connexionWork) {
+                        if (symbol === reels[row][collumn]) {
+                            score++;
+                            if(collumn < 5){
+                              collumn++;
+                            }
+                        }
+                        if (symbol === reels[row + 1][column]) {
+                            score++;
+                        }
+                        // Assuming some condition breaks the while loop
+                    }
+                }
+            });
+        }
+    });
+
+    for (let row = 23; row <= 27; row++) {
+      for (let column = 0; column < this.reels[row].length - 1; column++) {
+        // Comparaison des symboles adjacents horizontalement
+        while(connexionWork){
+          if (this.reels[row][column] === this.reels[row][column + 1]) {
+            score++;
+          }
+          //verify vertical
+          if(this.reels[row][column] === this.reels[row+1][column]){
+            score++;
+          }
+        }
+        
       }
     }
+  }*/
+
+  explorationStack: { x: number, y: number }[] = [];
+  exploredSet: Set<{ x: number, y: number }> = new Set();
+  currentValue: string = '';
+  score = 0;
+
+
+   verifyConnections() : number {
+    this.score = 0;
+    this.explorationStack = [{ x: 23, y: 0 }];
+    this.exploredSet = new Set();
+    this.currentValue = this.reels[this.explorationStack[0].x][this.explorationStack[0].y];
+    this.explore(this.explorationStack[0].x, this.explorationStack[0].y);
+    return this.score;
   }
-  
+
+
+  explore(x: number, y: number) {
+    if (!this.exploredSet.has({ x: x, y: y })) {
+      this.exploredSet.add({x: x, y: y})
+      if (this.isBounded(x, y + 1) && this.reels[x][y + 1] == this.currentValue) {
+        this.score++;
+        console.log(x,y+1)
+        console.log(this.isBounded(x, y + 1))
+        if(this.isBounded(x, y+1) && this.reels[x][y +2] == this.currentValue){
+          this.score ++
+          this.explore(x, y+2)
+        }
+        if(this.isBounded(x, y+1) && this.reels[x + 1][y +1] == this.currentValue){
+          this.score ++
+          this.explore(x, y+2)
+        }
+      
+      } else if (this.isBounded(x + 1, y) && this.reels[x + 1][y] == this.currentValue) {
+        this.score++;
+        console.log(x+1,y)
+        console.log(this.isBounded(x, y + 1))
+
+        
+      } else if (this.isBounded(x - 1, y) && this.reels[x - 1][y] == this.currentValue) {
+        this.score++;
+        console.log(x-1,y)
+        console.log(this.isBounded(x, y + 1))
+
+        
+      } else if (this.isBounded(x, y - 1) && this.reels[x][y - 1] == this.currentValue) {
+        this.score++;
+        console.log(x,y-1)
+        console.log(this.isBounded(x, y + 1))
+      
+      }
+
+    }
+  }
+
+  isBounded(x: number, y: number): boolean {
+    return x >= 23 && x <= 26 && y >= 0 && y <= 4;
+  }
+
+  async spinColumn(columnIndex: number) {
+
+
+    // Spin the symbols in the current column
+    for (let i = 0; i < this.reels.length; i++) {
+      this.reels[i][columnIndex] = this.getRandomSymbol(); // Update symbol
+    }
+
+  }
+
   async spinSymbol(columnIndex: number, rowIndex: number) {
     const delay = 50; // Adjust delay as needed
     return new Promise<void>((resolve) => {
@@ -81,7 +199,11 @@ export class SlotMachineComponent implements OnInit {
     return grid;
   }
 
-  info(row: number, column: number){
+  sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  info(row: number, column: number) {
     console.log(`Clicked symbol at row ${row}, column ${column}`);
 
   }
