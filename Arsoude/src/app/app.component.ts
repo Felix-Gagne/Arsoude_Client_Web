@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { faAngleDown, faBicycle, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { TrailService } from './service/trail.service';
+import { Level } from './models/Level';
 
 @Component({
   selector: 'app-root',
@@ -17,12 +18,13 @@ export class AppComponent {
   subMenu: HTMLElement | null = null;
   SelectLanguage : string = "fr";
   SelectedLanguage : string = "Français";
+  lvl !: Level;
   public href: string = "";
 
 
   constructor(public userService : UserService, private translate : TranslateService, public router: Router, public trailService : TrailService, private elementRef: ElementRef) { }
 
-  ngOnInit(): void{
+  async ngOnInit(){
 
    
     this.userService.verifyConnectedUser();
@@ -33,6 +35,9 @@ export class AppComponent {
       this.SelectLanguage = data;
     }
     this.useLanguage();
+
+    this.lvl = await this.userService.getUserLevel();
+    console.log(this.lvl);
   }
 
   useLanguage(){

@@ -316,6 +316,18 @@ footer {
     margin: 6px 0;
 }
 
+.turn{
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.turn span{
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+}
+
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 972px) and (min-width: 94px) {
