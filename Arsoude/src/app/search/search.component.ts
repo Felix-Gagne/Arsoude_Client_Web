@@ -84,7 +84,10 @@ export class SearchComponent {
       this.emptyList = true;
     }
     else{
+      
       this.trails = await this.trailService.searchTrails(dto);
+      this.updatePagedTrail();
+      console.log(this.trails);
       this.emptyList = false;
     }
   }
