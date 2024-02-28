@@ -55,7 +55,6 @@ export class SearchComponent {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.pagedTrails = this.trails.slice(startIndex, endIndex);
-    console.log(this.pagedTrails)
   }
 
   onPageChange(event: any){

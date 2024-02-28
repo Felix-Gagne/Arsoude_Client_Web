@@ -33,12 +33,14 @@ export class TrailService {
 
   checkToken(): boolean {
     const token = localStorage.getItem('Token');
+    console.log(token);
     return !!token;
   }
 
   async CreateTrail(trail: TrailDTO) {
     try {
       let response = await lastValueFrom(this.http.post<any>(this.baseUrl + "CreateTrail", trail));
+      console.log(response);
       this.router.navigate(['/']);  
     } catch (error) {
       if (error instanceof HttpErrorResponse && error.error instanceof ErrorEvent) {
@@ -56,6 +58,7 @@ export class TrailService {
   async GetUserTrails(){
     try{
       let x = await lastValueFrom(this.http.get<any>(this.baseUrl+"GetUserTrails"));
+      console.log(x);
       return x;
     }
     catch(e){
@@ -66,6 +69,7 @@ export class TrailService {
   async AddFavorite(Id : number){
      try{
       let x = await lastValueFrom(this.http.post<any>(this.baseUrl+"ManageTrailFavorite/"+Id, null))
+      console.log(x);
      }
      catch(e){
       console.log(e);
@@ -76,6 +80,7 @@ export class TrailService {
     
     try{
       let x = await lastValueFrom(this.http.get<any>(this.baseUrl + "GetAllTrails"));
+      console.log(x);
       return x;
     }
     catch(error){
@@ -89,11 +94,15 @@ export class TrailService {
     await this.http.get(this.url).subscribe((res : any)=> {
       this.coordinates.latitude = res.latitude
       this.coordinates.longitude = res.longitude
+      console.log(this.coordinates)
     });
     filter.coordinates = this.coordinates;
 
     try{
+      console.log(filter);
+
       let trails = await lastValueFrom(this.http.post<any>(this.baseUrl + "GetFilteredTrails", filter));
+      console.log(trails)
       return trails;
     }
     catch(error : any){
@@ -105,6 +114,7 @@ export class TrailService {
   async getTrailDetails(trailId : number){
     try{
       let x = await lastValueFrom(this.http.get<TrailDTO>(this.baseUrl+"GetTrail/"+ trailId))
+      console.log(x);
       return x;
     }
     catch(e){
@@ -126,6 +136,7 @@ export class TrailService {
   async getFavTrails(){
     try{
       let x = await lastValueFrom(this.http.get<TrailDTO[]>(this.baseUrl+"GetFavoriteTrails"))
+      console.log(x);
       return x;
     }
     catch(e){
@@ -137,6 +148,7 @@ export class TrailService {
   async checkOwnerByTrailId(trailId: number){
     try{
       let x = await lastValueFrom(this.http.get<boolean>(this.baseUrl+"CheckOwnerByTrailId/" + trailId))
+      console.log(x);
       return x;
     }
     catch(e){
@@ -158,6 +170,7 @@ export class TrailService {
     try{
 
     let x = await lastValueFrom(this.http.get<any>(this.baseUrl+"SetTrailStatus/"+trailId+"/"+status))
+    console.log(x)
 
     }
     catch(e){
