@@ -76,11 +76,6 @@ h1{
     cursor: pointer;
 }
 
-.trailImageContainer{
-    width: 400px;
-    height: 250px;
-    margin-right: 3%;
-}
 
 .trailCardContainer>.trailImageContainer>img{
     width: 400px;
@@ -88,6 +83,36 @@ h1{
     object-fit: cover;
     border-radius: 20px;
     transition: 0.3s;
+}
+
+.trailCardContainer2{
+    flex-direction: column;
+    transition: 0.2s;
+    border-radius: 20px;
+    width: 100%;
+    padding: 20px;
+    display: none;
+}
+
+.trailCardContainer2:hover{
+    box-shadow: 0px 0px 32px 14px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+
+.trailCardContainer2>.trailImageContainer>img{
+    width: 400px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.trailImageContainer{
+    width: 400px;
+    height: 250px;
+    margin-right: 3%;
+    margin-bottom: 10px;
 }
 
 .trailCardInfoTop{
@@ -113,7 +138,6 @@ select {
 
 .filterContainerLeft{
     width: 100%;
-    
 }
 
 .checkInput{
@@ -145,4 +169,85 @@ select{
 
 mat-paginator{
     margin-top: 20px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 200px) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 708px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 699px) and (min-width: 300px) {
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .trailCardContainer{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+        margin-bottom: 15px;
+    }
+    
+    .trailImageContainer{
+        margin-right: 0;
+        margin-top: 5px;
+    }
+
+    .trailCardContainer>.trailImageContainer>img{
+        width: 400px;
+    }
+
+    .filterContainer{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .searchInput{
+        width: 100%;
+    }
+
+    .filterContainerRight{
+        width: 100%;
+    }
+
+    .trailCardInfo{
+        width: 400px;
+    }
+
+    .trailContainer{
+        align-items: center;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 860px) and (min-width: 700px){
+    .trailCardContainer>.trailImageContainer>img{
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 20px;
+        transition: 0.3s;
+    }
+
+    .filterContainer{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .searchInput{
+        width: 100%;
+    }
+
+    .filterContainerRight{
+        width: 100%;
+    }
 }

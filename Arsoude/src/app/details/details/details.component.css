@@ -1,179 +1,187 @@
 .container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Plus Jakarta Sans';
-    margin-left: 20%;
-    margin-right: 15%;
-    width: 60%;
-    margin-top: 20px;
-}
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Plus Jakarta Sans';
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 20px;
+}     
 
 h2, h3{
-    font-family: 'Plus Jakarta Sans';
+  font-family: 'Plus Jakarta Sans';
 }
 
 h2{
-    font-size: 35px;
+  font-size: 35px;
 }
 
 h3{
-    font-size: 25px;
-    text-decoration: underline;
+  font-size: 25px;
+  text-decoration: underline;
 }
 
 .trailImage{
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .trail_title_container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-left: 3%;
-    margin-right: 3%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title{
+  background: rgba(0, 0, 0, 0.5);
+  padding-left: 30px;
+  padding-right: 30px;
+  border-top-right-radius: 20px;
 }
 
 .trail_details{
-    display: flex;
+  display: flex;
 }
 
 .detail_box_1{
-    flex-direction: column;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    margin-top: 5%;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: flex-end;
-    color: white;    
-    background-size:100%;
+  flex-direction: column;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  margin-top: 5%;
+  display: flex;
+  justify-content: flex-end;
+  color: white;    
+  padding-top: 250px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.51); 
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.51);
 }
 
 .detail_box_2{
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    height: 100%;
-    width: 100%;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    margin-bottom: 10%;
-    -webkit-box-shadow: 0px 0px 60px 4px rgba(0,0,0,0.51); 
-    box-shadow: 0px 0px 60px 4px rgba(0,0,0,0.51);
+  padding-top: 40px;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  height: 100%;
+  width: 100%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  margin-bottom: 10%;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.51); 
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.51);
 }
 
 .favorite{
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
-    margin-bottom: 1.5%;
+  margin-top: 70px;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.5);
+  padding-left: 20px;
+  padding-right: 20px;
+  border-top-left-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .descriptionContainer{
-    padding: 30px;
-    max-width: 800px;
-    overflow-wrap: break-word;  
-    word-wrap: break-word; 
-    word-break: break-word;
+  line-height: 32px;
+  margin-top: 40px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 50px;
+  font-size: 22px;
+  font-weight: 600;
+  word-wrap: break-word; 
+  word-break: break-word;
+  grid-column-start: 1;
+  grid-column-end: 1;
 }
 
 .typeContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  flex-direction: column;
 }
 
 fa-icon{
-    font-size: 45px;    
-    margin-right:80%;
+  font-size: 65px;    
 }
 
 .map-container{
-    width: 100%;
-    margin-left: 15%;
-    padding-bottom: 25px;
-    margin-top: 5%;
+  border-radius: 15px;
+  overflow: hidden;
+  grid-column-start: 1;
+  grid-column-end: end;
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
 .bookMark{
-    font-size: 35px;
+  font-size: 35px;
 }
 
 .bookMark:hover{
-    color: #dbdbdb;
-    cursor: pointer;
+  color: #dbdbdb;
+  cursor: pointer;
 }
 
 .fa-bookmark{
-    font-size: 35px;
+  font-size: 35px;
+  margin-right: 0;
 }
 
 
 i:hover{
-    color: #dbdbdb;
-    cursor: pointer;
+  color: #dbdbdb;
+  cursor: pointer;
 }
 .button-3 {
-    background-color: blue;
-    border-radius: 8px;
-    border-style: none;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    height: 40px;
-    line-height: 20px;
-    list-style: none;
-    margin-right: 50px;
-   
-    outline: none;
-    padding: 10px 16px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    transition: color 100ms;
-    vertical-align: baseline;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-  }
+  margin: 0;
+  position:static;
+  background-color: blue;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans';    
+  font-size: 14px;
+  font-weight: 500;
+  
+  line-height: 20px;
+  list-style: none;
+  outline: none;
+  padding: 10px 16px;
+  text-align: center;
+  transition: color 100ms;
+}
   
   .button-3:hover,
   .button-3:focus {
     background-color: #31b2ee;
   }
 .button-2 {
-    background-color: red;
-    border-radius: 8px;
-    border-style: none;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    height: 40px;
-    margin-right: 50px;
-    line-height: 20px;
-    list-style: none;
-    outline: none;
-    padding: 10px 16px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    transition: color 100ms;
-    vertical-align: baseline;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
+  margin: 0;
+  position:static;
+  background-color: red;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans';    
+  font-size: 14px;
+  font-weight: 500;
+  
+  line-height: 20px;
+  list-style: none;
+  outline: none;
+  padding: 10px 16px;
+  text-align: center;
+  transition: color 100ms;
   }
   
   .button-2:hover,
@@ -188,9 +196,22 @@ i:hover{
     border-width: 3px;
   }
 
+  .comments_text{
+    display: flex;
+    margin-bottom: 40px;
+    grid-column-start: 1;
+    grid-column-end: end;
+    border-radius: 15px;
+  }
+
+.comments_countainer{
+  display: flex;
+  flex-direction: column;
+}
+
   .commentSend{
     margin-top: 20px;
-    background-color: #31B1FF;
+    background-color: #09635F;
     width:100px;
     height: 30px;
     border-radius: 5px;
@@ -228,8 +249,7 @@ i:hover{
   
 
   button {
-    border:1px solid blue;
-    background:blue;
+    border: none;
     color:white;
     justify-content: center;
   }
@@ -245,7 +265,6 @@ i:hover{
 
 .comments_text {
     position:relative;
-    width: 100%;
     height: 100px;
     border: 1px solid #6e6b6b;
     padding: 10px;
@@ -261,7 +280,7 @@ button {
 }
 
 button:hover{
-    background-color: #9fb9e0; 
+    background-color: #119992; 
     cursor: pointer;
 }
 
@@ -287,11 +306,13 @@ textarea::placeholder{
 
 .comment{
   display: flex;
-  width: 99%;
   margin-top: 25px;
+  margin-right: 1px;
+  margin-left: 1px;
   padding: 15px;
   outline: 1px solid rgb(158, 157, 157);
   border-radius: 15px;
+  margin-bottom: 25px;
 }
 
 .user{
@@ -299,7 +320,6 @@ textarea::placeholder{
   display: flex;
   align-items: flex-start;
   flex-direction: row;
-  
 }
 
 .username{
@@ -323,5 +343,159 @@ textarea::placeholder{
   font-size: 20px;
 }
 
+.infoText{
+  display: flex;
+  justify-content: space-evenly;
+  grid-column-start: 1;
+  grid-column-end: end;
+}
 
+.infoText>.descriptionDiv{
+  flex: 5;
+}
+
+.infoText>.typeContainer{
+  flex: 1;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 200px) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 559px) {
+
+  .detail_box_1{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  h2{
+    font-size: 13px;
+  }
+
+  h3, .fa-location-dot, .fa-bookmark{
+    font-size: 10px;
+  }
+
+  .descriptionContainer{
+    font-size: 15px;
+    line-height: 25px;
+    margin-top: 0;
+  }
+
+  .typeContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 0;
+    margin-right: 25%;
+    margin-left: 25%;
+  }
+
+  .favorite{
+    margin-top: 60px;
+    height: 60px;
+  }
+
+  .infoText{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    grid-column-start: 1;
+    grid-column-end: end;
+  }
   
+  .infoText>.descriptionDiv{
+    flex: 5;
+  }
+  
+  .infoText>.typeContainer{
+    flex: 1;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 699px) and (min-width: 560px) {
+  h2{
+    font-size: 18px;
+  }
+
+  h3, .fa-location-dot, .fa-bookmark{
+    font-size: 12px;
+  }
+
+  .descriptionContainer{
+    font-size: 15px;
+    line-height: 25px;
+  }
+
+  .favorite{
+    margin-top: 40px;
+    height: 60px;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 980px) and (min-width: 700px){
+  h2{
+    font-size: 20px;
+  }
+
+  h3, .fa-location-dot, .fa-bookmark{
+    font-size: 16px;
+  }
+
+  .descriptionContainer{
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  .favorite{
+    margin-top: 60px;
+    height: 60px;
+  }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 1000px){
+  h2{
+    font-size: 25px;
+  }
+
+  h3, .fa-location-dot, .fa-bookmark{
+    font-size: 20px;
+  }
+
+  .descriptionContainer{
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  .favorite{
+    margin-top: 60px;
+    height: 60px;
+  }
+}
+
+@media only screen and (max-width: 1000px) and (min-width: 981px){
+  h2{
+    font-size: 22px;
+  }
+
+  h3, .fa-location-dot, .fa-bookmark{
+    font-size: 19px;
+  }
+
+  .descriptionContainer{
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  .favorite{
+    margin-top: 60px;
+    height: 60px;
+  }
+}
