@@ -22,12 +22,27 @@ export class SlotMachineComponent implements OnInit {
   reels: string[][] = [];
   compteur: number = 0;
   animationPlayers: AnimationPlayer[] = [];
+  connectedSymbols: boolean[][] = [];
 
   constructor(private animationBuilder: AnimationBuilder) { }
 
   ngOnInit() {
     // Generate a 10x10 grid
     this.reels = this.generateGrid(50, 5);
+    this.resetConnectedSymbols();
+  }
+
+  resetConnectedSymbols() {
+    for (let i = 0; i < this.reels.length; i++) {
+      this.connectedSymbols[i] = [];
+      for (let j = 0; j < this.reels[i].length; j++) {
+        this.connectedSymbols[i][j] = false;
+      }
+    }
+  }
+
+  getSymbolBackgroundColor(i: number, j: number): string {
+    return this.connectedSymbols[i][j] ? 'yellow' : 'transparent';
   }
 
   async spin() {
@@ -36,6 +51,7 @@ export class SlotMachineComponent implements OnInit {
     const startTime = Date.now();
 
     const spinPromises = [];
+    this.resetConnectedSymbols();
 
 
 
@@ -120,44 +136,135 @@ export class SlotMachineComponent implements OnInit {
     return this.score;
   }
 
+  
 
-  explore(x: number, y: number) {
-    if (!this.exploredSet.has({ x: x, y: y })) {
-      this.exploredSet.add({x: x, y: y})
-      if (this.isBounded(x, y + 1) && this.reels[x][y + 1] == this.currentValue) {
-        this.score++;
-        console.log(x,y+1)
-        console.log(this.isBounded(x, y + 1))
-        if(this.isBounded(x, y+1) && this.reels[x][y +2] == this.currentValue){
-          this.score ++
-          this.explore(x, y+2)
-        }
-        if(this.isBounded(x, y+1) && this.reels[x + 1][y +1] == this.currentValue){
-          this.score ++
-          this.explore(x, y+2)
-        }
-      
-      } else if (this.isBounded(x + 1, y) && this.reels[x + 1][y] == this.currentValue) {
-        this.score++;
-        console.log(x+1,y)
-        console.log(this.isBounded(x, y + 1))
+  async explore(x: number, y: number) {
+    const currentPosition = { x: x, y: y };
 
+    if (!this.exploredSet.has(currentPosition)) {
+      this.exploredSet.add(currentPosition);
+      var rightValue = this.reels[x][y + 1];
+      var underValue = this.reels[x + 1][y];
+      var leftValue = this.reels[x][y - 1];
+      var topValue = this.reels[x - 1][y];
+      //verify from right value
+      if (this.isBounded(x, y) && rightValue == this.currentValue) {
+        this.score++;
+        this.connectedSymbols[x][y + 1] = true;
+        const newPosition = { x: x, y: y +1};
+        this.exploredSet.add(newPosition);
+
+        await this.checkConnectedRight(x, y + 2);
+        await this.checkConnectedUnder(x + 1, y + 1);
+        if(newPosition.y != 0){
+          await this.checkConnectedLeft(x, y - 1);
+        };
+        await this.checkConnectedTop(x - 1, y);
         
-      } else if (this.isBounded(x - 1, y) && this.reels[x - 1][y] == this.currentValue) {
-        this.score++;
-        console.log(x-1,y)
-        console.log(this.isBounded(x, y + 1))
+      } 
 
+      /*if (this.isBounded(x, y) && underValue == this.currentValue) {
+        this.score++;
+
+        console.log("Ceci est le score :",this.score)
+        console.log("valeur a droite",x,y+1)
+        await this.checkConnectedRight(x, y + 2);
+        await this.checkConnectedUnder(x + 1, y + 1);
+        if(y != 0){
+          await this.checkConnectedLeft(x, y - 1);
+        };
+        await this.checkConnectedTop(x - 1, y);
         
-      } else if (this.isBounded(x, y - 1) && this.reels[x][y - 1] == this.currentValue) {
-        this.score++;
-        console.log(x,y-1)
-        console.log(this.isBounded(x, y + 1))
-      
-      }
+      } 
 
+      if (this.isBounded(x, y) && topValue == this.currentValue) {
+        this.score++;
+
+        console.log("Ceci est le score :",this.score)
+        console.log("valeur a droite",x,y+1)
+        await this.checkConnectedRight(x, y + 2);
+        await this.checkConnectedUnder(x + 1, y + 1);
+        if(y != 0){
+          await this.checkConnectedLeft(x, y - 1);
+        };
+        await this.checkConnectedTop(x - 1, y);
+        
+      } 
+
+      if (this.isBounded(x, y) && leftValue == this.currentValue) {
+        this.score++;
+
+        console.log("Ceci est le score :",this.score)
+        console.log("valeur a droite",x,y+1)
+        await this.checkConnectedRight(x, y + 2);
+        await this.checkConnectedUnder(x + 1, y + 1);
+        if(y != 0){
+          await this.checkConnectedLeft(x, y - 1);
+        };
+        await this.checkConnectedTop(x - 1, y);
+        
+      }*/
+   
+      console.log(this.exploredSet);
     }
   }
+
+  async checkConnectedRight(x: number, y: number) {
+    var symboleDroite = this.reels[x][y];
+    var currentPosition = { x: x, y: y };
+
+    if (!this.exploredSet.has(currentPosition)) {
+        if (this.isBounded(x, y) && symboleDroite == this.currentValue) {
+            this.score++;
+            this.connectedSymbols[x][y] = true;
+            console.log("Ceci est le score :", this.score);
+            console.log("valeur a droite", x, y);
+            await this.explore(x, y);
+        }
+    }
+}
+
+async checkConnectedUnder(x: number, y: number) {
+    var currentPosition = { x: x, y: y };
+    var symboleEnDessous = this.reels[x][y];
+    if (!this.exploredSet.has(currentPosition)) {
+        if (this.isBounded(x, y) && symboleEnDessous == this.currentValue) {
+            this.score++;
+            this.connectedSymbols[x][y] = true;
+            console.log("Ceci est le score :", this.score);
+            console.log("valeur en dessous", x, y);
+            await this.explore(x, y);
+        }
+    }
+}
+
+async checkConnectedLeft(x: number, y: number) {
+  var currentPosition = { x: x, y: y };
+  var symboleDroite = this.reels[x][y];
+  if (!this.exploredSet.has(currentPosition)) {
+      if (this.isBounded(x, y) && symboleDroite == this.currentValue) {
+          this.score++;
+          this.connectedSymbols[x][y] = true;
+          console.log("Ceci est le score :", this.score);
+          console.log("valeur a droite", x, y);
+          await this.explore(x, y);
+      }
+  }
+}
+
+async checkConnectedTop(x: number, y: number) {
+  var currentPosition = { x: x, y: y };
+  var symboleDroite = this.reels[x][y];
+  if (!this.exploredSet.has(currentPosition)) {
+      if (this.isBounded(x, y) && symboleDroite == this.currentValue) {
+          this.score++;
+          this.connectedSymbols[x][y] = true;
+          console.log("Ceci est le score :", this.score);
+          console.log("valeur a droite", x, y);
+          await this.explore(x, y);
+      }
+  }
+}
 
   isBounded(x: number, y: number): boolean {
     return x >= 23 && x <= 26 && y >= 0 && y <= 4;
