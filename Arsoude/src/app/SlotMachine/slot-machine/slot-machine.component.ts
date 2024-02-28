@@ -18,11 +18,15 @@ import { trigger, transition, style, animate, state, AnimationPlayer, AnimationB
   ]
 })
 export class SlotMachineComponent implements OnInit {
-  symbols: string[] = ['🍒', '🍊', '🍋', '🍇', '🍉', '🍓'];
+  //symbols: string[] = ['🍒', '🍊', '🍋', '🍇', '🍉', '🍓'];
+  symbols: string[] = ['🍒'];
   reels: string[][] = [];
+  rowStack : string[][] = [];
   compteur: number = 0;
   animationPlayers: AnimationPlayer[] = [];
   connectedSymbols: boolean[][] = [];
+  nextRow : string[] = [];
+  previousRow : string[] = [];
 
   constructor(private animationBuilder: AnimationBuilder) { }
 
@@ -49,7 +53,8 @@ export class SlotMachineComponent implements OnInit {
 
     var spinDuration = 500;
     const startTime = Date.now();
-
+    this.compteur = 0;
+    this.rowStack = [];
     const spinPromises = [];
     this.resetConnectedSymbols();
 
@@ -72,73 +77,123 @@ export class SlotMachineComponent implements OnInit {
     }
     console.log(this.reels);
     await Promise.all(spinPromises);
-     console.log(this.verifyConnections())
+    await this.verifyConnection();
+  }
+
+  async verifyConnection(){
+        for(let i = 23; i <= 26; i++){
+          var row = [];
+          for(let j = 0; j <= 4; j++){
+              var symbol = this.reels[i][j];
+              row.push(symbol);
+          }
+          this.rowStack.push(row);
+        }
+        var rowInfo = 0;
+        for(let row = 23; row <= 26; row++){
+          await this.verifyRow(row, rowInfo)
+          rowInfo += 1
+          console.log(this.compteur)
+        }
+
 
 
   }
 
-  /*async verifyConnections(){
-    let score = 0;
-    var connexionWork = true;
-    var collumn = 1;
-    const reels = this.reels;
-
-    reels.forEach((rowArray, row) => {
-        if (row >= 23 && row <= 27) {
-            rowArray.forEach(async (symbol, column) => {
-                if (column < rowArray.length - 1) {
-                    while (connexionWork) {
-                        if (symbol === reels[row][collumn]) {
-                            score++;
-                            if(collumn < 5){
-                              collumn++;
-                            }
-                        }
-                        if (symbol === reels[row + 1][column]) {
-                            score++;
-                        }
-                        // Assuming some condition breaks the while loop
-                    }
-                }
-            });
-        }
-    });
-
-    for (let row = 23; row <= 27; row++) {
-      for (let column = 0; column < this.reels[row].length - 1; column++) {
-        // Comparaison des symboles adjacents horizontalement
-        while(connexionWork){
-          if (this.reels[row][column] === this.reels[row][column + 1]) {
-            score++;
-          }
-          //verify vertical
-          if(this.reels[row][column] === this.reels[row+1][column]){
-            score++;
-          }
-        }
+  async verifyRow(x : number, rowInfo : number){
+    this.exploredSet.clear();
+    var row = this.rowStack[rowInfo];
+    console.log(row);
+    var symbol = row[0];
+    const currentPosition = { x: x, y: 0 }
+    this.exploredSet.add(currentPosition);
+    for(let value = 1; value <= 4; value++){
+      var nextSymbol = row[value];
+      if(symbol == nextSymbol){
+        const newPosition = { x: x, y: value }
+        this.exploredSet.add(newPosition);
+        this.connectedSymbols[x][value] = true;
         
+      }else{
+        console.log("on break;")
+        break;
       }
     }
-  }*/
 
-  explorationStack: { x: number, y: number }[] = [];
+    
+
+    if(this.exploredSet.size >= 3){
+      const exploredArray = Array.from(this.exploredSet);
+
+      this.compteur += this.exploredSet.size;
+      for(let i = 0; i < this.exploredSet.size;i ++){
+        const currentPosition = exploredArray[i]
+        
+        this.connectedSymbols[currentPosition.x][currentPosition.y] = true;
+      }
+    }
+  }
+
+  async verifyRowDiagonal(x : number, rowInfo : number){
+    this.exploredSet.clear();
+    var row = this.rowStack[rowInfo];
+    console.log(row);
+    var symbol = row[0];
+    const currentPosition = { x: x, y: 0 }
+    this.exploredSet.add(currentPosition);
+    for(let value = 1; value <= 4; value++){
+      
+      if(rowInfo != 4 && rowInfo == 0){
+        this.nextRow = this.rowStack[rowInfo +1]
+      }
+      var nextSymbol = this.nextRow[value];
+      if(symbol == nextSymbol){
+        const newPosition = { x: x, y: value }
+        this.exploredSet.add(newPosition);
+        this.connectedSymbols[x][value] = true;
+        
+      }else{
+        console.log("on break;")
+        break;
+      }
+    }
+
+    
+
+    
+
+    if(this.exploredSet.size >= 3){
+      const exploredArray = Array.from(this.exploredSet);
+
+      this.compteur += this.exploredSet.size;
+      for(let i = 0; i < this.exploredSet.size;i ++){
+        const currentPosition = exploredArray[i]
+        
+        this.connectedSymbols[currentPosition.x][currentPosition.y] = true;
+      }
+    }
+  }
+
+
+
+  
   exploredSet: Set<{ x: number, y: number }> = new Set();
   currentValue: string = '';
   score = 0;
 
 
-   verifyConnections() : number {
+   /*verifyConnections() : number {
     this.score = 0;
     this.explorationStack = [{ x: 23, y: 0 }];
     this.exploredSet = new Set();
     this.currentValue = this.reels[this.explorationStack[0].x][this.explorationStack[0].y];
     this.explore(this.explorationStack[0].x, this.explorationStack[0].y);
     return this.score;
-  }
+  }*/
 
   
 
-  async explore(x: number, y: number) {
+  /*async explore(x: number, y: number) {
     const currentPosition = { x: x, y: y };
 
     if (!this.exploredSet.has(currentPosition)) {
@@ -163,7 +218,7 @@ export class SlotMachineComponent implements OnInit {
         
       } 
 
-      /*if (this.isBounded(x, y) && underValue == this.currentValue) {
+      if (this.isBounded(x, y) && underValue == this.currentValue) {
         this.score++;
 
         console.log("Ceci est le score :",this.score)
@@ -203,7 +258,7 @@ export class SlotMachineComponent implements OnInit {
         };
         await this.checkConnectedTop(x - 1, y);
         
-      }*/
+      }
    
       console.log(this.exploredSet);
     }
@@ -264,7 +319,7 @@ async checkConnectedTop(x: number, y: number) {
           await this.explore(x, y);
       }
   }
-}
+}*/
 
   isBounded(x: number, y: number): boolean {
     return x >= 23 && x <= 26 && y >= 0 && y <= 4;
