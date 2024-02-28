@@ -4,10 +4,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding-top: 280px;
-    padding-bottom: 280px;
-    padding-left: 150px;
-    padding-right: 150px;
+    padding: 280px;
     background-size: cover;
 }
 
@@ -28,18 +25,17 @@
 
 h1{
     color: white;
-    font-size: 80px;
+    font-size: 70px;
     font-weight: 500;
     font-family: 'Plus Jakarta Sans';
-    transition: 0.3s;
 }
 
 h2{
     font-size: 40px;
     font-weight: 600;
     font-family: 'Plus Jakarta Sans';
+    margin-left: 18%;
     margin-bottom: 0;
-    transition: 0.3s;
 }
 
 h3{
@@ -80,7 +76,6 @@ span{
     align-items: center;
     flex-wrap: wrap;
     padding: 20px;
-    transition: 0.3s;
 }
 
 .trailCard{
@@ -138,14 +133,6 @@ span{
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: 0.3s;
-}
-
-.container2{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .titleContainer2{
@@ -164,25 +151,18 @@ span{
     width: 70%;
 }
 
-.containerOfContainer4{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 20px;
-    transition: 0.3s;
-}
-
 .container4{
     height: 750px;
+    width: 1300px;
     background-color: #09635F;
     margin-right: 15%;
     margin-left: 15%;
+    margin-top: 150px;
     margin-bottom: 150px;
     border-radius: 50px;
 
     display: flex;
     position: relative;
-    transition: 0.3s;
 }
 
 .infoAppContainer{
@@ -208,261 +188,4 @@ span{
 .infoAppTitle{
     margin-left: 0;
     margin-bottom: 20px;
-}
-
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 200px) {
-    h1{
-        font-size: 35px;
-    }
-
-    .hero{
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .divFlex{
-        display: none;
-    }
-
-    .container4>img{
-        display: none;
-    }
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (max-width: 708px) {
-    h1{
-        font-size: 30px;
-    }
-
-    h2{
-        font-size: 20px;
-    }
-
-    .bestTrailsTitle{
-        font-size: 40px;
-    }
-
-    .divFlex{
-        display: none;
-    }
-
-    .titleContainer2{
-        margin-left: 10%;
-        margin-right: 0;
-        display: flex;
-        align-items: start;
-    }
-
-    .title2{
-        margin-right: 10%;
-    }
-
-    .hero{
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .infoApp{
-        margin-left: 10%;
-        margin-right: 10%;
-    }
-
-    .container>.hero>input{
-        padding: 10px;
-        margin: 10px 0;
-        border: 1px solid #ccc;
-        border-radius: 30px;
-        margin-left: 20%;
-        margin-right: 20%;
-        padding: 1.5%;
-        font-size: 14px;
-        transition: 0.3s;
-    }
-
-    .container4{
-        height: 650px;
-    }
-
-    .container4>img{
-        display: none;
-    }
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 768px) and (min-width: 708px) {
-    h1{
-        font-size: 50px;
-    }
-
-    h2{
-        font-size: 30px;
-    }
-
-    .bestTrailsTitle{
-        font-size: 40px;
-    }
-
-    .titleContainer2{
-        margin-left: 10%;
-        margin-right: 10%;
-        display: flex;
-        align-items: start;
-    }
-
-    .title2{
-        margin-left: 0%;
-        margin-right: 10%;
-    }
-
-    .divFlex{
-        display: none;
-    }
-
-    .hero{
-        padding-left: 50px;
-        padding-right: 50px;
-    }
-
-    .infoApp{
-        margin-left: 10%;
-        margin-right: 10%;
-    }
-
-    .container>.hero>input{
-        padding: 10px;
-        margin: 10px 0;
-        border: 1px solid #ccc;
-        border-radius: 30px;
-        margin-left: 20%;
-        margin-right: 20%;
-        padding: 1.5%;
-        font-size: 15px;
-        transition: 0.3s;
-    }
-
-    .container4{
-        height: 650px;
-    }
-
-    .container4>img{
-        display: none;
-    }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 1168px) and (min-width: 768px){
-    h1{
-        font-size: 50px;
-    }
-
-    h2{
-        font-size: 30px;
-    }
-
-    .bestTrailsTitle{
-        font-size: 40px;
-    }
-
-    .hero{
-        padding-left: 50px;
-        padding-right: 50px;
-    }
-
-    .container4>img{
-        display: none;
-    }
-
-    .divFlex{
-        display: none;
-    }
-
-    .infoApp{
-        margin-left: 10%;
-        margin-right: 10%;
-    }
-
-    .container4{
-        height: 600px;
-    }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (max-width: 1285px) and (min-width: 1168px){
-    h1{
-        font-size: 70px;
-    }
-
-    h2{
-        font-size: 35px;
-    }
-
-    .container4>img{
-        display: none;
-    }
-
-    .divFlex{
-        display: none;
-    }
-
-    .infoApp{
-        margin-left: 10%;
-        margin-right: 10%;
-    }
-
-    .container4{
-        height: 550px;
-    }
-}
-
-@media only screen and (max-width: 1400px) and (min-width: 1285px){
-    h1{
-        font-size: 80px;
-    }
-
-    .container4>img{
-        display: none;
-    }
-
-    .divFlex{
-        display: none;
-    }
-
-    .infoApp{
-        margin-left: 10%;
-        margin-right: 10%;
-    }
-
-    .container4{
-        height: 550px;
-    }
-}
-
-@media only screen and (max-width: 1550px) and (min-width: 1400px){
-    .container4>img{
-        display: none;
-    }
-
-    .divFlex{
-        display: none;
-    }
-
-    .container4{
-        height: 550px;
-    }
-
-    .infoApp{
-        margin-left: 10%;
-        margin-right: 10%;
-    }
-    
-}
-
-@media only screen and (max-width: 1700px) and (min-width: 1550px){
-    .container4>img{
-        position: absolute;
-        bottom: 100px;
-        left: 600px;
-    }
 }
