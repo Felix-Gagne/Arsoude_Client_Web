@@ -306,3 +306,175 @@ footer {
 
 
 }
+
+.hamburger {
+    display: none; /* Hide by default */
+    cursor: pointer;
+}
+
+.bar {
+    height: 3px;
+    width: 25px;
+    background-color: #333;
+    margin: 6px 0;
+}
+
+.turn{
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.turn span{
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 972px) and (min-width: 94px) {
+    .header{
+        font-size: 17px;
+    }
+
+    .logo {
+        height: 50%;
+        width: 50%;
+        padding-left: 10%;
+    }
+
+    .header_brand{
+        margin-right: 0px;
+    }
+
+    .header_nav{
+        display: none;
+    }
+
+    .hamburger{
+        display: block;
+    }
+
+    .linkNav{
+        display: none;
+    }
+
+    .wrapper{
+        justify-content: space-between;
+    }
+
+    .part_1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer_texte_small{
+        display: none;
+    }
+
+    .footer_texte{
+        display: none;
+    }
+
+    .footer_options{
+        display: flex;
+        width: auto;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 998px) and (min-width: 973px) {
+    .header{
+        font-size: 13px;
+    }
+
+    .logo {
+        height: 50%;
+        width: 50%;
+        padding-left: 10%;
+    }
+
+    .footer_texte_small{
+        display: none;
+    }
+
+    .footer_texte{
+        display: none;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 1024px) and (min-width: 999px) {
+    .header{
+        font-size: 14px;
+    }
+
+    .logo {
+        height: 55%;
+        width: 55%;
+        padding-left: 10%;
+    }
+
+    .footer_texte_small{
+        display: none;
+    }
+
+    .footer_texte{
+        display: none;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 1088px) and (min-width: 1025px){
+
+    .header{
+        font-size: 15px;
+    }
+
+    .logo {
+        height: 55%;
+        width: 55%;
+        padding-left: 10%;
+    }
+
+    .footer_texte_small{
+        display: none;
+    }
+
+    .footer_texte{
+        display: none;
+    }
+   
+
+}
+
+@media only screen and (max-width: 1365px) and (min-width: 1088px){
+
+    .footer_texte_small{
+        display: none;
+    }
+
+    .footer_texte{
+        display: none;
+    }
+
+    
+
+}
+
+
+
+@media only screen and (max-width: 1608px){
+
+    .footer_texte_small{
+        display: none;
+    }
+
+    .footer_texte{
+        display: none;
+    }
+
+}
+
