@@ -2,7 +2,8 @@
   <div class="reel reel-column" id="column" [@boxAnimation]>
     <div *ngFor="let reel of reels; let i = index">
       <div class="symbol" (click)="info(i, 0)" id="symbolContainer" [style.backgroundColor]="getSymbolBackgroundColor(i, 0)">
-        {{ reels[i][0] }}
+        <img [src]="'assets\\images\\' + reels[i][0].image" alt="Symbol Image">
+        
       </div>
     </div>
   </div>
@@ -10,28 +11,28 @@
   <div class="reel reel-column" id="column2" [@boxAnimation]>
     <div *ngFor="let reel of reels; let i = index">
       <div class="symbol" (click)="info(i, 1)" id="symbolContainer" [style.backgroundColor]="getSymbolBackgroundColor(i, 1)">
-        {{ reels[i][1] }}
+        <img [src]="'assets\\images\\' + reels[i][1].image" alt="Symbol Image">
       </div>
     </div>
   </div>
   <div class="reel reel-column" id="column3" [@boxAnimation]>
     <div *ngFor="let reel of reels; let i = index">
       <div class="symbol" (click)="info(i, 2)" [style.backgroundColor]="getSymbolBackgroundColor(i, 2)">
-        {{ reels[i][2] }}
+        <img [src]="'assets\\images\\' + reels[i][2].image" alt="Symbol Image">
       </div>
     </div>
   </div>
   <div class="reel reel-column" id="column4" [@boxAnimation]>
     <div *ngFor="let reel of reels; let i = index">
       <div class="symbol" (click)="info(i, 3)" [style.backgroundColor]="getSymbolBackgroundColor(i, 3)">
-        {{ reels[i][3] }}
+        <img [src]="'assets\\images\\' + reels[i][3].image" alt="Symbol Image">
       </div>
     </div>
   </div>
   <div class="reel reel-column" id="column5" [@boxAnimation]>
     <div *ngFor="let reel of reels; let i = index">
       <div class="symbol" (click)="info(i, 4)" [style.backgroundColor]="getSymbolBackgroundColor(i, 4)">
-        {{ reels[i][4] }}
+        <img [src]="'assets\\images\\' + reels[i][4].image" alt="Symbol Image">
       </div>
     </div>
   </div>

@@ -19,8 +19,18 @@
 }
 
 .symbol {
-  font-size: 5em;
+  font-size: 6.8em;
   margin: 20px;
+  /* Set size of images to match font size of symbols */
+  width: 1em;
+  height: 1em;
+}
+
+/* Optional: Style images to ensure they fill the available space */
+.symbol img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain; /* Adjust as needed */
 }
 
 .reel-column {

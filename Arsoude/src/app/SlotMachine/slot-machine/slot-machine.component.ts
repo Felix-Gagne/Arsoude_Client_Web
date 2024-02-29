@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate, state, AnimationPlayer, AnimationBuilder } from '@angular/animations';
+import { Symbols } from 'src/app/models/symbole';
 
 @Component({
   selector: 'app-slot-machine',
@@ -20,17 +21,24 @@ import { trigger, transition, style, animate, state, AnimationPlayer, AnimationB
 export class SlotMachineComponent implements OnInit {
   //symbols: string[] = ['🍒', '🍊', '🍋', '🍇', '🍉', '🍓'];
   symbols: string[] = ['🍒', '🍊', '🍋'];
-  reels: string[][] = [];
-  rowStack : string[][] = [];
+  reels: Symbols[][] = [];
+  rowStack : Symbols[][] = [];
   compteur: number = 0;
   animationPlayers: AnimationPlayer[] = [];
   connectedSymbols: boolean[][] = [];
-  nextRow : string[] = [];
-  previousRow : string[] = [];
-  sameRow : string[] = [];
-  goUp : string[] = [];
-  goDown : string[] = [];
-
+  nextRow : Symbols[] = [];
+  previousRow : Symbols[] = [];
+  sameRow : Symbols[] = [];
+  goUp : Symbols[] = [];
+  goDown : Symbols[] = [];
+  symbolList: Symbols[] = [
+    new Symbols(1, "Symbol 1","felix.png"),
+    new Symbols(2, "Symbol 2","mathieu.png"),
+    new Symbols(3, "Symbol 3","maxime.png"),
+    new Symbols(4, "Symbol 4","simeon.png"),
+    new Symbols(5, "Symbol 5","vlad.png"),
+    new Symbols(6, "wild","wild.png")
+  ];
 
 
 
@@ -39,6 +47,7 @@ export class SlotMachineComponent implements OnInit {
   ngOnInit() {
     // Generate a 10x10 grid
     this.reels = this.generateGrid(50, 5);
+    console.log(this.reels);
     this.resetConnectedSymbols();
   }
 
@@ -97,8 +106,11 @@ export class SlotMachineComponent implements OnInit {
         }
         var rowInfo = 0;
         for(let row = 23; row <= 26; row++){
-          //await this.verifyRow(row, rowInfo)
-          this.verifyRowDiagonal(row, rowInfo)
+           this.verifyRow(row)
+           this.verifyRowDiagonalUp(row)
+           this.verifyRowDiagonalDown(row)
+           this.verifyTriangleFormBottom(row)
+           this.verifyTriangleFormTop(row)
           rowInfo += 1
           console.log(this.compteur)
         }
@@ -107,154 +119,234 @@ export class SlotMachineComponent implements OnInit {
 
   }
 
-  async verifyRow(x : number, rowInfo : number){
+  async verifyRow(x : number){
     this.exploredSet.clear();
-    var row = this.rowStack[rowInfo];
-    console.log(row);
-    var symbol = row[0];
+    
     const currentPosition = { x: x, y: 0 }
     this.exploredSet.add(currentPosition);
-    for(let value = 1; value <= 4; value++){
-      var nextSymbol = row[value];
-      if(symbol == nextSymbol){
-        const newPosition = { x: x, y: value }
+    var symbol = this.reels[x][0];
+    for(let i = 1; i <= 4; i++){
+      var nextSymbol = this.reels[x][i];
+      if(symbol.name == nextSymbol.name){
+        const newPosition = { x: x, y: i }
         this.exploredSet.add(newPosition);
-        this.connectedSymbols[x][value] = true;
-        
       }else{
-        console.log("on break;")
         break;
       }
     }
-
+  
     this.calculeScore();
   }
 
-  async verifyRowDiagonal(x : number, rowInfo : number){
+  async verifyTriangleFormBottom(x : number){
     this.exploredSet.clear();
-    this.previousRow = [];
-    this.nextRow = [];
-    var currentRow = this.rowStack[rowInfo];
-    console.log(currentRow);
-    var symbol = currentRow[0];
-    var topConnect = true;
-    var botConnect = true;
+    
     const currentPosition = { x: x, y: 0 }
     this.exploredSet.add(currentPosition);
-    var position5 = false;
-    
-    for(let value = 1; value <= 4; value++){
-      
-      if(value != 4){
-        if(rowInfo != 3){
-          this.nextRow = this.rowStack[rowInfo +1]
-        }
-  
-        if(rowInfo != 0){
-          this.previousRow = this.rowStack[rowInfo - 1]
-        }
-      }
-      else{
-        position5 = true;
-        if(rowInfo == 0){
-          this.sameRow = this.rowStack[rowInfo]
-          this.goDown = this.rowStack[rowInfo + 2]
-        }
-        if(rowInfo ==1){
-          this.sameRow = this.rowStack[rowInfo]
-          this.goDown = this.rowStack[rowInfo + 2]
-        }
-        if(rowInfo ==2){
-          this.sameRow = this.rowStack[rowInfo]
-          this.goUp = this.rowStack[rowInfo - 2]
-        }
-        if(rowInfo == 3){
-          this.sameRow = this.rowStack[rowInfo]
-          this.goUp = this.rowStack[rowInfo - 2]
-        }
-      }
-      
-      
-      let nextSymbolUpside;
-      if(topConnect){
-         nextSymbolUpside = this.previousRow[value];
-      }
-      let nextSymbolUnder;
-      if(botConnect){
-         nextSymbolUnder = this.nextRow[value];
-      }
-      var sameRow = this.sameRow[value];
-      var rowUpside = this.goUp[value];
-      var rowDownside = this.goDown[value];
-      if(!position5){
-        if(symbol == nextSymbolUnder){
-            const newPosition = { x: x + 1, y: value }
-            this.exploredSet.add(newPosition);
+    var symbol = this.reels[x][0];
+    for(let i = 1; i <= 4; i++){
+      var nextSymbol = this.goDownToNext(x,i);
+      if(nextSymbol != undefined && symbol.name == nextSymbol.name){
+        const newPosition = { x: nextSymbol.x, y: nextSymbol.y }
+        this.exploredSet.add(newPosition);
+        var trianglCompletion = this.goUpToNext(newPosition.x,newPosition.y);
+        if(trianglCompletion != undefined  && trianglCompletion.name == symbol.name){
+          this.exploredSet.add({ x: trianglCompletion.x, y: trianglCompletion.y });
+          i++;
         }
         else{
-          botConnect = false;
-        }
-        if(symbol == nextSymbolUpside){
-          const newPosition = { x: x - 1, y: value }
-          this.exploredSet.add(newPosition);
-        }
-        else{
-          topConnect = false;
-        }
-  
-        if(!topConnect && !botConnect){
           break;
         }
+      }else{
+        break;
       }
-      else{
-        if(rowInfo == 0){
-          if(sameRow == symbol){
-            const newPosition = { x: x, y: value }
-            this.exploredSet.add(newPosition);
-          }
-          if(rowDownside == symbol){
-            const newPosition = { x: x + 2, y: value }
-            this.exploredSet.add(newPosition);
-          }
-        }
-
-        if(rowInfo == 1 ){
-          if(sameRow == symbol){
-            const newPosition = { x: x, y: value }
-            this.exploredSet.add(newPosition);
-          }
-          if(rowDownside == symbol){
-            const newPosition = { x: x + 2, y: value }
-            this.exploredSet.add(newPosition);
-          }
-        }
-
-        if(rowInfo == 2){
-          if(rowUpside == symbol){
-            const newPosition = { x: x - 2, y: value }
-            this.exploredSet.add(newPosition);
-          }
-          if(sameRow == symbol){
-            const newPosition = { x: x, y: value }
-            this.exploredSet.add(newPosition);
-          }
-        }
-
-        if(rowInfo == 3){
-          if(rowUpside == symbol){
-            const newPosition = { x: x - 2, y: value }
-            this.exploredSet.add(newPosition);
-          }
-          if(sameRow == symbol){
-            const newPosition = { x: x, y: value }
-            this.exploredSet.add(newPosition);
-          }
-        }
-       
-      }
-      
-      
     }
+  
+    this.calculeScore();
+  }
+
+  async verifyTriangleFormTop(x : number){
+    this.exploredSet.clear();
+    
+    const currentPosition = { x: x, y: 0 }
+    this.exploredSet.add(currentPosition);
+    var symbol = this.reels[x][0];
+    for(let i = 1; i <= 4; i++){
+      var nextSymbol = this.goUpToNext2(x,i);
+      if(nextSymbol != undefined && symbol.name == nextSymbol.name){
+        const newPosition = { x: nextSymbol.x, y: nextSymbol.y }
+        this.exploredSet.add(newPosition);
+        var trianglCompletion = this.goDownToNext2(newPosition.x,newPosition.y);
+        if(trianglCompletion != undefined  && trianglCompletion.name == symbol.name){
+          this.exploredSet.add({ x: trianglCompletion.x, y: trianglCompletion.y });
+          i++;
+        }
+        else{
+          break;
+        }
+      }else{
+        break;
+      }
+    }
+  
+    this.calculeScore();
+  }
+
+  goDownToNext(x : number, y: number){
+    if(x < 26){
+      var nextSymbol = this.reels[x +1][y];
+      return nextSymbol;
+    }
+    return;
+  }
+  goUpToNext(x : number, y: number){
+    if(x >23){
+      var nextSymbol = this.reels[x - 1][y+1];
+      return nextSymbol;
+    }
+    return;
+  }
+
+  goDownToNext2(x : number, y: number){
+    if(x < 26){
+      var nextSymbol = this.reels[x + 1][y +1];
+      return nextSymbol;
+    }
+    return;
+  }
+  goUpToNext2(x : number, y: number){
+    if(x >23){
+      var nextSymbol = this.reels[x - 1][y];
+      return nextSymbol;
+    }
+    return;
+  }
+  
+
+  goRight(x: number, y: number) {
+    if(y < 4){
+      var currentSymbol = this.reels[x][y];
+      var nextSymbol = this.reels[x][y + 1];
+      if(currentSymbol.name == nextSymbol.name){
+        const newPosition = { x: x, y: y + 1 }
+        this.exploredSet.add(newPosition);
+      }
+    }
+  }
+
+  searchOneDiagonalDown(xCurrentPosition: number, yCurrentPosition: number){
+    var nextSymbolDiagonalDown = this.reels[xCurrentPosition][yCurrentPosition];
+    return nextSymbolDiagonalDown;
+  }
+  searchOneDiagonalUp(xCurrentPosition: number, yCurrentPosition: number){
+    var nextSymbolDiagonalDown = this.reels[xCurrentPosition][yCurrentPosition];
+    return nextSymbolDiagonalDown;
+  }
+
+  searchDiagonalUp(xCurrentPosition:number, yCurrentPosition: number) {
+    var currentSymbol = this.reels[xCurrentPosition][0];
+    var nextSymbolUp;
+    if(yCurrentPosition != 4){
+      if(xCurrentPosition != 23){
+        nextSymbolUp = this.reels[xCurrentPosition - 1][yCurrentPosition];
+        if(currentSymbol.name == nextSymbolUp.name){
+         this.exploredSet.add({ x: nextSymbolUp.x, y: nextSymbolUp.y });
+         return true;
+       }
+       else{
+         return false;
+       }
+     }
+     return false; 
+    }
+    else{
+      var symbolDown = this.searchOneDiagonalDown(xCurrentPosition, yCurrentPosition);
+      var symbolUp = this.searchOneDiagonalUp(xCurrentPosition - 2, yCurrentPosition);
+
+      if(symbolDown.name == currentSymbol.name){
+        this.exploredSet.add({ x: symbolDown.x, y: symbolDown.y });
+      }
+      if(symbolUp.name == currentSymbol.name){
+        this.exploredSet.add({ x: symbolUp.x, y: symbolUp.y });
+      }
+
+      return false;
+    }
+          
+  }
+
+  searchDiagonalDown(xCurrentPosition:number, yCurrentPosition: number) {
+    var currentSymbol = this.reels[xCurrentPosition][0];
+    var nextSymbolDown;
+    if(yCurrentPosition != 4){
+      if(xCurrentPosition != 26){
+        nextSymbolDown = this.reels[xCurrentPosition + 1][yCurrentPosition];
+        if(currentSymbol.name == nextSymbolDown.name){
+         this.exploredSet.add({ x: nextSymbolDown.x, y: nextSymbolDown.y });
+         return true;
+       }
+       else{
+         return false;
+       }
+     }
+     return false;     
+    }
+    else{
+      var symbolDown = this.searchOneDiagonalDown(xCurrentPosition, yCurrentPosition);
+      var symbolUp = this.searchOneDiagonalUp(xCurrentPosition + 2, yCurrentPosition);
+
+      if(symbolDown.name == currentSymbol.name){
+        this.exploredSet.add({ x: symbolDown.x, y: symbolDown.y });
+      }
+      if(symbolUp.name == currentSymbol.name){
+        this.exploredSet.add({ x: symbolUp.x, y: symbolUp.y });
+      }
+
+      return false;
+    }
+     
+  }
+
+  
+
+  async verifyRowDiagonalUp(x : number){
+    
+    this.exploredSet.clear();
+    const currentPosition = { x: x, y: 0 }
+    this.exploredSet.add(currentPosition);
+    var symbol = this.reels[x][0];
+    for(let i = 1; i <= 4; i++){
+      
+      var result = this.searchDiagonalUp(x,i);
+      if (!result) {
+        // If both searches return false, break the loop
+        break;
+      }
+      
+      console.log(this.exploredSet)
+    }
+   
+    this.calculeScore()
+    
+  }
+
+  async verifyRowDiagonalDown(x : number){
+    
+    this.exploredSet.clear();
+    const currentPosition = { x: x, y: 0 }
+    this.exploredSet.add(currentPosition);
+    var symbol = this.reels[x][0];
+    for(let i = 1; i <= 4; i++){
+      
+      var result = this.searchDiagonalDown(x,i);
+      if (!result) {
+        // If both searches return false, break the loop
+        break;
+      }
+      
+      console.log(this.exploredSet)
+    }
+   
     this.calculeScore()
     
   }
@@ -272,6 +364,8 @@ export class SlotMachineComponent implements OnInit {
     }
   }
 
+  
+
 
 
   
@@ -280,144 +374,7 @@ export class SlotMachineComponent implements OnInit {
   score = 0;
 
 
-   /*verifyConnections() : number {
-    this.score = 0;
-    this.explorationStack = [{ x: 23, y: 0 }];
-    this.exploredSet = new Set();
-    this.currentValue = this.reels[this.explorationStack[0].x][this.explorationStack[0].y];
-    this.explore(this.explorationStack[0].x, this.explorationStack[0].y);
-    return this.score;
-  }*/
-
-  
-
-  /*async explore(x: number, y: number) {
-    const currentPosition = { x: x, y: y };
-
-    if (!this.exploredSet.has(currentPosition)) {
-      this.exploredSet.add(currentPosition);
-      var rightValue = this.reels[x][y + 1];
-      var underValue = this.reels[x + 1][y];
-      var leftValue = this.reels[x][y - 1];
-      var topValue = this.reels[x - 1][y];
-      //verify from right value
-      if (this.isBounded(x, y) && rightValue == this.currentValue) {
-        this.score++;
-        this.connectedSymbols[x][y + 1] = true;
-        const newPosition = { x: x, y: y +1};
-        this.exploredSet.add(newPosition);
-
-        await this.checkConnectedRight(x, y + 2);
-        await this.checkConnectedUnder(x + 1, y + 1);
-        if(newPosition.y != 0){
-          await this.checkConnectedLeft(x, y - 1);
-        };
-        await this.checkConnectedTop(x - 1, y);
-        
-      } 
-
-      if (this.isBounded(x, y) && underValue == this.currentValue) {
-        this.score++;
-
-        console.log("Ceci est le score :",this.score)
-        console.log("valeur a droite",x,y+1)
-        await this.checkConnectedRight(x, y + 2);
-        await this.checkConnectedUnder(x + 1, y + 1);
-        if(y != 0){
-          await this.checkConnectedLeft(x, y - 1);
-        };
-        await this.checkConnectedTop(x - 1, y);
-        
-      } 
-
-      if (this.isBounded(x, y) && topValue == this.currentValue) {
-        this.score++;
-
-        console.log("Ceci est le score :",this.score)
-        console.log("valeur a droite",x,y+1)
-        await this.checkConnectedRight(x, y + 2);
-        await this.checkConnectedUnder(x + 1, y + 1);
-        if(y != 0){
-          await this.checkConnectedLeft(x, y - 1);
-        };
-        await this.checkConnectedTop(x - 1, y);
-        
-      } 
-
-      if (this.isBounded(x, y) && leftValue == this.currentValue) {
-        this.score++;
-
-        console.log("Ceci est le score :",this.score)
-        console.log("valeur a droite",x,y+1)
-        await this.checkConnectedRight(x, y + 2);
-        await this.checkConnectedUnder(x + 1, y + 1);
-        if(y != 0){
-          await this.checkConnectedLeft(x, y - 1);
-        };
-        await this.checkConnectedTop(x - 1, y);
-        
-      }
    
-      console.log(this.exploredSet);
-    }
-  }
-
-  async checkConnectedRight(x: number, y: number) {
-    var symboleDroite = this.reels[x][y];
-    var currentPosition = { x: x, y: y };
-
-    if (!this.exploredSet.has(currentPosition)) {
-        if (this.isBounded(x, y) && symboleDroite == this.currentValue) {
-            this.score++;
-            this.connectedSymbols[x][y] = true;
-            console.log("Ceci est le score :", this.score);
-            console.log("valeur a droite", x, y);
-            await this.explore(x, y);
-        }
-    }
-}
-
-async checkConnectedUnder(x: number, y: number) {
-    var currentPosition = { x: x, y: y };
-    var symboleEnDessous = this.reels[x][y];
-    if (!this.exploredSet.has(currentPosition)) {
-        if (this.isBounded(x, y) && symboleEnDessous == this.currentValue) {
-            this.score++;
-            this.connectedSymbols[x][y] = true;
-            console.log("Ceci est le score :", this.score);
-            console.log("valeur en dessous", x, y);
-            await this.explore(x, y);
-        }
-    }
-}
-
-async checkConnectedLeft(x: number, y: number) {
-  var currentPosition = { x: x, y: y };
-  var symboleDroite = this.reels[x][y];
-  if (!this.exploredSet.has(currentPosition)) {
-      if (this.isBounded(x, y) && symboleDroite == this.currentValue) {
-          this.score++;
-          this.connectedSymbols[x][y] = true;
-          console.log("Ceci est le score :", this.score);
-          console.log("valeur a droite", x, y);
-          await this.explore(x, y);
-      }
-  }
-}
-
-async checkConnectedTop(x: number, y: number) {
-  var currentPosition = { x: x, y: y };
-  var symboleDroite = this.reels[x][y];
-  if (!this.exploredSet.has(currentPosition)) {
-      if (this.isBounded(x, y) && symboleDroite == this.currentValue) {
-          this.score++;
-          this.connectedSymbols[x][y] = true;
-          console.log("Ceci est le score :", this.score);
-          console.log("valeur a droite", x, y);
-          await this.explore(x, y);
-      }
-  }
-}*/
 
   isBounded(x: number, y: number): boolean {
     return x >= 23 && x <= 26 && y >= 0 && y <= 4;
@@ -429,6 +386,12 @@ async checkConnectedTop(x: number, y: number) {
     // Spin the symbols in the current column
     for (let i = 0; i < this.reels.length; i++) {
       this.reels[i][columnIndex] = this.getRandomSymbol(); // Update symbol
+    }
+
+    for(let i = 0; i < this.reels.length; i++){
+      this.reels[i][columnIndex].x = i;
+      this.reels[i][columnIndex].y = columnIndex;
+
     }
 
   }
@@ -443,17 +406,23 @@ async checkConnectedTop(x: number, y: number) {
     });
   }
 
-  getRandomSymbol() {
-    const index = Math.floor(Math.random() * this.symbols.length);
-    return this.symbols[index];
+  getRandomSymbol(): Symbols {
+    const index = Math.floor(Math.random() * this.symbolList.length);
+    var symbolInfo = this.symbolList[index];
+    var newSymbol = new Symbols(symbolInfo.id, symbolInfo.name, symbolInfo.image)
+    return newSymbol;
   }
 
-  generateGrid(rows: number, columns: number): string[][] {
-    const grid: string[][] = [];
+  generateGrid(rows: number, columns: number): Symbols[][] {
+    const grid: Symbols[][] = [];
     for (let i = 0; i < rows; i++) {
       grid[i] = [];
       for (let j = 0; j < columns; j++) {
-        grid[i][j] = this.getRandomSymbol();
+        var symbol = this.getRandomSymbol();
+        symbol.x = i;
+        symbol.y = j;
+        grid[i][j] = symbol;
+        
       }
     }
     return grid;
