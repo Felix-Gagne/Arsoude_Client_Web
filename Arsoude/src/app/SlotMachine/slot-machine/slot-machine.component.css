@@ -30,11 +30,14 @@
 .symbol img {
   width: 80%;
   height: 80%;
+  transform: scale(1.27);
   object-fit: contain; /* Adjust as needed */
 }
 
+
+
 .reel-column {
-  margin: 0 20px; /* Adjust spacing between columns */
+  margin: 0 10px; /* Adjust spacing between columns */
   position: relative;
 }
 

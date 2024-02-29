@@ -32,12 +32,19 @@ export class SlotMachineComponent implements OnInit {
   goUp : Symbols[] = [];
   goDown : Symbols[] = [];
   symbolList: Symbols[] = [
-    new Symbols(1, "Symbol 1","felix.png"),
-    new Symbols(2, "Symbol 2","mathieu.png"),
-    new Symbols(3, "Symbol 3","maxime.png"),
-    new Symbols(4, "Symbol 4","simeon.png"),
-    new Symbols(5, "Symbol 5","vlad.png"),
-    new Symbols(6, "wild","wild.png")
+    new Symbols(1, "banane","banane_final.png"),
+    new Symbols(2, "banane","banane_final.png"),
+    new Symbols(3, "banane","banane_final.png"),
+    new Symbols(4, "fraise","fraise_final.png"),
+    new Symbols(5, "fraise","fraise_final.png"),
+    new Symbols(6, "fraise","fraise_final.png"),
+    new Symbols(7, "framboise","framboise_final.png"),
+    new Symbols(8, "framboise","framboise_final.png"),
+    new Symbols(9, "orange","orange_final.png"),
+    new Symbols(10, "orange","orange_final.png"),
+    new Symbols(11, "pomme","pomme_final.png"),
+    new Symbols(12, "pomme","pomme_final.png"),
+    new Symbols(13, "wild","wild_final.png")
   ];
 
 
@@ -127,7 +134,7 @@ export class SlotMachineComponent implements OnInit {
     var symbol = this.reels[x][0];
     for(let i = 1; i <= 4; i++){
       var nextSymbol = this.reels[x][i];
-      if(symbol.name == nextSymbol.name){
+      if(symbol.name == nextSymbol.name || nextSymbol.name == "wild"){
         const newPosition = { x: x, y: i }
         this.exploredSet.add(newPosition);
       }else{
@@ -146,11 +153,11 @@ export class SlotMachineComponent implements OnInit {
     var symbol = this.reels[x][0];
     for(let i = 1; i <= 4; i++){
       var nextSymbol = this.goDownToNext(x,i);
-      if(nextSymbol != undefined && symbol.name == nextSymbol.name){
+      if(nextSymbol != undefined && (symbol.name == nextSymbol.name || nextSymbol.name == "wild")){
         const newPosition = { x: nextSymbol.x, y: nextSymbol.y }
         this.exploredSet.add(newPosition);
         var trianglCompletion = this.goUpToNext(newPosition.x,newPosition.y);
-        if(trianglCompletion != undefined  && trianglCompletion.name == symbol.name){
+        if(trianglCompletion != undefined  && (trianglCompletion.name == symbol.name || trianglCompletion.name == "wild")){
           this.exploredSet.add({ x: trianglCompletion.x, y: trianglCompletion.y });
           i++;
         }
@@ -173,11 +180,11 @@ export class SlotMachineComponent implements OnInit {
     var symbol = this.reels[x][0];
     for(let i = 1; i <= 4; i++){
       var nextSymbol = this.goUpToNext2(x,i);
-      if(nextSymbol != undefined && symbol.name == nextSymbol.name){
+      if(nextSymbol != undefined && (symbol.name == nextSymbol.name || symbol.name == "wild")){
         const newPosition = { x: nextSymbol.x, y: nextSymbol.y }
         this.exploredSet.add(newPosition);
         var trianglCompletion = this.goDownToNext2(newPosition.x,newPosition.y);
-        if(trianglCompletion != undefined  && trianglCompletion.name == symbol.name){
+        if(trianglCompletion != undefined  && (trianglCompletion.name == symbol.name || trianglCompletion.name == "wild")){
           this.exploredSet.add({ x: trianglCompletion.x, y: trianglCompletion.y });
           i++;
         }
@@ -227,7 +234,7 @@ export class SlotMachineComponent implements OnInit {
     if(y < 4){
       var currentSymbol = this.reels[x][y];
       var nextSymbol = this.reels[x][y + 1];
-      if(currentSymbol.name == nextSymbol.name){
+      if(currentSymbol.name == nextSymbol.name || nextSymbol.name == "wild"){
         const newPosition = { x: x, y: y + 1 }
         this.exploredSet.add(newPosition);
       }
@@ -249,7 +256,7 @@ export class SlotMachineComponent implements OnInit {
     if(yCurrentPosition != 4){
       if(xCurrentPosition != 23){
         nextSymbolUp = this.reels[xCurrentPosition - 1][yCurrentPosition];
-        if(currentSymbol.name == nextSymbolUp.name){
+        if(currentSymbol.name == nextSymbolUp.name || nextSymbolUp.name == "wild"){
          this.exploredSet.add({ x: nextSymbolUp.x, y: nextSymbolUp.y });
          return true;
        }
@@ -263,10 +270,10 @@ export class SlotMachineComponent implements OnInit {
       var symbolDown = this.searchOneDiagonalDown(xCurrentPosition, yCurrentPosition);
       var symbolUp = this.searchOneDiagonalUp(xCurrentPosition - 2, yCurrentPosition);
 
-      if(symbolDown.name == currentSymbol.name){
+      if(symbolDown.name == currentSymbol.name || symbolDown.name == "wild"){
         this.exploredSet.add({ x: symbolDown.x, y: symbolDown.y });
       }
-      if(symbolUp.name == currentSymbol.name){
+      if(symbolUp.name == currentSymbol.name || symbolUp.name == "wild"){
         this.exploredSet.add({ x: symbolUp.x, y: symbolUp.y });
       }
 
@@ -281,7 +288,7 @@ export class SlotMachineComponent implements OnInit {
     if(yCurrentPosition != 4){
       if(xCurrentPosition != 26){
         nextSymbolDown = this.reels[xCurrentPosition + 1][yCurrentPosition];
-        if(currentSymbol.name == nextSymbolDown.name){
+        if(currentSymbol.name == nextSymbolDown.name || nextSymbolDown.name == "wild"){
          this.exploredSet.add({ x: nextSymbolDown.x, y: nextSymbolDown.y });
          return true;
        }
@@ -295,10 +302,10 @@ export class SlotMachineComponent implements OnInit {
       var symbolDown = this.searchOneDiagonalDown(xCurrentPosition, yCurrentPosition);
       var symbolUp = this.searchOneDiagonalUp(xCurrentPosition + 2, yCurrentPosition);
 
-      if(symbolDown.name == currentSymbol.name){
+      if(symbolDown.name == currentSymbol.name || symbolDown.name == "wild"){
         this.exploredSet.add({ x: symbolDown.x, y: symbolDown.y });
       }
-      if(symbolUp.name == currentSymbol.name){
+      if(symbolUp.name == currentSymbol.name || symbolUp.name == "wild"){
         this.exploredSet.add({ x: symbolUp.x, y: symbolUp.y });
       }
 
