@@ -10,7 +10,8 @@
                     <a class="linkNav" href="">{{'header.community' | translate}}</a>
                 </li>
                 <li>
-                    <a class="linkNav" href="#/creation" *ngIf="userService.isConnected">{{'header.create' | translate}}</a>
+                    <a class="linkNav" href="#/creation" *ngIf="userService.isConnected">{{'header.create' |
+                        translate}}</a>
                 </li>
                 <li>
                     <a class="linkNav" href="#/approve" *ngIf="userService.isAdmin">Administration</a>
@@ -23,12 +24,13 @@
                     <a class="linkNav" href="#/help">{{'header.help' | translate}}</a>
                 </li>
                 <li>
-                    <button *ngIf="!userService.isConnected" class="button" routerLink="/login">{{'header.loginButton' | translate}}</button>
+                    <button *ngIf="!userService.isConnected" class="button" routerLink="/login">{{'header.loginButton' |
+                        translate}}</button>
                     <nav>
                         <div class="box" *ngIf="userService.isConnected">
                             <img src="assets\images\userPlaceHolder.png" alt="userPlaceHolder" (click)="toggleMenu()">
                         </div>
-                        <div class="sub-menu-wrap" id="subMenu" >
+                        <div class="sub-menu-wrap" id="subMenu">
                             <div class="sub-menu">
                                 <div class="user-info">
                                     <img src="assets\images\userPlaceHolder.png" alt="userImage">
@@ -36,10 +38,11 @@
                                 </div>
                                 <div class="turn" *ngIf="lvl != undefined">
                                     <span style="width: 100%;">lvl. {{lvl.currentLevel}}</span>
-                                    <progress value="{{lvl.experience}}" max="{{lvl.nextLevelExperience}}" style="width: 100%; height: 25px;"></progress>
+                                    <progress value="{{lvl.experience}}" max="{{lvl.nextLevelExperience}}"
+                                        style="width: 100%; height: 25px;"></progress>
                                 </div>
                                 <hr>
- 
+
                                 <a routerLink="/profile" class="sub-menu-link">
                                     <i class="fa-solid fa-user"></i>
                                     <p>{{'menu.edit' | translate}}</p>
@@ -68,7 +71,7 @@
                             </div>
                         </div>
                     </nav>
-                   
+
                 </li>
             </ul>
         </nav>
@@ -86,7 +89,8 @@
         <div></div>
         <div class="footer_texte">{{'footer.title' | translate}}</div>
         <div class="footer_texte">{{'footer.explore' | translate}}</div>
-        <div class="footer_texte">{{'footer.community' | translate}}</div>
+        <div class="footer_texte"> <a class="footer_texte" href="#/HELLDIVERS">{{'footer.community' | translate}}</a>
+        </div>
         <div class="footer_texte">{{'footer.create' | translate}}</div>
         <div class="footer_texte">{{'footer.help' | translate}}</div>
         <div class="footer_app_logos">
@@ -116,7 +120,7 @@
         <p>{{'footer.mark' | translate}}</p>
         <br>
         <p>{{'footer.policy' | translate}}</p>
-     
+
     </div>
     <div class="footer_language">
         <div class="dropdown">
