@@ -293,7 +293,7 @@ span{
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) and (min-width: 708px) {
     h1{
-        font-size: 50px;
+        font-size: 35px;
     }
 
     h2{
@@ -354,7 +354,7 @@ span{
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 1168px) and (min-width: 768px){
     h1{
-        font-size: 50px;
+        font-size: 40px;
     }
 
     h2{
@@ -391,7 +391,7 @@ span{
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (max-width: 1285px) and (min-width: 1168px){
     h1{
-        font-size: 70px;
+        font-size: 50px;
     }
 
     h2{
@@ -416,9 +416,9 @@ span{
     }
 }
 
-@media only screen and (max-width: 1400px) and (min-width: 1285px){
+@media only screen and (max-width: 1399px) and (min-width: 1285px){
     h1{
-        font-size: 80px;
+        font-size: 60px;
     }
 
     .container4>img{
@@ -439,7 +439,11 @@ span{
     }
 }
 
-@media only screen and (max-width: 1550px) and (min-width: 1400px){
+@media only screen and (max-width: 1549px) and (min-width: 1400px){
+    h1{
+        font-size: 60px;
+    }
+
     .container4>img{
         display: none;
     }
@@ -460,6 +464,10 @@ span{
 }
 
 @media only screen and (max-width: 1700px) and (min-width: 1550px){
+    h1{
+        font-size: 55px;
+    }
+
     .container4>img{
         position: absolute;
         bottom: 100px;
