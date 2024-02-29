@@ -91,11 +91,15 @@ export class TrailService {
 
   async searchTrails(filter : FilterDTO){
     
-    await this.http.get(this.url).subscribe((res : any)=> {
-      this.coordinates.latitude = res.latitude
-      this.coordinates.longitude = res.longitude
-      console.log(this.coordinates)
-    });
+    // await this.http.get(this.url).subscribe((res : any)=> {
+    //   this.coordinates.latitude = res.latitude
+    //   this.coordinates.longitude = res.longitude
+    //   console.log(this.coordinates)
+    // });
+
+    this.coordinates.latitude = 45.535857;
+    this.coordinates.longitude = -73.494284;
+
     filter.coordinates = this.coordinates;
 
     try{
