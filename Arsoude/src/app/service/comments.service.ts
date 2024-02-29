@@ -17,6 +17,7 @@ export class CommentsService {
   async sendComment(dto : CommentDTO){
     try{
       let comment = await lastValueFrom(this.http.post<any>(this.baseUrl + "/PostComment", dto));
+      console.log(comment);
       return comment;
     }
     catch(error : any){
@@ -27,6 +28,7 @@ export class CommentsService {
   async getComments(trailId : number){
     try{
       let comments = await lastValueFrom(this.http.get<any>(this.baseUrl + "/GetTrailComments/" + trailId));
+      console.log(comments);
       return comments;
     }
     catch(error : any){

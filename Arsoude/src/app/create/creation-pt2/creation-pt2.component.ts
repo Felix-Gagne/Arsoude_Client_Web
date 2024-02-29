@@ -137,6 +137,7 @@ export class CreationPt2Component {
             await this.service.CreateTrail(this.trail);
             this.notifierService.showNotification('La randonnée a été créé avec succès!', 'success');
             this.router.navigate(['']);
+            window.location.reload();
           }
           catch(e){
             console.log("Erreur : " + e);

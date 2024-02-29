@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { TrailDTO } from '../models/TrailDTO';
 import { TrailService } from './trail.service';
 import { ModifUserDTO } from '../models/ModifUserDTO';
+import { Level } from '../models/Level';
 
 @Injectable({
   providedIn: 'root'
@@ -72,6 +73,17 @@ export class UserService {
     }
     catch(e){
       console.log("Error : " + e);
+    }
+  }
+
+  async getUserLevel(){
+    try{
+      let lvl = await lastValueFrom(this.http.get<any>(this.baseUrl+"/GetProgression"));
+      console.log(lvl);
+      return lvl;
+    }
+    catch(error : any){
+      console.log(error);
     }
   }
 

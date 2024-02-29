@@ -55,7 +55,6 @@ export class SearchComponent {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.pagedTrails = this.trails.slice(startIndex, endIndex);
-    console.log(this.pagedTrails)
   }
 
   onPageChange(event: any){
@@ -84,10 +83,7 @@ export class SearchComponent {
       this.emptyList = true;
     }
     else{
-      
       this.trails = await this.trailService.searchTrails(dto);
-      this.updatePagedTrail();
-      console.log(this.trails);
       this.emptyList = false;
     }
   }

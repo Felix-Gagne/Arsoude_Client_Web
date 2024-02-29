@@ -21,11 +21,12 @@
     <div class="trailContainer" *ngIf="!emptyList">
         <h1>{{'search.title' | translate}}</h1>
             <div class="trailCardContainer" *ngFor="let trail of pagedTrails" (click)="getDetails(trail.id!)">
-                <div *ngIf="trail.imageUrl != ''" class="trailImageContainer">
+                <!-- <div class="trailCard" *ngFor="let trail of trails">
+                    
+                </div> -->
+                <!-- <img [src]="trail.image" alt="trail image"> -->
+                <div class="trailImageContainer">
                     <img [src]="trail.imageUrl" alt="image_trail">
-                </div>
-                <div *ngIf="trail.imageUrl == ''" class="trailImageContainer">
-                    <img src="assets/images/placeholder_mountain.jpg" alt="image_trail">
                 </div>
                 <div class="trailCardInfo">
                     <h2>{{trail.name}}</h2>

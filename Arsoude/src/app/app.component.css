@@ -226,7 +226,7 @@ footer {
 
     .footer_logo {
         padding-bottom: 2%;
-        width: 40%;
+        width: 15%;
     }
 
 
@@ -234,6 +234,9 @@ footer {
         padding-right: 3%;
     }
 
+    .footer_options {
+        width: 300%;
+    }
 
     .footer_sepator {
         background-color: white;
@@ -263,8 +266,8 @@ footer {
     }
 
     .footer_language {
-        margin-left: 9.1%;
-        margin-top: 2%;
+        margin-left: 83.5%;
+        margin-top: -5%;
     }
 
     .dropdown {
@@ -314,6 +317,18 @@ footer {
     width: 25px;
     background-color: #333;
     margin: 6px 0;
+}
+
+.turn{
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.turn span{
+    position: absolute;
+    display: inline-block;
+    text-align: center;
 }
 
 
