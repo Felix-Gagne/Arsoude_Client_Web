@@ -15,7 +15,16 @@ import { Symbols } from 'src/app/models/symbole';
       transition(":leave", [
         animate("1s ease-in", style({ transform: "translateY(100%)", opacity: 0 }))
       ])
-    ])
+    ]),
+      trigger('increaseAnimation', [
+        state('increase', style({
+          transform: 'scale(1.2)', // Adjust scale as needed
+          color: 'green' // Adjust color as needed
+        })),
+        transition('* => increase', [
+          animate('500ms ease-in-out')
+        ]),
+      ])
   ]
 })
 export class SlotMachineComponent implements OnInit {
@@ -32,21 +41,26 @@ export class SlotMachineComponent implements OnInit {
   goUp : Symbols[] = [];
   goDown : Symbols[] = [];
   symbolList: Symbols[] = [
-    new Symbols(1, "banane","banane_final.png"),
-    new Symbols(2, "banane","banane_final.png"),
-    new Symbols(3, "banane","banane_final.png"),
-    new Symbols(4, "fraise","fraise_final.png"),
-    new Symbols(5, "fraise","fraise_final.png"),
-    new Symbols(6, "fraise","fraise_final.png"),
-    new Symbols(7, "framboise","framboise_final.png"),
-    new Symbols(8, "framboise","framboise_final.png"),
-    new Symbols(9, "orange","orange_final.png"),
-    new Symbols(10, "orange","orange_final.png"),
-    new Symbols(11, "pomme","pomme_final.png"),
-    new Symbols(12, "pomme","pomme_final.png"),
-    new Symbols(13, "wild","wild_final.png")
+    new Symbols(1, "banane","banane_final.png",0.20),
+    new Symbols(2, "banane","banane_final.png",0.20),
+    new Symbols(3, "banane","banane_final.png",0.20),
+    new Symbols(4, "fraise","fraise_final.png",0.40),
+    new Symbols(5, "fraise","fraise_final.png",0.40),
+    new Symbols(6, "fraise","fraise_final.png",0.40),
+    new Symbols(7, "framboise","framboise_final.png",0.60),
+    new Symbols(8, "framboise","framboise_final.png",0.60),
+    new Symbols(9, "orange","orange_final.png",0.80),
+    new Symbols(10, "orange","orange_final.png",0.80),
+    new Symbols(11, "pomme","pomme_final.png",1),
+    new Symbols(12, "pomme","pomme_final.png",1),
+    new Symbols(13, "wild","wild_final.png",2)
   ];
-
+  spinButtonClicked: boolean = false;
+  multiplicateur : number = 1;
+  bonusBought: boolean = false;
+  spinFinished: boolean = false;
+  freeSpins: number = 15;
+  increaseAnimationState: string = '';
 
 
   constructor(private animationBuilder: AnimationBuilder) { }
@@ -71,9 +85,19 @@ export class SlotMachineComponent implements OnInit {
     return this.connectedSymbols[i][j] ? 'yellow' : 'transparent';
   }
 
+  buyBonus(){
+    this.bonusBought = true;
+    this.spinFinished = true;
+  }
+
   async spin() {
 
-    var spinDuration = 500;
+    
+    this.freeSpins --;
+    this.spinButtonClicked = true;
+    this.spinFinished = false;
+    console.log(this.spinButtonClicked);
+    var spinDuration = 0;
     const startTime = Date.now();
     this.compteur = 0;
     this.rowStack = [];
@@ -87,19 +111,40 @@ export class SlotMachineComponent implements OnInit {
 
       const reelElement = document.querySelector(`.reel:nth-child(${i + 1})`);
       if (reelElement) {
+        // Build the animation using Angular's animation builder
         const animation = this.animationBuilder.build([
-          style({ transform: "translateY(-100%)", opacity: 0 }),
-          animate(`${spinDuration}ms ease-out`, style({ transform: "translateY(0%)", opacity: 1 }))
+            // Define initial style: translate element above viewport and set opacity to 0
+            style({ transform: "translateY(-100%)", opacity: 0 }),
+            // Define animation: translate element to its original position and fade in
+            animate(`${spinDuration}ms ease-out`, style({ transform: "translateY(0%)", opacity: 1 }))
         ]);
+    
+        // Create an animation player for the nth .reel element (where n is i + 1)
         const player = animation.create(document.querySelector(`.reel:nth-child(${i + 1})`));
+    
+        // Add the animation player to an array named animationPlayers
         this.animationPlayers.push(player);
+    
+        // Play the animation
         player.play();
-      }
+    }
       spinPromises.push(this.spinColumn(i));
     }
     console.log(this.reels);
     await Promise.all(spinPromises);
+    await this.sleep(2000);
     await this.verifyConnection();
+    setTimeout(() => {
+      this.spinButtonClicked = false;
+      this.resetConnectedSymbols();
+    }, 100);  
+    setTimeout(() => {
+      this.spinFinished = true;
+    }, 100);      
+    if(this.freeSpins == 0){
+      this.bonusBought = false;
+      this.freeSpins += 15;
+    }
   }
 
   async verifyConnection(){
@@ -113,11 +158,15 @@ export class SlotMachineComponent implements OnInit {
         }
         var rowInfo = 0;
         for(let row = 23; row <= 26; row++){
+          var value = 1200;
            this.verifyRow(row)
            this.verifyRowDiagonalUp(row)
            this.verifyRowDiagonalDown(row)
            this.verifyTriangleFormBottom(row)
            this.verifyTriangleFormTop(row)
+           await this.sleep(value);
+
+           this.resetConnectedSymbols();
           rowInfo += 1
           console.log(this.compteur)
         }
@@ -361,13 +410,21 @@ export class SlotMachineComponent implements OnInit {
   calculeScore(){
     if(this.exploredSet.size >= 3){
       const exploredArray = Array.from(this.exploredSet);
-
-      this.compteur += this.exploredSet.size;
+      var newScore = 0;
+      var newMulti = this.multiplicateur * 2;
       for(let i = 0; i < this.exploredSet.size;i ++){
         const currentPosition = exploredArray[i]
         
         this.connectedSymbols[currentPosition.x][currentPosition.y] = true;
+
+        var symbol = this.reels[currentPosition.x][currentPosition.y];
+        var newScore = 0;
+        newScore += symbol.value;
       }
+      newScore += this.multiplicateur;
+      this.score = newScore;
+      this.multiplicateur = newMulti;
+
     }
   }
 
@@ -416,7 +473,7 @@ export class SlotMachineComponent implements OnInit {
   getRandomSymbol(): Symbols {
     const index = Math.floor(Math.random() * this.symbolList.length);
     var symbolInfo = this.symbolList[index];
-    var newSymbol = new Symbols(symbolInfo.id, symbolInfo.name, symbolInfo.image)
+    var newSymbol = new Symbols(symbolInfo.id, symbolInfo.name, symbolInfo.image, symbolInfo.value)
     return newSymbol;
   }
 

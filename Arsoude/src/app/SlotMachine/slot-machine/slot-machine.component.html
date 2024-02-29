@@ -1,42 +1,54 @@
+
+<div>
+  <div class="multi-counter">
+    <div class="container">
+      <img src="assets\images\prixHolder.png" alt="image">
+      <p>x{{multiplicateur}}</p>
+    </div>
+    <h1>{{score}}$</h1>  
+  </div>
+</div>
 <div class="slot-machine">
   <div class="reel reel-column" id="column" [@boxAnimation]>
     <div *ngFor="let reel of reels; let i = index">
-      <div class="symbol" (click)="info(i, 0)" id="symbolContainer" [style.backgroundColor]="getSymbolBackgroundColor(i, 0)">
+      <div class="symbol" [class.shine-animation]="spinButtonClicked" (click)="info(i, 0)" id="symbolContainer" [class.animate]="getSymbolBackgroundColor(i, 0) === 'yellow'">
         <img [src]="'assets\\images\\' + reels[i][0].image" alt="Symbol Image">
-        
       </div>
     </div>
   </div>
   <!-- Repeat the above structure for other columns -->
   <div class="reel reel-column" id="column2" [@boxAnimation]>
     <div *ngFor="let reel of reels; let i = index">
-      <div class="symbol" (click)="info(i, 1)" id="symbolContainer" [style.backgroundColor]="getSymbolBackgroundColor(i, 1)">
+      <div class="symbol" [class.shine-animation]="spinButtonClicked" (click)="info(i, 1)" id="symbolContainer" [class.animate]="getSymbolBackgroundColor(i, 1) === 'yellow'">
         <img [src]="'assets\\images\\' + reels[i][1].image" alt="Symbol Image">
       </div>
     </div>
   </div>
   <div class="reel reel-column" id="column3" [@boxAnimation]>
     <div *ngFor="let reel of reels; let i = index">
-      <div class="symbol" (click)="info(i, 2)" [style.backgroundColor]="getSymbolBackgroundColor(i, 2)">
+      <div class="symbol" [class.shine-animation]="spinButtonClicked" (click)="info(i, 2)" [class.animate]="getSymbolBackgroundColor(i, 2) === 'yellow'">
         <img [src]="'assets\\images\\' + reels[i][2].image" alt="Symbol Image">
       </div>
     </div>
   </div>
   <div class="reel reel-column" id="column4" [@boxAnimation]>
     <div *ngFor="let reel of reels; let i = index">
-      <div class="symbol" (click)="info(i, 3)" [style.backgroundColor]="getSymbolBackgroundColor(i, 3)">
+      <div class="symbol" [class.shine-animation]="spinButtonClicked" (click)="info(i, 3)" [class.animate]="getSymbolBackgroundColor(i, 3) === 'yellow'">
         <img [src]="'assets\\images\\' + reels[i][3].image" alt="Symbol Image">
       </div>
     </div>
   </div>
   <div class="reel reel-column" id="column5" [@boxAnimation]>
     <div *ngFor="let reel of reels; let i = index">
-      <div class="symbol" (click)="info(i, 4)" [style.backgroundColor]="getSymbolBackgroundColor(i, 4)">
+      <div class="symbol" [class.shine-animation]="spinButtonClicked" (click)="info(i, 4)" [class.animate]="getSymbolBackgroundColor(i, 4) === 'yellow'">
         <img [src]="'assets\\images\\' + reels[i][4].image" alt="Symbol Image">
       </div>
     </div>
   </div>
   <!-- Button for spinning -->
 </div>
-<button (click)="spin()">Spin</button>
-<h1>{{compteur}}</h1>
+<div class="buttons-container">
+  <button class="custom-button" (click)="spin()" [disabled]="!bonusBought || !spinFinished">Spin</button>
+  <button class="custom-button" (click)="buyBonus()" [disabled]="bonusBought">Buy bonus</button>
+  <p *ngIf="bonusBought" class="alignRight">{{freeSpins}} free spins</p>
+</div>

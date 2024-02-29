@@ -1,31 +1,54 @@
-<div class="jeu">
-    <div class="small top">
-      <img id="col1row1" src="/assets/images/temp2.png" alt="Slot image">
-      <img id="col2row1" src="/assets/images/temp2.png" alt="Slot image">
-      <img id="col3row1" src="/assets/images/temp2.png" alt="Slot image">
+
+<div>
+  <div class="multi-counter">
+    <div class="container">
+      <img src="assets\images\prixHolder.png" alt="image">
+      <p>x{{multiplicateur}}</p>
     </div>
-    <div class="medium top">
-      <img id="col1row2" src="/assets/images/temp2.png" alt="Slot image">
-      <img id="col2row2" src="/assets/images/temp2.png" alt="Slot image">
-      <img id="col3row2" src="/assets/images/temp2.png" alt="Slot image">
-    </div>
-    <div class="full">
-      <img id="col1row3" src="/assets/images/temp2.png" alt="Slot image">
-      <img id="col2row3" src="/assets/images/temp2.png" alt="Slot image">
-      <img id="col3row3" src="/assets/images/temp2.png" alt="Slot image">
-    </div>
-    <div class="medium bottom">
-      <img id="col1row4" src="/assets/images/temp2.png" alt="Slot image">
-      <img id="col2row4" src="/assets/images/temp2.png" alt="Slot image">
-      <img id="col3row4" src="/assets/images/temp2.png" alt="Slot image">
-    </div>
-    <div class="small bottom" style="padding-bottom:6px">
-      <img id="col1row5" src="/assets/images/temp2.png" alt="Slot image">
-      <img id="col2row5" src="/assets/images/temp2.png" alt="Slot image">
-      <img id="col3row5" src="/assets/images/temp2.png" alt="Slot image">
+    <h1>{{score}}$</h1>  
+  </div>
+</div>
+<div class="slot-machine">
+  <div class="reel reel-column" id="column" [@boxAnimation]>
+    <div *ngFor="let reel of reels; let i = index">
+      <div class="symbol" [class.shine-animation]="spinButtonClicked" (click)="info(i, 0)" id="symbolContainer" [class.animate]="getSymbolBackgroundColor(i, 0) === 'yellow'">
+        <img [src]="'assets\\images\\' + reels[i][0].image" alt="Symbol Image">
+      </div>
     </div>
   </div>
-  <div class="boutons">
-    <button *ngIf="!jeuActif" (click)="jouer()">Jouer</button>
-    <button *ngIf="jeuActif" (click)="stop()">Stop !</button>
+  <!-- Repeat the above structure for other columns -->
+  <div class="reel reel-column" id="column2" [@boxAnimation]>
+    <div *ngFor="let reel of reels; let i = index">
+      <div class="symbol" [class.shine-animation]="spinButtonClicked" (click)="info(i, 1)" id="symbolContainer" [class.animate]="getSymbolBackgroundColor(i, 1) === 'yellow'">
+        <img [src]="'assets\\images\\' + reels[i][1].image" alt="Symbol Image">
+      </div>
+    </div>
   </div>
+  <div class="reel reel-column" id="column3" [@boxAnimation]>
+    <div *ngFor="let reel of reels; let i = index">
+      <div class="symbol" [class.shine-animation]="spinButtonClicked" (click)="info(i, 2)" [class.animate]="getSymbolBackgroundColor(i, 2) === 'yellow'">
+        <img [src]="'assets\\images\\' + reels[i][2].image" alt="Symbol Image">
+      </div>
+    </div>
+  </div>
+  <div class="reel reel-column" id="column4" [@boxAnimation]>
+    <div *ngFor="let reel of reels; let i = index">
+      <div class="symbol" [class.shine-animation]="spinButtonClicked" (click)="info(i, 3)" [class.animate]="getSymbolBackgroundColor(i, 3) === 'yellow'">
+        <img [src]="'assets\\images\\' + reels[i][3].image" alt="Symbol Image">
+      </div>
+    </div>
+  </div>
+  <div class="reel reel-column" id="column5" [@boxAnimation]>
+    <div *ngFor="let reel of reels; let i = index">
+      <div class="symbol" [class.shine-animation]="spinButtonClicked" (click)="info(i, 4)" [class.animate]="getSymbolBackgroundColor(i, 4) === 'yellow'">
+        <img [src]="'assets\\images\\' + reels[i][4].image" alt="Symbol Image">
+      </div>
+    </div>
+  </div>
+  <!-- Button for spinning -->
+</div>
+<div class="buttons-container">
+  <button class="custom-button" (click)="spin()" [disabled]="!bonusBought || !spinFinished">Spin</button>
+  <button class="custom-button" (click)="buyBonus()" [disabled]="bonusBought">Buy bonus</button>
+  <p *ngIf="bonusBought" class="alignRight">{{freeSpins}} free spins</p>
+</div>
