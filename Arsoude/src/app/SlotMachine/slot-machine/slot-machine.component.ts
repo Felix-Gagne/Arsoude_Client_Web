@@ -19,7 +19,7 @@ import { trigger, transition, style, animate, state, AnimationPlayer, AnimationB
 })
 export class SlotMachineComponent implements OnInit {
   //symbols: string[] = ['🍒', '🍊', '🍋', '🍇', '🍉', '🍓'];
-  symbols: string[] = ['🍒'];
+  symbols: string[] = ['🍒', '🍊', '🍋'];
   reels: string[][] = [];
   rowStack : string[][] = [];
   compteur: number = 0;
@@ -27,6 +27,12 @@ export class SlotMachineComponent implements OnInit {
   connectedSymbols: boolean[][] = [];
   nextRow : string[] = [];
   previousRow : string[] = [];
+  sameRow : string[] = [];
+  goUp : string[] = [];
+  goDown : string[] = [];
+
+
+
 
   constructor(private animationBuilder: AnimationBuilder) { }
 
@@ -91,7 +97,8 @@ export class SlotMachineComponent implements OnInit {
         }
         var rowInfo = 0;
         for(let row = 23; row <= 26; row++){
-          await this.verifyRow(row, rowInfo)
+          //await this.verifyRow(row, rowInfo)
+          this.verifyRowDiagonal(row, rowInfo)
           rowInfo += 1
           console.log(this.compteur)
         }
@@ -120,48 +127,139 @@ export class SlotMachineComponent implements OnInit {
       }
     }
 
-    
-
-    if(this.exploredSet.size >= 3){
-      const exploredArray = Array.from(this.exploredSet);
-
-      this.compteur += this.exploredSet.size;
-      for(let i = 0; i < this.exploredSet.size;i ++){
-        const currentPosition = exploredArray[i]
-        
-        this.connectedSymbols[currentPosition.x][currentPosition.y] = true;
-      }
-    }
+    this.calculeScore();
   }
 
   async verifyRowDiagonal(x : number, rowInfo : number){
     this.exploredSet.clear();
-    var row = this.rowStack[rowInfo];
-    console.log(row);
-    var symbol = row[0];
+    this.previousRow = [];
+    this.nextRow = [];
+    var currentRow = this.rowStack[rowInfo];
+    console.log(currentRow);
+    var symbol = currentRow[0];
+    var topConnect = true;
+    var botConnect = true;
     const currentPosition = { x: x, y: 0 }
     this.exploredSet.add(currentPosition);
+    var position5 = false;
+    
     for(let value = 1; value <= 4; value++){
       
-      if(rowInfo != 4 && rowInfo == 0){
-        this.nextRow = this.rowStack[rowInfo +1]
+      if(value != 4){
+        if(rowInfo != 3){
+          this.nextRow = this.rowStack[rowInfo +1]
+        }
+  
+        if(rowInfo != 0){
+          this.previousRow = this.rowStack[rowInfo - 1]
+        }
       }
-      var nextSymbol = this.nextRow[value];
-      if(symbol == nextSymbol){
-        const newPosition = { x: x, y: value }
-        this.exploredSet.add(newPosition);
-        this.connectedSymbols[x][value] = true;
-        
-      }else{
-        console.log("on break;")
-        break;
+      else{
+        position5 = true;
+        if(rowInfo == 0){
+          this.sameRow = this.rowStack[rowInfo]
+          this.goDown = this.rowStack[rowInfo + 2]
+        }
+        if(rowInfo ==1){
+          this.sameRow = this.rowStack[rowInfo]
+          this.goDown = this.rowStack[rowInfo + 2]
+        }
+        if(rowInfo ==2){
+          this.sameRow = this.rowStack[rowInfo]
+          this.goUp = this.rowStack[rowInfo - 2]
+        }
+        if(rowInfo == 3){
+          this.sameRow = this.rowStack[rowInfo]
+          this.goUp = this.rowStack[rowInfo - 2]
+        }
       }
+      
+      
+      let nextSymbolUpside;
+      if(topConnect){
+         nextSymbolUpside = this.previousRow[value];
+      }
+      let nextSymbolUnder;
+      if(botConnect){
+         nextSymbolUnder = this.nextRow[value];
+      }
+      var sameRow = this.sameRow[value];
+      var rowUpside = this.goUp[value];
+      var rowDownside = this.goDown[value];
+      if(!position5){
+        if(symbol == nextSymbolUnder){
+            const newPosition = { x: x + 1, y: value }
+            this.exploredSet.add(newPosition);
+        }
+        else{
+          botConnect = false;
+        }
+        if(symbol == nextSymbolUpside){
+          const newPosition = { x: x - 1, y: value }
+          this.exploredSet.add(newPosition);
+        }
+        else{
+          topConnect = false;
+        }
+  
+        if(!topConnect && !botConnect){
+          break;
+        }
+      }
+      else{
+        if(rowInfo == 0){
+          if(sameRow == symbol){
+            const newPosition = { x: x, y: value }
+            this.exploredSet.add(newPosition);
+          }
+          if(rowDownside == symbol){
+            const newPosition = { x: x + 2, y: value }
+            this.exploredSet.add(newPosition);
+          }
+        }
+
+        if(rowInfo == 1 ){
+          if(sameRow == symbol){
+            const newPosition = { x: x, y: value }
+            this.exploredSet.add(newPosition);
+          }
+          if(rowDownside == symbol){
+            const newPosition = { x: x + 2, y: value }
+            this.exploredSet.add(newPosition);
+          }
+        }
+
+        if(rowInfo == 2){
+          if(rowUpside == symbol){
+            const newPosition = { x: x - 2, y: value }
+            this.exploredSet.add(newPosition);
+          }
+          if(sameRow == symbol){
+            const newPosition = { x: x, y: value }
+            this.exploredSet.add(newPosition);
+          }
+        }
+
+        if(rowInfo == 3){
+          if(rowUpside == symbol){
+            const newPosition = { x: x - 2, y: value }
+            this.exploredSet.add(newPosition);
+          }
+          if(sameRow == symbol){
+            const newPosition = { x: x, y: value }
+            this.exploredSet.add(newPosition);
+          }
+        }
+       
+      }
+      
+      
     }
-
+    this.calculeScore()
     
+  }
 
-    
-
+  calculeScore(){
     if(this.exploredSet.size >= 3){
       const exploredArray = Array.from(this.exploredSet);
 
