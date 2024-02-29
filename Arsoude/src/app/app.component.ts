@@ -20,8 +20,9 @@ export class AppComponent {
   SelectedLanguage : string = "Français";
   lvl !: Level;
   public href: string = "";
-
-
+  userInfo !: ModifUserDTO;
+  hasImage:boolean = false;
+  imageUrl : String = "";
   constructor(public userService : UserService, private translate : TranslateService, public router: Router, public trailService : TrailService, private elementRef: ElementRef) { }
 
   async ngOnInit(){
@@ -87,6 +88,7 @@ export class AppComponent {
     if(this.subMenu){
       this.subMenu.classList.remove("open-menu");
     }
+    this.imageUrl =  "";
     this.userService.Logout();
   }
 

@@ -98,6 +98,7 @@ nav>ul>li>a:hover:after {
     object-fit: cover;
     width: 100%;
     height: 100%;
+    border-radius: 90%;
 }
 
 .box:hover {
@@ -131,7 +132,17 @@ nav>ul>li>a:hover:after {
 
 .user-info {
     display: flex;
+    width: 125px;
+    height: 125px;
     align-items: center;
+}
+
+.user-info img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 90%; 
+    margin-right: 10px;
 }
 
 .user-info h2 {
