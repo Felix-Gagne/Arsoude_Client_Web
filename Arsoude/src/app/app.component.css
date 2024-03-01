@@ -98,6 +98,7 @@ nav>ul>li>a:hover:after {
     object-fit: cover;
     width: 100%;
     height: 100%;
+    border-radius: 90%;
 }
 
 .box:hover {
@@ -126,12 +127,22 @@ nav>ul>li>a:hover:after {
     border-radius: 20px;
     border: 1px solid #ccc;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-    
+
 }
 
 .user-info {
     display: flex;
+    width: 125px;
+    height: 125px;
     align-items: center;
+}
+
+.user-info img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 90%; 
+    margin-right: 10px;
 }
 
 .user-info h2 {
@@ -251,7 +262,7 @@ footer {
         margin-left: 9.2%;
     }
 
-    select{
+    select {
         background-color: #09635F;
         text-decoration: none;
         color: white;
@@ -308,7 +319,8 @@ footer {
 }
 
 .hamburger {
-    display: none; /* Hide by default */
+    display: none;
+    /* Hide by default */
     cursor: pointer;
 }
 
@@ -319,13 +331,13 @@ footer {
     margin: 6px 0;
 }
 
-.turn{
+.turn {
     display: block;
     position: relative;
     width: 100%;
 }
 
-.turn span{
+.turn span {
     position: absolute;
     display: inline-block;
     text-align: center;
@@ -334,7 +346,7 @@ footer {
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 972px) and (min-width: 94px) {
-    .header{
+    .header {
         font-size: 17px;
     }
 
@@ -344,41 +356,41 @@ footer {
         padding-left: 10%;
     }
 
-    .header_brand{
+    .header_brand {
         margin-right: 0px;
     }
 
-    .header_nav{
+    .header_nav {
         display: none;
     }
 
-    .hamburger{
+    .hamburger {
         display: block;
     }
 
-    .linkNav{
+    .linkNav {
         display: none;
     }
 
-    .wrapper{
+    .wrapper {
         justify-content: space-between;
     }
 
-    .part_1{
+    .part_1 {
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    .footer_texte_small{
+    .footer_texte_small {
         display: none;
     }
 
-    .footer_texte{
+    .footer_texte {
         display: none;
     }
 
-    .footer_options{
+    .footer_options {
         display: flex;
         width: auto;
     }
@@ -386,7 +398,7 @@ footer {
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 998px) and (min-width: 973px) {
-    .header{
+    .header {
         font-size: 13px;
     }
 
@@ -396,18 +408,18 @@ footer {
         padding-left: 10%;
     }
 
-    .footer_texte_small{
+    .footer_texte_small {
         display: none;
     }
 
-    .footer_texte{
+    .footer_texte {
         display: none;
     }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 1024px) and (min-width: 999px) {
-    .header{
+    .header {
         font-size: 14px;
     }
 
@@ -417,19 +429,19 @@ footer {
         padding-left: 10%;
     }
 
-    .footer_texte_small{
+    .footer_texte_small {
         display: none;
     }
 
-    .footer_texte{
+    .footer_texte {
         display: none;
     }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 1088px) and (min-width: 1025px){
+@media only screen and (max-width: 1088px) and (min-width: 1025px) {
 
-    .header{
+    .header {
         font-size: 15px;
     }
 
@@ -439,42 +451,59 @@ footer {
         padding-left: 10%;
     }
 
-    .footer_texte_small{
+    .footer_texte_small {
         display: none;
     }
 
-    .footer_texte{
+    .footer_texte {
         display: none;
     }
-   
+
 
 }
 
-@media only screen and (max-width: 1365px) and (min-width: 1088px){
+@media only screen and (max-width: 1365px) and (min-width: 1088px) {
 
-    .footer_texte_small{
+    .footer_texte_small {
         display: none;
     }
 
-    .footer_texte{
+    .footer_texte {
         display: none;
     }
 
-    
+
 
 }
 
 
 
-@media only screen and (max-width: 1608px){
+@media only screen and (max-width: 1608px) {
 
-    .footer_texte_small{
+    .footer_texte_small {
         display: none;
     }
 
-    .footer_texte{
+    .footer_texte {
         display: none;
     }
 
 }
 
+.footer_texte a {
+    font-size: 25px;
+    /* Same font size as other text */
+    font-weight: 500;
+    /* Same font weight as other text */
+    text-decoration: none;
+    /* Remove underline */
+    color: inherit;
+    /* Inherit text color */
+    padding-bottom: 5%;
+    /* Same padding as other text */
+}
+
+.footer_texte a:hover {
+    color: #09635F;
+    /* Change color on hover to match other links */
+}

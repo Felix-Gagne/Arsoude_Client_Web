@@ -16,22 +16,23 @@ export class AppComponent {
 
   faAngleDown = faAngleDown;
   subMenu: HTMLElement | null = null;
-  SelectLanguage : string = "fr";
-  SelectedLanguage : string = "Français";
+  SelectLanguage: string = "fr";
+  SelectedLanguage: string = "Français";
   lvl !: Level;
   public href: string = "";
 
+  hasImage: boolean = false;
+  imageUrl: String = "";
+  constructor(public userService: UserService, private translate: TranslateService, public router: Router, public trailService: TrailService, private elementRef: ElementRef) { }
 
-  constructor(public userService : UserService, private translate : TranslateService, public router: Router, public trailService : TrailService, private elementRef: ElementRef) { }
+  async ngOnInit() {
 
-  async ngOnInit(){
 
-   
     this.userService.verifyConnectedUser();
     this.subMenu = document.getElementById("subMenu");
     this.href = this.router.url;
     var data = localStorage.getItem("preferedLanguage");
-    if(data != null){
+    if (data != null) {
       this.SelectLanguage = data;
     }
     this.useLanguage();
@@ -40,15 +41,15 @@ export class AppComponent {
     console.log(this.lvl);
   }
 
-  useLanguage(){
+  useLanguage() {
     this.translate.use(this.SelectLanguage);
 
     localStorage.setItem("preferedLanguage", this.SelectLanguage);
 
-    if(this.SelectLanguage == "en"){
+    if (this.SelectLanguage == "en") {
       this.SelectedLanguage = "English"
     }
-    else{
+    else {
       this.SelectedLanguage = "Français"
     }
   }
@@ -59,7 +60,7 @@ export class AppComponent {
       this.subMenu.classList.toggle("open-menu");
     }
   }
-  
+
   closeSubMenu(): void {
     if (this.subMenu && this.subMenu.classList.contains("open-menu")) {
       this.subMenu.classList.remove("open-menu");
@@ -71,22 +72,23 @@ export class AppComponent {
     const target = event.target as HTMLElement;
     const isClickInsideSubMenu = target.closest('.sub-menu-wrap') !== null;
     const isClickInsideUserBox = target.closest('.box') !== null; // Add this line to check if the click occurs within the user box
-    
+
     if (!isClickInsideSubMenu && !isClickInsideUserBox) {
       this.closeSubMenu();
     }
   }
 
 
-  explore(): void{
+  explore(): void {
     this.router.navigate(['/search']);
   }
 
-  logout(): void{
+  logout(): void {
     console.log("Sa se call")
-    if(this.subMenu){
+    if (this.subMenu) {
       this.subMenu.classList.remove("open-menu");
     }
+    this.imageUrl = "";
     this.userService.Logout();
   }
 

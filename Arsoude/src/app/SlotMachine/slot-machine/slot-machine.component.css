@@ -31,8 +31,7 @@
   width: 80%;
   height: 80%;
   transform: scale(1.27);
-  object-fit: contain;
-  /* Adjust as needed */
+  object-fit: contain; /* Adjust as needed */
 }
 
 .multi-counter {
@@ -51,7 +50,7 @@
 
 .multi-counter .container {
   position: absolute;
-  top: 0;
+  top:0;
   right: 0;
   display: inline-block;
   transform: translate(-0%, -50%);
@@ -59,12 +58,9 @@
 }
 
 .multi-counter img {
-  width: 300px;
-  /* Adjust width as needed */
-  height: 300px;
-  /* Adjust height as needed */
-  position: relative;
-  /* Change position to relative */
+  width: 300px; /* Adjust width as needed */
+  height: 300px; /* Adjust height as needed */
+  position: relative; /* Change position to relative */
 }
 
 .multi-counter p {
@@ -77,14 +73,12 @@
   color: white;
   margin: 0;
   padding: 5px;
-  z-index: 1;
-  /* Ensure the text is above the image */
+  z-index: 1; /* Ensure the text is above the image */
 }
 
 .multi-counter h1 {
   font-size: large;
-  color: white;
-  /* Change 'w' to 'white' */
+  color: white; /* Change 'w' to 'white' */
   text-align: center;
   font-size: 28px;
 }
@@ -96,13 +90,12 @@
   margin: auto;
   width: 49.75%;
   background-color: rgba(0, 0, 0, 0.726);
-  padding: 20px 0;
-  /* Adjust as needed */
+  padding: 20px 0; /* Adjust as needed */
   margin-bottom: 5%;
-
+  
 }
 
-.buttons-container p {
+.buttons-container p{
   margin-left: auto;
   margin-right: 40px;
   color: white;
@@ -111,38 +104,28 @@
 }
 
 .custom-button {
-  padding: 10px 20px;
-  /* Adjust padding as needed */
-  margin: 0 10px;
-  /* Adjust margin between buttons as needed */
-  font-size: 16px;
-  /* Adjust font size as needed */
-  background-color: #007bff;
-  /* Button background color */
-  color: #ffffff;
-  /* Button text color */
+  padding: 10px 20px; /* Adjust padding as needed */
+  margin: 0 10px; /* Adjust margin between buttons as needed */
+  font-size: 16px; /* Adjust font size as needed */
+  background-color: #007bff; /* Button background color */
+  color: #ffffff; /* Button text color */
   border: none;
   width: 150px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  /* Add box shadow */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow */
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .custom-button:hover {
-  background-color: #0056b3;
-  /* Button background color on hover */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  /* Increase box shadow on hover */
+  background-color: #0056b3; /* Button background color on hover */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Increase box shadow on hover */
   cursor: pointer;
 }
 
 .custom-button:disabled {
-  opacity: 0.6;
-  /* Reduce opacity to make the button appear darker */
-  cursor: not-allowed;
-  /* Change cursor to not-allowed */
+  opacity: 0.6; /* Reduce opacity to make the button appear darker */
+  cursor: not-allowed; /* Change cursor to not-allowed */
 }
 
 
@@ -151,8 +134,7 @@
 
 
 .reel-column {
-  margin: 0 10px;
-  /* Adjust spacing between columns */
+  margin: 0 10px; /* Adjust spacing between columns */
   position: relative;
 }
 
@@ -181,37 +163,15 @@ button {
 }
 
 @keyframes growShrink {
-
-  0%,
-  100% {
-    transform: scale(1) rotate(0);
-  }
-
-  25% {
-    transform: scale(1.3) rotate(-5deg);
-  }
-
-  50% {
-    transform: scale(1) rotate(0);
-  }
-
-  75% {
-    transform: scale(1.3) rotate(5deg);
-  }
+  0%, 100% { transform: scale(1) rotate(0); }
+  25% { transform: scale(1.3) rotate(-5deg); }
+  50% { transform: scale(1) rotate(0); }
+  75% { transform: scale(1.3) rotate(5deg); }
 }
 
 @keyframes shine {
-
-  0%,
-  100% {
-    box-shadow: 0 0 15px 1px gold, 0 0 20px 2px gold;
-  }
-
-  50% {
-    box-shadow: 0 0 7px 1px gold, 0 0 10px 2px gold;
-  }
-
-  /* Gradually reduce the box-shadow */
+  0%, 100% { box-shadow: 0 0 15px 1px gold, 0 0 20px 2px gold; }
+  50% { box-shadow: 0 0 7px 1px gold, 0 0 10px 2px gold; } /* Gradually reduce the box-shadow */
 }
 
 
@@ -229,33 +189,13 @@ button {
 }
 
 @keyframes growShrink {
-
-  0%,
-  100% {
-    transform: scale(1) rotate(0);
-  }
-
-  25% {
-    transform: scale(1.3) rotate(-5deg);
-  }
-
-  50% {
-    transform: scale(1) rotate(0);
-  }
-
-  100% {
-    transform: scale(1.3) rotate(5deg);
-  }
+  0%, 100% { transform: scale(1) rotate(0); }
+  25% { transform: scale(1.3) rotate(-5deg); }
+  50% { transform: scale(1) rotate(0); }
+  100% { transform: scale(1.3) rotate(5deg); }
 }
 
 @keyframes shine {
-
-  0%,
-  100% {
-    box-shadow: 0 0 15px 1px gold, 0 0 20px 2px gold;
-  }
-
-  50% {
-    box-shadow: none;
-  }
+  0%, 100% { box-shadow: 0 0 15px 1px gold, 0 0 20px 2px gold; }
+  50% { box-shadow: none; }
 }

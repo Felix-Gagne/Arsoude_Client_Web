@@ -15,6 +15,7 @@ import { HelpPageComponent } from './help-page/help-page.component';
 import { DetailsComponent } from './details/details/details.component';
 import { UserTrailsComponent } from './userLisfOfTrails/user-trails/user-trails.component';
 import { ProfileComponent } from './profile/profile/profile.component';
+import { HelldiveComponent } from './helldive/helldive.component';
 
 const routes : Routes = [
   {path: '', component : HomeComponent},
@@ -29,7 +30,8 @@ const routes : Routes = [
   {path: 'details/:name', component: DetailsComponent},
   {path: 'help', component: HelpPageComponent},  
   {path: 'userTrails', component: UserTrailsComponent},
-  {path: 'profile', component: ProfileComponent},    
+  {path: 'profile', component: ProfileComponent}, 
+  {path: 'HELLDIVERS', component : HelldiveComponent}   
 ];
 
 @NgModule({

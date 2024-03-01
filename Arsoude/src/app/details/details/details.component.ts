@@ -16,8 +16,8 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent {
-  
-  trail : TrailDTO | undefined;
+
+  trail: TrailDTO | undefined;
   faBicycle = faBicycle;
   faPersonWalking = faPersonWalking;
   faBookMark = faBookmark
@@ -25,78 +25,79 @@ export class DetailsComponent {
   zoom = 13;
   mapTypeId = google.maps.MapTypeId.SATELLITE;
   markerPositions: google.maps.LatLngLiteral[] = [];
-  isFavorite : boolean = false;
-  Favorites : TrailDTO[] = []
+  isFavorite: boolean = false;
+  Favorites: TrailDTO[] = []
   isOwner = false;
-  commentList : Comments[] = [];
-  commentInput? : string;
+  commentList: Comments[] = [];
+  commentInput?: string;
+  isUndefined: boolean = false;
 
-  constructor( private router: Router,private trailService : TrailService, public userService: UserService, 
-    public commentService : CommentsService, public notifierService : NotifierService, public translate : TranslateService){}
+  constructor(private router: Router, private trailService: TrailService, public userService: UserService,
+    public commentService: CommentsService, public notifierService: NotifierService, public translate: TranslateService) { }
 
-  async ngOnInit(){
+  async ngOnInit() {
     var data = localStorage.getItem("trailid");
-    if(data != null){
+    if (data != null) {
       this.trail = await this.trailService.getTrailDetails(parseInt(data));
     }
 
     this.checkOwnerByTrailId()
     this.Favorites = await this.trailService.getFavTrails();
 
-    for(let i =0; i < this.Favorites.length; i ++){
-      if(this.Favorites[i].id == this.trail?.id){
-        this.isFavorite= true;
+    for (let i = 0; i < this.Favorites.length; i++) {
+      if (this.Favorites[i].id == this.trail?.id) {
+        this.isFavorite = true;
       }
     }
 
-    const startMarker: google.maps.LatLngLiteral = { 
-      lat: this.trail?.startingCoordinates!.latitude!, 
-      lng: this.trail?.startingCoordinates!.longitude! 
+    const startMarker: google.maps.LatLngLiteral = {
+      lat: this.trail?.startingCoordinates!.latitude!,
+      lng: this.trail?.startingCoordinates!.longitude!
     };
 
     const endMarker: google.maps.LatLngLiteral = {
-      lat: this.trail?.endingCoordinates!.latitude!, 
-      lng: this.trail?.endingCoordinates!.longitude! 
+      lat: this.trail?.endingCoordinates!.latitude!,
+      lng: this.trail?.endingCoordinates!.longitude!
     };
-    
+
     this.markerPositions.push(startMarker, endMarker);
 
-    if(this.trail?.id != undefined){
+    if (this.trail?.id != undefined) {
       this.commentList = await this.commentService.getComments(this.trail?.id)
       console.log(this.commentList)
     }
   }
 
-  async addToFavorite(){
+  async addToFavorite() {
     this.isFavorite = !this.isFavorite;
     console.log(this.isFavorite)
     await this.trailService.manageTrailFavorite(this.trail?.id!, this.isFavorite);
   }
 
-  async checkOwnerByTrailId(){
-    let x =await this.trailService.checkOwnerByTrailId(this.trail?.id!);
+  async checkOwnerByTrailId() {
+    let x = await this.trailService.checkOwnerByTrailId(this.trail?.id!);
     console.log(x);
     this.isOwner = x;
   }
 
-  async makePublic(){
+  async makePublic() {
     let x = await this.trailService.SetVisibility(this.trail!.id!, true)
     console.log(x);
     this.trail!.isPublic = true
   }
 
-  async sendComments(){
-    if(this.commentInput != null && this.trail?.id != undefined){
+  async sendComments() {
+    if (this.commentInput != null && this.trail?.id != undefined) {
       let dto = new CommentDTO(this.commentInput, this.trail?.id);
       await this.commentService.sendComment(dto);
 
-      this.notifierService.showNotification( this.translate.instant('commentNotification'), "success")
+      this.notifierService.showNotification(this.translate.instant('commentNotification'), "success")
 
       this.refreshPage()
     }
   }
 
-  async makePrivate(){
+  async makePrivate() {
     let x = await this.trailService.SetVisibility(this.trail!.id!, false)
     console.log(x);
     this.trail!.isPublic = false
