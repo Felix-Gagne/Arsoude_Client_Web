@@ -1,0 +1,16 @@
+.game-area {
+    box-sizing: border-box;
+    position: relative;
+    height: 80px;
+    overflow: hidden;
+
+    .card {
+        bottom: 0;
+        box-sizing: border-box;
+        height: 80px;
+        left: 0;
+        position: absolute;
+        right: 0;
+        width: 80px;
+    }
+}

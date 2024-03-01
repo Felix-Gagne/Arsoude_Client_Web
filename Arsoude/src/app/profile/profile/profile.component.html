@@ -4,10 +4,11 @@
 <div class="hole">
     <div class="imageProfilePlaceHolder">
         <img *ngIf="!Hasimage" src="/assets/images/userPlaceHolder.png" alt="userImagePlaceHolder">
-        <img *ngIf="Hasimage" [src]="imageUrl" alt="userImagePlaceHolder">
+        <div *ngIf="Hasimage && uploadInProgress" class="loading-animation"></div>
+        <img *ngIf="Hasimage && !uploadInProgress" [src]="imageUrl" alt="userImagePlaceHolder" class="imageProfilePlaceHolder"> 
         <div class="editPhoto">
-            <i class="fa-solid fa-pen" (click)="upload.click()"></i>
-            <input id="fileUpload" type="file" #upload style="display: none;">
+            <i class="fa-solid fa-pen" (click)="upload.click()" ></i>
+            <input id="fileUpload" type="file" #upload (click)="uploadFile(image)" style="display: none;" #image (change)="uploadFile(upload)">
         </div>
     </div>
 </div>
@@ -81,10 +82,8 @@
                         <mat-error *ngIf="form.hasError('required')">La confirmation du mot de passe est <strong>requis</strong></mat-error>
                     </mat-form-field>
             </div> -->
-            <div *ngIf="editProfilePrincipal || editProfileSecondary">
-                <button class="modern-button cancel-button" (click)="cancel()">Cancel</button>
-                <button class="modern-button update-button" (click)="update()">Update</button>
-            </div>
+                <button class="modern-button cancel-button" *ngIf="editProfilePrincipal" (click)="cancel()">Cancel</button>
+                <button class="modern-button update-button" *ngIf="editProfilePrincipal" (click)="update()" [disabled]="!form.valid">Update</button>
         </form>
     </div>
     <div class="secondaryInformation">
@@ -109,32 +108,26 @@
             <mat-form-field style="width: 43%" class="addGap">
                 <mat-label>House number</mat-label>
                 <input class="box_login_form_name" matInput type="text"  formControlName="houseNo" [(ngModel)]="HouseNo">
-                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
             </mat-form-field>
             <mat-form-field  style="width: 43%">
                 <mat-label>Street</mat-label>
                 <input class="box_login_form_name" matInput type="text"  formControlName="street" [(ngModel)]="Street">
-                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
             </mat-form-field>
             <mat-form-field  style="width: 43%" class="addGap">
                 <mat-label>City</mat-label>
                 <input class="box_login_form_name" matInput type="text"  formControlName="city" [(ngModel)]="City">
-                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
             </mat-form-field>
             <mat-form-field  style="width: 43%">
                 <mat-label>State</mat-label>
                 <input class="box_login_form_name" matInput type="text"  formControlName="state" [(ngModel)]="State">
-                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
             </mat-form-field>
             <mat-form-field  style="width: 43%" class="addGap">
                 <mat-label>Year Of Birth</mat-label>
                 <input class="box_login_form_name" matInput type="text"  formControlName="yearOfBirth" [(ngModel)]="YearOfBirth">
-                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
             </mat-form-field>
             <mat-form-field  style="width: 43%">
                 <mat-label>Month of birth</mat-label>
                 <input class="box_login_form_name" matInput type="text"  formControlName="monthOfBirth" [(ngModel)]="MonthOfBirth">
-                <mat-error *ngIf="form.get('nom')?.hasError('required')">Votre nom est <strong>requis</strong></mat-error>
             </mat-form-field>
         </form>
     </div>
