@@ -26,9 +26,7 @@ export class UserService {
   async register(dto : RegisterDTO)
   {
     try{
-      console.log(dto);
       let x = await lastValueFrom(this.http.post<any>(this.baseUrl+"/Register", dto));
-      console.log(x);
       localStorage.setItem("Token", x.token);
       this.router.navigate(['/infoReg', dto.Username]);
 
@@ -41,7 +39,6 @@ export class UserService {
   async Login(dto : LoginDTO){
     try{
       let x = await lastValueFrom(this.http.post<any>(this.baseUrl+"/Login", dto));
-      console.log(x.token);
       localStorage.setItem("Token", x.token);
       localStorage.setItem("Username", dto.Username);
       let roles = x.roles;
@@ -66,9 +63,7 @@ export class UserService {
 
   async AddAditionnalInfo(dto : InfoRegDTO){
     try{
-      console.log(dto);
       let x = await lastValueFrom(this.http.put<any>(this.baseUrl+"/AddAditionnalInfo", dto));
-      console.log(x);
       this.router.navigate(['']);
     }
     catch(e){
@@ -79,7 +74,6 @@ export class UserService {
   async getUserLevel(){
     try{
       let lvl = await lastValueFrom(this.http.get<any>(this.baseUrl+"/GetProgression"));
-      console.log(lvl);
       return lvl;
     }
     catch(error : any){
@@ -90,7 +84,6 @@ export class UserService {
   async getUserInfo(){
     try{
       let info = await lastValueFrom(this.http.get<any>(this.baseUrl + "/GetUserInfo"));
-      console.log(info);
       return info;
     }
     catch(error : any){
@@ -101,7 +94,6 @@ export class UserService {
   async editUser(dto : ModifUserDTO){
     try{
       let edit = await lastValueFrom(this.http.post<any>(this.baseUrl + "/ChangeUserInfo", dto))
-      console.log("Success");
       return edit;
     }
     catch(error : any){
@@ -120,7 +112,6 @@ export class UserService {
 
   verifyConnectedUser(){
     if(localStorage.getItem("Token") != undefined && localStorage.getItem("Token") != null){
-      console.log(localStorage.getItem("Token"));
       this.isConnected = true;
     }
     if(localStorage.getItem('Username') != undefined && localStorage.getItem('Username') != null ){

@@ -277,8 +277,8 @@ footer {
     }
 
     .footer_language {
-        margin-left: 83.5%;
-        margin-top: -5%;
+        margin-left: 9.1%;
+        margin-top: 2%;
     }
 
     .dropdown {
@@ -342,7 +342,6 @@ footer {
     display: inline-block;
     text-align: center;
 }
-
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 972px) and (min-width: 94px) {
@@ -415,6 +414,11 @@ footer {
     .footer_texte {
         display: none;
     }
+
+    .footer_language{
+        margin-left: 9.1%;
+        margin-top: 2%;
+    }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -435,6 +439,11 @@ footer {
 
     .footer_texte {
         display: none;
+    }
+
+    .footer_language{
+        margin-left: 9.1%;
+        margin-top: 2%;
     }
 }
 
@@ -459,6 +468,10 @@ footer {
         display: none;
     }
 
+    .footer_language{
+        margin-left: 9.1%;
+        margin-top: 2%;
+    }
 
 }
 
@@ -470,6 +483,11 @@ footer {
 
     .footer_texte {
         display: none;
+    }
+
+    .footer_language{
+        margin-left: 9.1%;
+        margin-top: 2%;
     }
 
 
