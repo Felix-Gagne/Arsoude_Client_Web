@@ -1,11 +1,31 @@
 <header class="header">
     <div class="wrapper">
         <div class="part_1">
-            <div class="hamburger">
+           
+            <div class="hamburger" (click)="toggleHamburger()" [ngClass]="{'animate': isClassVisible }">
                 <div class="bar"></div>
-                <div class="bar"></div>
+                <div class="bar"></div>	
                 <div class="bar"></div>
             </div>
+            <div class="left" [@slideInOut2]="slideInOut" [ngClass]="{'animate': isClassVisible }">
+                <div class="menu2" (click)="toggleHamburger()">              
+                  <div class="bar"></div>
+                  <div class="bar"></div>	
+                  <div class="bar"></div>
+                </div>
+                <ul class="vertical-list"> 
+                    <li>
+                        <a class="linkNav" href="#/search">{{'header.explore' | translate}}</a>
+                    </li>
+                    <li>
+                        <a class="linkNav" href="">{{'header.community' | translate}}</a>
+                    </li>
+                    <li>
+                        <a class="linkNav" href="#/creation" *ngIf="userService.isConnected">{{'header.create' | translate}}</a>
+                    </li>
+                </ul>
+            </div>
+        
             <div class="sub-menu-wrap" id="subMenu" >
                 <div class="sub-menu">
                     <div class="user-info">
@@ -41,7 +61,7 @@
                     </a>
                 </div>
             </div>
-            <a href="" class="header_brand"><img class="logo" src="assets/images/Logo_OG.png" alt="Logo" /></a>
+            <a  href="" class="header_brand"><img class="logo" src="assets/images/Logo_OG.png" alt="Logo" /></a>
         </div>
         
         <nav class="header_nav">

@@ -5,11 +5,24 @@ import { faAngleDown, faBicycle, faPersonWalking } from '@fortawesome/free-solid
 import { Router } from '@angular/router';
 import { TrailService } from './service/trail.service';
 import { Level } from './models/Level';
+import { trigger, state, style, transition, animate} from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations: [
+    trigger('slideInOut2', [
+      state('in', style({
+        transform: 'translate3d(0, 0, 0)'
+      })),
+      state('out', style({
+        transform: 'translate3d(100%, 0, 0)'
+      })),
+      transition('in => out', animate('400ms ease-in-out')),
+      transition('out => in', animate('400ms ease-in-out'))
+    ]),
+  ]
 })
 export class AppComponent {
   title = 'Arsoude';
@@ -20,10 +33,19 @@ export class AppComponent {
   SelectedLanguage: string = "Français";
   lvl !: Level;
   public href: string = "";
+  
+  slideInOut: String = 'in';
+  isClassVisible = false;
 
   hasImage: boolean = false;
   imageUrl: String = "";
-  constructor(public userService: UserService, private translate: TranslateService, public router: Router, public trailService: TrailService, private elementRef: ElementRef) { }
+  constructor(public userService: UserService, private translate: TranslateService, public router: Router, public trailService: TrailService, private elementRef: ElementRef) {
+    setInterval(
+      () => {
+        console.log(this.slideInOut);
+      }, 2000
+    );
+   }
 
   async ngOnInit() {
 
@@ -38,6 +60,16 @@ export class AppComponent {
     this.useLanguage();
 
     this.lvl = await this.userService.getUserLevel();
+  }
+
+  toggleHamburger() {
+    // 1-line if statement that toggles the value:
+    this.slideInOut = this.slideInOut === 'out' ? 'in' : 'out';
+    this.isClassVisible = !this.isClassVisible;
+  }
+
+  getStyle() {
+
   }
 
   useLanguage() {
