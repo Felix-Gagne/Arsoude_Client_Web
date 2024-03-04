@@ -38,7 +38,6 @@ export class AppComponent {
     this.useLanguage();
 
     this.lvl = await this.userService.getUserLevel();
-    console.log(this.lvl);
   }
 
   useLanguage() {
@@ -55,7 +54,6 @@ export class AppComponent {
   }
 
   toggleMenu(): void {
-    console.log("Function called");
     if (this.subMenu) {
       this.subMenu.classList.toggle("open-menu");
     }
@@ -84,7 +82,6 @@ export class AppComponent {
   }
 
   logout(): void {
-    console.log("Sa se call")
     if (this.subMenu) {
       this.subMenu.classList.remove("open-menu");
     }
