@@ -36,8 +36,9 @@ export class AppComponent {
       this.SelectLanguage = data;
     }
     this.useLanguage();
-
-    this.lvl = await this.userService.getUserLevel();
+    if(localStorage.getItem("Token") != null){
+      this.lvl = await this.userService.getUserLevel();
+    }
     console.log(this.lvl);
   }
 

@@ -72,6 +72,16 @@ nav>ul>li>a:hover:after {
 
 
 
+nav > ul > li > a.traduction {
+    display: flex;
+    gap: 5px;
+}
+
+.traduction p{
+    margin: 0;
+}
+
+
 .header_options .button {
     background-color: #09635F;
     color: white;
@@ -246,7 +256,12 @@ footer {
     }
 
     .footer_options {
-        width: 300%;
+        width: 100%;
+    }
+
+    .footer_options img{
+        width: fit-content;
+        height: fit-content;
     }
 
     .footer_sepator {
@@ -276,10 +291,7 @@ footer {
         }
     }
 
-    .footer_language {
-        margin-left: 83.5%;
-        margin-top: -5%;
-    }
+   
 
     .dropdown {
         position: relative;
