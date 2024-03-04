@@ -1,0 +1,43 @@
+
+
+<div>
+    <!--<button (click)="toggleMenu()" class="hamburger">
+      <span>toggle menu</span>
+    </button>-->
+    <div class="menu" (click)="toggleMenu()">
+      <!-- <div class="bar"></div>	 -->
+      <div class="bar" [ngClass]="{'animate': isClassVisible }"></div>	
+    </div>
+    
+    <div class="left" [@slideInOut2]="slideInOut">
+        <div class="menu2" (click)="toggleMenu()">
+          <!-- <div class="bar"></div>	 -->
+          <div class="bar" [ngClass]="{'animate': isClassVisible }"></div>	
+  
+        </div>
+      <ul>
+        <li>Menu Item</li>
+        <li>Menu Item</li>
+        <li>Menu Item</li>
+        <li>Menu Item</li>
+        <li>Menu Item</li>
+        <li>Menu Item</li>
+      </ul>
+    </div>
+
+</div>
+
+<!-- <button (click)="toggleMenu()" class="hamburger">
+  <span>toggle menu</span>
+</button>
+
+<div class="left" [@slideInOut2]="slideInOut">
+  <ul>
+    <li>Menu Item</li>
+    <li>Menu Item</li>
+    <li>Menu Item</li>
+    <li>Menu Item</li>
+    <li>Menu Item</li>
+    <li>Menu Item</li>
+  </ul>
+</div> -->
