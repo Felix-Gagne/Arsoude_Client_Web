@@ -40,11 +40,7 @@ export class AppComponent {
   hasImage: boolean = false;
   imageUrl: String = "";
   constructor(public userService: UserService, private translate: TranslateService, public router: Router, public trailService: TrailService, private elementRef: ElementRef) {
-    setInterval(
-      () => {
-        console.log(this.slideInOut);
-      }, 2000
-    );
+   
    }
 
   async ngOnInit() {
