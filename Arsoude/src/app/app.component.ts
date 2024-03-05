@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { TrailService } from './service/trail.service';
 import { Level } from './models/Level';
 import { trigger, state, style, transition, animate} from '@angular/animations';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
@@ -34,17 +35,15 @@ export class AppComponent {
   lvl !: Level;
   public href: string = "";
   
+  isSmallScreen: boolean = false;
   slideInOut: String = 'in';
   isClassVisible = false;
 
   hasImage: boolean = false;
   imageUrl: String = "";
-  constructor(public userService: UserService, private translate: TranslateService, public router: Router, public trailService: TrailService, private elementRef: ElementRef) {
-   
-   }
+  constructor(public userService: UserService, private translate: TranslateService, public router: Router, public trailService: TrailService, private elementRef: ElementRef,private breakpointObserver: BreakpointObserver) {}
 
   async ngOnInit() {
-
 
     this.userService.verifyConnectedUser();
     this.subMenu = document.getElementById("subMenu");
@@ -56,11 +55,35 @@ export class AppComponent {
     this.useLanguage();
 
     this.lvl = await this.userService.getUserLevel();
+
+    let intervalId: any;
+    let wasSmallScreen: boolean | null = null;
+
+    // Set interval to check screen size every second
+    this.breakpointObserver.observe([
+      Breakpoints.Handset,  // Matches portrait phones
+      '(max-width: 959px)'  // Your custom media query for sizes smaller than 960px
+    ]).subscribe(result => {
+      const isSmallScreen = result.matches;
+
+      if (this.isSmallScreen !== isSmallScreen) {
+        this.isSmallScreen = isSmallScreen;
+
+        // If the screen size changed from less than 960px to 960px or larger, trigger toggleHamburger
+        if (!this.isSmallScreen) {
+          this.toggleHamburger();
+        }
+      }
+    });
+
+  
+    console.log(this.isSmallScreen);
   }
 
   toggleHamburger() {
     // 1-line if statement that toggles the value:
     this.slideInOut = this.slideInOut === 'out' ? 'in' : 'out';
+    console.log(this.slideInOut);
     this.isClassVisible = !this.isClassVisible;
   }
 

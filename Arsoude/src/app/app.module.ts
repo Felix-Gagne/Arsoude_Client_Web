@@ -30,7 +30,6 @@ import { UserTrailsComponent } from './userLisfOfTrails/user-trails/user-trails.
 import { ProfileComponent } from './profile/profile/profile.component';
 import { MatInputModule } from '@angular/material/input';
 import { HelldiveComponent } from './helldive/helldive.component';
-import { TestComponent } from './test/test.component';
 
 export function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http);
@@ -52,9 +51,7 @@ export function HttpLoaderFactory(http: HttpClient){
     NotifierComponent,
     UserTrailsComponent,
     ProfileComponent,
-    HelldiveComponent,
-    TestComponent,
- 
+    HelldiveComponent, 
   ],
   imports: [
     BrowserModule,

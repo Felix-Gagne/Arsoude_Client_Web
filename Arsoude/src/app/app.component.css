@@ -370,9 +370,6 @@ footer {
     .hamburger {
         display: block;
     }
-
-   
-
   
     .wrapper {
         justify-content: space-between;
@@ -431,8 +428,7 @@ footer {
         font-size: 14px;
     }
 
-    
-
+  
     .logo {
         height: 55%;
         width: 55%;
@@ -460,7 +456,7 @@ footer {
         font-size: 15px;
     }
 
-  
+   
 
     .logo {
         height: 55%;
@@ -489,7 +485,6 @@ footer {
         display: none;
     }
 
- 
 
     .footer_texte {
         display: none;
@@ -506,7 +501,7 @@ footer {
 
 
 
-@media only screen and (max-width: 1608px) {
+@media only screen and (max-width: 1608px)  and (min-width: 1365px)  {
 
     .footer_texte_small {
         display: none;
@@ -642,9 +637,6 @@ footer {
 .menu2 .bar:nth-child(3){
     transform: rotate(-45deg) translate(7px, -6px);
 }
-
-
-  
 
 
 /*
