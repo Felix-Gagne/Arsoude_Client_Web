@@ -56,10 +56,6 @@ export class AppComponent {
 
     this.lvl = await this.userService.getUserLevel();
 
-    let intervalId: any;
-    let wasSmallScreen: boolean | null = null;
-
-    // Set interval to check screen size every second
     this.breakpointObserver.observe([
       Breakpoints.Handset,  // Matches portrait phones
       '(max-width: 959px)'  // Your custom media query for sizes smaller than 960px
@@ -68,8 +64,6 @@ export class AppComponent {
 
       if (this.isSmallScreen !== isSmallScreen) {
         this.isSmallScreen = isSmallScreen;
-
-        // If the screen size changed from less than 960px to 960px or larger, trigger toggleHamburger
         if (!this.isSmallScreen) {
           this.toggleHamburger();
         }
@@ -81,7 +75,6 @@ export class AppComponent {
   }
 
   toggleHamburger() {
-    // 1-line if statement that toggles the value:
     this.slideInOut = this.slideInOut === 'out' ? 'in' : 'out';
     console.log(this.slideInOut);
     this.isClassVisible = !this.isClassVisible;
