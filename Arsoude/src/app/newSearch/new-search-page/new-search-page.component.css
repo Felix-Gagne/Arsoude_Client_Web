@@ -1,0 +1,45 @@
+
+
+.pageDisposition {
+    display: flex;
+    height: fit-content;
+}
+
+.trailListContainer {
+     /* Enable vertical scrolling when content exceeds max height */
+    width: 25%;
+}
+
+.imageContainer{
+    width: 325px;
+    height: 250px;
+    margin-right: 3%;
+}
+
+.imageContainer>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.custom-paginator {
+    display: flex;
+    justify-content: center; /* Center aligns the page number */
+    align-items: center;
+}
+
+mat-paginator {
+    background-color: transparent;
+  }
+  
+
+
+
+.mapContainer {
+    width: 75%;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+}

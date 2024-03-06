@@ -31,6 +31,7 @@ import { ProfileComponent } from './profile/profile/profile.component';
 import { MatInputModule } from '@angular/material/input';
 import { HelldiveComponent } from './helldive/helldive.component';
 import { NewSearchPageComponent } from './newSearch/new-search-page/new-search-page.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 export function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http);
@@ -65,6 +66,7 @@ export function HttpLoaderFactory(http: HttpClient){
     MatInputModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
+    LeafletModule,
     GoogleMapsModule,
     TranslateModule.forRoot({
       defaultLanguage: 'fr',

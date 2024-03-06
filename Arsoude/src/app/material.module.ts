@@ -11,7 +11,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableModule} from '@angular/material/table'
+import {MatTableModule} from '@angular/material/table';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 
 @NgModule({
   imports: [
@@ -27,7 +29,8 @@ import {MatTableModule} from '@angular/material/table'
     MatSliderModule,
     MatSnackBarModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    LeafletModule
   ],
   exports: [
     MatFormFieldModule, 

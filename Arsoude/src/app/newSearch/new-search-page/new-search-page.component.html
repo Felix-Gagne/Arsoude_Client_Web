@@ -1,1 +1,27 @@
-<p>new-search-page works!</p>
+<div class="pageDisposition" (scroll)="onScroll()">
+    <div class="trailListContainer">
+      <div *ngFor="let trail of pagedTrails">
+        <div class="imageContainer">
+            <img [src]="trail.imageUrl" alt="image_trail">
+        </div>
+        <h4>{{trail.name}}</h4>
+        
+        <p *ngIf="trail.type == 0"><fa-icon [icon]="faPersonWalking"></fa-icon></p>
+        <p *ngIf="trail.type == 1"><fa-icon [icon]="faBicycle"></fa-icon></p>
+        <p class="textLocation">{{trail.location}}</p>
+      </div>
+      <mat-paginator class="custom-paginator"
+        [length]="trailsLength"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[5, 10, 15]" 
+        (page)="onPageChange($event)">
+      </mat-paginator>
+    </div>
+    <div leaflet class="mapContainer"
+					 [leafletOptions]="options"
+					 [leafletZoom]="zoom"
+					 (leafletZoomChange)="onZoomChange($event)"
+					 [leafletCenter]="center"
+				     (leafletCenterChange)="onCenterChange($event)">
+	</div>
+</div>

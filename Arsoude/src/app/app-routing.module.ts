@@ -16,9 +16,10 @@ import { DetailsComponent } from './details/details/details.component';
 import { UserTrailsComponent } from './userLisfOfTrails/user-trails/user-trails.component';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { HelldiveComponent } from './helldive/helldive.component';
+import { NewSearchPageComponent } from './newSearch/new-search-page/new-search-page.component';
 
 const routes : Routes = [
-  {path: '', component : HomeComponent},
+  {path: '', component : NewSearchPageComponent},
   {path:'login', component : LoginComponent},
   {path: 'register', component : RegisterComponent},
   {path:'infoReg/:username', component : InfoRegComponent},
