@@ -63,9 +63,6 @@ export class AppComponent {
       this.lvl = await this.userService.getUserLevel();
     }
     console.log(this.lvl);
-    this.useLanguage();
-
-    this.lvl = await this.userService.getUserLevel();
 
     this.breakpointObserver.observe([
       Breakpoints.Handset,  // Matches portrait phones
@@ -81,7 +78,6 @@ export class AppComponent {
       }
     });
 
-  
     console.log(this.isSmallScreen);
   }
 
