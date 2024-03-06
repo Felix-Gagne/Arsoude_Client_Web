@@ -31,7 +31,8 @@ const routes : Routes = [
   {path: 'help', component: HelpPageComponent},  
   {path: 'userTrails', component: UserTrailsComponent},
   {path: 'profile', component: ProfileComponent}, 
-  {path: 'HELLDIVERS', component : HelldiveComponent}   
+  {path: 'HELLDIVERS', component : HelldiveComponent},
+  
 ];
 
 @NgModule({
