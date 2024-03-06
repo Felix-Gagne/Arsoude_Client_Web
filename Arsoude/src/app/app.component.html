@@ -129,6 +129,23 @@
                     </nav>
                    
                 </li>
+                <li>
+                    <a (click)="useLanguage()" href="#" class="traduction" *ngIf="!frenchTraduction">
+                        <p>fr</p>
+                        <p>/</p>
+                        <p style="font-weight: 900;">en</p>
+                    </a>
+                    <a (click)="useLanguage()" href="#" class="traduction" *ngIf="frenchTraduction">
+                        <p style="font-weight: 900;">fr</p>
+                        <p>/</p>
+                        <p>en</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <nav >
+            <ul class="specialUl">
+                
             </ul>
         </nav>
     </div>
@@ -176,13 +193,5 @@
         <br>
         <p>{{'footer.policy' | translate}}</p>
      
-    </div>
-    <div class="footer_language">
-        <div class="dropdown">
-            <select name="language" id="language" [(ngModel)]="SelectLanguage" (click)="useLanguage()">
-                <option value="en">English</option>
-                <option value="fr" selected>Français</option>
-            </select>
-        </div>
     </div>
 </footer>

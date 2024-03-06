@@ -4,46 +4,42 @@
         <div class="box_login_head">
           <img class="box_login_logo" src="assets/images/LogoNoWords.png" alt="">
           <h2>{{'infoReg.title' | translate}}</h2>
-          
         </div>
-        <form [formGroup]="form" class="box_login_form"  > 
-            <mat-form-field  style="width: 40% ; margin-right: 5%;">
-                <mat-label>{{'infoReg.numCivique' | translate}}</mat-label>
-                <input  matInput type="text"  formControlName="address" [(ngModel)]="houseNo">
-                <mat-error *ngIf="form.get('address')?.hasError('pattern')"> Veuillez entrer <strong>un numéro civique valide</strong></mat-error>
-              </mat-form-field>
-                
-              <mat-form-field style="width: 40%">
-                <mat-label>{{'infoReg.street' | translate}}</mat-label>
-                <input matInput type="text"  formControlName="street" [(ngModel)]="street">
-                
-              </mat-form-field>
-
-              <mat-form-field style="width: 85%">
+        <form [formGroup]="form" class="box_login_form"  >
+              <div class="styleRow">
+                <mat-form-field  style="width: 47%; margin-right: 6%;">
+                  <mat-label>{{'infoReg.numCivique' | translate}}</mat-label>
+                  <input  matInput type="text"  formControlName="address" [(ngModel)]="houseNo">
+                  <mat-error *ngIf="form.get('address')?.hasError('pattern')"> Veuillez entrer <strong>un numéro civique valide</strong></mat-error>
+                </mat-form-field>
+                  
+                <mat-form-field style="width: 47%">
+                  <mat-label>{{'infoReg.street' | translate}}</mat-label>
+                  <input matInput type="text"  formControlName="street" [(ngModel)]="street">
+                  
+                </mat-form-field>
+              </div>
+              <mat-form-field style="width: 100%">
                 <mat-label>{{'infoReg.prov' | translate}}</mat-label>
                 <mat-select formControlName="province" placeholder="Sélectionner une province" [(ngModel)]="state">
                   <mat-option *ngFor="let province of provinces" [value]="province"  >{{ province }}</mat-option>
                 </mat-select>
                 
               </mat-form-field>
-
-               
-            <mat-form-field style="width: 40% ; margin-right: 5%;">
-              <mat-label>{{'infoReg.yearOfBirth' | translate}}</mat-label>
-                <input  matInput type="text" placeholder="YYYY" formControlName="yearbirth" [(ngModel)]="yearOfBirth">
-                <mat-error *ngIf="form.get('yearbirth')?.hasError('validYear') || form.get('yearbirth')?.hasError('pattern') ">Veuillez entrer une année valide</mat-error>
-              </mat-form-field>
-              
-            <mat-form-field style="width: 40%">
-              <mat-label>{{'infoReg.monthOfBirth' | translate}}</mat-label>
-              <input  matInput type="text" placeholder="MM" formControlName="monthbirth" [(ngModel)]="monthOfBirth">
-              <mat-error *ngIf="form.get('monthbirth')?.hasError('validMonth') || form.get('monthbirth')?.hasError('pattern')">Veuillez entrer un mois valide</mat-error>
-              
-            </mat-form-field>
-       
-            
-           
-     
+              <div class="styleRow">
+                <mat-form-field style="width: 47% ; margin-right: 6%;">
+                  <mat-label>{{'infoReg.yearOfBirth' | translate}}</mat-label>
+                    <input  matInput type="text" placeholder="YYYY" formControlName="yearbirth" [(ngModel)]="yearOfBirth">
+                    <mat-error *ngIf="form.get('yearbirth')?.hasError('validYear') || form.get('yearbirth')?.hasError('pattern') ">Veuillez entrer une année valide</mat-error>
+                  </mat-form-field>
+                  
+                <mat-form-field style="width: 47%">
+                  <mat-label>{{'infoReg.monthOfBirth' | translate}}</mat-label>
+                  <input  matInput type="text" placeholder="MM" formControlName="monthbirth" [(ngModel)]="monthOfBirth">
+                  <mat-error *ngIf="form.get('monthbirth')?.hasError('validMonth') || form.get('monthbirth')?.hasError('pattern')">Veuillez entrer un mois valide</mat-error>
+                  
+                </mat-form-field>
+              </div>
             <button class="box_login_button" (click)="AddAditionnalInfo()">{{'infoReg.button' | translate}}</button>
             
         </form>
