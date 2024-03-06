@@ -5,11 +5,25 @@ import { faAngleDown, faBicycle, faPersonWalking } from '@fortawesome/free-solid
 import { Router } from '@angular/router';
 import { TrailService } from './service/trail.service';
 import { Level } from './models/Level';
+import { trigger, state, style, transition, animate} from '@angular/animations';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations: [
+    trigger('slideInOut2', [
+      state('in', style({
+        transform: 'translate3d(0, 0, 0)'
+      })),
+      state('out', style({
+        transform: 'translate3d(100%, 0, 0)'
+      })),
+      transition('in => out', animate('400ms ease-in-out')),
+      transition('out => in', animate('400ms ease-in-out'))
+    ]),
+  ]
 })
 export class AppComponent {
   title = 'Arsoude';
@@ -21,13 +35,16 @@ export class AppComponent {
   frenchTraduction: boolean = true;
   lvl !: Level;
   public href: string = "";
+  
+  isSmallScreen: boolean = false;
+  slideInOut: String = 'in';
+  isClassVisible = false;
 
   hasImage: boolean = false;
   imageUrl: String = "";
-  constructor(public userService: UserService, private translate: TranslateService, public router: Router, public trailService: TrailService, private elementRef: ElementRef) { }
+  constructor(public userService: UserService, private translate: TranslateService, public router: Router, public trailService: TrailService, private elementRef: ElementRef,private breakpointObserver: BreakpointObserver) {}
 
   async ngOnInit() {
-
 
     this.userService.verifyConnectedUser();
     this.subMenu = document.getElementById("subMenu");
@@ -46,6 +63,36 @@ export class AppComponent {
       this.lvl = await this.userService.getUserLevel();
     }
     console.log(this.lvl);
+    this.useLanguage();
+
+    this.lvl = await this.userService.getUserLevel();
+
+    this.breakpointObserver.observe([
+      Breakpoints.Handset,  // Matches portrait phones
+      '(max-width: 959px)'  // Your custom media query for sizes smaller than 960px
+    ]).subscribe(result => {
+      const isSmallScreen = result.matches;
+
+      if (this.isSmallScreen !== isSmallScreen) {
+        this.isSmallScreen = isSmallScreen;
+        if (!this.isSmallScreen) {
+          this.toggleHamburger();
+        }
+      }
+    });
+
+  
+    console.log(this.isSmallScreen);
+  }
+
+  toggleHamburger() {
+    this.slideInOut = this.slideInOut === 'out' ? 'in' : 'out';
+    console.log(this.slideInOut);
+    this.isClassVisible = !this.isClassVisible;
+  }
+
+  getStyle() {
+
   }
 
   useLanguage() {
@@ -72,7 +119,6 @@ export class AppComponent {
   }
 
   toggleMenu(): void {
-    console.log("Function called");
     if (this.subMenu) {
       this.subMenu.classList.toggle("open-menu");
     }
@@ -101,7 +147,6 @@ export class AppComponent {
   }
 
   logout(): void {
-    console.log("Sa se call")
     if (this.subMenu) {
       this.subMenu.classList.remove("open-menu");
     }

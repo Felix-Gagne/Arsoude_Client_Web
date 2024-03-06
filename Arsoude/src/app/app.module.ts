@@ -51,7 +51,7 @@ export function HttpLoaderFactory(http: HttpClient){
     NotifierComponent,
     UserTrailsComponent,
     ProfileComponent,
-    HelldiveComponent
+    HelldiveComponent, 
   ],
   imports: [
     BrowserModule,
