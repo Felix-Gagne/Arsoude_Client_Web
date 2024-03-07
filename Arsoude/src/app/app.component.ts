@@ -57,8 +57,8 @@ export class AppComponent {
     this.lvl = await this.userService.getUserLevel();
 
     this.breakpointObserver.observe([
-      Breakpoints.Handset,  // Matches portrait phones
-      '(max-width: 959px)'  // Your custom media query for sizes smaller than 960px
+      Breakpoints.Handset, 
+      '(max-width: 959px)' 
     ]).subscribe(result => {
       const isSmallScreen = result.matches;
 
@@ -69,14 +69,11 @@ export class AppComponent {
         }
       }
     });
-
   
-    console.log(this.isSmallScreen);
   }
 
   toggleHamburger() {
     this.slideInOut = this.slideInOut === 'out' ? 'in' : 'out';
-    console.log(this.slideInOut);
     this.isClassVisible = !this.isClassVisible;
   }
 
