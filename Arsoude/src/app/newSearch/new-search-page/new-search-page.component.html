@@ -1,14 +1,40 @@
-<div class="pageDisposition" (scroll)="onScroll()">
+<div class="searchBar">
+  <div class="search">
+    <input class="searchInput" [(ngModel)]="searchInput" (keydown.enter)="onEnter()" placeholder="{{'search.keywordPlaceholder' | translate}}" type="text">
+    <div class="td" id="s-cover" (click)="Search()">
+      <button>
+        <div id="s-circle"></div>
+        <span></span>
+      </button>
+    </div>
+  </div>
+  <div class="filtre">
+    <i class="fa-solid fa-sliders"></i>    
+    <p>Filtres</p>
+  </div>
+</div>
+<div class="pageDisposition">
     <div class="trailListContainer">
       <div *ngFor="let trail of pagedTrails">
-        <div class="imageContainer">
+        <div class="trailItem">
+          <div class="imageContainer">
             <img [src]="trail.imageUrl" alt="image_trail">
+            <div class="icon">
+              <p *ngIf="trail.type == 0"><fa-icon [icon]="faPersonWalking"></fa-icon></p>
+              <p *ngIf="trail.type == 1"><fa-icon [icon]="faBicycle"></fa-icon></p>
+            </div>
+          </div>
+          <div class="trailTitleInformation">
+            <p class="trailName">{{trail.name}}</p>
+            <div class="rating">
+              <i class="fa-solid fa-star"></i>
+              <p>4,88</p>
+              <p>(500)</p>
+            </div>
+          </div>
+         
+          <p class="textLocation">{{trail.location}}</p>
         </div>
-        <h4>{{trail.name}}</h4>
-        
-        <p *ngIf="trail.type == 0"><fa-icon [icon]="faPersonWalking"></fa-icon></p>
-        <p *ngIf="trail.type == 1"><fa-icon [icon]="faBicycle"></fa-icon></p>
-        <p class="textLocation">{{trail.location}}</p>
       </div>
       <mat-paginator class="custom-paginator"
         [length]="trailsLength"
@@ -17,11 +43,46 @@
         (page)="onPageChange($event)">
       </mat-paginator>
     </div>
-    <div leaflet class="mapContainer"
+    <div leaflet class="mapContainer" #mapContainer
 					 [leafletOptions]="options"
 					 [leafletZoom]="zoom"
 					 (leafletZoomChange)="onZoomChange($event)"
 					 [leafletCenter]="center"
 				     (leafletCenterChange)="onCenterChange($event)">
-	</div>
+	  </div>
+</div>
+
+<div class="filterOptions">
+  <i class="fa-solid fa-xmark close"></i>
+  <div class="filterHeader">
+    <p>Filtres</p>
+  </div>
+  <div class="trailTypeSection">
+    <h3>Type de la randonnée</h3>
+    <p>Trouvez des randonnées selon mes préférence</p>
+    <div class="trailType">
+      <div class="containerFirstIcon" (click)="toggleColor($event)">
+          <fa-icon [icon]="faPersonWalking"></fa-icon>
+      </div>
+      <div class="containerSecondIcon" (click)="toggleColor($event)">
+          <fa-icon [icon]="faBicycle"></fa-icon>
+      </div>
+    </div>
+  </div>
+  <div class="trailRadius">
+    <h3>Rayon de la randonnée</h3>
+    <p>Trouvez des randonnée dans un rayon  partir de chez vous</p>
+    <div leaflet class="mapContainerOptions" #mapContainerOptions
+					 [leafletOptions]="optionsSecondMap"
+					 [leafletZoom]="zoom"
+					 (leafletZoomChange)="onZoomChange($event)"
+					 [leafletCenter]="center"
+           [leafletLayers]="layers"
+				    (leafletCenterChange)="onCenterChange($event)">
+	  </div>
+    <div class="value">
+        <span>{{rangeValue}}</span>
+        <input type="range" min="0" max="100" step="1" [(ngModel)]="rangeValue" (input)="onRangeChange($event)">
+    </div>
+  </div>
 </div>

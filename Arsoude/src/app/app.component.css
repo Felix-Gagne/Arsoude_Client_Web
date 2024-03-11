@@ -4,6 +4,7 @@ header {
     background-color: white;
     padding: 24px;
     box-shadow: 0 2px 40px rgba(0, 0, 0, 0.1);
+    height: 6%;
     /* Add shadow here */
 }
 
@@ -14,8 +15,8 @@ header {
 }
 
 .logo {
-    height: 65%;
-    width: 65%;
+    height: 45%;
+    width: 45%;
     margin-left: 25px;
 }
 
