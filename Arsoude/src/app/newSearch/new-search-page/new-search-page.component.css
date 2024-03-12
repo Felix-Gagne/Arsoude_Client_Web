@@ -360,18 +360,31 @@ mat-paginator {
 
 .value{
     display: flex;
-    justify-content: center; /* Horizontally center items */
     width: 80%;
     margin: auto;
     margin-top: 4%;
+    align-items: center; /* Vertically center items */
 }
 
 .value span{
-    margin-right: 15px;
     font-size: 2em;
     color: #999;
     font-weight: 400;
+    width: 20%;
+    text-align: right;
+}
 
+.value input{
+    width: 80%;
+    height: 40px;
+    font-size: 18px;
+    line-height: 1;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    color: white;
+    text-align: left !important;
+    border-bottom: 1px solid #000;    
 }
 
 

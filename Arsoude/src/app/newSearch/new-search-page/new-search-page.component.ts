@@ -208,7 +208,7 @@ export class NewSearchPageComponent{
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.5,
-            radius: this.metersToKilometers(1000)
+            radius: this.metersToKilometers(0)
           });
 
           this.layers.push(circle);
@@ -247,12 +247,36 @@ export class NewSearchPageComponent{
   onRangeChange(event: Event) {
     // Handle range value change logic here
     console.log('Range value:', this.rangeValue);
-    var rayon = this.layers[0];
-    console.log("Voici le rayon", rayon)
+    const circle = this.layers[0] as L.Circle;
+      // Set the radius directly to the new range value
+      const newRadius = this.metersToKilometers(this.rangeValue); // Convert range value to meters
+      //verify the current range value and make steps for the soom for every 5 killometers i want do substract 1 to the zoom
+      if(this.rangeValue <= 3){
+        this.zoom = 12;
+      } else if(this.rangeValue <= 10){
+        this.zoom = 10;
+      } else if(this.rangeValue <= 15){
+        this.zoom = 9;
+      } else if(this.rangeValue <= 20){
+        this.zoom = 9;
+      } else if(this.rangeValue <= 25){
+        this.zoom = 8;
+      } else if(this.rangeValue <= 30){
+        this.zoom = 8;
+      } else if(this.rangeValue <= 35){
+        this.zoom = 8;
+      } else if(this.rangeValue <= 40){
+        this.zoom = 8;
+      } else if(this.rangeValue <= 45){
+        this.zoom = 8;
+      } else if(this.rangeValue <= 50 || this.rangeValue > 55){
+        this.zoom = 7;
+      }
+      circle.setRadius(newRadius);
   }
 
    metersToKilometers(radiusInMeters: number): number {
-    return radiusInMeters / 1000; // Convert meters to kilometers
+    return radiusInMeters * 1000; // Convert meters to kilometers
   }
 
   
