@@ -81,8 +81,12 @@
 				    (leafletCenterChange)="onCenterChange($event)">
 	  </div>
     <div class="value">
-        <input type="range" min="0" max="100" [(ngModel)]="rangeValue" (input)="onRangeChange($event)">
-        <span>{{rangeValue}} Km</span>
+        <input type="range" class="range" min="0" max="100" [(ngModel)]="rangeValue" (input)="onRangeChange($event)">
+        <span *ngIf="rangeValue > 0">{{rangeValue}} Km</span>
+        <span *ngIf="rangeValue == 0">All</span>
+    </div>
+    <div class="rating">
+        <h3>Note</h3>
     </div>
   </div>
 </div>

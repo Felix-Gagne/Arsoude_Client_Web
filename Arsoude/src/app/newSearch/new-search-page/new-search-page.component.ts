@@ -250,7 +250,7 @@ export class NewSearchPageComponent{
     const circle = this.layers[0] as L.Circle;
       // Set the radius directly to the new range value
       const newRadius = this.metersToKilometers(this.rangeValue); // Convert range value to meters
-      //verify the current range value and make steps for the soom for every 5 killometers i want do substract 1 to the zoom
+
       if(this.rangeValue <= 3){
         this.zoom = 12;
       } else if(this.rangeValue <= 10){
@@ -269,7 +269,7 @@ export class NewSearchPageComponent{
         this.zoom = 8;
       } else if(this.rangeValue <= 45){
         this.zoom = 8;
-      } else if(this.rangeValue <= 50 || this.rangeValue > 55){
+      } else if(this.rangeValue <= 50 || this.rangeValue >= 50){
         this.zoom = 7;
       }
       circle.setRadius(newRadius);
