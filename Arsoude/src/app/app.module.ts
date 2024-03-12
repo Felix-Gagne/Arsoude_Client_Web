@@ -32,12 +32,15 @@ import { MatInputModule } from '@angular/material/input';
 import { HelldiveComponent } from './helldive/helldive.component';
 import { NewSearchPageComponent } from './newSearch/new-search-page/new-search-page.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 
 export function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http);
 }
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     HomeComponent,

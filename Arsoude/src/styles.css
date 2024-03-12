@@ -19,6 +19,29 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     height: 300px;
 }
 
+body.menu-open::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.8;
+    z-index: 9999; /* Ensure the overlay is above other elements */
+}
+
+.centerOptions.visible {
+    display: block; 
+    opacity: 1 !important;
+}
+
+.centerOptions.visible.menu-open {
+    opacity: 1 !important; /* Override opacity for centerOptions when menu is open */
+}
+
+
+
 #boite{
     background-color: white;
 }

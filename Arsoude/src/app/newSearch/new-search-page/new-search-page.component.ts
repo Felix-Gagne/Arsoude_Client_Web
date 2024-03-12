@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faAngleDown, faBicycle, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
 import * as L from 'leaflet';
@@ -9,7 +9,6 @@ import { FilterDTO } from 'src/app/models/FilterDTO';
 import { TrailDTO } from 'src/app/models/TrailDTO';
 import { TrailType } from 'src/app/models/enum/Type';
 import { TrailService } from 'src/app/service/trail.service';
-
 @Component({
   selector: 'app-new-search-page',
   templateUrl: './new-search-page.component.html',
@@ -17,7 +16,7 @@ import { TrailService } from 'src/app/service/trail.service';
 })
 export class NewSearchPageComponent{
   @ViewChild('mapContainerOptions') mapContainerOptions!: ElementRef;
-
+  
   trails: TrailDTO[] = [];
   selectedType?: string;
   searchInput?: string;
@@ -27,7 +26,9 @@ export class NewSearchPageComponent{
   type : TrailType = TrailType.Undefined;
   radius : number = 0;
   minRadius : number = 10;
-  rangeValue: number = 50;
+  rangeValue: number = 0;
+  ratingVal: number = 0;
+  trailOptionsVisible: boolean = false;
 
 
   emptyList : boolean = false;
@@ -82,7 +83,7 @@ export class NewSearchPageComponent{
   lat = this.center.lat;
   lng = this.center.lng;
 
-  constructor( private router: Router,private trailService : TrailService, private activedRoute: ActivatedRoute){}
+  constructor( private router: Router,private trailService : TrailService, private activedRoute: ActivatedRoute, private renderer: Renderer2){}
   
 
   async ngOnInit(){
@@ -101,6 +102,7 @@ export class NewSearchPageComponent{
       this.trailsLength = this.trails.length;
       this.updatePagedTrail();
     }
+    this.renderer.removeClass(document.body, 'menu-open');
   } 
 
 
@@ -191,7 +193,14 @@ export class NewSearchPageComponent{
   }
 
   openMenu(): void {
+    this.trailOptionsVisible = !this.trailOptionsVisible;
     // Get the current position using geolocation service
+    if(this.trailOptionsVisible){
+      this.renderer.addClass(document.body, 'menu-open');
+    }
+    else{
+      this.renderer.removeClass(document.body, 'menu-open');
+    }
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
@@ -277,6 +286,12 @@ export class NewSearchPageComponent{
 
    metersToKilometers(radiusInMeters: number): number {
     return radiusInMeters * 1000; // Convert meters to kilometers
+  }
+
+  handleStarClick(event: any): void {
+    this.ratingVal = event.detail;
+    console.log(this.ratingVal)
+    // You can perform any additional logic here based on the clicked star value
   }
 
   
