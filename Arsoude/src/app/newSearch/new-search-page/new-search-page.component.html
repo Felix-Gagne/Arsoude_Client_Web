@@ -15,7 +15,7 @@
 </div>
 <div class="pageDisposition">
     <div class="trailListContainer">
-      <div *ngFor="let trail of pagedTrails">
+      <div *ngFor="let trail of pagedTrails"  (click)="displayTrailMarker(trail)">
         <div class="trailItem">
           <div class="imageContainer">
             <img [src]="trail.imageUrl" alt="image_trail">
@@ -39,7 +39,7 @@
       <mat-paginator class="custom-paginator"
         [length]="trailsLength"
         [pageSize]="pageSize"
-        [pageSizeOptions]="[5, 10, 15]" 
+        [pageSizeOptions]="[6, 12, 18]" 
         (page)="onPageChange($event)">
       </mat-paginator>
     </div>
@@ -48,13 +48,14 @@
 					 [leafletZoom]="zoom"
 					 (leafletZoomChange)="onZoomChange($event)"
 					 [leafletCenter]="center"
+           [leafletLayers]="markersMap"
 				     (leafletCenterChange)="onCenterChange($event)">
 	  </div>
 </div>
 
 <div class="centerOptions" [ngClass]="{'visible': trailOptionsVisible}">
   <div class="filterOptions">
-    <i class="fa-solid fa-xmark close"></i>
+    <i class="fa-solid fa-xmark close" (click)="closeMenu()"></i>
     <div class="filterHeader">
       <p>Filtres</p>
     </div>
@@ -73,13 +74,13 @@
     <div class="trailRadius">
       <h3>Rayon de la randonnée</h3>
       <p>Trouvez des randonnée dans un rayon  partir de chez vous</p>
-      <div leaflet class="mapContainerOptions" #mapContainerOptions
+      <div *ngIf="trailOptionsVisible" leaflet class="mapContainerOptions" #mapContainerOptions
              [leafletOptions]="optionsSecondMap"
              [leafletZoom]="zoom"
              (leafletZoomChange)="onZoomChange($event)"
              [leafletCenter]="center"
              [leafletLayers]="layers"
-              (leafletCenterChange)="onCenterChange($event)">
+             (leafletCenterChange)="onCenterChange($event)">
       </div>
       <div class="value">
           <input type="range" class="range" min="0" max="100" [(ngModel)]="rangeValue" (input)="onRangeChange($event)">

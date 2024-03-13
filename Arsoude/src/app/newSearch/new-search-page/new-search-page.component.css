@@ -7,7 +7,7 @@
 }
 
 .trailListContainer {
-    width: 37%;
+    width: 36%;
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
@@ -16,6 +16,11 @@
 
 .trailItem{
     width: 314px;
+}
+
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+    opacity: 1;
+    width: 500px;
 }
 
 .textLocation{
@@ -109,7 +114,7 @@ mat-paginator {
 }
 
 .mapContainerOptions{
-    width: 80%;
+    width: 100%;
     margin: auto;
     height: 25vh;
     border-radius: 15px;
@@ -280,6 +285,7 @@ mat-paginator {
     padding: 25px;
     display: block;
     position: relative;
+    box-shadow: rgba(255, 255, 255, 0.12) 0px 2px 4px 0px, rgba(255, 255, 255, 0.32) 0px 2px 16px 0px;
     border: 1px solid #000;
     overflow-y: auto; 
     
@@ -301,14 +307,11 @@ mat-paginator {
 
 .centerOptions.visible {
     z-index: 1000000;
-    display: block; 
+    display: block;     
     opacity: 1 !important;
 }
 
-.filterOptions {
-    opacity: 2 !important; /* Ensure opacity of filterOptions remains the same */
-    z-index: 1000000;
-}
+
 
 
 
@@ -440,6 +443,7 @@ mat-paginator {
 }
 
 .trailRadius{
+    width: 100%;
     border-bottom: 1px solid #000;    
 }
 
@@ -447,13 +451,14 @@ mat-paginator {
     display: flex;
     margin-top: 15px;
     align-items: center;
+    text-align: center;
+    justify-content: center;
     margin-bottom: 20px;
+    width: fit-content;
+    margin-left: 45%;
+    transform: scale(2.5);
     cursor: pointer;
 } 
-
-igc-rating> slot>igc-rating-symbol > igc-icon > svg{
-    width: 100px;
-}
 
 
 .ratingTrailOptions{
