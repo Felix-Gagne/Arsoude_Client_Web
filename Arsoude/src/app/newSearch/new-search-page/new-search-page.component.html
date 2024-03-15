@@ -15,7 +15,7 @@
 </div>
 <div class="pageDisposition">
     <div class="trailListContainer">
-      <div *ngFor="let trail of pagedTrails"  (click)="displayTrailMarker(trail)">
+      <div *ngFor="let trail of pagedTrails"  (mouseenter)="displayTrailMarker(trail)"  (mouseleave)="hideTrailMarker(trail)" (click)="displayTrailMarker(trail)">
         <div class="trailItem">
           <div class="imageContainer">
             <img [src]="trail.imageUrl" alt="image_trail">

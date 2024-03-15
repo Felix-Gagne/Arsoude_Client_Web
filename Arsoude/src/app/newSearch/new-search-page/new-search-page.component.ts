@@ -264,7 +264,7 @@ export class NewSearchPageComponent{
       
       </style>
       
-      <div class="popup" (click)="getDetails(${trail.id})">
+      <div class="popup"  id="popup-${trail.id}">
           <div class="imageContainer2">
             <img src="${trail.imageUrl}" alt="image_trail">
             <div class="icon2">
@@ -288,7 +288,16 @@ export class NewSearchPageComponent{
         // Display the information of the marker when clicked
         // For example, you can access the popup content like this:
         
-      });
+      })
+      
+      newMarker.on('popupopen', () => {
+        const popup = document.getElementById(`popup-${trail.id}`);
+        if (popup) {
+            popup.addEventListener('click', () => {
+                this.getDetails(trail.id!);
+            });
+        }
+    });;
       newMarker.bindPopup(popupContent);
       this.markers.push({ trailId: trail.id!, marker: newMarker });
     });
@@ -310,6 +319,14 @@ export class NewSearchPageComponent{
       }
       // Find the marker associated with the given trail ID
     
+  }
+
+  hideTrailMarker(trail: TrailDTO) {
+    for (let i = 0; i < this.markers.length; i++) {
+      if (this.markers[i].trailId === trail.id) {
+        this.markers[i].marker.closePopup();
+      }
+    }
   }
 
 

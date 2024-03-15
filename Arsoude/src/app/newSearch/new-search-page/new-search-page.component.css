@@ -7,7 +7,7 @@
 }
 
 .trailListContainer {
-    width: 36%;
+    width: 40%;
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
@@ -16,6 +16,13 @@
 
 .trailItem{
     width: 314px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.trailItem:hover{
+    box-shadow: 0px 0px 32px 14px rgba(0,0,0,0.1);
+    cursor: pointer;
 }
 
 .leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
