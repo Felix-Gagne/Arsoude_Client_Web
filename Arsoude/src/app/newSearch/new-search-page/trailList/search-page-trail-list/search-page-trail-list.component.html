@@ -1,0 +1,30 @@
+<div class="trailListContainer">
+    <div  *ngFor="let trail of trailService.pagedTrails" (click)="mapService.displayTrailMarker(trail)">
+      <div class="trailItem">
+        <div class="imageContainer">
+          <img *ngIf="trail.imageUrl != ''" [src]="trail.imageUrl" alt="image_trail">
+          <img *ngIf="trail.imageUrl == ''" src="assets\images\imagePlaceholder.jpg" alt="pas d image">
+          <div class="icon">
+            <p *ngIf="trail.type == 0"><fa-icon [icon]="faPersonWalking"></fa-icon></p>
+            <p *ngIf="trail.type == 1"><fa-icon [icon]="faBicycle"></fa-icon></p>
+          </div>
+        </div>
+        <div class="trailTitleInformation">
+          <p class="trailName">{{trail.name}}</p>
+          <div class="rating">
+            <i class="fa-solid fa-star"></i>
+            <p>4,88</p>
+            <p>(500)</p>
+          </div>
+        </div>
+       
+        <p class="textLocation">{{trail.location}}</p>
+      </div>
+    </div>
+</div>
+<mat-paginator class="custom-paginator"
+    [length]="trailsLength"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[6, 12, 18]" 
+    (page)="onPageChange($event)">
+</mat-paginator>

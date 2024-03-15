@@ -33,6 +33,8 @@ import { HelldiveComponent } from './helldive/helldive.component';
 import { NewSearchPageComponent } from './newSearch/new-search-page/new-search-page.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { SearchPageTrailListComponent } from './newSearch/new-search-page/trailList/search-page-trail-list/search-page-trail-list.component';
+import { SearchPageDetailComponent } from './newSearch/new-search-page/search-page-detail/search-page-detail.component';
 
 
 export function HttpLoaderFactory(http: HttpClient){
@@ -58,6 +60,8 @@ export function HttpLoaderFactory(http: HttpClient){
     ProfileComponent,
     HelldiveComponent,
     NewSearchPageComponent, 
+    SearchPageTrailListComponent,
+    SearchPageDetailComponent
   ],
   imports: [
     BrowserModule,

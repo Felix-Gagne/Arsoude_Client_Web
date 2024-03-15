@@ -1,0 +1,35 @@
+<div class="detailContainer">
+    <div class="detailHeader">
+        <div class="detailTitle">
+            <p>{{trail.name}}</p>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <p>4,88</p>
+                <p>(500)</p>
+            </div>
+        </div>
+        <div class="detailImage">
+            <img *ngIf="trail.imageUrl != ''" [src]="trail.imageUrl" alt="image_trail">
+            <img *ngIf="trail.imageUrl == ''" src="assets\images\imagePlaceholder.jpg" alt="pas d image">
+        </div>
+    </div>
+    <div class="detailInformation">
+        <div class="detailDescription">
+            <h3>Description</h3>
+            <p>{{trail.description}}</p>
+        </div>
+        <div class="detailLocation">
+            <h3>Location</h3>
+            <p>{{trail.location}}</p>
+        </div>
+        <div class="detailType">
+            <h3>Type</h3>
+            <p *ngIf="trail.type == 0">Randonnée pédestre</p>
+            <p *ngIf="trail.type == 1">Randonnée à vélo</p>
+        </div>
+        
+        
+    
+       
+    </div>
+</div>

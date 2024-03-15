@@ -67,3 +67,8 @@ body.menu-open::before {
 .ng-tns-c3293340843-0 {
     background: white;
 }
+
+.leaflet-bottom,
+.leaflet-right {
+  display: none !important; /* Use !important to ensure the styles are applied */
+}
