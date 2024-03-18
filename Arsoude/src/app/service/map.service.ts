@@ -237,6 +237,7 @@ export class MapService {
       if (this.markers[i].trailId === trail.id) {
         const marker = this.markers[i].marker;
         marker.openPopup();     
+        //change marker color to black
         this.router.navigate(['/detailResearch', trail.id]);
       }
     }    

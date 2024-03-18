@@ -25,6 +25,8 @@ export class TrailService {
   public searchTrail : TrailDTO[] = [];
   public trailSearch : boolean = false;
   public pagedTrails: TrailDTO[] = [];
+  public trailLength : number = 0;
+  public trailExist : boolean = true;
 
   async checkConnection(): Promise<boolean> {
     if (!navigator.onLine) {
@@ -85,6 +87,7 @@ export class TrailService {
       let x = await lastValueFrom(this.http.get<any>(this.baseUrl + "GetAllTrails"));
       console.log(x);
       this.searchTrail = x;
+      this.trailLength = x.length;
       return x;
     }
     catch(error){
@@ -112,10 +115,13 @@ export class TrailService {
       let trails = await lastValueFrom(this.http.post<any>(this.baseUrl + "GetFilteredTrails", filter));
       console.log(trails)
       this.searchTrail = trails;
+      this.trailExist = true;
+      this.trailLength = trails.length;
       return trails;
     }
     catch(error : any){
       console.log(error.error);
+      
       return false;
     }
   }

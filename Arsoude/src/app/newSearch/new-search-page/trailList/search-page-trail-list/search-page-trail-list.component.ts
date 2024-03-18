@@ -41,7 +41,7 @@ export class SearchPageTrailListComponent {
 	markers: {trailId: number, marker: L.Marker}[] = [];
   markersMap : Layer[] = [];
 
-
+  trailExists: boolean = false;
 
   constructor( private router: Router,public trailService : TrailService, private activedRoute: ActivatedRoute, private renderer: Renderer2, public mapService : MapService){}
   
@@ -62,6 +62,7 @@ export class SearchPageTrailListComponent {
       this.trailService.updatePagedTrail(this.currentPage, this.pageSize);
     }
 
+    this.trailExists = this.trailService.trailExist;
     this.renderer.removeClass(document.body, 'menu-open');
   }
   

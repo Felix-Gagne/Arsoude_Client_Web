@@ -385,3 +385,14 @@
 .mapContainer .leaflet-bottom {
     display: none !important;
 }
+
+
+.noTrailFound{
+    margin-top: 50%;
+    margin-left: 25%;
+    width: fit-content;
+    height: fit-content;
+    font-size: 30px;
+    font-weight: 550;
+    border-bottom: #000000 2px solid;
+}

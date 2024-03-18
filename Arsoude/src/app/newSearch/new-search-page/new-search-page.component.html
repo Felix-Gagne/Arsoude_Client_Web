@@ -66,7 +66,7 @@
       <h3>Note</h3>
       <igc-rating class="star"  value="ratingVal" min="1" max="5" (igcChange)="handleStarClick($event);"></igc-rating>
     </div>
-    <div class="applyFilter">      
+    <div class="applyFilter" (click)="applyFilterAndCloseMenu()">      
      <p>Appliquer</p>
     </div>
   </div>

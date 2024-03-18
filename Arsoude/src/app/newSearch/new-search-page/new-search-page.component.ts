@@ -117,7 +117,6 @@ export class NewSearchPageComponent{
   
   addMarkers(trails: TrailDTO[]){
     this.mapService.addMarkers(trails);
-
     const markerLayers = this.mapService.markers.map(markerObj => markerObj.marker);
     this.markersMap = markerLayers;
   }
@@ -143,11 +142,7 @@ export class NewSearchPageComponent{
     }
   }
 
-  onPageChange(event: any){
-    this.currentPage = event.pageIndex + 1;
-    this.pageSize = event.pageSize;
-    this.trailService.updatePagedTrail(this.currentPage, this.pageSize);
-  }
+
 
 
   async Search(){
@@ -157,9 +152,10 @@ export class NewSearchPageComponent{
       dto.type = parseInt(this.type.toString());
     }
 
-    if(this.radius != 0){
+    if(this.radius != null && this.radius != undefined){
       dto.distance = this.radius;
     }
+    
 
     if(this.searchInput?.trim() != ""){
       dto.Keyword = this.searchInput;
@@ -167,6 +163,8 @@ export class NewSearchPageComponent{
     
     if(await this.trailService.searchTrails(dto) == false){
       this.emptyList = true;
+      this.mapService.markersMap = [];
+      this.router.navigate(['']);
     }
     else{
       this.trails = await this.trailService.searchTrails(dto);
@@ -174,6 +172,7 @@ export class NewSearchPageComponent{
       this.emptyList = false;
       this.trailsLength = this.trails.length;
       this.trailService.updatePagedTrail(this.currentPage, this.pageSize);
+      this.router.navigate(['']);
     }
   }
 
@@ -196,11 +195,27 @@ export class NewSearchPageComponent{
   toggleColor(event: MouseEvent) {
     const element = event.currentTarget as HTMLElement;
     const containers = document.querySelectorAll('.containerFirstIcon, .containerSecondIcon');
-    containers.forEach(function(container) {
+    if(element.classList.contains('backgroundColor')) {
+      containers.forEach(function(container) {
+        container.classList.remove('backgroundColor');
+    });
+    this.type = TrailType.Undefined;
+    }
+    else{
+      containers.forEach(function(container) {
         container.classList.remove('backgroundColor');
     });
     element.classList.add('backgroundColor');
+
+    if(element.classList.contains('containerFirstIcon')){
+      this.type = TrailType.Pied;
+    }
+    else{
+      this.type = TrailType.Velo;
+    }
+    
   } 
+}
 
 
 
@@ -326,6 +341,8 @@ export class NewSearchPageComponent{
         this.center = newCenter;
       });
       circle.setRadius(newRadius);
+
+      this.radius = newRadius;
   }
 
    metersToKilometers(radiusInMeters: number): number {
@@ -336,6 +353,11 @@ export class NewSearchPageComponent{
     this.ratingVal = event.detail;
     console.log(this.ratingVal)
     // You can perform any additional logic here based on the clicked star value
+  }
+
+  applyFilterAndCloseMenu(): void {
+    this.Search();
+    this.closeMenu();
   }
 
   
