@@ -1,17 +1,101 @@
-
 .pageDisposition {
     display: flex;
     height: fit-content;
+}
+
+.trailListContainer {
+    width: 100% !important;
+    gap: 10px !important;
+    padding: 2% !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+    justify-content: center !important;
 
 }
 
-.containerList{
-    width: 40%;
+.trailItem {
+    width: 314px !important;
+    padding: 10px !important;
+    border-radius: 15px !important;
 }
 
-.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
-    opacity: 1;
-    width: 500px;
+.trailItem:hover {
+    box-shadow: 0px 0px 32px 14px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.textLocation {
+    font-weight: 350;
+    font-size: 16px;
+}
+
+.trailTitleInformation {
+    margin-top: 10px;
+    display: flex;
+}
+
+.trailTitleInformation p {
+    width: 65%;
+    margin: 0;
+}
+
+.trailName {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.rating {
+    display: flex;
+    gap: 2px;
+}
+
+.imageContainer {
+    width: 314px;
+    height: 299px;
+    margin-right: 3%;
+    position: relative;
+}
+
+.imageContainer>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.icon {
+    position: absolute;
+    margin: 15px;
+    top: 0;
+    right: 0;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    border-radius: 15%;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid #000;
+}
+
+.icon p {
+    margin: 0;
+    font-size: 22px;
+    width: fit-content;
+}
+
+.custom-paginator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mat-paginator {
+    background-color: transparent;
 }
 
 .mapContainer {
@@ -22,14 +106,14 @@
     top: 0;
 }
 
-.mapContainerOptions{
+.mapContainerOptions {
     width: 100%;
     margin: auto;
     height: 25vh;
     border-radius: 15px;
 }
 
-.search{
+.search {
     border: 2px solid #000;
     margin-left: 5%;
     width: 55%;
@@ -40,7 +124,7 @@
     align-items: center;
 }
 
-.searchInput{
+.searchInput {
     margin: 10px;
     width: 90%;
     height: 100%;
@@ -52,121 +136,32 @@
     color: white;
 }
 
-.searchInput::placeholder{
+.searchInput::placeholder {
     color: #faf3f3;
 }
 
-#s-cover {
-    width: auto;
-}
-  
-  button {
-    background-color: transparent;
-    border: none;
-    position: relative;
-    display: block;
-    width: 84px;
-    height: 96px;
-    cursor: pointer;
-    scale: 0.25;
-  }
-  
-  #s-circle {
-    position: relative;
-    top: -8px;
-    left: 0;
-    width: 43px;
-    height: 43px;
-    margin-top: 0;
-    border-width: 15px;
-    border: 15px solid #fff;
-    background-color: transparent;
-    border-radius: 50%;
-    transition: 0.5s ease all;
-  }
-  
-  button span {
-    position: absolute;
-    top: 68px;
-    left: 43px;
-    display: block;
-    width: 45px;
-    height: 15px;
-    background-color: transparent;
-    border-radius: 10px;
-    transform: rotateZ(52deg);
-    transition: 0.5s ease all;
-  }
-  
-  button span:before,
-  button span:after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 45px;
-    height: 15px;
-    background-color: #fff;
-    border-radius: 10px;
-    transform: rotateZ(0);
-    transition: 0.5s ease all;
-  }
-  
-  #s-cover:hover #s-circle {
-    top: -1px;
-    width: 67px;
-    height: 15px;
-    border-width: 0;
-    background-color: #fff;
-    border-radius: 20px;
-  }
-  
-  #s-cover:hover span {
-    top: 50%;
-    left: 56px;
-    width: 25px;
-    margin-top: -9px;
-    transform: rotateZ(0);
-  }
-  
-  #s-cover:hover button span:before {
-    bottom: 11px;
-    transform: rotateZ(52deg);
-  }
-  
-  #s-cover:hover button span:after {
-    bottom: -11px;
-    transform: rotateZ(-52deg);
-  }
-  #s-cover:hover button span:before,
-  #s-cover:hover button span:after {
-    right: -6px;
-    width: 40px;
-    background-color: #fff;
-  }
-
-  .searchBar{
+.searchBar {
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
     display: flex;
     padding: 15px;
-  }
+}
 
-  .filtre {
+.filtre {
     display: flex;
     gap: 10px;
     margin-left: 2%;
     border: 2px solid #000;
     border-radius: 12px;
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
+    align-items: center;
+    justify-content: center;
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .filtre:hover {
-    background-color: #ddd; 
+    background-color: #ddd;
 }
 
 .filtre p {
@@ -174,14 +169,14 @@
 }
 
 .filtre i {
-    vertical-align: middle; /* Align the icon vertically in the middle */
+    vertical-align: middle;
 }
 
 .centerOptions {
     display: none;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) ;
+    transform: translate(-50%, -50%);
     z-index: 1000;
     width: 60%;
     height: 70%;
@@ -196,8 +191,7 @@
     position: relative;
     box-shadow: rgba(255, 255, 255, 0.12) 0px 2px 4px 0px, rgba(255, 255, 255, 0.32) 0px 2px 16px 0px;
     border: 1px solid #000;
-    overflow-y: auto; 
-    
+    overflow-y: auto;
 }
 
 .filterOptions::-webkit-scrollbar {
@@ -209,24 +203,13 @@
     background-color: #555;
 }
 
-
-
-
-
-
 .centerOptions.visible {
     z-index: 1000000;
-    display: block;     
+    display: block;
     opacity: 1 !important;
 }
 
-
-
-
-
-
-
-.close{
+.close {
     position: absolute;
     top: 0;
     left: 0;
@@ -235,38 +218,35 @@
     margin: 25px;
 }
 
-
-
-.filterHeader{
+.filterHeader {
     display: flex;
     padding-bottom: 10px;
     border-bottom: 1px solid #000;
     justify-content: center;
 }
 
-.filterHeader p{
+.filterHeader p {
     margin: 0;
     font-size: 18px;
     font-weight: 560;
-}   
+}
 
-.filterHeader i{
+.filterHeader i {
     font-size: 18px;
 }
 
-.trailTypeSection{
+.trailTypeSection {
     border-bottom: 1px solid #000;
-
 }
 
-.trailType{
+.trailType {
     display: flex;
     padding: 4%;
     padding-top: 1%;
     justify-content: center;
 }
 
-.trailType fa-icon{
+.trailType fa-icon {
     font-size: 36px;
 }
 
@@ -295,22 +275,22 @@
     border-bottom-right-radius: 15px;
 }
 
-.backgroundColor{
+.backgroundColor {
     background-color: #3b3939;
     box-shadow: inset 0 2px 16px #000000;
     color: white;
 }
 
-.value{
+.value {
     display: flex;
     width: 80%;
     margin: auto;
     margin-top: 4%;
-    align-items: center; /* Vertically center items */
+    align-items: center;
     margin-bottom: 14px;
 }
 
-.value span{
+.value span {
     font-size: 2em;
     color: #999;
     font-weight: 400;
@@ -318,17 +298,17 @@
     text-align: right;
 }
 
-.value input{
+.value input {
     width: 80%;
     height: 15px;
     font-size: 18px;
     border: none;
     color: #999;
     text-align: left !important;
-    border-bottom: 1px solid #000;    
+    border-bottom: 1px solid #000;
 }
 
-.range{
+.range {
     -webkit-appearance: none;
     appearance: none;
     background: #111;
@@ -338,25 +318,23 @@
     box-shadow: inset 0 0 5px rgb(255, 255, 255);
 }
 
-.range::-webkit-slider-thumb{
-
+.range::-webkit-slider-thumb {
     -webkit-appearance: none;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: #00fd0a;
-  cursor: pointer;
-  border: 4px solid #333;
-  box-shadow: -407px 0 0 400px #00fd0a;
-
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #00fd0a;
+    cursor: pointer;
+    border: 4px solid #333;
+    box-shadow: -407px 0 0 400px #00fd0a;
 }
 
-.trailRadius{
+.trailRadius {
     width: 100%;
-    border-bottom: 1px solid #000;    
+    border-bottom: 1px solid #000;
 }
 
-.star{
+.star {
     display: flex;
     margin-top: 15px;
     align-items: center;
@@ -367,11 +345,18 @@
     margin-left: 45%;
     transform: scale(2.5);
     cursor: pointer;
-} 
+}
 
+.trailListContainer {
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 2%;
+}
 
-.ratingTrailOptions{
-    border-bottom: 1px solid #000;    
+.ratingTrailOptions {
+    border-bottom: 1px solid #000;
 }
 
 .applyFilter {
@@ -384,22 +369,30 @@
     justify-content: center;
     margin-top: 20px;
     cursor: pointer;
-    transition: background-color 0.3s ease; 
-  }
-  
-    .applyFilter p {
-        margin: 0;
-        color: white;
-        font-size: 18px;
-    }
+    transition: background-color 0.3s ease;
+}
 
-  .applyFilter:hover {
-    background-color: #635656; 
-    
-  }
+.applyFilter p {
+    margin: 0;
+    color: white;
+    font-size: 18px;
+}
 
-  .mapContainer .leaflet-bottom{
+.applyFilter:hover {
+    background-color: #635656;
+}
+
+.mapContainer .leaflet-bottom {
     display: none !important;
-  }
- 
-  
+}
+
+
+.noTrailFound{
+    margin-top: 50%;
+    margin-left: 25%;
+    width: fit-content;
+    height: fit-content;
+    font-size: 30px;
+    font-weight: 550;
+    border-bottom: #000000 2px solid;
+}

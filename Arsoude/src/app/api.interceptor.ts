@@ -20,10 +20,10 @@ export class ApiInterceptor implements HttpInterceptor {
        'Authorization' : 'Bearer '+ localStorage.getItem("Token")
       }})
  
-     console.log(request)
+     //console.log(request)
       
      const authorizationHeader = request.headers.get('Authorization');
-      console.log(authorizationHeader);
+      //console.log(authorizationHeader);
 
     if(authorizationHeader == "Bearer null"){
       this.user.Logout();

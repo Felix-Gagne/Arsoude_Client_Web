@@ -22,7 +22,12 @@ export class TrailService {
 
   url = 'https://ipgeolocation.abstractapi.com/v1/?api_key=' + this.api_key;
   public coordinates :Coordinates = new Coordinates();
-  
+  public searchTrail : TrailDTO[] = [];
+  public trailSearch : boolean = false;
+  public pagedTrails: TrailDTO[] = [];
+  public trailLength : number = 0;
+  public trailExist : boolean = true;
+
   async checkConnection(): Promise<boolean> {
     if (!navigator.onLine) {
       return false;
@@ -81,6 +86,8 @@ export class TrailService {
     try{
       let x = await lastValueFrom(this.http.get<any>(this.baseUrl + "GetAllTrails"));
       console.log(x);
+      this.searchTrail = x;
+      this.trailLength = x.length;
       return x;
     }
     catch(error){
@@ -104,14 +111,18 @@ export class TrailService {
 
     try{
       console.log(filter);
-
+      this.trailSearch = true;
       let trails = await lastValueFrom(this.http.post<any>(this.baseUrl + "GetFilteredTrails", filter));
       console.log(trails)
+      this.searchTrail = trails;
+      this.trailExist = true;
+      this.trailLength = trails.length;
       return trails;
     }
     catch(error : any){
       console.log(error.error);
-      return error.error;
+      
+      return false;
     }
   }
 
@@ -185,5 +196,11 @@ export class TrailService {
     }
 
 
+  }
+
+  updatePagedTrail(currentPage: number, pageSize: number){
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    this.pagedTrails = this.searchTrail.slice(startIndex, endIndex);
   }
 }
