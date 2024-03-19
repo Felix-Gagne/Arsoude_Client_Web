@@ -216,7 +216,7 @@ export class MapService {
                   console.log(trail.id!);
                   Promise.resolve(this.trailService.getTrailDetails(trail.id!))
                       .then(x => {
-                          this.router.navigate(['/details', x.name]);
+                        this.router.navigate(['/details', x.name]);
                       })
                       .catch(e => {
                           console.log("Erreur : " + e);
@@ -243,5 +243,7 @@ export class MapService {
     }    
   }
 
+
+  
   
 }

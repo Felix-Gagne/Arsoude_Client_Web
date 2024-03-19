@@ -31,6 +31,15 @@
             <h3>Description</h3>
             <p>{{trail?.description}}</p>
         </div>
+        <h3 class="mapTitle">Map</h3>
+        <div leaflet class="mapContainer2" #mapContainerDetail
+            [leafletOptions]="options"
+            [leafletZoom]="zoom"
+            (leafletZoomChange)="onZoomChange($event)"
+            [leafletCenter]="center"
+            [leafletLayers]="layers"
+            (leafletCenterChange)="onCenterChange($event)">
+        </div>
         <div class="comments">
             <h3>Commentaires</h3>
             <div *ngIf="!noComment" > 

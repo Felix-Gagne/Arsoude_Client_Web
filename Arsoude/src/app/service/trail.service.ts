@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { FilterDTO } from '../models/FilterDTO';
 import { Coordinates } from '../models/Coordinates';
 import { NotifierService } from '../notifier.service';
+import { Coordinate } from 'mapbox-gl';
 
 @Injectable({
   providedIn: 'root'
@@ -129,7 +130,7 @@ export class TrailService {
   async getTrailDetails(trailId : number){
     try{
       let x = await lastValueFrom(this.http.get<TrailDTO>(this.baseUrl+"GetTrail/"+ trailId))
-      console.log(x);
+      console.log("i", x);
       return x;
     }
     catch(e){
@@ -202,5 +203,17 @@ export class TrailService {
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     this.pagedTrails = this.searchTrail.slice(startIndex, endIndex);
+  }
+
+  async getTrailCoordinates(trailId: number){
+    try{
+      let response = await lastValueFrom(this.http.get<Coordinates[]>(this.baseUrl + "GetTrailCoordinates/" + trailId));
+      console.log(response);
+      return response;
+    }
+    catch(e){
+      console.log(e);
+      throw e;
+    }
   }
 }
