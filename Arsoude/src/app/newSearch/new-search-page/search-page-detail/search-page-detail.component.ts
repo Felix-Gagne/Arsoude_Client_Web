@@ -9,11 +9,14 @@ import { Coordinates } from 'src/app/models/Coordinates';
 import { TrailDTO } from 'src/app/models/TrailDTO';
 import { CommentsService } from 'src/app/service/comments.service';
 import { TrailService } from 'src/app/service/trail.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @Component({
   selector: 'app-search-page-detail',
   templateUrl: './search-page-detail.component.html',
-  styleUrls: ['./search-page-detail.component.css']
+  styleUrls: ['./search-page-detail.component.css'],  
 })
 export class SearchPageDetailComponent {
 
@@ -21,6 +24,10 @@ export class SearchPageDetailComponent {
   
   trailId !: number;
   trail !: TrailDTO;
+  photoList: string[] = [];
+  scrollPosition = '0';
+  triggerAnimationFlag: boolean = false;
+
 
   faAngleDown = faAngleDown;
   faBicycle = faBicycle;
@@ -104,12 +111,15 @@ export class SearchPageDetailComponent {
         this.coordinatesList = this.trail.coordinates;
         this.drawLines();
       }
-     
+      
+      this.photoList = await this.trailService.getPhotos(this.trail.id!);
+
       this.initializeOptionsSpec();
     }
 
     
   }
+
 
   initializeOptionsSpec() {
     this.optionsSpec = {
@@ -177,4 +187,27 @@ export class SearchPageDetailComponent {
       this.formZoom = zoom;
     });
   }
+
+  triggerAnimation() {
+    this.triggerAnimationFlag = true;
+    setTimeout(() => {
+      this.triggerAnimationFlag = false;
+    }, 600);
+  }
+
+  next(){
+    console.log("next");
+    const firstImage = this.photoList.shift();
+    this.photoList.push(firstImage!);
+    this.triggerAnimation(); 
+  }
+
+  backImage(){
+    console.log("back");
+    const lastImage = this.photoList.pop();
+    this.photoList.unshift(lastImage!);
+    this.triggerAnimation();
+  }
+
+  
 }

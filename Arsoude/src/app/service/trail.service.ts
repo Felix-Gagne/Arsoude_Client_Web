@@ -216,4 +216,16 @@ export class TrailService {
       throw e;
     }
   }
+
+  async getPhotos(trailId:number){
+    try{
+      let response = await lastValueFrom(this.http.get<string[]>(this.baseUrl + "GetTrailImages/" + trailId));
+      console.log(response);
+      return response;
+    }
+    catch(e){
+      console.log(e);
+      throw e;
+    }
+  }
 }

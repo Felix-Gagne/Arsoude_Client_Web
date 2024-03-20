@@ -31,6 +31,18 @@
             <h3>Description</h3>
             <p>{{trail?.description}}</p>
         </div>
+        <div class="caroussel">
+            <h3>Images</h3>
+            <div class="arrows">
+                <i class="fa-solid fa-caret-left" (click)="backImage()"></i>
+                <div class="carousselContainer">
+                    <div class="carousselImage" *ngFor="let image of photoList">
+                        <img [src]="image" alt="image_trail" >
+                    </div>
+                </div>
+                <i class="fa-solid fa-caret-right" (click)="next()"></i>
+            </div>
+        </div>
         <h3 class="mapTitle">Map</h3>
         <div leaflet class="mapContainer2" #mapContainerDetail
             [leafletOptions]="options"

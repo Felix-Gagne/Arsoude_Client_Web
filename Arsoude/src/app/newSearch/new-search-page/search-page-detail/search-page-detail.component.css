@@ -176,6 +176,56 @@
     width: 50%;
 }
 
+.caroussel h3{
+    border-bottom: 2px solid #000000;
+    width: 50%;
+}
+
+.carousselContainer{
+
+    width: 100%;
+    height: 15vh;
+    margin: auto;
+    margin-top: 25px;
+    display: flex;
+    overflow: hidden;
+    gap: 15px;
+}
+
+.carousselContainer img{
+    width: 30vh;
+    height: 100%;
+    object-fit: cover;
+}
+
+.arrows{
+    display: flex;
+    width: 100%;
+    gap: 15px;
+}
+
+.arrows i{
+    font-size: 30px;
+    margin: auto;
+    cursor: pointer;
+    height: auto;
+}
+
+@keyframes slideToLeft {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-32vh);
+    }
+  }
+  
+  .carousselImage {
+    animation: slideToLeft 0.8s forwards;
+  }
+
+  
+
 
 
 
