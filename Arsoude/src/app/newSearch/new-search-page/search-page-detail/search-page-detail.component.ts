@@ -10,7 +10,6 @@ import { TrailDTO } from 'src/app/models/TrailDTO';
 import { CommentsService } from 'src/app/service/comments.service';
 import { TrailService } from 'src/app/service/trail.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @Component({
@@ -27,7 +26,8 @@ export class SearchPageDetailComponent {
   photoList: string[] = [];
   scrollPosition = '0';
   triggerAnimationFlag: boolean = false;
-
+  animateCarousel: boolean = true;
+  imagesExist: boolean = false;
 
   faAngleDown = faAngleDown;
   faBicycle = faBicycle;
@@ -113,7 +113,9 @@ export class SearchPageDetailComponent {
       }
       
       this.photoList = await this.trailService.getPhotos(this.trail.id!);
-
+      if(this.photoList.length != 0){
+        this.imagesExist = true;
+      }
       this.initializeOptionsSpec();
     }
 
@@ -199,14 +201,38 @@ export class SearchPageDetailComponent {
     console.log("next");
     const firstImage = this.photoList.shift();
     this.photoList.push(firstImage!);
-    this.triggerAnimation(); 
+    const carouselContainer = document.querySelector('.carousselContainer');
+    const images = carouselContainer!.querySelectorAll('img');
+    const imageWidth = images[0].clientWidth; 
+    const newPosition = -32; 
+    images.forEach(image => {
+      image.style.transition = 'none'; 
+      image.style.transform = `translateX(0)`; 
+      
+      setTimeout(() => {
+          image.style.transition = 'transform 0.8s ease'; 
+          image.style.transform = `translateX(${newPosition}vh)`; 
+      }, 50); 
+  });
   }
 
   backImage(){
     console.log("back");
     const lastImage = this.photoList.pop();
     this.photoList.unshift(lastImage!);
-    this.triggerAnimation();
+    const carouselContainer = document.querySelector('.carousselContainer');
+    const images = carouselContainer!.querySelectorAll('img');
+    const newPosition = 0;
+
+    images.forEach(image => {
+        image.style.transition = 'none'; 
+        image.style.transform = `translateX(calc(-100% - 20px))`; 
+        
+        setTimeout(() => {
+            image.style.transition = 'transform 0.8s ease'; 
+            image.style.transform = `translateX(${newPosition}vh)`; 
+        }, 50); // Adjust delay as needed
+    });
   }
 
   

@@ -239,6 +239,7 @@ export class MapService {
         marker.openPopup();     
         //change marker color to black
         this.router.navigate(['/detailResearch', trail.id]);
+        return;
       }
     }    
   }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TrailDTO } from 'src/app/models/TrailDTO';
 import { TrailService } from 'src/app/service/trail.service';
@@ -9,13 +9,22 @@ import { CommentsService } from 'src/app/service/comments.service';
 import { Comments } from 'src/app/models/Comments';
 import { NotifierService } from 'src/app/notifier.service';
 import { TranslateService } from '@ngx-translate/core';
+import { AfterViewInit, ElementRef, Input, QueryList, ViewChildren } from '@angular/core';
+
+declare var Masonry: any;
+declare var imagesLoaded: any;
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
-export class DetailsComponent {
+export class DetailsComponent implements AfterViewInit{
+
+  @Input() images: string[] = [];
+  @ViewChild('masongrid') masongrid: ElementRef | undefined;
+  @ViewChildren('masongriditems') masongriditems: QueryList<any> | undefined;
+  @ViewChild('addPhotoItem') addPhotoItem: ElementRef | undefined;
 
   trail: TrailDTO | undefined;
   faBicycle = faBicycle;
@@ -31,6 +40,9 @@ export class DetailsComponent {
   commentList: Comments[] = [];
   commentInput?: string;
   isUndefined: boolean = false;
+  photoList: string[] = [];
+
+  
 
   constructor(private router: Router, private trailService: TrailService, public userService: UserService,
     public commentService: CommentsService, public notifierService: NotifierService, public translate: TranslateService) { }
@@ -65,8 +77,22 @@ export class DetailsComponent {
     if (this.trail?.id != undefined) {
       this.commentList = await this.commentService.getComments(this.trail?.id)
       console.log(this.commentList)
+      this.photoList = await this.trailService.getPhotos(this.trail.id!);
+    }
+
+  }
+
+  ngAfterViewInit() {
+    this.masongriditems!.changes.subscribe(e => {
+      this.initMasonry();
+    });
+
+    // le ngFor est déjà fait
+    if(this.masongriditems!.length > 0) {
+      this.initMasonry();
     }
   }
+
 
   async addToFavorite() {
     this.isFavorite = !this.isFavorite;
@@ -107,4 +133,24 @@ export class DetailsComponent {
     window.location.reload();
   }
 
+  initMasonry() {
+    var grid = this.masongrid!.nativeElement;
+
+    var msnry = new Masonry( grid, {
+      itemSelector: '.grid-item',
+      stagger: 30
+    });
+
+    imagesLoaded( grid ).on( 'progress', function() {
+      msnry.layout();
+    });
+  }
+
+ 
+  
+
+  
+
+
+ 
 }

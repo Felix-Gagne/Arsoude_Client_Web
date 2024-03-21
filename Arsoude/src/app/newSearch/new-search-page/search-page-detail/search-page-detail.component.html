@@ -33,15 +33,17 @@
         </div>
         <div class="caroussel">
             <h3>Images</h3>
-            <div class="arrows">
+            <div class="arrows" *ngIf="imagesExist">
                 <i class="fa-solid fa-caret-left" (click)="backImage()"></i>
                 <div class="carousselContainer">
-                    <div class="carousselImage" *ngFor="let image of photoList">
+                    <div class="carousselImage" *ngFor="let image of photoList" [class.animate]="">
                         <img [src]="image" alt="image_trail" >
                     </div>
                 </div>
                 <i class="fa-solid fa-caret-right" (click)="next()"></i>
             </div>
+            <p *ngIf="!imagesExist">Aucune photo n'a été prise pour cette randonnée</p>
+
         </div>
         <h3 class="mapTitle">Map</h3>
         <div leaflet class="mapContainer2" #mapContainerDetail

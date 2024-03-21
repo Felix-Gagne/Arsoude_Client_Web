@@ -110,6 +110,14 @@ export class UserService {
     this.router.navigate(['']);
   }
 
+  removeToken(){
+    localStorage.removeItem('Token');
+    localStorage.removeItem('admin');
+    localStorage.removeItem('Username');
+    this.isAdmin = false;
+    this.isConnected = false;
+  }
+
   verifyConnectedUser(){
     if(localStorage.getItem("Token") != undefined && localStorage.getItem("Token") != null){
       this.isConnected = true;
