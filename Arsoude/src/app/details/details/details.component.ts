@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { TrailDTO } from 'src/app/models/TrailDTO';
 import { TrailService } from 'src/app/service/trail.service';
@@ -10,6 +10,7 @@ import { Comments } from 'src/app/models/Comments';
 import { NotifierService } from 'src/app/notifier.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AfterViewInit, ElementRef, Input, QueryList, ViewChildren } from '@angular/core';
+import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
 
 declare var Masonry: any;
 declare var imagesLoaded: any;
@@ -25,6 +26,7 @@ export class DetailsComponent implements AfterViewInit{
   @ViewChild('masongrid') masongrid: ElementRef | undefined;
   @ViewChildren('masongriditems') masongriditems: QueryList<any> | undefined;
   @ViewChild('addPhotoItem') addPhotoItem: ElementRef | undefined;
+  private readonly storage: Storage = inject(Storage);
 
   trail: TrailDTO | undefined;
   faBicycle = faBicycle;
@@ -41,6 +43,15 @@ export class DetailsComponent implements AfterViewInit{
   commentInput?: string;
   isUndefined: boolean = false;
   photoList: string[] = [];
+  temporaryPhotoList: string[] = [];
+
+  uploadInProgress:boolean = false;
+  Hasimage : boolean = false;
+  imageUrl? : string = "";
+
+  indexNbImages : number = 0;
+  morePhotos : boolean = true;
+
 
   
 
@@ -53,14 +64,17 @@ export class DetailsComponent implements AfterViewInit{
       this.trail = await this.trailService.getTrailDetails(parseInt(data));
     }
 
-    this.checkOwnerByTrailId()
-    this.Favorites = await this.trailService.getFavTrails();
+    if(this.userService.isConnected){
+      this.checkOwnerByTrailId()
+      this.Favorites = await this.trailService.getFavTrails();
 
-    for (let i = 0; i < this.Favorites.length; i++) {
-      if (this.Favorites[i].id == this.trail?.id) {
-        this.isFavorite = true;
+      for (let i = 0; i < this.Favorites.length; i++) {
+        if (this.Favorites[i].id == this.trail?.id) {
+          this.isFavorite = true;
+        }
       }
     }
+    
 
     const startMarker: google.maps.LatLngLiteral = {
       lat: this.trail?.startingCoordinates!.latitude!,
@@ -77,8 +91,15 @@ export class DetailsComponent implements AfterViewInit{
     if (this.trail?.id != undefined) {
       this.commentList = await this.commentService.getComments(this.trail?.id)
       console.log(this.commentList)
-      this.photoList = await this.trailService.getPhotos(this.trail.id!);
+      var photos = await this.trailService.getPhotos(this.trail.id!);
+      this.temporaryPhotoList = photos;
+      for(let i = 0; i < 11; i++){
+        if(i < photos.length){
+          this.photoList.push(photos[i])
+          this.indexNbImages = i;
+        }
     }
+  }
 
   }
 
@@ -138,7 +159,8 @@ export class DetailsComponent implements AfterViewInit{
 
     var msnry = new Masonry( grid, {
       itemSelector: '.grid-item',
-      stagger: 30
+      stagger: 30,
+      columnWidth: 13
     });
 
     imagesLoaded( grid ).on( 'progress', function() {
@@ -146,11 +168,45 @@ export class DetailsComponent implements AfterViewInit{
     });
   }
 
- 
+
+  async uploadFile(input: HTMLInputElement) {
+    if (!input.files) return
+    
+    this.uploadInProgress = true;
+
+    const files: FileList = input.files;
   
+    for (let i = 0; i < files.length; i++) {
+        const file = files.item(i);
+        if (file) {
+            const storageRef = ref(this.storage, file.name);
+            await uploadBytesResumable(storageRef, file);
+            let test = await getDownloadURL(storageRef);
+            this.Hasimage = true;
+            this.imageUrl = test;
+            await this.trailService.sendPhoto(this.trail!.id!, this.imageUrl);
+            console.log(test);
+            this.photoList  = await this.trailService.getPhotos(this.trail!.id!);
+            
+        }
+    }
 
-  
+    this.uploadInProgress = false;
+    input.value = '';
+  }
 
+  seeMore(){
+    var newNbImages = this.indexNbImages + 11;
+    var newPosition = this.indexNbImages + 1;
+    for(let i = newPosition; i <= newNbImages; i++){
+      if(i < this.temporaryPhotoList.length){
+        this.photoList.push(this.temporaryPhotoList[i])
+        this.indexNbImages = i;
+      }
+      else{
+        this.morePhotos = false;
+      }
+    }
+  }
 
- 
 }

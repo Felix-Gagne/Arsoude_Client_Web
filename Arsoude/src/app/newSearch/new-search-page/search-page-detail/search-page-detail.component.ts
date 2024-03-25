@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { faAngleDown, faBicycle, faPersonWalking } from '@fortawesome/free-solid-svg-icons';
 import * as L from 'leaflet';
 import { LatLng, Layer, PolylineOptions, TileLayerOptions, latLng, tileLayer } from 'leaflet';
@@ -10,6 +10,7 @@ import { TrailDTO } from 'src/app/models/TrailDTO';
 import { CommentsService } from 'src/app/service/comments.service';
 import { TrailService } from 'src/app/service/trail.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { filter } from 'rxjs';
 
 
 @Component({
@@ -19,7 +20,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class SearchPageDetailComponent {
 
-  constructor(private route: ActivatedRoute, public trailService: TrailService, public commentService: CommentsService, private router:Router) { }
+  constructor(private route: ActivatedRoute, public trailService: TrailService, public commentService: CommentsService, private router:Router, ) { }
   
   trailId !: number;
   trail !: TrailDTO;
@@ -85,8 +86,11 @@ export class SearchPageDetailComponent {
 
 
   async ngOnInit(){
+
+    
     this.route.params.subscribe(params => {
       this.trailId = params['id'];
+      console.log(this.trailId);
     });
 
     this.trail = await this.trailService.getTrailDetails(this.trailId);
@@ -233,6 +237,11 @@ export class SearchPageDetailComponent {
             image.style.transform = `translateX(${newPosition}vh)`; 
         }, 50); // Adjust delay as needed
     });
+  }
+
+  detail(){
+    localStorage.setItem("trailid", this.trail.id!.toString());
+    this.router.navigate(['/details', this.trail?.name]);
   }
 
   

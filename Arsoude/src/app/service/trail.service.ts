@@ -228,4 +228,22 @@ export class TrailService {
       throw e;
     }
   }
+
+  async sendPhoto(trailId: number, photo: string){
+    try{
+      const model: ImageRequestModel = { url: photo }; 
+      let response = await lastValueFrom(this.http.post<any>(this.baseUrl + "SendImage/" + trailId, model));
+      console.log(response);
+    }
+    catch(e){
+      console.log(e);
+      throw e;
+    }
+  }
+}
+
+export class ImageRequestModel {
+  constructor(
+      public url : string,
+  ){}
 }

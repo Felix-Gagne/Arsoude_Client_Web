@@ -13,7 +13,7 @@ export class MapService {
 
   markers: {trailId: number, marker: L.Marker}[] = [];
   markersMap : Layer[] = [];
-
+  
   constructor(private trailService : TrailService, private router : Router) { }
 
 
@@ -216,7 +216,11 @@ export class MapService {
                   console.log(trail.id!);
                   Promise.resolve(this.trailService.getTrailDetails(trail.id!))
                       .then(x => {
-                        this.router.navigate(['/details', x.name]);
+                        this.router.routeReuseStrategy.shouldReuseRoute = function () {
+                          return false;
+                      }
+                      this.router.onSameUrlNavigation = 'reload';
+                        this.router.navigate(['/detailResearch', trail.id!]);
                       })
                       .catch(e => {
                           console.log("Erreur : " + e);

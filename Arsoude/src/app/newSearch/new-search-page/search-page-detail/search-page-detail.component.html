@@ -2,6 +2,9 @@
     <div class="back" (click)="back()">
         <i class="fa-solid fa-arrow-left-long"></i>
     </div>
+    <div class="detail" (click)="detail()">
+        <p>Detail</p>
+    </div>
     <div class="detailHeader">
         <div class="detailImage">
             <img *ngIf="hasImage" [src]="trail.imageUrl" alt="image_trail">
