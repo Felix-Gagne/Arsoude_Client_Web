@@ -164,7 +164,7 @@ export class NewSearchPageComponent{
     if(await this.trailService.searchTrails(dto) == false){
       this.emptyList = true;
       this.mapService.markersMap = [];
-      this.router.navigate(['']);
+      this.router.navigate(['/newSearch/home']);
     }
     else{
       this.trails = await this.trailService.searchTrails(dto);
@@ -172,7 +172,7 @@ export class NewSearchPageComponent{
       this.emptyList = false;
       this.trailsLength = this.trails.length;
       this.trailService.updatePagedTrail(this.currentPage, this.pageSize);
-      this.router.navigate(['']);
+      this.router.navigate(['/newSearch/home']);
     }
   }
 
@@ -216,9 +216,6 @@ export class NewSearchPageComponent{
     
   } 
 }
-
-
-
   
 
   onCenterChange(center: LatLng) {
@@ -342,7 +339,7 @@ export class NewSearchPageComponent{
       });
       circle.setRadius(newRadius);
 
-      this.radius = this.rangeValue;
+      this.radius = newRadius;
   }
 
    metersToKilometers(radiusInMeters: number): number {

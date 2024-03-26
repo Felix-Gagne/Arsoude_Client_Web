@@ -247,3 +247,15 @@ select{
   .button-2:focus {
     background-color: #750303;
   }
+
+  .apply{
+    background-color: black;
+    color: white;
+    padding: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .apply:hover{
+    background-color: #333;
+  }

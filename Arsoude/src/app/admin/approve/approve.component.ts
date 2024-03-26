@@ -60,5 +60,9 @@ async getDetails(trailId:number){
   }
 }
 
+async applyMigrations(){
+  var response = await this.service.ApplyMigrations();
+}
+
    
 }

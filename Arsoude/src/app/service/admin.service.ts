@@ -52,4 +52,14 @@ console.log(x);
 }
 }
 
+async ApplyMigrations(){
+  try {
+    let x = await lastValueFrom(this.http.get<any>(this.baseUrl+"ApplyMigrations"))
+    console.log(x);
+  } catch (e) {
+    console.log(e)
+    throw e;
+  }
+}
+
 }
