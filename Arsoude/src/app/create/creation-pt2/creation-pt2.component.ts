@@ -125,8 +125,8 @@ export class CreationPt2Component {
     if(this.trail?.description != undefined && this.trail?.location != undefined && this.trail?.name != undefined){
       if(await this.checkClientConnection()){
         if(this.checkToken()){
-          const StartingPoint = new Coordinates(this.latitudeA, this.longitudeA);
-          const EndingPoint = new Coordinates(this.latitudeB, this.longitudeB);
+          const StartingPoint = new Coordinates(undefined, this.latitudeA, this.longitudeA);
+          const EndingPoint = new Coordinates(undefined, this.latitudeB, this.longitudeB);
           this.trail!.startingCoordinates = StartingPoint;
           this.trail!.endingCoordinates = EndingPoint;
   

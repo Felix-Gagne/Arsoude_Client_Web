@@ -15,7 +15,7 @@
                 </div>
                 <ul class="vertical-list"> 
                     <li>
-                        <a class="linkNav" href="#/search">{{'header.explore' | translate}}</a>
+                        <a class="linkNav" href="#/newSearch/home">{{'header.explore' | translate}}</a>
                     </li>
                     <li>
                         <a class="linkNav" href="">{{'header.community' | translate}}</a>
@@ -71,7 +71,7 @@
         <nav class="header_nav">
             <ul class="navigationBar">
                 <li>
-                    <a class="linkNav" href="#/search">{{'header.explore' | translate}}</a>
+                    <a class="linkNav" (click)="explore()">{{'header.explore' | translate}}</a>
                 </li>
                 <li>
                     <a class="linkNav" href="">{{'header.community' | translate}}</a>

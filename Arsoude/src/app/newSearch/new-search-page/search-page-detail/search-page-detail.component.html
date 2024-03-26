@@ -2,6 +2,9 @@
     <div class="back" (click)="back()">
         <i class="fa-solid fa-arrow-left-long"></i>
     </div>
+    <div class="detail" (click)="detail()">
+        <p>Detail</p>
+    </div>
     <div class="detailHeader">
         <div class="detailImage">
             <img *ngIf="hasImage" [src]="trail.imageUrl" alt="image_trail">
@@ -30,6 +33,29 @@
         <div class="detailDescription">
             <h3>Description</h3>
             <p>{{trail?.description}}</p>
+        </div>
+        <div class="caroussel">
+            <h3>Images</h3>
+            <div class="arrows" *ngIf="imagesExist">
+                <i class="fa-solid fa-caret-left" (click)="backImage()"></i>
+                <div class="carousselContainer">
+                    <div class="carousselImage" *ngFor="let image of photoList" [class.animate]="">
+                        <img [src]="image" alt="image_trail" >
+                    </div>
+                </div>
+                <i class="fa-solid fa-caret-right" (click)="next()"></i>
+            </div>
+            <p *ngIf="!imagesExist">Aucune photo n'a été prise pour cette randonnée</p>
+
+        </div>
+        <h3 class="mapTitle">Map</h3>
+        <div leaflet class="mapContainer2" #mapContainerDetail
+            [leafletOptions]="options"
+            [leafletZoom]="zoom"
+            (leafletZoomChange)="onZoomChange($event)"
+            [leafletCenter]="center"
+            [leafletLayers]="layers"
+            (leafletCenterChange)="onCenterChange($event)">
         </div>
         <div class="comments">
             <h3>Commentaires</h3>

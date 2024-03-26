@@ -342,7 +342,7 @@ export class NewSearchPageComponent{
       });
       circle.setRadius(newRadius);
 
-      this.radius = newRadius;
+      this.radius = this.rangeValue;
   }
 
    metersToKilometers(radiusInMeters: number): number {

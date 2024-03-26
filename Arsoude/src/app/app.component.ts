@@ -137,8 +137,8 @@ export class AppComponent {
 
 
   explore(): void {
-    this.router.navigate(['/search']);
-  }
+    this.router.navigate(['/newSearch/home']);
+}
 
   logout(): void {
     if (this.subMenu) {
