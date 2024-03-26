@@ -59,18 +59,30 @@
                 </div>
             </div>
         </div>
-
+       
         <div class="map-container">
             <google-map #googlemaps [width]="'100%'" [height]="600" [center]="center" [zoom]="zoom"
                 [mapTypeId]="mapTypeId">
                 <map-marker *ngFor="let marker of markerPositions" [position]="marker"></map-marker>
             </google-map>
 
+            <h2>Images</h2>
+            <div class="grid" #masongrid>
+                <img [src]="i" #masongriditems class="grid-item" *ngFor="let i of photoList">
+                <div #masongriditems class="grid-item addPhoto" (click)="upload.click()" *ngIf="userService.isConnected">
+                    <i class="fa-solid fa-plus plus"></i>
+                    <i class="fa-regular fa-images" masongriditems ></i>
+                    <input id="fileUpload" type="file" #upload (click)="uploadFile(image)" style="display: none;" #image (change)="uploadFile(upload)">
+                </div>
+            </div>
+            <p *ngIf="morePhotos" class="morePhotos" (click)="seeMore()">See more</p>            
+     
             <!-- <div class="commentHeader">
                 <img src="assets\images\userPlaceHolder.png" alt="placeholder" class="commentImage">
                 <h4>Fil123</h4>
             </div> -->
-            <h2> {{'details.commentTitle' | translate}} </h2>
+            <h2 style="margin-top: 80px;"> {{'details.commentTitle' | translate}} </h2>
+
 
             <div class="comments_text" *ngIf="userService.isConnected">
                 <textarea type="text" placeholder="{{'details.commentTextArea' | translate}}" class="commentInput"

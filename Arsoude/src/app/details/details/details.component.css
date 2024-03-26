@@ -118,6 +118,7 @@ fa-icon {
   grid-column-end: end;
   margin-left: 3%;
   margin-right: 3%;
+  position: relative;
 }
 
 .bookMark {
@@ -510,3 +511,78 @@ textarea::placeholder {
     height: 60px;
   }
 }
+
+.grid{
+  margin-top: 35px;
+  height: auto;
+  border-radius: 15px;
+  width: 100%;
+  display: grid;
+}
+
+.grid-item {
+  width: calc(25% - 10px);;
+  cursor: pointer;
+  border: black 2px solid;
+  margin-bottom: 5px;
+  transition: transform 0.3s ease !important; 
+}
+
+.grid-item:hover {
+  z-index: 2;
+  transform: scale(1.2);
+}
+
+.addPhoto {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  height: 20vh;
+  background-color: rgba(12, 12, 12, 0.767);
+  transition: width 0.3s ease; 
+  gap: 10px;
+
+}
+
+.addPhoto:hover {
+  cursor: pointer;
+  z-index: 99999;
+  background-color: rgba(12, 12, 12, 0.9);
+}
+
+.addPhoto i {
+  font-size: 10vh;
+  color: rgb(255, 255, 255);
+}
+
+.plus {
+  font-size: 6vh !important;
+  color: rgb(255, 253, 253) !important;
+}
+
+.morePhotos {
+  font-size: 22px;
+  text-align: right; 
+  font-weight: 500;
+  border-bottom: 2px solid black; 
+  width: fit-content;
+  position: absolute;
+  cursor: pointer;
+  right: 0;
+  transition: all 0.3s ease; 
+}
+
+.morePhotos:hover {
+  font-weight: bold;
+  border-bottom-color: rgb(38, 38, 41); 
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);}
+
+
+
+
+
+
+
+
+
+

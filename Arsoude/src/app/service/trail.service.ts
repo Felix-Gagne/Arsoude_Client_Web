@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { FilterDTO } from '../models/FilterDTO';
 import { Coordinates } from '../models/Coordinates';
 import { NotifierService } from '../notifier.service';
+import { Coordinate } from 'mapbox-gl';
 
 @Injectable({
   providedIn: 'root'
@@ -129,7 +130,7 @@ export class TrailService {
   async getTrailDetails(trailId : number){
     try{
       let x = await lastValueFrom(this.http.get<TrailDTO>(this.baseUrl+"GetTrail/"+ trailId))
-      console.log(x);
+      console.log("i", x);
       return x;
     }
     catch(e){
@@ -203,4 +204,46 @@ export class TrailService {
     const endIndex = startIndex + pageSize;
     this.pagedTrails = this.searchTrail.slice(startIndex, endIndex);
   }
+
+  async getTrailCoordinates(trailId: number){
+    try{
+      let response = await lastValueFrom(this.http.get<Coordinates[]>(this.baseUrl + "GetTrailCoordinates/" + trailId));
+      console.log(response);
+      return response;
+    }
+    catch(e){
+      console.log(e);
+      throw e;
+    }
+  }
+
+  async getPhotos(trailId:number){
+    try{
+      let response = await lastValueFrom(this.http.get<string[]>(this.baseUrl + "GetTrailImages/" + trailId));
+      console.log(response);
+      return response;
+    }
+    catch(e){
+      console.log(e);
+      throw e;
+    }
+  }
+
+  async sendPhoto(trailId: number, photo: string){
+    try{
+      const model: ImageRequestModel = { url: photo }; 
+      let response = await lastValueFrom(this.http.post<any>(this.baseUrl + "SendImage/" + trailId, model));
+      console.log(response);
+    }
+    catch(e){
+      console.log(e);
+      throw e;
+    }
+  }
+}
+
+export class ImageRequestModel {
+  constructor(
+      public url : string,
+  ){}
 }

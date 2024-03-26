@@ -21,10 +21,7 @@ import { SearchPageTrailListComponent } from './newSearch/new-search-page/trailL
 import { SearchPageDetailComponent } from './newSearch/new-search-page/search-page-detail/search-page-detail.component';
 
 const routes : Routes = [
-  {path: '', component : NewSearchPageComponent, children: [
-    { path: '', component: SearchPageTrailListComponent},
-    { path: 'detailResearch/:id', component: SearchPageDetailComponent}
-  ]},
+  {path: '', component : HomeComponent},
   {path:'login', component : LoginComponent},
   {path: 'register', component : RegisterComponent},
   {path:'infoReg/:username', component : InfoRegComponent},
@@ -38,6 +35,10 @@ const routes : Routes = [
   {path: 'userTrails', component: UserTrailsComponent},
   {path: 'profile', component: ProfileComponent}, 
   {path: 'HELLDIVERS', component : HelldiveComponent},
+  {path: 'newSearch', component: NewSearchPageComponent, children: [
+    { path: 'home', component: SearchPageTrailListComponent},
+    { path: 'detailResearch/:id', component: SearchPageDetailComponent}
+  ]},
   
 ];
 

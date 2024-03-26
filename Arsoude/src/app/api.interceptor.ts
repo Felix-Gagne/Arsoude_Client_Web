@@ -26,7 +26,7 @@ export class ApiInterceptor implements HttpInterceptor {
       //console.log(authorizationHeader);
 
     if(authorizationHeader == "Bearer null"){
-      this.user.Logout();
+      this.user.removeToken();
     }
     return next.handle(request);
  

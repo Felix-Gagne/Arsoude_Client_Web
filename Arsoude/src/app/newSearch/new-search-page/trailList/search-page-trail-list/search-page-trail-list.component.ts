@@ -77,19 +77,6 @@ export class SearchPageTrailListComponent {
 
   }
 
-  async getDetails(trailId:number){
-    try{
-      localStorage.setItem("trailid", trailId.toString());
-      console.log(trailId);
-      var x = await this.trailService.getTrailDetails(trailId);
-      this.router.navigate(['/details', x.name]);
-
-    }
-    catch(e){
-      console.log("Erreur : " + e);
-    }
-  }
-
   getPosition(): Promise<any> {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(
