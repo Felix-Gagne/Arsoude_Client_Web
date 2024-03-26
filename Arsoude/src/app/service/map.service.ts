@@ -216,12 +216,12 @@ export class MapService {
                   console.log(trail.id!);
                   Promise.resolve(this.trailService.getTrailDetails(trail.id!))
                       .then(x => {
-                        this.router.routeReuseStrategy.shouldReuseRoute = function () {
-                          return false;
-                      }
-                      this.router.onSameUrlNavigation = 'reload';
-                        this.router.navigate(['/detailResearch', trail.id!]);
-                      })
+                          this.router.routeReuseStrategy.shouldReuseRoute = function () {
+                              return false;
+                          }
+                          this.router.onSameUrlNavigation = 'reload';
+                          this.router.navigate(['/newSearch/detailResearch', trail.id]);
+                        })
                       .catch(e => {
                           console.log("Erreur : " + e);
                       });
@@ -242,7 +242,7 @@ export class MapService {
         const marker = this.markers[i].marker;
         marker.openPopup();     
         //change marker color to black
-        this.router.navigate(['/detailResearch', trail.id]);
+        this.router.navigate(['/newSearch/detailResearch', trail.id]);
         return;
       }
     }    

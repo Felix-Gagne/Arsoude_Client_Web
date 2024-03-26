@@ -155,7 +155,7 @@ export class SearchPageDetailComponent {
   }
 
   back(){
-    this.router.navigate(['']);
+    this.router.navigate(['/newSearch/home']);
   }
 
 
