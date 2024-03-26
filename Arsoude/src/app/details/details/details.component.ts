@@ -51,7 +51,7 @@ export class DetailsComponent implements AfterViewInit{
 
   indexNbImages : number = 0;
   morePhotos : boolean = true;
-
+  
 
   
 
@@ -92,13 +92,18 @@ export class DetailsComponent implements AfterViewInit{
       this.commentList = await this.commentService.getComments(this.trail?.id)
       console.log(this.commentList)
       var photos = await this.trailService.getPhotos(this.trail.id!);
+      if(photos.length <= 1){
+        this.morePhotos = false;
+      }
       this.temporaryPhotoList = photos;
       for(let i = 0; i < 11; i++){
         if(i < photos.length){
           this.photoList.push(photos[i])
           this.indexNbImages = i;
         }
-    }
+      }
+      
+
   }
 
   }
