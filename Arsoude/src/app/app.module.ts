@@ -30,12 +30,19 @@ import { UserTrailsComponent } from './userLisfOfTrails/user-trails/user-trails.
 import { ProfileComponent } from './profile/profile/profile.component';
 import { MatInputModule } from '@angular/material/input';
 import { HelldiveComponent } from './helldive/helldive.component';
+import { NewSearchPageComponent } from './newSearch/new-search-page/new-search-page.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { SearchPageTrailListComponent } from './newSearch/new-search-page/trailList/search-page-trail-list/search-page-trail-list.component';
+import { SearchPageDetailComponent } from './newSearch/new-search-page/search-page-detail/search-page-detail.component';
+
 
 export function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http);
 }
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     HomeComponent,
@@ -51,7 +58,10 @@ export function HttpLoaderFactory(http: HttpClient){
     NotifierComponent,
     UserTrailsComponent,
     ProfileComponent,
-    HelldiveComponent
+    HelldiveComponent,
+    NewSearchPageComponent, 
+    SearchPageTrailListComponent,
+    SearchPageDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -59,10 +69,12 @@ export function HttpLoaderFactory(http: HttpClient){
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+
     MaterialModule,
     MatInputModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
+    LeafletModule,
     GoogleMapsModule,
     TranslateModule.forRoot({
       defaultLanguage: 'fr',

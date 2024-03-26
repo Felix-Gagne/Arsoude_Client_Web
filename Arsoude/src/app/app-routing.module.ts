@@ -16,6 +16,9 @@ import { DetailsComponent } from './details/details/details.component';
 import { UserTrailsComponent } from './userLisfOfTrails/user-trails/user-trails.component';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { HelldiveComponent } from './helldive/helldive.component';
+import { NewSearchPageComponent } from './newSearch/new-search-page/new-search-page.component';
+import { SearchPageTrailListComponent } from './newSearch/new-search-page/trailList/search-page-trail-list/search-page-trail-list.component';
+import { SearchPageDetailComponent } from './newSearch/new-search-page/search-page-detail/search-page-detail.component';
 
 const routes : Routes = [
   {path: '', component : HomeComponent},
@@ -31,7 +34,12 @@ const routes : Routes = [
   {path: 'help', component: HelpPageComponent},  
   {path: 'userTrails', component: UserTrailsComponent},
   {path: 'profile', component: ProfileComponent}, 
-  {path: 'HELLDIVERS', component : HelldiveComponent}   
+  {path: 'HELLDIVERS', component : HelldiveComponent},
+  {path: 'newSearch', component: NewSearchPageComponent, children: [
+    { path: 'home', component: SearchPageTrailListComponent},
+    { path: 'detailResearch/:id', component: SearchPageDetailComponent}
+  ]},
+  
 ];
 
 @NgModule({

@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { FilterDTO } from '../models/FilterDTO';
 import { Coordinates } from '../models/Coordinates';
 import { NotifierService } from '../notifier.service';
+import { Coordinate } from 'mapbox-gl';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,12 @@ export class TrailService {
 
   url = 'https://ipgeolocation.abstractapi.com/v1/?api_key=' + this.api_key;
   public coordinates :Coordinates = new Coordinates();
-  
+  public searchTrail : TrailDTO[] = [];
+  public trailSearch : boolean = false;
+  public pagedTrails: TrailDTO[] = [];
+  public trailLength : number = 0;
+  public trailExist : boolean = true;
+
   async checkConnection(): Promise<boolean> {
     if (!navigator.onLine) {
       return false;
@@ -81,6 +87,8 @@ export class TrailService {
     try{
       let x = await lastValueFrom(this.http.get<any>(this.baseUrl + "GetAllTrails"));
       console.log(x);
+      this.searchTrail = x;
+      this.trailLength = x.length;
       return x;
     }
     catch(error){
@@ -104,21 +112,25 @@ export class TrailService {
 
     try{
       console.log(filter);
-
+      this.trailSearch = true;
       let trails = await lastValueFrom(this.http.post<any>(this.baseUrl + "GetFilteredTrails", filter));
       console.log(trails)
+      this.searchTrail = trails;
+      this.trailExist = true;
+      this.trailLength = trails.length;
       return trails;
     }
     catch(error : any){
       console.log(error.error);
-      return error.error;
+      
+      return false;
     }
   }
 
   async getTrailDetails(trailId : number){
     try{
       let x = await lastValueFrom(this.http.get<TrailDTO>(this.baseUrl+"GetTrail/"+ trailId))
-      console.log(x);
+      console.log("i", x);
       return x;
     }
     catch(e){
@@ -186,4 +198,52 @@ export class TrailService {
 
 
   }
+
+  updatePagedTrail(currentPage: number, pageSize: number){
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    this.pagedTrails = this.searchTrail.slice(startIndex, endIndex);
+  }
+
+  async getTrailCoordinates(trailId: number){
+    try{
+      let response = await lastValueFrom(this.http.get<Coordinates[]>(this.baseUrl + "GetTrailCoordinates/" + trailId));
+      console.log(response);
+      return response;
+    }
+    catch(e){
+      console.log(e);
+      throw e;
+    }
+  }
+
+  async getPhotos(trailId:number){
+    try{
+      let response = await lastValueFrom(this.http.get<string[]>(this.baseUrl + "GetTrailImages/" + trailId));
+      console.log(response);
+      return response;
+    }
+    catch(e){
+      console.log(e);
+      throw e;
+    }
+  }
+
+  async sendPhoto(trailId: number, photo: string){
+    try{
+      const model: ImageRequestModel = { url: photo }; 
+      let response = await lastValueFrom(this.http.post<any>(this.baseUrl + "SendImage/" + trailId, model));
+      console.log(response);
+    }
+    catch(e){
+      console.log(e);
+      throw e;
+    }
+  }
+}
+
+export class ImageRequestModel {
+  constructor(
+      public url : string,
+  ){}
 }

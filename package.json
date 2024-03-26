@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "imagesloaded": "^5.0.0",
+    "masonry-layout": "^4.2.2",
+    "ngx-masonry": "^14.0.1",
+    "ngx-masonry-gallery": "^4.0.0"
+  }
+}
