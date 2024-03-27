@@ -16,6 +16,7 @@ export class TrailDTO{
         public isPublic? : boolean,
         public coordinates? : Coordinates[],
         public rating ?: number,
+        public totalRatings ?: number,
     ){}
 }
 

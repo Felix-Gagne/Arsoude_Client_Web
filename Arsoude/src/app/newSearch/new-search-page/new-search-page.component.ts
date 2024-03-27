@@ -109,7 +109,11 @@ export class NewSearchPageComponent{
     }
 
     //make a foreach loop in trails 
-
+    if(this.mapService.center == null && this.mapService.zoom == null && this.mapService.center == undefined && this.mapService.zoom == undefined){
+      this.mapService.center = this.center;
+      this.mapService.zoom = this.zoom;
+    }
+   
 
     this.addMarkers(this.trails);
     this.renderer.removeClass(document.body, 'menu-open');
@@ -164,7 +168,7 @@ export class NewSearchPageComponent{
     if(await this.trailService.searchTrails(dto) == false){
       this.emptyList = true;
       this.mapService.markersMap = [];
-      this.router.navigate(['/newSearch/home']);
+      //this.router.navigate(['/newSearch/home']);
     }
     else{
       this.trails = await this.trailService.searchTrails(dto);
@@ -339,7 +343,7 @@ export class NewSearchPageComponent{
       });
       circle.setRadius(newRadius);
 
-      this.radius = newRadius;
+      this.radius = this.rangeValue;
   }
 
    metersToKilometers(radiusInMeters: number): number {
@@ -356,6 +360,12 @@ export class NewSearchPageComponent{
     this.Search();
     this.closeMenu();
   }
+
+  //make a function that will zoom on the marker and center the map on it     
+  
+
+
+
 
   
 

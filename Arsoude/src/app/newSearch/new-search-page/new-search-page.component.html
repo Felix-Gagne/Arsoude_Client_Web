@@ -19,9 +19,9 @@
   </div>
     <div leaflet class="mapContainer" #mapContainer
 					 [leafletOptions]="options"
-					 [leafletZoom]="zoom"
+					 [leafletZoom]="this.mapService.zoom"
 					 (leafletZoomChange)="onZoomChange($event)"
-					 [leafletCenter]="center"
+					 [leafletCenter]="this.mapService.center "
            [leafletLayers]="mapService.markersMap"
 				   (leafletCenterChange)="onCenterChange($event)">
 	  </div>

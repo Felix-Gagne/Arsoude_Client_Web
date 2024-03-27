@@ -13,7 +13,9 @@ export class MapService {
 
   markers: {trailId: number, marker: L.Marker}[] = [];
   markersMap : Layer[] = [];
-  
+  center:any;
+  zoom:any;
+
   constructor(private trailService : TrailService, private router : Router) { }
 
 
@@ -220,6 +222,7 @@ export class MapService {
                               return false;
                           }
                           this.router.onSameUrlNavigation = 'reload';
+                          this.zoomOnMarker(newMarker);
                           this.router.navigate(['/newSearch/detailResearch', trail.id]);
                         })
                       .catch(e => {
@@ -229,7 +232,7 @@ export class MapService {
           }
       });
       });
-  
+
       const markerLayers = this.markers.map(markerObj => markerObj.marker);
       this.markersMap = markerLayers;
     }
@@ -241,14 +244,17 @@ export class MapService {
       if (this.markers[i].trailId === trail.id) {
         const marker = this.markers[i].marker;
         marker.openPopup();     
-        //change marker color to black
+        this.zoomOnMarker(marker);
         this.router.navigate(['/newSearch/detailResearch', trail.id]);
         return;
       }
     }    
   }
 
-
-  
+  zoomOnMarker(marker: L.Marker){
+    this.center = marker.getLatLng();
+    this.zoom = 11;
+    console.log(this.zoom);
+  }
   
 }
