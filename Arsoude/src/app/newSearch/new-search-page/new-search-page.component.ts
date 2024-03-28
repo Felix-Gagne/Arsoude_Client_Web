@@ -109,7 +109,11 @@ export class NewSearchPageComponent{
     }
 
     //make a foreach loop in trails 
-
+    if(this.mapService.center == null && this.mapService.zoom == null && this.mapService.center == undefined && this.mapService.zoom == undefined){
+      this.mapService.center = this.center;
+      this.mapService.zoom = this.zoom;
+    }
+   
 
     this.addMarkers(this.trails);
     this.renderer.removeClass(document.body, 'menu-open');
@@ -164,7 +168,7 @@ export class NewSearchPageComponent{
     if(await this.trailService.searchTrails(dto) == false){
       this.emptyList = true;
       this.mapService.markersMap = [];
-      this.router.navigate(['']);
+      //this.router.navigate(['/newSearch/home']);
     }
     else{
       this.trails = await this.trailService.searchTrails(dto);
@@ -172,7 +176,7 @@ export class NewSearchPageComponent{
       this.emptyList = false;
       this.trailsLength = this.trails.length;
       this.trailService.updatePagedTrail(this.currentPage, this.pageSize);
-      this.router.navigate(['']);
+      this.router.navigate(['/newSearch/home']);
     }
   }
 
@@ -216,9 +220,6 @@ export class NewSearchPageComponent{
     
   } 
 }
-
-
-
   
 
   onCenterChange(center: LatLng) {
@@ -310,6 +311,9 @@ export class NewSearchPageComponent{
     // Handle range value change logic here
     console.log('Range value:', this.rangeValue);
     const circle = this.layers[0] as L.Circle;
+    circle.setStyle({color: 'green'});
+    circle.setStyle({fillColor: 'green'});
+
       // Set the radius directly to the new range value
       const newRadius = this.metersToKilometers(this.rangeValue); // Convert range value to meters
 
@@ -340,6 +344,7 @@ export class NewSearchPageComponent{
         const newCenter = L.latLng(latitude, longitude);
         this.center = newCenter;
       });
+
       circle.setRadius(newRadius);
 
       this.radius = this.rangeValue;
@@ -359,6 +364,12 @@ export class NewSearchPageComponent{
     this.Search();
     this.closeMenu();
   }
+
+  //make a function that will zoom on the marker and center the map on it     
+  
+
+
+
 
   
 
