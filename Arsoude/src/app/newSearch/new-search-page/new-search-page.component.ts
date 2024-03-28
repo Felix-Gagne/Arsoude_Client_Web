@@ -311,6 +311,9 @@ export class NewSearchPageComponent{
     // Handle range value change logic here
     console.log('Range value:', this.rangeValue);
     const circle = this.layers[0] as L.Circle;
+    circle.setStyle({color: 'green'});
+    circle.setStyle({fillColor: 'green'});
+
       // Set the radius directly to the new range value
       const newRadius = this.metersToKilometers(this.rangeValue); // Convert range value to meters
 
@@ -341,6 +344,7 @@ export class NewSearchPageComponent{
         const newCenter = L.latLng(latitude, longitude);
         this.center = newCenter;
       });
+
       circle.setRadius(newRadius);
 
       this.radius = this.rangeValue;

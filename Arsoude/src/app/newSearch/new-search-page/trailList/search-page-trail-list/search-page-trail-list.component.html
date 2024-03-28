@@ -13,7 +13,8 @@
           <p class="trailName">{{trail.name}}</p>
           <div class="rating">
             <i class="fa-solid fa-star"></i>
-            <p>4,88</p>
+            <p *ngIf="trail.rating == null">-</p>
+            <p *ngIf="trail.rating != null">{{trail.rating}}</p>
             <p>({{trail.totalRatings}})</p>
           </div>
         </div>
